@@ -1,12 +1,16 @@
 import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
+import Sidebar from '../components/sidebar/Sidebar'
 
-const Home: NextPage = () => {
+const Dashboard: NextPage = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className='container'>
+      <Sidebar />
+      <div className="p-4 ml-64">
+        <h1>Dashboard</h1>
+      </div>
+    </div>
   )
 }
 
-export default Home
+export default Dashboard;
