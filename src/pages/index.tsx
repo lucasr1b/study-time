@@ -9,7 +9,7 @@ const Dashboard: NextPage = () => {
   return (
     <div className='container w-full'>
       <Sidebar />
-      <div className='p-4 ml-64 h-full w-2/4'>
+      <div className='p-4 ml-72 h-full w-2/4'>
         <span className='text-4xl font-semibold'>Dashboard</span>
         <div className='flex flex-row items-center h-full w-full mt-8'>
           <div className='flex flex-col gap-12 w-full'>
