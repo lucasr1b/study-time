@@ -9,12 +9,12 @@ const Sidebar = () => {
       <h1 className='text-3xl text-center font-semibold pt-4 pb-8'>Study Time</h1>
       <ul className='space-y-2'>
         <li>
-          <Link href='/' className={`flex items-center p-2.5 text-base font-normal rounded-lg ${router.pathname == '/' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
+          <Link href='/' className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == '/' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
             <span className='ml-3'>Dashboard</span>
           </Link>
         </li>
         <li>
-          <Link href='/subjects' className={`flex items-center p-2.5 text-base font-normal rounded-lg ${router.pathname == '/subjects' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
+          <Link href='/subjects' className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == '/subjects' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
             <span className='ml-3'>Subjects</span>
           </Link>
         </li>
