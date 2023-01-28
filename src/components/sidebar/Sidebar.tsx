@@ -5,7 +5,7 @@ const Sidebar = () => {
   const router = useRouter();
 
   return (
-    <aside className='fixed top-0 left-0 z-40 w-64 h-screen px-3 py-4 border-r-2 bg-white border-zinc-200 overflow-y-auto'>
+    <aside className='fixed top-0 left-0 z-40 w-64 h-full px-3 py-4 border-r-2 bg-white border-zinc-200 overflow-y-auto'>
       <h1 className='text-3xl text-center font-semibold pt-4 pb-8'>Study Time</h1>
       <ul className='space-y-2'>
         <li>
