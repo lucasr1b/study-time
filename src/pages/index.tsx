@@ -26,11 +26,11 @@ const Dashboard: NextPage = () => {
                 </button>
               </div>
               <div className='grid grid-rows-3 grid-flow-col gap-4'>
-                <Subject icon={'💼'} name={'Business Studies'} />
-                <Subject icon={'🚀'} name={'Physics'} />
-                <Subject icon={'📉'} name={'Maths'} />
-                <Subject icon={'💻'} name={'Computer Science'} />
-                <Subject icon={'📚'} name={'English'} />
+                <Subject icon={'💼'} name={'Business Studies'} progress={1} total={2} />
+                <Subject icon={'🚀'} name={'Physics'} progress={2} total={6} />
+                <Subject icon={'📉'} name={'Maths'} progress={3} total={8} />
+                <Subject icon={'💻'} name={'Computer Science'} progress={3} total={4} />
+                <Subject icon={'📚'} name={'English'} progress={1} total={2} />
                 <SubjectAdd />
               </div>
             </div>
