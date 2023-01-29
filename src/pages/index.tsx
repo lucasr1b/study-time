@@ -3,7 +3,7 @@ import Sidebar from '../components/sidebar/Sidebar'
 import Subject from '../components/subjects/Subject'
 import SubjectAdd from '../components/subjects/SubjectAdd'
 import Exams from '../components/exams/Exams'
-import Calendar from '../components/calendar/Calendar'
+import Events from '../components/events/Events'
 
 const Dashboard: NextPage = () => {
   return (
@@ -23,7 +23,7 @@ const Dashboard: NextPage = () => {
             </div>
             <Exams />
           </div>
-          <Calendar />
+          <Events />
         </div>
       </div>
     </div>
