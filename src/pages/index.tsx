@@ -5,6 +5,7 @@ import SubjectAdd from '../components/subjects/SubjectAdd'
 import Exams from '../components/exams/Exams'
 import Events from '../components/events/Events'
 import { ArrowSmallLeftIcon, ArrowSmallRightIcon } from '@heroicons/react/24/solid'
+import SubjectPagination from '../components/pagination/SubjectPagination'
 
 const Dashboard: NextPage = () => {
   return (
@@ -16,15 +17,7 @@ const Dashboard: NextPage = () => {
           <div className='flex flex-col gap-8 w-full h-full'>
             <div className='bg-white border-2 border-zinc-200 rounded-lg p-4'>
               <h1 className='font-semibold mb-4'>Subjects</h1>
-              <div className='flex items-center gap-2 my-4'>
-                <button className='flex items-center justify-center w-6 h-6 rounded border-2 border-zinc-200 text-zinc-500 hover:bg-zinc-200'>
-                  <ArrowSmallLeftIcon className='h-4 w-4' />
-                </button>
-                <span className='text-zinc-500'>This week</span>
-                <button className='flex items-center justify-center w-6 h-6 rounded border-2 border-zinc-200 text-zinc-500 hover:bg-zinc-200'>
-                  <ArrowSmallRightIcon className='h-4 w-4' />
-                </button>
-              </div>
+              <SubjectPagination />
               <div className='grid grid-rows-3 grid-flow-col gap-4'>
                 <Subject icon={'💼'} name={'Business Studies'} progress={1} total={2} />
                 <Subject icon={'🚀'} name={'Physics'} progress={2} total={6} />
