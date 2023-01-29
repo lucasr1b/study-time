@@ -1,7 +1,7 @@
 const Events = () => {
   return (
-    <aside className='absolute right-0 w-1/4 z-40 h-full p-4 border-2 rounded-lg border-zinc-200 bg-white mr-12'>
-      <h1 className='text-2xl font-medium'>Upcoming events</h1>
+    <aside className='w-4/6 z-40 h-full p-4 border-2 rounded-lg border-zinc-200 bg-white'>
+      <h1 className='font-semibold'>Upcoming events</h1>
     </aside>
   )
 }
