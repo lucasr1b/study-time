@@ -1,28 +1,13 @@
 import { AcademicCapIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import SidebarItem from './SidebarItem';
 
 const Sidebar = () => {
-  const router = useRouter();
-
   return (
     <aside className='fixed top-0 left-0 z-40 w-64 h-full px-3 py-4 border-r-2 bg-white border-zinc-200 overflow-y-auto'>
       <h1 className='text-3xl text-center font-semibold pt-4 pb-8'>Study Time</h1>
       <ul className='space-y-2'>
-        <li>
-          <Link href='/' className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == '/' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
-            <span className='flex gap-2'>
-              <Squares2X2Icon className='w-6 h-6' /> Dashboard
-            </span>
-          </Link>
-        </li>
-        <li>
-          <Link href='/subjects' className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == '/subjects' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
-            <span className='flex gap-2'>
-              <AcademicCapIcon className='w-6 h-6' /> Subjects
-            </span>
-          </Link>
-        </li>
+        <SidebarItem name='Dashboard' href='/' icon={<Squares2X2Icon className='w-6 h-6' />} />
+        <SidebarItem name='Subjects' href='/subjects' icon={<AcademicCapIcon className='w-6 h-6' />} />
       </ul>
     </aside >
   )
