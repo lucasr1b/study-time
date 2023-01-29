@@ -1,4 +1,4 @@
-import { AcademicCapIcon, Squares2X2Icon } from '@heroicons/react/24/solid';
+import { AcademicCapIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
