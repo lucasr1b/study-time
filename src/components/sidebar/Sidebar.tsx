@@ -1,3 +1,4 @@
+import { AcademicCapIcon, Squares2X2Icon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -10,12 +11,16 @@ const Sidebar = () => {
       <ul className='space-y-2'>
         <li>
           <Link href='/' className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == '/' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
-            <span className='ml-3'>Dashboard</span>
+            <span className='flex gap-2'>
+              <Squares2X2Icon className='w-6 h-6' /> Dashboard
+            </span>
           </Link>
         </li>
         <li>
           <Link href='/subjects' className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == '/subjects' ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
-            <span className='ml-3'>Subjects</span>
+            <span className='flex gap-2'>
+              <AcademicCapIcon className='w-6 h-6' /> Subjects
+            </span>
           </Link>
         </li>
       </ul>
