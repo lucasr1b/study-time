@@ -1,13 +1,15 @@
+import ExamSubject from './ExamSubject';
+
 const Exams = () => {
   return (
     <div className='container flex flex-col h-full w-full p-4 rounded-lg bg-white border-2 border-zinc-200'>
       <h1 className='font-semibold mb-4'>Past papers</h1>
       <ul className='grid'>
-        <li className='py-1 px-2 rounded hover:bg-zinc-200 hover:cursor-pointer'>💼 Bussiness Studies (0/144)</li>
-        <li className='py-1 px-2 rounded hover:bg-zinc-200 hover:cursor-pointer'>🚀 Physics (0/144)</li>
-        <li className='py-1 px-2 rounded hover:bg-zinc-200 hover:cursor-pointer'>📉 Maths (0/144)</li>
-        <li className='py-1 px-2 rounded hover:bg-zinc-200 hover:cursor-pointer'>💻 Computer Science (0/144)</li>
-        <li className='py-1 px-2 rounded hover:bg-zinc-200 hover:cursor-pointer'>📚 English (0/144)</li>
+        <ExamSubject icon='💼' name='Bussiness Studies' progress={0} total={144} />
+        <ExamSubject icon='💻' name='Computer Science' progress={0} total={144} />
+        <ExamSubject icon='🚀' name='Physics' progress={0} total={144} />
+        <ExamSubject icon='📚' name='English' progress={0} total={144} />
+        <ExamSubject icon='📉' name='Maths' progress={0} total={144} />
       </ul>
     </div>
   )
