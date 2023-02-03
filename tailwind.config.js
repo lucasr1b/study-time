@@ -7,7 +7,10 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ['Inter']
-      }
+      },
+      minHeight: (theme) => ({
+        ...theme('spacing'),
+      }),
     },
   },
   plugins: [],

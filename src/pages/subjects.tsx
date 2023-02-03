@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Sidebar from '../components/sidebar/Sidebar';
 import SubjectInfo from '../components/subjects/SubjectInfo';
+import SubjectInfoAdd from '../components/subjects/SubjectInfoAdd';
 
 const Subjects: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Subjects: NextPage = () => {
               <SubjectInfo icon='🧪' name='Chemistry' description='Study the structure and behavior of atoms, molecules, reactions, elements, and compounds.' />
               <SubjectInfo icon='💻' name='Computer Science' description='Study algorithms, database design, programming and computer systems.' />
               <SubjectInfo icon='📚' name='English' description='Improve communication skills through reading, writing, speaking, and comprehension of the language.' />
+              <SubjectInfoAdd />
             </div>
           </div>
           <aside className='w-full z-40 min-h-full p-4 border rounded-lg border-zinc-200 bg-white'>
