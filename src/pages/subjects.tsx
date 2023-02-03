@@ -8,7 +8,7 @@ const Subjects: NextPage = () => {
       <Sidebar />
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Subjects</p>
-        <div className='flex flex-row gap-12 mt-2 w-full h-full pb-10'>
+        <div className='flex flex-row gap-12 mt-2 w-full min-h-full pb-10'>
           <div className='bg-white border border-zinc-200 rounded-lg p-4'>
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
