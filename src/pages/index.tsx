@@ -15,7 +15,7 @@ const Dashboard: NextPage = () => {
         <p className='text-4xl font-semibold mb-4'>Dashboard</p>
         <div className='flex flex-row gap-12 mt-2 w-full'>
           <div className='flex flex-col gap-8 w-full h-full'>
-            <div className='bg-white border-2 border-zinc-200 rounded-lg p-4'>
+            <div className='bg-white border border-zinc-200 rounded-lg p-4'>
               <h1 className='font-semibold mb-4'>Subjects</h1>
               <SubjectPagination />
               <div className='grid grid-rows-3 grid-flow-col gap-4'>

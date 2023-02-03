@@ -6,7 +6,7 @@ type SubjectProps = {
 }
 const Subject = (props: SubjectProps) => {
   return (
-    <div className='flex flex-col items-center justify-center h-32 w-full p-8 rounded-lg bg-white border-2 border-zinc-200 hover:bg-zinc-200 hover:cursor-pointer'>
+    <div className='flex flex-col items-center justify-center h-32 w-full p-8 rounded-lg bg-white border border-zinc-200 hover:bg-zinc-200 hover:cursor-pointer'>
       <p className='text-2xl'>{props.icon}</p>
       <p className='text-m text-zinc-500'>{props.name}</p>
       <div className='mb-1 font-medium'>{props.progress} of {props.total} hours completed</div>
