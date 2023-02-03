@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import Sidebar from '../components/sidebar/Sidebar'
-import Subject from '../components/subjects/Subject'
-import SubjectAdd from '../components/subjects/SubjectAdd'
+import SubjectOverview from '../components/subjects/SubjectOverview'
+import SubjectOverviewAdd from '../components/subjects/SubjectOverviewAdd'
 import Exams from '../components/exams/Exams'
 import Events from '../components/events/Events'
-import SubjectPagination from '../components/pagination/SubjectPagination'
+import SubjectOverviewPagination from '../components/pagination/SubjectOverviewPagination'
 import Tests from '../components/tests/Tests'
 
 const Dashboard: NextPage = () => {
@@ -17,14 +17,14 @@ const Dashboard: NextPage = () => {
           <div className='flex flex-col gap-8 w-full'>
             <div className='bg-white border border-zinc-200 rounded-lg p-4'>
               <h1 className='font-semibold mb-4'>Subjects</h1>
-              <SubjectPagination />
+              <SubjectOverviewPagination />
               <div className='grid grid-rows-3 grid-flow-col gap-4'>
-                <Subject icon={'💼'} name={'Business Studies'} progress={1} total={2} />
-                <Subject icon={'🚀'} name={'Physics'} progress={2} total={6} />
-                <Subject icon={'📉'} name={'Maths'} progress={3} total={8} />
-                <Subject icon={'💻'} name={'Computer Science'} progress={3} total={4} />
-                <Subject icon={'📚'} name={'English'} progress={1} total={2} />
-                <SubjectAdd />
+                <SubjectOverview icon={'💼'} name={'Business Studies'} progress={1} total={2} />
+                <SubjectOverview icon={'🚀'} name={'Physics'} progress={2} total={6} />
+                <SubjectOverview icon={'📉'} name={'Maths'} progress={3} total={8} />
+                <SubjectOverview icon={'💻'} name={'Computer Science'} progress={3} total={4} />
+                <SubjectOverview icon={'📚'} name={'English'} progress={1} total={2} />
+                <SubjectOverviewAdd />
               </div>
             </div>
             <Exams />

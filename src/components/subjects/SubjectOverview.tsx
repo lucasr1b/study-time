@@ -1,10 +1,10 @@
-type SubjectProps = {
+type SubjectOverviewProps = {
   icon: string;
   name: string;
   progress: number;
   total: number;
 }
-const Subject = (props: SubjectProps) => {
+const SubjectOverview = (props: SubjectOverviewProps) => {
   return (
     <div className='flex flex-col items-center justify-center h-32 w-full p-8 rounded-lg bg-white border border-zinc-200 hover:bg-zinc-200 hover:cursor-pointer'>
       <p className='text-2xl'>{props.icon}</p>
@@ -17,4 +17,4 @@ const Subject = (props: SubjectProps) => {
   )
 }
 
-export default Subject;
+export default SubjectOverview;

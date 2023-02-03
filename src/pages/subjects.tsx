@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import Sidebar from '../components/sidebar/Sidebar';
 import SubjectInfo from '../components/subjects/SubjectInfo';
 import SubjectInfoAdd from '../components/subjects/SubjectInfoAdd';
+import StudyLog from '../components/log/StudyLog';
 
 const Subjects: NextPage = () => {
   return (
@@ -22,9 +23,7 @@ const Subjects: NextPage = () => {
               <SubjectInfoAdd />
             </div>
           </div>
-          <aside className='w-full z-40 min-h-full p-4 border rounded-lg border-zinc-200 bg-white'>
-            <h1 className='font-semibold'>Study log</h1>
-          </aside>
+          <StudyLog />
         </div>
       </div>
     </div>
