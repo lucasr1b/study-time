@@ -13,8 +13,8 @@ const Dashboard: NextPage = () => {
       <Sidebar />
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Dashboard</p>
-        <div className='flex flex-row gap-12 mt-2 w-full h-full'>
-          <div className='flex flex-col gap-8 w-full h-full'>
+        <div className='flex flex-row gap-12 mt-2 w-full min-h-full pb-10'>
+          <div className='flex flex-col gap-8 w-full'>
             <div className='bg-white border border-zinc-200 rounded-lg p-4'>
               <h1 className='font-semibold mb-4'>Subjects</h1>
               <SubjectPagination />
@@ -29,11 +29,10 @@ const Dashboard: NextPage = () => {
             </div>
             <Exams />
           </div>
-          <div className='flex flex-col w-4/5 h-full gap-8'>
+          <div className='flex flex-col w-4/5 h-auto gap-8 flex-grow'>
             <Tests />
             <Events />
           </div>
-
         </div>
       </div>
     </div>
