@@ -3,8 +3,13 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectInfo from '../../components/subjects/SubjectInfo';
 import SubjectInfoAdd from '../../components/subjects/SubjectInfoAdd';
 import StudyLog from '../../components/log/StudyLog';
+import AddSubjectModal from '../../components/modal/AddSubjectModal';
+import { useState } from 'react';
 
 const Subjects: NextPage = () => {
+
+  const [modalToggled, setModalToggled] = useState(false);
+
   return (
     <div className='container h-screen'>
       <Sidebar />
@@ -20,11 +25,12 @@ const Subjects: NextPage = () => {
               <SubjectInfo icon='🧪' name='Chemistry' description='Study the structure and behavior of atoms, molecules, reactions, elements, and compounds.' />
               <SubjectInfo icon='💻' name='Computer Science' description='Study algorithms, database design, programming and computer systems.' />
               <SubjectInfo icon='📚' name='English' description='Improve communication skills through reading, writing, speaking, and comprehension of the language.' />
-              <SubjectInfoAdd />
+              <SubjectInfoAdd openModal={() => setModalToggled(true)} />
             </div>
           </div>
           <StudyLog />
         </div>
+        {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} />}
       </div>
     </div>
   )

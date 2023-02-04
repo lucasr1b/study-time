@@ -12,6 +12,10 @@ body {
   @apply font-inter;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 a {
   @apply text-inherit;
   @apply no-underline;
