@@ -1,7 +1,7 @@
 const Login = () => {
   return (
     <div className='flex items-center justify-center h-screen w-full'>
-      <div className='flex justify-center bg-white border border-zinc-200 py-12 px-16 rounded-lg w-1/3 h-2/3'>
+      <div className='flex justify-center items bg-white border border-zinc-200 py-12 px-16 rounded-lg w-1/3 h-3/5'>
         <div className='w-full space-y-4'>
           <h1 className='text-2xl font-bold leading-tight tracking-tight text-zinc-900'>
             Sign in to your account
