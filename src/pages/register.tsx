@@ -42,7 +42,7 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm font-medium text-zinc-900'>Email</label>
-              <input type='email' name='email' id='email' className='bg-zinc-50 border border-zinc-300 text-zinc-900 rounded-lg block w-full p-2.5' placeholder='john.doe@gmail.com' />
+              <input type='text' name='email' id='email' className='bg-zinc-50 border border-zinc-300 text-zinc-900 rounded-lg block w-full p-2.5' placeholder='john.doe@gmail.com' />
             </div>
             <div>
               <label htmlFor='password' className='block mb-2 text-sm font-medium text-zinc-900'>Password</label>

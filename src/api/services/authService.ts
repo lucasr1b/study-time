@@ -37,3 +37,22 @@ export const createUserAndSession = async (req: NextApiRequest, name: string, em
   await createSession(req, user.name, user.email, user.subjects);
   return user;
 }
+
+export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiRequest, email: string, password: string) => {
+  if (email && password) {
+    const user = await User.findOne({ email });
+
+    if (user) {
+      if (await user.comparePassword(password)) {
+        await createSession(req, user._id, user.name, user.email);
+        return true;
+      } else {
+        return 'Email or password is incorrect.';
+      }
+    } else {
+      return 'Email or password is incorrect.';
+    }
+  } else {
+    return 'All fields are required.';
+  }
+}
