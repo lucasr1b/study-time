@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 
-export interface ICambridge extends mongoose.Document {
-  subject_id: number;
+export interface ICambridgeSubject extends mongoose.Document {
+  subject_id: string;
   subject_name: string;
   subject_description: string;
   subject_level: string;
   subject_icon: string;
 }
 
-const CambridgeSchema = new mongoose.Schema({
+const CambridgeSubjectSchema = new mongoose.Schema({
 
   subject_id: {
-    type: Number,
+    type: String,
     required: true,
   },
 
@@ -32,10 +32,10 @@ const CambridgeSchema = new mongoose.Schema({
 
   subject_icon: {
     type: String,
-    required: true
+    required: false
   },
 })
 
-const Cambridge = mongoose.models.Cambridge || mongoose.model<ICambridge>('Cambridge', CambridgeSchema);
+const CambridgeSubject = mongoose.models.CambridgeSubject || mongoose.model<ICambridgeSubject>('CambridgeSubject', CambridgeSubjectSchema);
 
-export default Cambridge;
+export default CambridgeSubject;
