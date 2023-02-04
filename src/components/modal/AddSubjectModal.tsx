@@ -1,41 +1,33 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { axiosConfig } from '../../utils/constants';
+import { Subject } from '../../utils/types';
 
 const AddSubjectModal = (props: { close: () => void }) => {
 
-  const subjects = [
-    "Physics",
-    "Chemistry",
-    "Biology",
-    "Mathematics",
-    "History",
-    "Geography",
-    "Economics",
-    "Political Science",
-    "Sociology",
-    "Psychology",
-    "Computer Science",
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Data Science",
-    "Humanities",
-    "English",
-    "Music",
-    "Art",
-    "Literature",
-    "Philosophy",
-    "Theology",
-    "Sports Science",
-    "Environmental Science"
-  ];
-
+  useEffect(() => {
+    const fetchPasswords = async () => {
+      await axios.get(`http://localhost:3000/api/subjects`, axiosConfig)
+        .then((res) => {
+          setSubjectList(res.data);
+          setFilteredSubjects(res.data);
+          console.log(res.data);
+        })
+        .catch((res) => {
+          console.log(res.response.data.error);
+        })
+    }
+    fetchPasswords();
+  }, [])
 
   const [inputValue, setInputValue] = useState('');
-  const [filteredSubjects, setFilteredSubjects] = useState(subjects);
+  const [subjectList, setSubjectList] = useState<Subject[]>([]);
+  const [filteredSubjects, setFilteredSubjects] = useState<Subject[]>([]);
 
   const handleInputChange = (e: any) => {
     const input = e.target.value;
     setInputValue(input);
-    setFilteredSubjects(subjects.filter((subject) => subject.toLowerCase().includes(input.toLowerCase())));
+    setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())))
   };
 
   return (
@@ -50,8 +42,8 @@ const AddSubjectModal = (props: { close: () => void }) => {
             <ul className='bg-white border border-zinc-200 rounded-lg mt-2 overflow-y-scroll h-64'>
               {filteredSubjects.map((subject, index) => (
                 <li key={index} className='h-14 w-full p-2 hover:bg-zinc-200 hover:cursor-pointer'>
-                  <p className='font-medium'>{subject}</p>
-                  <p className='text-xs text-zinc-500'>IGCSE</p>
+                  <p className='font-medium'>{subject.subject_name}</p>
+                  <p className='text-xs text-zinc-500'>{subject.subject_level}</p>
                 </li>
               ))}
             </ul>
