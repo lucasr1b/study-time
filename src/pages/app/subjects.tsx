@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
-import Sidebar from '../components/sidebar/Sidebar';
-import SubjectInfo from '../components/subjects/SubjectInfo';
-import SubjectInfoAdd from '../components/subjects/SubjectInfoAdd';
-import StudyLog from '../components/log/StudyLog';
+import Sidebar from '../../components/sidebar/Sidebar';
+import SubjectInfo from '../../components/subjects/SubjectInfo';
+import SubjectInfoAdd from '../../components/subjects/SubjectInfoAdd';
+import StudyLog from '../../components/log/StudyLog';
 
 const Subjects: NextPage = () => {
   return (

@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
-import Sidebar from '../components/sidebar/Sidebar'
-import SubjectOverview from '../components/subjects/SubjectOverview'
-import SubjectOverviewAdd from '../components/subjects/SubjectOverviewAdd'
-import Exams from '../components/exams/Exams'
-import Events from '../components/events/Events'
-import SubjectOverviewPagination from '../components/pagination/SubjectOverviewPagination'
-import Tests from '../components/tests/Tests'
+import Sidebar from '../../components/sidebar/Sidebar'
+import SubjectOverview from '../../components/subjects/SubjectOverview'
+import SubjectOverviewAdd from '../../components/subjects/SubjectOverviewAdd'
+import Exams from '../../components/exams/Exams'
+import Events from '../../components/events/Events'
+import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination'
+import Tests from '../../components/tests/Tests'
 
 const Dashboard: NextPage = () => {
   return (
