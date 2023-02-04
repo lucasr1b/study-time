@@ -4,6 +4,7 @@ export interface ICambridge extends mongoose.Document {
   subject_id: number;
   subject_name: string;
   subject_description: string;
+  subject_level: string;
   subject_icon: string;
 }
 
@@ -22,6 +23,11 @@ const CambridgeSchema = new mongoose.Schema({
   subject_description: {
     type: String,
     required: false
+  },
+
+  subject_level: {
+    type: String,
+    required: true
   },
 
   subject_icon: {
