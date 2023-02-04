@@ -1,4 +1,33 @@
+import axios from 'axios';
+import { axiosConfig } from '../utils/constants';
+import Router from 'next/router';
+
 const Register = () => {
+
+  const registerUser = async (e: any) => {
+    e.preventDefault();
+
+    const { uname, email, password, cpassword } = document.forms[0];
+
+    const data = {
+      name: uname.value,
+      email: email.value,
+      password: password.value,
+      cpassword: cpassword.value,
+    };
+
+    await axios.post(`api/auth/register`, data, axiosConfig)
+      .then((res) => {
+        console.log(res);
+        Router.push('/app');
+      })
+      .catch((res) => {
+        password.value = '';
+        cpassword.value = '';
+      });
+  }
+
+
   return (
     <div className='flex items-center justify-center h-screen w-full'>
       <div className='flex justify-center items bg-white border border-zinc-200 py-8 px-16 rounded-lg w-1/3 h-2/3'>
@@ -6,10 +35,10 @@ const Register = () => {
           <h1 className='text-2xl font-bold leading-tight tracking-tight text-zinc-900'>
             Create an account
           </h1>
-          <form className='space-y-4' action='#'>
+          <form className='space-y-4' onSubmit={registerUser}>
             <div>
-              <label htmlFor='name' className='block mb-2 text-sm font-medium text-zinc-900'>Name</label>
-              <input type='text' name='name' id='name' className='bg-zinc-50 border border-zinc-300 text-zinc-900 rounded-lg block w-full p-2.5' placeholder='John Doe' />
+              <label htmlFor='uname' className='block mb-2 text-sm font-medium text-zinc-900'>Name</label>
+              <input type='text' name='uname' id='uname' className='bg-zinc-50 border border-zinc-300 text-zinc-900 rounded-lg block w-full p-2.5' placeholder='John Doe' />
             </div>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm font-medium text-zinc-900'>Email</label>
