@@ -56,10 +56,10 @@ const AddSubjectModal = (props: { close: () => void }) => {
             {selectedSubject &&
               <div className='flex flex-col gap-2 bg-white border border-zinc-200 h-auto rounded-lg mt-2 p-4'>
                 <div className='flex flex-row'>
-                  <p className='text-lg font-medium'>🚀 {selectedSubject.subject_name}</p>
+                  <p className='text-lg font-medium'>{selectedSubject.subject_icon} {selectedSubject.subject_name}</p>
                   <div className='bg-zinc-200 rounded-lg py-1 px-2 ml-auto text-zinc-500 text-sm'>{selectedSubject.subject_level}</div>
                 </div>
-                <p className='text-zinc-500'>Learn mechanics, waves, electricity, magnetism and other fundamental physics concepts.</p>
+                <p className='text-zinc-500'>{selectedSubject.subject_description}</p>
                 <a className='text-blue-600 mt-2 hover:underline' href='#'>View course syllabus</a>
               </div>
             }
