@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
-import { sessionOptions } from '../../lib/session';
-import CambridgeSubject from '../../api/models/CambridgeSubject';
-import connectToDB from '../../api/lib/mongodb';
-import { subjects } from '../../utils/subjects';
+import { sessionOptions } from '../../../../lib/session';
+import CambridgeSubject from '../../../../api/models/CambridgeSubject';
+import connectToDB from '../../../../api/lib/mongodb';
+import { subjects } from '../../../../utils/subjects';
 
 export default withIronSessionApiRoute(addSubjectsRoute, sessionOptions);
 
