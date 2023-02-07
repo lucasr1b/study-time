@@ -4,10 +4,14 @@ import { sessionOptions } from '../../../lib/session';
 import Cambridge from '../../../api/models/CambridgeSubject';
 import connectToDB from '../../../api/lib/mongodb';
 
-export default withIronSessionApiRoute(addSubjectRoute, sessionOptions);
+export default withIronSessionApiRoute(subjectsRoute, sessionOptions);
 
-async function addSubjectRoute(req: NextApiRequest, res: NextApiResponse) {
+async function subjectsRoute(req: NextApiRequest, res: NextApiResponse) {
 
-  res.send('Added!');
+  connectToDB();
+
+  const subjects = await Cambridge.find({});
+
+  res.send(subjects);
 
 }

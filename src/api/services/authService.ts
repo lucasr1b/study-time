@@ -44,7 +44,7 @@ export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiR
 
     if (user) {
       if (await user.comparePassword(password)) {
-        await createSession(req, user._id, user.name, user.email);
+        await createSession(req, user.name, user.email, user.subjects);
         return true;
       } else {
         return 'Email or password is incorrect.';
