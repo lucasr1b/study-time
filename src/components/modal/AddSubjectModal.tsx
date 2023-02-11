@@ -12,7 +12,7 @@ const AddSubjectModal = (props: { close: () => void }) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get(`/api/subjects`, axiosConfig)
+      await axios.get(`/api/subjects/list`, axiosConfig)
         .then((res) => {
           setSubjectList(res.data);
           setFilteredSubjects(res.data);
