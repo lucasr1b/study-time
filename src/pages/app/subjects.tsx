@@ -23,6 +23,13 @@ const Subjects: NextPage = () => {
     fetchSubjects()
   }, [])
 
+  const removeSubject = async (id: string) => {
+    await axios.post(`/api/subjects/remove`, { id })
+      .then(() => {
+        setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id))
+      })
+  }
+
   return (
     <div className='container h-screen'>
       <Sidebar />
@@ -33,7 +40,7 @@ const Subjects: NextPage = () => {
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
               {subjects.map((subject, index) => (
-                <SubjectInfo key={index} icon={subject.subject_icon} name={subject.subject_name} description={subject.subject_description} />
+                <SubjectInfo key={index} subject={subject} removeSubject={removeSubject} />
               ))}
               <SubjectInfoAdd openModal={() => setModalToggled(true)} />
             </div>
