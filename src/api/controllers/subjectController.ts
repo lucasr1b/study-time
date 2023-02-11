@@ -9,7 +9,7 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
 
   try {
     if (user) {
-      const id = '0409';
+      const { id } = req.body;
       const userData = await addSubjectToUser(id, user.email);
       res.status(200).send(userData);
     } else {

@@ -11,7 +11,7 @@ const AddSubjectModal = (props: { close: () => void }) => {
   const [selectedSubject, setSelectedSubject] = useState<Subject>();
 
   useEffect(() => {
-    const fetchPasswords = async () => {
+    const fetchSubjects = async () => {
       await axios.get(`/api/subjects`, axiosConfig)
         .then((res) => {
           setSubjectList(res.data);
@@ -22,7 +22,7 @@ const AddSubjectModal = (props: { close: () => void }) => {
           console.log(res.response.data.error);
         })
     }
-    fetchPasswords();
+    fetchSubjects();
   }, [])
 
   const handleInputChange = (e: any) => {
@@ -35,12 +35,18 @@ const AddSubjectModal = (props: { close: () => void }) => {
     setSelectedSubject(subject);
   }
 
+  const addSubject = async (e: any) => {
+    e.preventDefault();
+
+    await axios.post(`/api/subjects/add`, { id: selectedSubject?.subject_id });
+  }
+
   return (
     <>
       <div className='fixed z-40 flex items-center justify-center bg-black opacity-20 w-full h-full top-0 left-0' onClick={props.close}></div>
       <div className='fixed z-50 flex flex-col w-2/5 h-auto p-4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white'>
         <h1 className='font-semibold'>Add a new subject</h1>
-        <form className='flex flex-row items-baseline space-y-4 gap-4 h-full'>
+        <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={addSubject}>
           <div className='w-full'>
             <label htmlFor='subject' className='block mb-2 text-sm font-medium'>Subject</label>
             <input type='text' name='subject' id='subject' className='bg-white border border-zinc-300 rounded-lg block w-full p-2.5 focus:outline-zinc-300 placeholder:text-zinc-500' placeholder='Search subjects...' value={inputValue} onChange={handleInputChange} />
@@ -70,7 +76,7 @@ const AddSubjectModal = (props: { close: () => void }) => {
               <div className='flex items-center justify-center bg-white border border-zinc-200 h-48 w-48 rounded-md'>
                 <p className='text-6xl hover:cursor-pointer'>🚀</p>
               </div>
-              <button className='bg-white border border-zinc-200 rounded-md h-10 px-4 hover:bg-zinc-200 text-sm font-medium'>Add subject</button>
+              <button className='bg-white border border-zinc-200 rounded-md h-10 px-4 hover:bg-zinc-200 text-sm font-medium' type='submit'>Add subject</button>
             </div>
           </div>
         </form>
