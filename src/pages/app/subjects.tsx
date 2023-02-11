@@ -4,11 +4,25 @@ import SubjectInfo from '../../components/subjects/SubjectInfo';
 import SubjectInfoAdd from '../../components/subjects/SubjectInfoAdd';
 import StudyLog from '../../components/log/StudyLog';
 import AddSubjectModal from '../../components/modal/AddSubjectModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Subject } from '../../utils/types';
 
 const Subjects: NextPage = () => {
 
   const [modalToggled, setModalToggled] = useState(false);
+  const [subjectList, setSubjectList] = useState<Subject[]>([]);
+
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      await axios.get(`/api/subjects`)
+        .then((res) => {
+          setSubjectList(res.data);
+        })
+    }
+    fetchSubjects()
+  }, [])
+
 
   return (
     <div className='container h-screen'>
@@ -19,12 +33,9 @@ const Subjects: NextPage = () => {
           <div className='bg-white border border-zinc-200 rounded-lg p-4'>
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
-              <SubjectInfo icon='💼' name='Business Studies' description='Gain a solid foundation of business knowledge, including finance, marketing, human resources and more.' />
-              <SubjectInfo icon='📉' name='Maths' description='Study critical thinking and problem solving through algebra, geometry, trigonometry and more.' />
-              <SubjectInfo icon='🚀' name='Physics' description='Learn mechanics, waves, electricity, magnetism and other fundamental physics concepts.' />
-              <SubjectInfo icon='🧪' name='Chemistry' description='Study the structure and behavior of atoms, molecules, reactions, elements, and compounds.' />
-              <SubjectInfo icon='💻' name='Computer Science' description='Study algorithms, database design, programming and computer systems.' />
-              <SubjectInfo icon='📚' name='English' description='Improve communication skills through reading, writing, speaking, and comprehension of the language.' />
+              {subjectList.map((subject, index) => (
+                <SubjectInfo key={index} icon={subject.subject_icon} name={subject.subject_name} description={subject.subject_description} />
+              ))}
               <SubjectInfoAdd openModal={() => setModalToggled(true)} />
             </div>
           </div>
