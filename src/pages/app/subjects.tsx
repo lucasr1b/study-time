@@ -11,18 +11,17 @@ import { Subject } from '../../utils/types';
 const Subjects: NextPage = () => {
 
   const [modalToggled, setModalToggled] = useState(false);
-  const [subjectList, setSubjectList] = useState<Subject[]>([]);
+  const [subjects, setSubjects] = useState<Subject[]>([]);
 
   useEffect(() => {
     const fetchSubjects = async () => {
       await axios.get(`/api/subjects`)
         .then((res) => {
-          setSubjectList(res.data);
+          setSubjects(res.data);
         })
     }
     fetchSubjects()
   }, [])
-
 
   return (
     <div className='container h-screen'>
@@ -33,7 +32,7 @@ const Subjects: NextPage = () => {
           <div className='bg-white border border-zinc-200 rounded-lg p-4'>
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
-              {subjectList.map((subject, index) => (
+              {subjects.map((subject, index) => (
                 <SubjectInfo key={index} icon={subject.subject_icon} name={subject.subject_name} description={subject.subject_description} />
               ))}
               <SubjectInfoAdd openModal={() => setModalToggled(true)} />
@@ -41,7 +40,7 @@ const Subjects: NextPage = () => {
           </div>
           <StudyLog />
         </div>
-        {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} />}
+        {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} subjects={subjects} setSubjects={setSubjects} />}
       </div>
     </div>
   )

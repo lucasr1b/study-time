@@ -10,8 +10,8 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
   try {
     if (user) {
       const { id } = req.body;
-      const userData = await addSubjectToUser(req, id, user.email);
-      res.status(200).send(userData);
+      const addedSubject = await addSubjectToUser(req, id, user.email);
+      res.status(200).send(addedSubject);
     } else {
       res.send('Not logged in.');
     }

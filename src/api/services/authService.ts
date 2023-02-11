@@ -34,7 +34,7 @@ export const createUserAndSession = async (req: NextApiRequest, name: string, em
     password,
     subjects: ['English', 'Maths']
   });
-  await createSession(req, user.name, user.email, user.subjects);
+  await createSession(req, user.name, user.email);
   return user;
 }
 
@@ -44,7 +44,7 @@ export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiR
 
     if (user) {
       if (await user.comparePassword(password)) {
-        await createSession(req, user.name, user.email, user.subjects);
+        await createSession(req, user.name, user.email);
         return true;
       } else {
         return 'Email or password is incorrect.';

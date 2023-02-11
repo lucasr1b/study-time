@@ -14,7 +14,6 @@ declare module 'iron-session' {
     user: {
       name: string;
       email: string;
-      subjects: string[];
     }
   }
 }

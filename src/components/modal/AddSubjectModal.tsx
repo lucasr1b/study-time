@@ -3,7 +3,13 @@ import { useEffect, useState } from 'react';
 import { axiosConfig } from '../../utils/constants';
 import { Subject } from '../../utils/types';
 
-const AddSubjectModal = (props: { close: () => void }) => {
+type AddSubjectModalProps = {
+  close: () => void;
+  subjects: any;
+  setSubjects: any;
+}
+
+const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const [inputValue, setInputValue] = useState('');
   const [subjectList, setSubjectList] = useState<Subject[]>([]);
@@ -16,7 +22,6 @@ const AddSubjectModal = (props: { close: () => void }) => {
         .then((res) => {
           setSubjectList(res.data);
           setFilteredSubjects(res.data);
-          console.log(res.data);
         })
         .catch((res) => {
           console.log(res.response.data.error);
@@ -37,8 +42,11 @@ const AddSubjectModal = (props: { close: () => void }) => {
 
   const addSubject = async (e: any) => {
     e.preventDefault();
-
-    await axios.post(`/api/subjects/add`, { id: selectedSubject?.subject_id });
+    await axios.post(`/api/subjects/add`, { id: selectedSubject?.subject_id })
+      .then((res) => {
+        props.setSubjects([...props.subjects, res.data]);
+        props.close();
+      })
   }
 
   return (

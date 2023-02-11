@@ -1,10 +1,9 @@
 import { NextApiRequest } from 'next';
 
-export const createSession = async (req: NextApiRequest, name: string, email: string, subjects: string[]) => {
+export const createSession = async (req: NextApiRequest, name: string, email: string) => {
   req.session.user = {
     name,
     email,
-    subjects
   }
   await req.session.save();
 }
