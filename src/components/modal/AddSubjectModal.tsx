@@ -66,7 +66,7 @@ const AddSubjectModal = (props: { close: () => void }) => {
                   <div className='bg-zinc-200 rounded-lg py-1 px-2 ml-auto text-zinc-500 text-sm'>{selectedSubject.subject_level}</div>
                 </div>
                 <p className='text-zinc-500'>{selectedSubject.subject_description}</p>
-                <a className='text-blue-600 mt-2 hover:underline' href='#'>View course syllabus</a>
+                <a className='text-blue-600 mt-2 hover:underline w-fit' href='#'>View course syllabus</a>
               </div>
             }
           </div>
