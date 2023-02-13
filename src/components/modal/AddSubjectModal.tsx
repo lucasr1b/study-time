@@ -34,6 +34,10 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     const input = e.target.value;
     setInputValue(input);
     setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())))
+
+    if (e.target.value != '' && selectedSubject) {
+      setSelectedSubject(undefined);
+    }
   };
 
   const selectSubject = (subject: Subject) => {
