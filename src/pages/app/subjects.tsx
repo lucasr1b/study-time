@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectInfo from '../../components/subjects/SubjectInfo';
-import SubjectInfoAdd from '../../components/subjects/SubjectInfoAdd';
+import SubjectAdd from '../../components/subjects/SubjectAdd';;
 import StudyLog from '../../components/log/StudyLog';
 import AddSubjectModal from '../../components/modal/AddSubjectModal';
 import { useEffect, useState } from 'react';
@@ -42,7 +42,7 @@ const Subjects: NextPage = () => {
               {subjects.map((subject, index) => (
                 <SubjectInfo key={index} subject={subject} removeSubject={removeSubject} />
               ))}
-              <SubjectInfoAdd openModal={() => setModalToggled(true)} />
+              <SubjectAdd openModal={() => setModalToggled(true)} />
             </div>
           </div>
           <StudyLog />
