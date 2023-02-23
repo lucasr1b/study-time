@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import Sidebar from '../../components/sidebar/Sidebar'
 import SubjectOverview from '../../components/subjects/SubjectOverview'
-import SubjectOverviewAdd from '../../components/subjects/SubjectOverviewAdd'
 import Exams from '../../components/exams/Exams'
 import Events from '../../components/events/Events'
 import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination'
@@ -24,7 +23,6 @@ const Dashboard: NextPage = () => {
                 <SubjectOverview icon={'📉'} name={'Maths'} progress={3} total={8} />
                 <SubjectOverview icon={'💻'} name={'Computer Science'} progress={3} total={4} />
                 <SubjectOverview icon={'📚'} name={'English'} progress={1} total={2} />
-                <SubjectOverviewAdd />
               </div>
             </div>
             <Exams />
