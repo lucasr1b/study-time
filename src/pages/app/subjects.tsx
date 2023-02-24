@@ -43,14 +43,9 @@ const Subjects: NextPage = () => {
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
               {isLoading ? (
-                <>
-                  <SubjectLoading />
-                  <SubjectLoading />
-                  <SubjectLoading />
-                  <SubjectLoading />
-                  <SubjectLoading />
-                  <SubjectLoading />
-                </>
+                [...Array(6)].map((x, i) => (
+                  <SubjectLoading key={i} />
+                ))
               ) : (
                 <>
                   {subjects.map((subject, index) => (
@@ -65,7 +60,7 @@ const Subjects: NextPage = () => {
         </div>
         {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} subjects={subjects} setSubjects={setSubjects} />}
       </div>
-    </div>
+    </div >
   )
 }
 
