@@ -7,17 +7,20 @@ import AddSubjectModal from '../../components/modal/AddSubjectModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Subject } from '../../utils/types';
+import SubjectLoading from '../../components/subjects/SubjectLoading';
 
 const Subjects: NextPage = () => {
 
   const [modalToggled, setModalToggled] = useState(false);
   const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchSubjects = async () => {
       await axios.get(`/api/subjects`)
         .then((res) => {
           setSubjects(res.data);
+          setIsLoading(false)
         })
     }
     fetchSubjects()
@@ -39,10 +42,23 @@ const Subjects: NextPage = () => {
           <div className='bg-white border border-zinc-200 rounded-lg p-4 w-3/5'>
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
-              {subjects.map((subject, index) => (
-                <SubjectInfo key={index} subject={subject} removeSubject={removeSubject} />
-              ))}
-              <SubjectAdd openModal={() => setModalToggled(true)} />
+              {isLoading ? (
+                <>
+                  <SubjectLoading />
+                  <SubjectLoading />
+                  <SubjectLoading />
+                  <SubjectLoading />
+                  <SubjectLoading />
+                  <SubjectLoading />
+                </>
+              ) : (
+                <>
+                  {subjects.map((subject, index) => (
+                    <SubjectInfo key={index} subject={subject} removeSubject={removeSubject} />
+                  ))}
+                  <SubjectAdd openModal={() => setModalToggled(true)} />
+                </>
+              )}
             </div>
           </div>
           <StudyLog />
