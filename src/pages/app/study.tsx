@@ -1,6 +1,6 @@
 import Sidebar from '../../components/sidebar/Sidebar';
 import StudyTracker from '../../components/study/tracker/StudyTracker';
-import WeeklyProgress from '../../components/study/WeeklyProgess';
+import WeeklyProgress from '../../components/study/progress/WeeklyProgess';
 
 const Study = () => {
   return (
