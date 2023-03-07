@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
-import { addSubjectToUser, removeSubjectFromUser } from '../services/subjectService';
+import { addSubjectToUser, createStudyTrackerAndAddToUser, removeSubjectFromUser } from '../services/subjectService';
 
 connectToDB();
 
@@ -11,6 +11,7 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
     if (user) {
       const { id } = req.body;
       const addedSubject = await addSubjectToUser(id, user.email);
+      await createStudyTrackerAndAddToUser(addedSubject.subject_id, user.email)
       res.status(200).send(addedSubject);
     } else {
       res.send('Not logged in.');
