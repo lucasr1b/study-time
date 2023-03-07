@@ -22,17 +22,20 @@ const StudyTrackingSchema = new mongoose.Schema({
 
   hours_allocated: {
     type: Number,
-    required: false
+    required: false,
+    default: 0
   },
 
   hours_studied: {
     type: Number,
-    required: true
+    required: false,
+    default: 0
   },
 
   completed: {
     type: Boolean,
-    required: false
+    required: false,
+    default: false
   },
 })
 
