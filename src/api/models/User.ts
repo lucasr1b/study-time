@@ -6,6 +6,7 @@ export interface IUser extends mongoose.Document {
   email: string,
   password: string,
   subjects: string[],
+  trackers: string[],
   createdAt: Date,
   updatedAt: Date,
   comparePassword(password: string): Promise<Boolean>,
@@ -30,6 +31,11 @@ const UserSchema = new mongoose.Schema({
   },
 
   subjects: [{
+    type: String,
+    required: false,
+  }],
+
+  trackers: [{
     type: String,
     required: false,
   }]
