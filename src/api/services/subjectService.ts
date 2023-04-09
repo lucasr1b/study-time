@@ -19,9 +19,13 @@ export const removeSubjectFromUser = async (id: string, email: string) => {
 export const createStudyTrackerAndAddToUser = async (subject_id: string, email: string) => {
   let tracker_id = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)
 
+  const subjectDetails = await CambridgeSubject.findOne({ subject_id })
+
   await StudyTracking.create({
     tracker_id,
     subject_id,
+    subject_name: subjectDetails.subject_name,
+    subject_icon: subjectDetails.subject_icon,
   })
 
   await User.findOneAndUpdate({ email }, { $push: { trackers: tracker_id } });

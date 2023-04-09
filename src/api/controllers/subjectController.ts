@@ -11,7 +11,7 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
     if (user) {
       const { id } = req.body;
       const addedSubject = await addSubjectToUser(id, user.email);
-      await createStudyTrackerAndAddToUser(addedSubject.subject_id, user.email)
+      await createStudyTrackerAndAddToUser(id, user.email)
       res.status(200).send(addedSubject);
     } else {
       res.send('Not logged in.');
