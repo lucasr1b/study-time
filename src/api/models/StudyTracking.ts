@@ -5,6 +5,7 @@ export interface IStudyTracking extends mongoose.Document {
   subject_id: string;
   subject_name: string;
   subject_icon: string
+  is_setup: boolean;
   hours_allocated: number;
   hours_studied: number;
   completed: boolean;
@@ -30,6 +31,12 @@ const StudyTrackingSchema = new mongoose.Schema({
   subject_icon: {
     type: String,
     required: true,
+  },
+
+  is_setup: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 
   hours_allocated: {
