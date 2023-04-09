@@ -5,8 +5,23 @@ import Exams from '../../components/exams/Exams'
 import Events from '../../components/events/Events'
 import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination'
 import Tests from '../../components/tests/Tests'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Dashboard: NextPage = () => {
+
+  const [trackers, setTrackers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchTrackers = async () => {
+      await axios.get(`/api/study/trackers/weekly`)
+        .then((res) => {
+          setTrackers(res.data);
+        })
+    };
+    fetchTrackers();
+  }, []);
+
   return (
     <div className='container h-screen'>
       <Sidebar />
@@ -15,14 +30,12 @@ const Dashboard: NextPage = () => {
         <div className='flex flex-row gap-12 mt-2 w-full min-h-full pb-10'>
           <div className='flex flex-col gap-8 w-full'>
             <div className='bg-white border border-zinc-200 rounded-lg p-4'>
-              <h1 className='font-semibold mb-4'>Subjects</h1>
+              <h1 className='font-semibold mb-4'>Study overview</h1>
               <SubjectOverviewPagination />
-              <div className='grid grid-rows-3 grid-flow-col gap-4'>
-                <SubjectOverview icon={'💼'} name={'Business Studies'} progress={1} total={2} />
-                <SubjectOverview icon={'🚀'} name={'Physics'} progress={2} total={6} />
-                <SubjectOverview icon={'📉'} name={'Maths'} progress={3} total={8} />
-                <SubjectOverview icon={'💻'} name={'Computer Science'} progress={3} total={4} />
-                <SubjectOverview icon={'📚'} name={'English'} progress={1} total={2} />
+              <div className='grid grid-cols-2 gap-4'>
+                {trackers.map(tracker => (
+                  <SubjectOverview tracker={tracker} key={tracker.tracker_id} />
+                ))}
               </div>
             </div>
             <Exams />
