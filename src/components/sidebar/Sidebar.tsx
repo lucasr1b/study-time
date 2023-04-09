@@ -8,7 +8,7 @@ const Sidebar = () => {
       <ul className='space-y-2'>
         <SidebarItem name='Dashboard' href='/app' icon={<Squares2X2Icon className='w-6 h-6' />} />
         <SidebarItem name='Subjects' href='/app/subjects' icon={<AcademicCapIcon className='w-6 h-6' />} />
-        <SidebarItem name='Study Log' href='/app/study' icon={<ClockIcon className='w-6 h-6' />} />
+        <SidebarItem name='Study' href='/app/study' icon={<ClockIcon className='w-6 h-6' />} />
       </ul>
     </aside >
   )
