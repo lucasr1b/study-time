@@ -1,4 +1,9 @@
-const SubjectTracker = (props: { tracker: any }) => {
+type SubjectTrackerProps = {
+  tracker: any;
+  openModal: (tracker: any, action: string) => void;
+}
+
+const SubjectTracker = (props: SubjectTrackerProps) => {
   return (
     <div className='flex flex-col items-center justify-center h-40 min-w-max p-8 rounded-lg bg-white border border-zinc-200'>
       <p className='text-2xl'>{props.tracker.subject_icon}</p>
@@ -7,7 +12,7 @@ const SubjectTracker = (props: { tracker: any }) => {
         <>
           <div className='mb-1 text-sm text-zinc-500'>{props.tracker.hours_allocated} hours allocated</div>
           <div className='flex gap-4 mt-1'>
-            <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'>Edit</button>
+            <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm' onClick={() => props.openModal(props.tracker, 'edit')}>Edit</button>
             <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'>Study</button>
           </div>
         </>
@@ -15,7 +20,7 @@ const SubjectTracker = (props: { tracker: any }) => {
         <>
           <div className='mb-1 text-sm text-zinc-500'>No study time allocated</div>
           <div className='flex gap-4 mt-1'>
-            <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'>Setup study tracker</button>
+            <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm' onClick={() => props.openModal(props.tracker, 'setup')}>Setup study tracker</button>
           </div>
         </>
       }
