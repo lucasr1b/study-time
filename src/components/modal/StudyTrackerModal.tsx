@@ -16,7 +16,7 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
               <div className='flex gap-2 items-center'>
                 <h3>{props.tracker.subject_icon} {props.tracker.subject_name}:</h3>
                 <div>
-                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded">
+                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded" defaultValue={props.tracker.hours_allocated}>
                     <option value="1">1h</option>
                     <option value="2">2h</option>
                     <option value="3">3h</option>
