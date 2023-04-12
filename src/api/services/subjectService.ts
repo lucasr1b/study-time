@@ -31,3 +31,8 @@ export const createStudyTrackerAndAddToUser = async (subject_id: string, email: 
 
   await User.findOneAndUpdate({ email }, { $push: { trackers: tracker_id } });
 }
+
+export const deleteStudyTrackerAndRemoveFromUser = async (subject_id: string, email: string) => {
+  const tracker = await StudyTracking.findOneAndDelete({ subject_id, tracker_user: email })
+  await User.findOneAndUpdate({ email }, { $pull: { trackers: tracker.tracker_id } });
+}
