@@ -12,7 +12,7 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
     if (user) {
       const { id, time } = req.body;
       const tracker = await setupStudyTrackerForSubject(id, time);
-      res.status(200).send(tracker.tracker_id);
+      res.status(200).send(tracker);
     } else {
       res.send('Not logged in.');
     }

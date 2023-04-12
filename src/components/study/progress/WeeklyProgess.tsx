@@ -2,25 +2,17 @@ import { useEffect, useState } from 'react';
 import SubjectProgress from './SubjectProgress';
 import axios from 'axios';
 
-const WeeklyProgress = () => {
+type WeeklyProgressProps = {
+  trackers: any;
+}
 
-  const [trackers, setTrackers] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchTrackers = async () => {
-      await axios.get(`/api/study/trackers/weekly`)
-        .then((res) => {
-          setTrackers(res.data);
-        })
-    };
-    fetchTrackers();
-  }, []);
+const WeeklyProgress = (props: WeeklyProgressProps) => {
 
   return (
     <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
       <h1 className='font-semibold mb-4'>Weekly progress</h1>
       <div className='flex gap-4 pb-4 overflow-y-auto'>
-        {trackers.map(tracker => (
+        {(props.trackers.filter((tracker: any) => tracker.is_setup !== false)).map((tracker: any) => (
           <SubjectProgress tracker={tracker} key={tracker.tracker_id} />
         ))}
       </div>

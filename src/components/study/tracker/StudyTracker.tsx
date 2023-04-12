@@ -4,22 +4,16 @@ import axios from 'axios';
 import SetupStudyTrackerModal from '../../modal/SetupStudyTrackerModal';
 import EditStudyTrackerModal from '../../modal/EditTrackerModal';
 
-const StudyTracker = () => {
+type StudyTrackerProps = {
+  trackers: any;
+  setTrackers: any;
+}
 
-  const [trackers, setTrackers] = useState<any[]>([]);
+const StudyTracker = (props: StudyTrackerProps) => {
+
   const [selectedTracker, setSelectedTracker] = useState({});
   const [isSetupModalOpen, setIsSetupModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchTrackers = async () => {
-      await axios.get(`/api/study/trackers`)
-        .then((res) => {
-          setTrackers(res.data);
-        })
-    };
-    fetchTrackers();
-  }, []);
 
   const openSetupModal = (tracker: any) => {
     setSelectedTracker(tracker)
@@ -37,15 +31,23 @@ const StudyTracker = () => {
     setIsEditModalOpen(false)
   }
 
+  const updateTrackers = (updatedTracker: any) => {
+    props.setTrackers(props.trackers.map((tracker: any) =>
+      tracker.tracker_id === updatedTracker.tracker_id
+        ? { ...tracker, hours_allocated: updatedTracker.hours_allocated, is_setup: updatedTracker.is_setup }
+        : tracker
+    ));
+  }
+
   return (
     <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
       <h1 className='font-semibold mb-4'>Study tracker</h1>
       <div className='grid grid-cols-3 grid-flow-row gap-6'>
-        {trackers.map(tracker => (
+        {props.trackers.map((tracker: any) => (
           <SubjectTracker tracker={tracker} key={tracker.tracker_id} openSetupModal={openSetupModal} openEditModal={openEditModal} />
         ))}
       </div>
-      {isSetupModalOpen && <SetupStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} />}
+      {isSetupModalOpen && <SetupStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} updateTrackers={updateTrackers} />}
       {isEditModalOpen && <EditStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} />}
     </div>
   )

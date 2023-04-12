@@ -4,6 +4,7 @@ import { useState } from 'react';
 type StudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
+  updateTrackers: (tracker: any) => void;
 }
 
 const StudyTrackerModal = (props: StudyTrackerModalProps) => {
@@ -19,7 +20,7 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
     e.preventDefault();
     await axios.post(`/api/study/trackers/setup`, { id: props.tracker.tracker_id, time })
       .then((res) => {
-        console.log(res);
+        props.updateTrackers(res.data)
         props.closeModal();
       })
   }
