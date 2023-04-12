@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { useState } from 'react';
+
 type StudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
@@ -5,18 +8,35 @@ type StudyTrackerModalProps = {
 }
 
 const StudyTrackerModal = (props: StudyTrackerModalProps) => {
+
+  const [time, setTime] = useState(1);
+
+  const handleHoursChange = (e: any) => {
+    const hours = e.target.value;
+    setTime(hours)
+  }
+
+  const setupTracker = async (e: any) => {
+    e.preventDefault();
+    await axios.post(`/api/study/trackers/setup`, { id: props.tracker.tracker_id, time })
+      .then((res) => {
+        console.log(res);
+        props.closeModal();
+      })
+  }
+
   return (
     <>
       <div className='fixed z-40 flex items-center justify-center bg-black opacity-20 w-full h-full top-0 left-0' onClick={props.closeModal}></div>
       <div className='fixed z-50 flex flex-col w-fit h-auto p-4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white'>
         <h1 className='font-semibold'>{props.action == 'setup' ? 'Setup' : 'Edit'} study tracker</h1>
-        <form className='flex flex-row items-baseline space-y-4 gap-4 h-full'>
+        <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={setupTracker}>
           <div className='mt-2 flex flex-col'>
             <div className="inline-flex border rounded-md p-2">
               <div className='flex gap-2 items-center'>
                 <h3>{props.tracker.subject_icon} {props.tracker.subject_name}:</h3>
                 <div>
-                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded" defaultValue={props.tracker.hours_allocated}>
+                  <select name="" id="hours" className="px-2 outline-none appearance-none bg-transparent border rounded" defaultValue={props.tracker.hours_allocated} onChange={handleHoursChange}>
                     <option value="1">1h</option>
                     <option value="2">2h</option>
                     <option value="3">3h</option>
