@@ -23,6 +23,7 @@ export const createStudyTrackerAndAddToUser = async (subject_id: string, email: 
 
   await StudyTracking.create({
     tracker_id,
+    tracker_user: email,
     subject_id,
     subject_name: subjectDetails.subject_name,
     subject_icon: subjectDetails.subject_icon,

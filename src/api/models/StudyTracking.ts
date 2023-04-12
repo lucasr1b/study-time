@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 export interface IStudyTracking extends mongoose.Document {
   tracker_id: string;
+  tracker_user: string;
   subject_id: string;
   subject_name: string;
   subject_icon: string
@@ -14,6 +15,11 @@ export interface IStudyTracking extends mongoose.Document {
 const StudyTrackingSchema = new mongoose.Schema({
 
   tracker_id: {
+    type: String,
+    required: true,
+  },
+
+  tracker_user: {
     type: String,
     required: true,
   },
