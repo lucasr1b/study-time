@@ -16,6 +16,15 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
     setTime(hours)
   }
 
+  const editTracker = async (e: any) => {
+    e.preventDefault();
+    await axios.post(`/api/study/trackers/edit`, { id: props.tracker.tracker_id, time })
+      .then((res) => {
+        props.updateTrackers(res.data)
+        props.closeModal();
+      })
+  }
+
   const removeTracker = async (e: any) => {
     e.preventDefault();
     await axios.post(`/api/study/trackers/remove`, { id: props.tracker.tracker_id })
@@ -77,7 +86,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
               <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm text-red-500' onClick={removeTracker}>Remove</button>
               <div className='flex gap-2'>
                 <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
-                <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Save</button>
+                <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={editTracker}>Save</button>
               </div>
             </div>
           </div>
