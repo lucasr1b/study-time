@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import SubjectTracker from './SubjectTracker';
 import axios from 'axios';
-import StudyTrackerModal from '../../modal/StudyTrackerModal';
+import SetupStudyTrackerModal from '../../modal/SetupStudyTrackerModal';
+import EditStudyTrackerModal from '../../modal/EditTrackerModal';
 
 const StudyTracker = () => {
 
   const [trackers, setTrackers] = useState<any[]>([]);
   const [selectedTracker, setSelectedTracker] = useState({});
-  const [modalAction, setModalAction] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSetupModalOpen, setIsSetupModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchTrackers = async () => {
@@ -20,16 +21,20 @@ const StudyTracker = () => {
     fetchTrackers();
   }, []);
 
-  const openModal = (tracker: any, action: string) => {
+  const openSetupModal = (tracker: any) => {
     setSelectedTracker(tracker)
-    setModalAction(action)
-    setIsModalOpen(true)
+    setIsSetupModalOpen(true)
+  }
+
+  const openEditModal = (tracker: any) => {
+    setSelectedTracker(tracker)
+    setIsEditModalOpen(true)
   }
 
   const closeModal = () => {
     setSelectedTracker({})
-    setModalAction('')
-    setIsModalOpen(false)
+    setIsSetupModalOpen(false)
+    setIsEditModalOpen(false)
   }
 
   return (
@@ -37,10 +42,11 @@ const StudyTracker = () => {
       <h1 className='font-semibold mb-4'>Study tracker</h1>
       <div className='grid grid-cols-3 grid-flow-row gap-6'>
         {trackers.map(tracker => (
-          <SubjectTracker tracker={tracker} key={tracker.tracker_id} openModal={openModal} />
+          <SubjectTracker tracker={tracker} key={tracker.tracker_id} openSetupModal={openSetupModal} openEditModal={openEditModal} />
         ))}
       </div>
-      {isModalOpen && <StudyTrackerModal tracker={selectedTracker} closeModal={closeModal} action={modalAction} />}
+      {isSetupModalOpen && <SetupStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} />}
+      {isEditModalOpen && <EditStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} />}
     </div>
   )
 }

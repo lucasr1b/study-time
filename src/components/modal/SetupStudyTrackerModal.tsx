@@ -4,7 +4,6 @@ import { useState } from 'react';
 type StudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
-  action: string;
 }
 
 const StudyTrackerModal = (props: StudyTrackerModalProps) => {
@@ -29,7 +28,7 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
     <>
       <div className='fixed z-40 flex items-center justify-center bg-black opacity-20 w-full h-full top-0 left-0' onClick={props.closeModal}></div>
       <div className='fixed z-50 flex flex-col w-fit h-auto p-4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white'>
-        <h1 className='font-semibold'>{props.action == 'setup' ? 'Setup' : 'Edit'} study tracker</h1>
+        <h1 className='font-semibold'>Setup study tracker</h1>
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={setupTracker}>
           <div className='mt-2 flex flex-col'>
             <div className="inline-flex border rounded-md p-2">
@@ -73,21 +72,10 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
                 </div>
               </div>
             </div>
-            {props.action == 'setup' &&
-              <div className='flex gap-2 mt-2'>
-                <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
-                <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Save</button>
-              </div>
-            }
-            {props.action == 'edit' &&
-              <div className='flex gap-2 mt-2 justify-between'>
-                <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm text-red-500'>Remove</button>
-                <div className='flex gap-2'>
-                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
-                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Save</button>
-                </div>
-              </div>
-            }
+            <div className='flex gap-2 mt-2'>
+              <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
+              <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Save</button>
+            </div>
           </div>
         </form>
       </div >
