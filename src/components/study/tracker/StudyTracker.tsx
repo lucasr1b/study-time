@@ -48,7 +48,7 @@ const StudyTracker = (props: StudyTrackerProps) => {
         ))}
       </div>
       {isSetupModalOpen && <SetupStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} updateTrackers={updateTrackers} />}
-      {isEditModalOpen && <EditStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} />}
+      {isEditModalOpen && <EditStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} updateTrackers={updateTrackers} />}
     </div>
   )
 }

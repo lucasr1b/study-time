@@ -1,8 +1,10 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 type EditStudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
+  updateTrackers: (tracker: any) => void;
 }
 
 const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
@@ -12,6 +14,15 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
   const handleHoursChange = (e: any) => {
     const hours = e.target.value;
     setTime(hours)
+  }
+
+  const removeTracker = async (e: any) => {
+    e.preventDefault();
+    await axios.post(`/api/study/trackers/remove`, { id: props.tracker.tracker_id })
+      .then((res) => {
+        props.updateTrackers(res.data)
+        props.closeModal();
+      })
   }
 
   return (
@@ -63,7 +74,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
               </div>
             </div>
             <div className='flex gap-2 mt-2 justify-between'>
-              <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm text-red-500'>Remove</button>
+              <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm text-red-500' onClick={removeTracker}>Remove</button>
               <div className='flex gap-2'>
                 <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
                 <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Save</button>
