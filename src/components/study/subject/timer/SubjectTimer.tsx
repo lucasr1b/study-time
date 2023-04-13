@@ -1,7 +1,7 @@
-const SubjectStopwatch = (props: { time_allocated: number }) => {
+const SubjectTimer = (props: { time_allocated: number }) => {
   return (
     <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
-      <h1 className='font-semibold mb-4'>Stopwatch</h1>
+      <h1 className='font-semibold mb-4'>Timer</h1>
       <div className='flex flex-col items-center justify-center gap-4 pb-4'>
         <div className='flex flex-col items-center gap-1'>
           <h1 className='text-4xl font-semibold'>1h 34m 25s</h1>
@@ -16,4 +16,4 @@ const SubjectStopwatch = (props: { time_allocated: number }) => {
   )
 }
 
-export default SubjectStopwatch;
+export default SubjectTimer;

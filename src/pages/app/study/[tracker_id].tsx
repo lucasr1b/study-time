@@ -3,7 +3,7 @@ import Sidebar from '../../../components/sidebar/Sidebar';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { Subject } from '../../../utils/types';
-import SubjectStopwatch from '../../../components/study/subject/stopwatch/SubjectStopwatch';
+import SubjectTimer from '../../../components/study/subject/timer/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
 
 const StudySubject = () => {
@@ -44,7 +44,7 @@ const StudySubject = () => {
           <>
             <p className='text-4xl font-semibold mb-2'><a className='text-blue-500 hover:text-blue-600' href='/app/study'>Study</a> / {tracker.subject_name}</p>
             <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
-              <SubjectStopwatch time_allocated={tracker.hours_allocated} />
+              <SubjectTimer time_allocated={tracker.hours_allocated} />
               <SubjectUnits />
             </div>
           </>
