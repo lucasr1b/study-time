@@ -42,7 +42,7 @@ const StudySubject = () => {
           <p>{error}</p>
         ) : subject ? (
           <>
-            <p className='text-4xl font-semibold mb-4'>{subject.subject_name}</p>
+            <p className='text-4xl font-semibold mb-2'><a className='text-blue-500 hover:text-blue-600' href='/app/study'>Study</a> / {subject.subject_name}</p>
             <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
               <SubjectStopwatch />
               <SubjectUnits />
