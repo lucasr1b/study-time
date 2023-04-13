@@ -11,14 +11,14 @@ const StudySubject = () => {
   const [error, setError] = useState('');
 
   const router = useRouter();
-  const { id } = router.query
+  const { subject_id } = router.query
 
   useEffect(() => {
     const fetchSubject = async () => {
       setIsLoading(true);
       try {
-        if (id !== undefined) {
-          const res = await axios.get(`/api/subjects/list/${id}`);
+        if (subject_id !== undefined) {
+          const res = await axios.get(`/api/subjects/list/${subject_id}`);
           setSubject(res.data[0]);
         }
         setIsLoading(false);
@@ -28,7 +28,7 @@ const StudySubject = () => {
       }
     };
     fetchSubject();
-  }, [id]);
+  }, [subject_id]);
 
   return (
     <div className='container h-screen'>
