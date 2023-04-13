@@ -1,6 +1,6 @@
-import Sidebar from '../../components/sidebar/Sidebar';
-import StudyTracker from '../../components/study/tracker/StudyTracker';
-import WeeklyProgress from '../../components/study/progress/WeeklyProgess';
+import Sidebar from '../../../components/sidebar/Sidebar';
+import StudyTracker from '../../../components/study/tracker/StudyTracker';
+import WeeklyProgress from '../../../components/study/progress/WeeklyProgess';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
