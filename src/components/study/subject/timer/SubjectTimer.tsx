@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { formatFancyTime, formatWordedTime } from '../../../../utils/helpers';
 
 type TimerProps = {
   time_allocated: number;
 }
 
 const SubjectTimer = (props: TimerProps) => {
-  const [time, setTime] = useState(props.time_allocated);
+  const [time, setTime] = useState(props.time_allocated * 60);
   const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const SubjectTimer = (props: TimerProps) => {
       <div className='flex flex-col items-center justify-center gap-4 pb-4'>
         <div className='flex flex-col items-center gap-1'>
           <h1 className='text-4xl font-semibold'>{timeRemaining}</h1>
-          <p>of <span className='text-blue-500 font-medium mt-0'>1 hour</span> remaining</p>
+          <p>of <span className='text-blue-500 font-medium mt-0'>{formatFancyTime(props.time_allocated)}</span> remaining</p>
         </div>
         <div className='flex gap-4'>
           {isPaused ?
