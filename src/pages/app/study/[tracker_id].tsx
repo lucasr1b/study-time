@@ -44,7 +44,7 @@ const StudySubject = () => {
           <>
             <p className='text-4xl font-semibold mb-2'><a className='text-blue-500 hover:text-blue-600' href='/app/study'>Study</a> / {tracker.subject_name}</p>
             <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
-              <SubjectTimer time_allocated={tracker.hours_allocated * 60 * 60} />
+              <SubjectTimer time_allocated={tracker.time_allocated * 60 * 60} />
               <SubjectUnits />
             </div>
           </>

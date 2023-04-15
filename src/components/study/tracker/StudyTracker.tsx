@@ -34,7 +34,7 @@ const StudyTracker = (props: StudyTrackerProps) => {
   const updateTrackers = (updatedTracker: any) => {
     props.setTrackers(props.trackers.map((tracker: any) =>
       tracker.tracker_id === updatedTracker.tracker_id
-        ? { ...tracker, hours_allocated: updatedTracker.hours_allocated, is_setup: updatedTracker.is_setup }
+        ? { ...tracker, time_allocated: updatedTracker.time_allocated, is_setup: updatedTracker.is_setup }
         : tracker
     ));
   }
