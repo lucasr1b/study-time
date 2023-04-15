@@ -10,8 +10,8 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
 
   try {
     if (user) {
-      const { id, time } = req.body;
-      const tracker = await setupStudyTrackerForSubject(id, time);
+      const { id, hours, minutes } = req.body;
+      const tracker = await setupStudyTrackerForSubject(id, hours, minutes);
       res.status(200).send(tracker);
     } else {
       res.send('Not logged in.');
@@ -31,8 +31,8 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
 
   try {
     if (user) {
-      const { id, time } = req.body;
-      const tracker = await editStudyTrackerTimeForSubject(id, time);
+      const { id, hours, minutes } = req.body;
+      const tracker = await editStudyTrackerTimeForSubject(id, hours, minutes);
       res.status(200).send(tracker);
     } else {
       res.send('Not logged in.');

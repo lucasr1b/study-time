@@ -1,3 +1,5 @@
+import { formatTime } from '../../../utils/helpers';
+
 type SubjectTrackerProps = {
   tracker: any;
   openSetupModal: (tracker: any) => void;
@@ -11,7 +13,7 @@ const SubjectTracker = (props: SubjectTrackerProps) => {
       <p className='text-m text-black font-medium'>{props.tracker.subject_name}</p>
       {props.tracker.is_setup ?
         <>
-          <div className='mb-1 text-sm text-zinc-500'>{props.tracker.time_allocated} hours allocated</div>
+          <div className='mb-1 text-sm text-zinc-500'>{formatTime(props.tracker.time_allocated)} allocated</div>
           <div className='flex gap-4 mt-1'>
             <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm' onClick={() => props.openEditModal(props.tracker)}>Edit</button>
             <a className='flex items-center bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 hover:cursor-pointer text-sm' href={`study/${props.tracker.tracker_id}`}>Study</a>

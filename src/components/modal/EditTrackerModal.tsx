@@ -9,16 +9,22 @@ type EditStudyTrackerModalProps = {
 
 const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
 
-  const [time, setTime] = useState(1);
+  const [hours, setHours] = useState(1);
+  const [minutes, setMinutes] = useState(0);
 
   const handleHoursChange = (e: any) => {
-    const hours = e.target.value;
-    setTime(hours)
+    const hours = parseInt(e.target.value);
+    setHours(hours)
+  }
+
+  const handleMinutesChange = (e: any) => {
+    const minutes = parseInt(e.target.value);
+    setMinutes(minutes)
   }
 
   const editTracker = async (e: any) => {
     e.preventDefault();
-    await axios.post(`/api/study/trackers/edit`, { id: props.tracker.tracker_id, time })
+    await axios.post(`/api/study/trackers/edit`, { id: props.tracker.tracker_id, hours, minutes })
       .then((res) => {
         props.updateTrackers(res.data)
         props.closeModal();
@@ -72,11 +78,11 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
                     <option value="24">24h</option>
                   </select>
                   <span className="px-1">:</span>
-                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded">
+                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded" onChange={handleMinutesChange}>
                     <option value="0">0m</option>
-                    <option value="30">15m</option>
+                    <option value="15">15m</option>
                     <option value="30">30m</option>
-                    <option value="30">45m</option>
+                    <option value="45">45m</option>
                   </select>
                   <span className="px-1 ml-1">per week</span>
                 </div>
