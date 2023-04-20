@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Study Time
+**This project is still heavily under progress**
 
-## Getting Started
+Study Time is a study all in one app based on the Cambridge curriculum that tracks study time, shows upcoming school events & tests, tracks past exam papers and more! It is built using **NextJS, TypeScript, TailwindCSS and MongoDB**
 
-First, run the development server:
+### Register
+![register](https://user-images.githubusercontent.com/38605132/233506703-051be3be-6545-4515-9bc1-a9f204a57589.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Login
+![login](https://user-images.githubusercontent.com/38605132/233506686-a4f02abd-9496-4828-a89f-9d35a6d244ab.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Dashboard
+![dashboard](https://user-images.githubusercontent.com/38605132/233506760-4983bfb4-2675-4cc8-9d73-fc80dacb1d87.png)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Subjects
+![subjects](https://user-images.githubusercontent.com/38605132/233506783-fe54d4c3-fce8-416d-aa03-aee2886334f1.png)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Add Subject
+![add_subject](https://user-images.githubusercontent.com/38605132/233506814-f94daf97-9e10-48b5-94bb-cadb370c57cb.png)
+![add_subject_search](https://user-images.githubusercontent.com/38605132/233506824-d58784c3-8416-4182-9fa9-fb641d1a657b.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Study
+![study](https://user-images.githubusercontent.com/38605132/233506856-d09da2b2-040a-427c-bc17-1d3cf6930347.png)
 
-## Learn More
+### Setup Study Tracker
+![setup_tracker](https://user-images.githubusercontent.com/38605132/233506880-d9981d14-794f-4f37-97cd-40d32a0c2a5c.png)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Study Subject
+![study_timer](https://user-images.githubusercontent.com/38605132/233506905-54c1c12e-9866-4e8e-a339-62cebf412274.png)
