@@ -6,7 +6,7 @@ type TimerProps = {
 }
 
 const SubjectTimer = (props: TimerProps) => {
-  const [time, setTime] = useState(props.time_allocated * 60);
+  const [time, setTime] = useState(props.time_allocated);
   const [isPaused, setIsPaused] = useState(true);
   const [sessionStarted, setSessionStarted] = useState(false);
 

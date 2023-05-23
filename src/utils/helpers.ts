@@ -1,5 +1,5 @@
-const getMinutes = (time: number) => { return time % 60 }
-const getHours = (time: number) => { return Math.floor(((time % 3600) / 60)) }
+const getMinutes = (time: number) => { return (time / 60) % 60 }
+const getHours = (time: number) => { return Math.floor((((time / 60) % 3600) / 60)) }
 
 export const formatTime = (time: number) => {
   const minutes = getMinutes(time);
