@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { getHours, getMinutes } from '../../utils/helpers';
 
 type EditStudyTrackerModalProps = {
   tracker: any;
@@ -51,7 +52,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
               <div className='flex gap-2 items-center'>
                 <h3>{props.tracker.subject_icon} {props.tracker.subject_name}:</h3>
                 <div>
-                  <select name="" id="hours" className="px-2 outline-none appearance-none bg-transparent border rounded" defaultValue={props.tracker.time_allocated} onChange={handleHoursChange}>
+                  <select name="" id="hours" className="px-2 outline-none appearance-none bg-transparent border rounded" defaultValue={getHours(props.tracker.time_allocated)} onChange={handleHoursChange}>
                     <option value="1">1h</option>
                     <option value="2">2h</option>
                     <option value="3">3h</option>
@@ -78,7 +79,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
                     <option value="24">24h</option>
                   </select>
                   <span className="px-1">:</span>
-                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded" onChange={handleMinutesChange}>
+                  <select name="" id="" className="px-2 outline-none appearance-none bg-transparent border rounded" defaultValue={getMinutes(props.tracker.time_allocated)} onChange={handleMinutesChange}>
                     <option value="0">0m</option>
                     <option value="15">15m</option>
                     <option value="30">30m</option>
