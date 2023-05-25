@@ -18,3 +18,9 @@ export const removeStudyTrackerForSubject = async (tracker_id: string) => {
   const tracker = await StudyTracking.findOne({ tracker_id })
   return tracker;
 }
+
+export const updateStudyTrackerTimerForSubject = async (tracker_id: any, time_studied: number) => {
+  await StudyTracking.findOneAndUpdate({ tracker_id }, { time_studied })
+  const tracker = await StudyTracking.findOne({ tracker_id })
+  return tracker;
+}
