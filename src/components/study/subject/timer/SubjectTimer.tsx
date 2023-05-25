@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { formatFancyTime } from '../../../../utils/helpers';
+import axios from 'axios';
+import { axiosConfig } from '../../../../utils/constants';
 
 type TimerProps = {
+  tracker_id: any;
   time_allocated: number;
+  time_studied: number;
 }
 
 const SubjectTimer = (props: TimerProps) => {
-  const [time, setTime] = useState(props.time_allocated * 60);
+  const [time, setTime] = useState(props.time_allocated - props.time_studied);
   const [isPaused, setIsPaused] = useState(true);
   const [sessionStarted, setSessionStarted] = useState(false);
 
@@ -15,17 +19,26 @@ const SubjectTimer = (props: TimerProps) => {
     if (!isPaused && time > 0) {
       timerInterval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
+        if (time % 60 == 0) updateTimer();
       }, 1000);
     }
     return () => clearInterval(timerInterval);
   }, [isPaused, time]);
 
+
+  const updateTimer = async () => await axios.put(`/api/study/trackers/${props.tracker_id}/update`, { id: props.tracker_id, time: props.time_allocated - time }, axiosConfig);
+
   const handleStart = () => {
     setIsPaused(false);
     setSessionStarted(true);
   }
+
   const handleResume = () => setIsPaused(false);
-  const handlePause = () => setIsPaused(true);
+
+  const handlePause = () => {
+    setIsPaused(true);
+    updateTimer();
+  }
 
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor((time % 3600) / 60);

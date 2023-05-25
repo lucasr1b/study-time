@@ -1,5 +1,5 @@
-const getMinutes = (time: number) => { return time % 60 }
-const getHours = (time: number) => { return Math.floor(((time % 3600) / 60)) }
+export const getMinutes = (time: number) => { return Math.floor((time / 60) % 60) }
+export const getHours = (time: number) => { return Math.floor((((time / 60) % 3600) / 60)) }
 
 export const formatTime = (time: number) => {
   const minutes = getMinutes(time);
@@ -27,4 +27,11 @@ export const formatWeeklyProgressTime = (time: number, maxTime: number) => {
   if (minutes == 0 && hours > 0) return `${hours}h / ${formatTime(maxTime)} completed`
   if (time >= maxTime) return 'Weekly goal completed';
   return `${hours}h ${minutes}m / ${formatTime(maxTime)} completed`;
+}
+
+export const formatWeeklyProgressBar = (time: number, maxTime: number) => {
+  let percentage = 0
+  if (time > maxTime) percentage = 100;
+  else percentage = (time / maxTime) * 100;
+  return percentage;
 }

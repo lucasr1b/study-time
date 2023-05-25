@@ -13,7 +13,7 @@ export const validateEmail = (email: string) => {
   return regexPattern.test(email);
 }
 
-export const convertTimeToMins = (hours: number, minutes: number) => {
-  const time = (hours * 60) + minutes;
+export const convertTimeToSeconds = (hours: number, minutes: number) => {
+  const time = ((hours * 60) + minutes) * 60;
   return time;
 }
