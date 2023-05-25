@@ -1,4 +1,4 @@
-import { formatWeeklyProgressTime } from '../../../utils/helpers';
+import { formatWeeklyProgressBar, formatWeeklyProgressTime } from '../../../utils/helpers';
 
 const SubjectProgress = (props: { tracker: any }) => {
 
@@ -9,7 +9,7 @@ const SubjectProgress = (props: { tracker: any }) => {
       <p className='text-m text-black font-medium'>{props.tracker.subject_name}</p>
       <div className='mb-1 text-sm text-zinc-500'>{formatWeeklyProgressTime(props.tracker.time_studied, props.tracker.time_allocated)}</div>
       <div className='w-full bg-zinc-300 rounded-full h-1.5 mb-4'>
-        <div className='bg-blue-600 h-1.5 rounded-full' style={{ width: `${(props.tracker.time_studied / props.tracker.time_allocated * 100)}%` }}></div>
+        <div className='bg-blue-600 h-1.5 rounded-full' style={{ width: `${formatWeeklyProgressBar(props.tracker.time_studied, props.tracker.time_allocated)}%` }}></div>
       </div>
     </div>
   )

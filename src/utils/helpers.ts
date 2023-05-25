@@ -28,3 +28,10 @@ export const formatWeeklyProgressTime = (time: number, maxTime: number) => {
   if (time >= maxTime) return 'Weekly goal completed';
   return `${hours}h ${minutes}m / ${formatTime(maxTime)} completed`;
 }
+
+export const formatWeeklyProgressBar = (time: number, maxTime: number) => {
+  let percentage = 0
+  if (time > maxTime) percentage = 100;
+  else percentage = (time / maxTime) * 100;
+  return percentage;
+}
