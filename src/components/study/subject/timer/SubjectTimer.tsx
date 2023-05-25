@@ -19,6 +19,7 @@ const SubjectTimer = (props: TimerProps) => {
     if (!isPaused && time > 0) {
       timerInterval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
+        if (time % 60 == 0) updateTimer();
       }, 1000);
     }
     return () => clearInterval(timerInterval);
