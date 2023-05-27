@@ -4,13 +4,11 @@ import axios from 'axios';
 import { axiosConfig } from '../../../../utils/constants';
 
 type TimerProps = {
-  tracker_id: any;
-  time_allocated: number;
-  time_studied: number;
+  tracker: any;
 };
 
 const SubjectTimer = (props: TimerProps) => {
-  const [time, setTime] = useState(props.time_allocated - props.time_studied);
+  const [time, setTime] = useState(props.tracker.time_allocated - props.tracker.time_studied);
   const [isPaused, setIsPaused] = useState(true);
   const [sessionStarted, setSessionStarted] = useState(false);
 
@@ -26,7 +24,7 @@ const SubjectTimer = (props: TimerProps) => {
   }, [isPaused, time]);
 
 
-  const updateTimer = async () => await axios.put(`/api/study/trackers/${props.tracker_id}/update`, { id: props.tracker_id, time: props.time_allocated - time }, axiosConfig);
+  const updateTimer = async () => await axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
 
   const handleStart = () => {
     setIsPaused(false);
@@ -53,7 +51,7 @@ const SubjectTimer = (props: TimerProps) => {
       <div className='flex flex-col items-center justify-center gap-4 pb-4'>
         <div className='flex flex-col items-center gap-1'>
           <h1 className='text-4xl font-semibold'>{timeRemaining}</h1>
-          <p>of <span className='text-blue-500 font-medium mt-0'>{formatFancyTime(props.time_allocated)}</span> remaining</p>
+          <p>of <span className='text-blue-500 font-medium mt-0'>{formatFancyTime(props.tracker.time_allocated)}</span> remaining</p>
         </div>
         <div className='flex gap-4'>
           {isPaused ?
