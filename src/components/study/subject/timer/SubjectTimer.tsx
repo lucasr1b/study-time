@@ -23,7 +23,7 @@ const SubjectTimer = (props: TimerProps) => {
       }, 1000);
     }
     return () => clearInterval(timerInterval);
-  }, [isPaused, time]);
+  });
 
   const handleStart = () => {
     setIsPaused(false);
