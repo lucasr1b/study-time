@@ -5,8 +5,6 @@ import connectToDB from '../../../../api/lib/mongodb';
 import StudyTracking from '../../../../api/models/StudyTracking';
 import User from '../../../../api/models/User';
 
-export default withIronSessionApiRoute(subjectTrackersRoute, sessionOptions);
-
 async function subjectTrackersRoute(req: NextApiRequest, res: NextApiResponse) {
   connectToDB();
 
@@ -16,3 +14,5 @@ async function subjectTrackersRoute(req: NextApiRequest, res: NextApiResponse) {
 
   res.send(trackers);
 }
+
+export default withIronSessionApiRoute(subjectTrackersRoute, sessionOptions);

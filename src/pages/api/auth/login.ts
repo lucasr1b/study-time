@@ -3,8 +3,8 @@ import { sessionOptions } from '../../../lib/session';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authLoginUserController } from '../../../api/controllers/authController';
 
-export default withIronSessionApiRoute(loginRoute, sessionOptions);
-
 function loginRoute(req: NextApiRequest, res: NextApiResponse) {
   return authLoginUserController(req, res);
 }
+
+export default withIronSessionApiRoute(loginRoute, sessionOptions);

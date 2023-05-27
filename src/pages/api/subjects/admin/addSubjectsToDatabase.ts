@@ -5,8 +5,6 @@ import CambridgeSubject from '../../../../api/models/CambridgeSubject';
 import connectToDB from '../../../../api/lib/mongodb';
 import { subjects } from '../../../../utils/subjects';
 
-export default withIronSessionApiRoute(addSubjectsRoute, sessionOptions);
-
 async function addSubjectsRoute(req: NextApiRequest, res: NextApiResponse) {
 
   connectToDB();
@@ -19,3 +17,5 @@ async function addSubjectsRoute(req: NextApiRequest, res: NextApiResponse) {
 
   res.send('Created!');
 }
+
+export default withIronSessionApiRoute(addSubjectsRoute, sessionOptions);

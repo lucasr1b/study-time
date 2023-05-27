@@ -12,6 +12,8 @@ const SubjectTimer = (props: TimerProps) => {
   const [isPaused, setIsPaused] = useState(true);
   const [sessionStarted, setSessionStarted] = useState(false);
 
+  const updateTimer = () => axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
+
   useEffect(() => {
     let timerInterval: any;
     if (!isPaused && time > 0) {
@@ -22,9 +24,6 @@ const SubjectTimer = (props: TimerProps) => {
     }
     return () => clearInterval(timerInterval);
   }, [isPaused, time]);
-
-
-  const updateTimer = () => axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
 
   const handleStart = () => {
     setIsPaused(false);
