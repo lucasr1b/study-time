@@ -9,9 +9,9 @@ export default withIronSessionApiRoute(subjectTrackerItemRoute, sessionOptions);
 async function subjectTrackerItemRoute(req: NextApiRequest, res: NextApiResponse) {
   connectToDB();
 
-  const { tracker_id } = req.query;
+  const { trackerId } = req.query;
 
-  const tracker = await StudyTracking.find({ tracker_id });
+  const tracker = await StudyTracking.find({ tracker_id: trackerId });
 
   res.send(tracker);
 }

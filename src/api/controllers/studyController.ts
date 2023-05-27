@@ -65,17 +65,17 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
 };
 
 // @Desc Update time for study tracker
-// @Route /api/study/trackers/{tracker_id}/update
+// @Route /api/study/trackers/{trackerId}/update
 // @Method PUT
 
 export const updateStudyTrackerTimerController = async (req: NextApiRequest, res: NextApiResponse) => {
   const user = req.session.user;
   try {
     if (user) {
-      const { tracker_id } = req.query;
-      console.log(tracker_id);
+      const { trackerId } = req.query;
+      console.log(trackerId);
       const { time } = req.body;
-      const tracker = await updateStudyTrackerTimerForSubject(tracker_id, time);
+      const tracker = await updateStudyTrackerTimerForSubject(trackerId, time);
       res.status(200).send(tracker);
     } else {
       res.send('Not logged in.');
