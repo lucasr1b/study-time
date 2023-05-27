@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Sidebar from '../../../components/sidebar/Sidebar';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { Subject } from '../../../utils/types';
 import SubjectTimer from '../../../components/study/subject/timer/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
 

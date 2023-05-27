@@ -21,7 +21,7 @@ const Register = () => {
         console.log(res);
         Router.push('/app');
       })
-      .catch((res) => {
+      .catch(() => {
         password.value = '';
         cpassword.value = '';
       });

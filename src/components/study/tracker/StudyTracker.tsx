@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SubjectTracker from './SubjectTracker';
-import axios from 'axios';
 import SetupStudyTrackerModal from '../../modal/SetupStudyTrackerModal';
 import EditStudyTrackerModal from '../../modal/EditTrackerModal';
 

@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import SubjectProgress from './SubjectProgress';
-import axios from 'axios';
 
 type WeeklyProgressProps = {
   trackers: any;
