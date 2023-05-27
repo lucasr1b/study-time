@@ -38,10 +38,10 @@ const UserSchema = new mongoose.Schema({
   trackers: [{
     type: String,
     required: false,
-  }]
+  }],
 
 }, {
-  timestamps: true
+  timestamps: true,
 });
 
 UserSchema.pre('save', async function (next) {

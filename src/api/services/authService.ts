@@ -32,7 +32,7 @@ export const createUserAndSession = async (req: NextApiRequest, name: string, em
     name,
     email,
     password,
-    subjects: ['English', 'Maths'] // Remove in future
+    subjects: ['English', 'Maths'], // Remove in future
   });
   await createSession(req, user.name, user.email);
   return user;

@@ -17,22 +17,22 @@ const CambridgeSubjectSchema = new mongoose.Schema({
 
   subject_name: {
     type: String,
-    required: true
+    required: true,
   },
 
   subject_description: {
     type: String,
-    required: false
+    required: false,
   },
 
   subject_level: {
     type: String,
-    required: true
+    required: true,
   },
 
   subject_icon: {
     type: String,
-    required: false
+    required: false,
   },
 });
 
