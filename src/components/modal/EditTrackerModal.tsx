@@ -14,13 +14,13 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
   const [minutes, setMinutes] = useState(0);
 
   const handleHoursChange = (e: any) => {
-    const hours = parseInt(e.target.value);
-    setHours(hours);
+    const changedHours = parseInt(e.target.value);
+    setHours(changedHours);
   };
 
   const handleMinutesChange = (e: any) => {
-    const minutes = parseInt(e.target.value);
-    setMinutes(minutes);
+    const changedMinutes = parseInt(e.target.value);
+    setMinutes(changedMinutes);
   };
 
   const editTracker = async (e: any) => {
