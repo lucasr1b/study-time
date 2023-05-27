@@ -33,7 +33,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
   const handleInputChange = (e: any) => {
     const input = e.target.value;
     setInputValue(input);
-    setFilteredSubjects(subjectList.filter((subject) => subject.subjectName.toLowerCase().includes(input.toLowerCase())));
+    setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())));
 
     if (e.target.value != '' && selectedSubject) {
       setSelectedSubject(undefined);
@@ -46,7 +46,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const addSubject = async (e: any) => {
     e.preventDefault();
-    await axios.post('/api/subjects/add', { id: selectedSubject?.subjectId })
+    await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id })
       .then((res) => {
         props.setSubjects([...props.subjects, res.data]);
         props.close();
@@ -66,18 +66,18 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
               <ul className='bg-white border border-zinc-200 rounded-lg mt-2 overflow-y-scroll h-64'>
                 {filteredSubjects.map((subject, index) => (
                   <li key={index} className='h-14 w-full p-2 hover:bg-zinc-200 hover:cursor-pointer' onClick={() => selectSubject(subject)}>
-                    <p className='font-medium'>{subject.subjectName}</p>
-                    <p className='text-xs text-zinc-500'>{subject.subjectLevel}</p>
+                    <p className='font-medium'>{subject.subject_name}</p>
+                    <p className='text-xs text-zinc-500'>{subject.subject_level}</p>
                   </li>
                 ))}
               </ul>}
             {selectedSubject &&
               <div className='flex flex-col gap-2 bg-white border border-zinc-200 h-auto rounded-lg mt-2 p-4'>
                 <div className='flex flex-row'>
-                  <p className='text-lg font-medium'>{selectedSubject.subjectIcon} {selectedSubject.subjectName}</p>
-                  <div className='bg-zinc-200 rounded-lg py-1 px-2 ml-auto text-zinc-500 text-sm'>{selectedSubject.subjectLevel}</div>
+                  <p className='text-lg font-medium'>{selectedSubject.subject_icon} {selectedSubject.subject_name}</p>
+                  <div className='bg-zinc-200 rounded-lg py-1 px-2 ml-auto text-zinc-500 text-sm'>{selectedSubject.subject_level}</div>
                 </div>
-                <p className='text-zinc-500'>{selectedSubject.subjectDescription}</p>
+                <p className='text-zinc-500'>{selectedSubject.subject_description}</p>
                 <a className='text-blue-600 mt-2 hover:underline w-fit' href='#'>View course syllabus</a>
               </div>
             }
