@@ -7,7 +7,7 @@ export const sessionOptions: IronSessionOptions = {
     maxAge: 86400 * 7,
     secure: process.env.NODE_ENV === 'production',
   },
-}
+};
 
 declare module 'iron-session' {
   interface IronSessionData {

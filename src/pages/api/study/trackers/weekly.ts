@@ -8,11 +8,11 @@ import User from '../../../../api/models/User';
 export default withIronSessionApiRoute(weeklyTrackesrProgressRoute, sessionOptions);
 
 async function weeklyTrackesrProgressRoute(req: NextApiRequest, res: NextApiResponse) {
-  connectToDB()
+  connectToDB();
 
   const user = await User.findOne({ email: req.session.user.email });
 
   const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers }, is_setup: true });
 
-  res.send(trackers)
+  res.send(trackers);
 }

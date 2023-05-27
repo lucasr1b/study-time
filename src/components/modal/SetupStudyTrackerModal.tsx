@@ -5,7 +5,7 @@ type StudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
   updateTrackers: (tracker: any) => void;
-}
+};
 
 const StudyTrackerModal = (props: StudyTrackerModalProps) => {
 
@@ -14,22 +14,22 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
 
   const handleHoursChange = (e: any) => {
     const hours = parseInt(e.target.value);
-    setHours(hours)
-  }
+    setHours(hours);
+  };
 
   const handleMinutesChange = (e: any) => {
     const minutes = parseInt(e.target.value);
-    setMinutes(minutes)
-  }
+    setMinutes(minutes);
+  };
 
   const setupTracker = async (e: any) => {
     e.preventDefault();
     await axios.post(`/api/study/trackers/setup`, { id: props.tracker.tracker_id, hours, minutes })
       .then((res) => {
-        props.updateTrackers(res.data)
+        props.updateTrackers(res.data);
         props.closeModal();
-      })
-  }
+      });
+  };
 
   return (
     <>
@@ -87,7 +87,7 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
         </form>
       </div >
     </>
-  )
-}
+  );
+};
 
-export default StudyTrackerModal
+export default StudyTrackerModal;

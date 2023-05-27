@@ -13,7 +13,7 @@ const StudySubject = () => {
   const [error, setError] = useState('');
 
   const router = useRouter();
-  const { tracker_id } = router.query
+  const { tracker_id } = router.query;
 
   useEffect(() => {
     const fetchTracker = async () => {
@@ -53,7 +53,7 @@ const StudySubject = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default StudySubject;

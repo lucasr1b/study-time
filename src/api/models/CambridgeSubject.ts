@@ -34,7 +34,7 @@ const CambridgeSubjectSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-})
+});
 
 const CambridgeSubject = mongoose.models.CambridgeSubject || mongoose.model<ICambridgeSubject>('CambridgeSubject', CambridgeSubjectSchema);
 

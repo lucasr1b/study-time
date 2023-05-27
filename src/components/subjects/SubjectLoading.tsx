@@ -15,7 +15,7 @@ const SubjectLoading = () => {
         <button className='leading-relaxed w-20 rounded-md h-8 animate-pulse bg-zinc-300'></button>
       </div>
     </div >
-  )
-}
+  );
+};
 
 export default SubjectLoading;

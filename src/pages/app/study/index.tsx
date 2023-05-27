@@ -13,7 +13,7 @@ const Study = () => {
       await axios.get(`/api/study/trackers`)
         .then((res) => {
           setTrackers(res.data);
-        })
+        });
     };
     fetchTrackers();
   }, []);
@@ -30,7 +30,7 @@ const Study = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Study;

@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectInfo from '../../components/subjects/SubjectInfo';
-import SubjectAdd from '../../components/subjects/SubjectAdd';;
+import SubjectAdd from '../../components/subjects/SubjectAdd';
 import StudyLog from '../../components/log/StudyLog';
 import AddSubjectModal from '../../components/modal/AddSubjectModal';
 import { useEffect, useState } from 'react';
@@ -20,18 +20,18 @@ const Subjects: NextPage = () => {
       await axios.get(`/api/subjects`)
         .then((res) => {
           setSubjects(res.data);
-          setIsLoading(false)
-        })
-    }
-    fetchSubjects()
-  }, [])
+          setIsLoading(false);
+        });
+    };
+    fetchSubjects();
+  }, []);
 
   const removeSubject = async (id: string) => {
     await axios.post(`/api/subjects/remove`, { id })
       .then(() => {
-        setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id))
-      })
-  }
+        setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
+      });
+  };
 
   return (
     <div className='container h-screen'>
@@ -61,7 +61,7 @@ const Subjects: NextPage = () => {
         {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} subjects={subjects} setSubjects={setSubjects} />}
       </div>
     </div >
-  )
-}
+  );
+};
 
 export default Subjects;

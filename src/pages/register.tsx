@@ -25,7 +25,7 @@ const Register = () => {
         password.value = '';
         cpassword.value = '';
       });
-  }
+  };
 
 
   return (
@@ -60,7 +60,7 @@ const Register = () => {
         </div>
       </div >
     </div >
-  )
-}
+  );
+};
 
 export default Register;

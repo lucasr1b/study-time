@@ -5,7 +5,7 @@ type SidebarItemProps = {
   name: string;
   href: string;
   icon: any;
-}
+};
 
 const SidebarItem = (props: SidebarItemProps) => {
   const router = useRouter();
@@ -19,6 +19,6 @@ const SidebarItem = (props: SidebarItemProps) => {
       </Link>
     </li>
   );
-}
+};
 
 export default SidebarItem;

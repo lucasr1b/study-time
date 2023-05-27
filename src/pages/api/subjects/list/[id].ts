@@ -12,7 +12,7 @@ async function subjectListItemRoute(req: NextApiRequest, res: NextApiResponse) {
 
   const subject = await Cambridge.find({ subject_id: req.query.id });
 
-  res.send(subject)
+  res.send(subject);
 
 
 }

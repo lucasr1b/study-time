@@ -4,7 +4,7 @@ const SubjectUnitItem = (props: { index: number }) => {
       <h1 className='font-semibold'>Unit {props.index}</h1>
       <p>{props.index}.1 Example</p>
     </div>
-  )
-}
+  );
+};
 
 export default SubjectUnitItem;

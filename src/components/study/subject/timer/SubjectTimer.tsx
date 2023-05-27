@@ -7,7 +7,7 @@ type TimerProps = {
   tracker_id: any;
   time_allocated: number;
   time_studied: number;
-}
+};
 
 const SubjectTimer = (props: TimerProps) => {
   const [time, setTime] = useState(props.time_allocated - props.time_studied);
@@ -31,20 +31,20 @@ const SubjectTimer = (props: TimerProps) => {
   const handleStart = () => {
     setIsPaused(false);
     setSessionStarted(true);
-  }
+  };
 
   const handleResume = () => setIsPaused(false);
 
   const handlePause = () => {
     setIsPaused(true);
     updateTimer();
-  }
+  };
 
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor((time % 3600) / 60);
   const seconds = time % 60;
 
-  const timeRemaining = `${hours.toString().padStart(1, '0')}h ${minutes.toString().padStart(1, '0')}m ${seconds.toString().padStart(1, '0')}s`
+  const timeRemaining = `${hours.toString().padStart(1, '0')}h ${minutes.toString().padStart(1, '0')}m ${seconds.toString().padStart(1, '0')}s`;
 
   return (
 

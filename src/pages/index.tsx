@@ -22,7 +22,7 @@ const Login = () => {
       .catch((res) => {
         password.value = '';
       });
-  }
+  };
 
   return (
     <div className='flex items-center justify-center h-screen w-full'>
@@ -48,7 +48,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

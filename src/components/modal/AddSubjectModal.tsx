@@ -7,7 +7,7 @@ type AddSubjectModalProps = {
   close: () => void;
   subjects: any;
   setSubjects: any;
-}
+};
 
 const AddSubjectModal = (props: AddSubjectModalProps) => {
 
@@ -25,15 +25,15 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
         })
         .catch((res) => {
           console.log(res.response.data.error);
-        })
-    }
+        });
+    };
     fetchSubjects();
-  }, [])
+  }, []);
 
   const handleInputChange = (e: any) => {
     const input = e.target.value;
     setInputValue(input);
-    setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())))
+    setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())));
 
     if (e.target.value != '' && selectedSubject) {
       setSelectedSubject(undefined);
@@ -42,7 +42,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const selectSubject = (subject: Subject) => {
     setSelectedSubject(subject);
-  }
+  };
 
   const addSubject = async (e: any) => {
     e.preventDefault();
@@ -50,8 +50,8 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
       .then((res) => {
         props.setSubjects([...props.subjects, res.data]);
         props.close();
-      })
-  }
+      });
+  };
 
   return (
     <>
@@ -94,8 +94,8 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
         </form>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default AddSubjectModal;
 

@@ -10,7 +10,7 @@ const SubjectOverview = (props: { tracker: any }) => {
         <div className='bg-blue-600 h-1.5 rounded-full' style={{ width: `${(props.tracker.time_studied / props.tracker.time_allocated * 100)}%` }}></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SubjectOverview;

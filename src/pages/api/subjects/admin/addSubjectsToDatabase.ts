@@ -12,10 +12,10 @@ async function addSubjectsRoute(req: NextApiRequest, res: NextApiResponse) {
   connectToDB();
 
   try {
-    subjects.forEach(async (subject) => await CambridgeSubject.create(subject))
+    subjects.forEach(async (subject) => await CambridgeSubject.create(subject));
   } catch (err) {
     console.log(err);
   }
 
-  res.send('Created!')
+  res.send('Created!');
 }

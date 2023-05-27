@@ -62,7 +62,7 @@ const StudyTrackingSchema = new mongoose.Schema({
     required: false,
     default: false
   },
-})
+});
 
 const StudyTracking = mongoose.models.StudyTracking || mongoose.model<IStudyTracking>('StudyTracking', StudyTrackingSchema);
 

@@ -125,4 +125,4 @@ export const subjects = [
     "subject_description": "Understand the fundamental principles of physics, including mechanics, waves, electricity, and magnetism.",
     "subject_icon": "🚀"
   }
-]
+];

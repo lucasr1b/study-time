@@ -20,7 +20,7 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
     console.log(err);
     res.status(400).json({ message: 'Subject not removed', error: err.message });
   }
-}
+};
 
 // @Desc Edit tracker time for subject
 // @Route /api/study/trackers/edit
@@ -41,7 +41,7 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
     console.log(err);
     res.status(400).json({ message: 'Subject not removed', error: err.message });
   }
-}
+};
 
 // @Desc Remove tracker for subject
 // @Route /api/study/trackers/remove
@@ -62,7 +62,7 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
     console.log(err);
     res.status(400).json({ message: 'Subject not removed', error: err.message });
   }
-}
+};
 
 // @Desc Update time for study tracker
 // @Route /api/study/trackers/{tracker_id}/update
@@ -78,10 +78,10 @@ export const updateStudyTrackerTimerController = async (req: NextApiRequest, res
       const tracker = await updateStudyTrackerTimerForSubject(tracker_id, time);
       res.status(200).send(tracker);
     } else {
-      res.send('Not logged in.')
+      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
-    res.status(400).json({ message: 'Subject tracker time not updated', error: err.message })
+    res.status(400).json({ message: 'Subject tracker time not updated', error: err.message });
   }
-}
+};

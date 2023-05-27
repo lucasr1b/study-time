@@ -11,7 +11,7 @@ const Sidebar = () => {
         <SidebarItem name='Study' href='/app/study' icon={<ClockIcon className='w-6 h-6' />} />
       </ul>
     </aside >
-  )
-}
+  );
+};
 
 export default Sidebar;

@@ -12,7 +12,7 @@ const SubjectProgress = (props: { tracker: any }) => {
         <div className='bg-blue-600 h-1.5 rounded-full' style={{ width: `${formatWeeklyProgressBar(props.tracker.time_studied, props.tracker.time_allocated)}%` }}></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SubjectProgress;
