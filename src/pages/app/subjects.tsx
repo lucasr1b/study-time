@@ -29,7 +29,7 @@ const Subjects: NextPage = () => {
   const removeSubject = async (id: string) => {
     await axios.post('/api/subjects/remove', { id })
       .then(() => {
-        setSubjects(subjects.filter((subject: Subject) => subject.subjectId !== id));
+        setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
       });
   };
 
