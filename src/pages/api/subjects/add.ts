@@ -5,6 +5,6 @@ import { addSubjectController } from '../../../api/controllers/subjectController
 
 export default withIronSessionApiRoute(addSubjectRoute, sessionOptions);
 
-async function addSubjectRoute(req: NextApiRequest, res: NextApiResponse) {
-  return await addSubjectController(req, res);
+function addSubjectRoute(req: NextApiRequest, res: NextApiResponse) {
+  return addSubjectController(req, res);
 }

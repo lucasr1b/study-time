@@ -5,6 +5,6 @@ import { removeStudyTrackerController } from '../../../../api/controllers/studyC
 
 export default withIronSessionApiRoute(removeStudyTrackerRoute, sessionOptions);
 
-async function removeStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
-  return await removeStudyTrackerController(req, res);
+function removeStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
+  return removeStudyTrackerController(req, res);
 }

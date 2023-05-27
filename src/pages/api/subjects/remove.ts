@@ -5,6 +5,6 @@ import { removeSubjectController } from '../../../api/controllers/subjectControl
 
 export default withIronSessionApiRoute(removesubjectRoute, sessionOptions);
 
-async function removesubjectRoute(req: NextApiRequest, res: NextApiResponse) {
-  return await removeSubjectController(req, res);
+function removesubjectRoute(req: NextApiRequest, res: NextApiResponse) {
+  return removeSubjectController(req, res);
 }

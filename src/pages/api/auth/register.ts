@@ -5,6 +5,6 @@ import { authRegisterUserController } from '../../../api/controllers/authControl
 
 export default withIronSessionApiRoute(registerRoute, sessionOptions);
 
-async function registerRoute(req: NextApiRequest, res: NextApiResponse) {
-  return await authRegisterUserController(req, res);
+function registerRoute(req: NextApiRequest, res: NextApiResponse) {
+  return authRegisterUserController(req, res);
 }

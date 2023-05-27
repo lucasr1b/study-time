@@ -5,6 +5,6 @@ import { setupStudyTrackerController } from '../../../../api/controllers/studyCo
 
 export default withIronSessionApiRoute(setupStudyTrackerRoute, sessionOptions);
 
-async function setupStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
-  return await setupStudyTrackerController(req, res);
+function setupStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
+  return setupStudyTrackerController(req, res);
 }

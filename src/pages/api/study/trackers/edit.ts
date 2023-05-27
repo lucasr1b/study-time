@@ -5,6 +5,6 @@ import { editStudyTrackerTimeController } from '../../../../api/controllers/stud
 
 export default withIronSessionApiRoute(editStudyTrackerTimeRoute, sessionOptions);
 
-async function editStudyTrackerTimeRoute(req: NextApiRequest, res: NextApiResponse) {
-  return await editStudyTrackerTimeController(req, res);
+function editStudyTrackerTimeRoute(req: NextApiRequest, res: NextApiResponse) {
+  return editStudyTrackerTimeController(req, res);
 }

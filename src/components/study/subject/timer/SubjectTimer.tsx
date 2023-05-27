@@ -24,7 +24,7 @@ const SubjectTimer = (props: TimerProps) => {
   }, [isPaused, time]);
 
 
-  const updateTimer = async () => await axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
+  const updateTimer = () => axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
 
   const handleStart = () => {
     setIsPaused(false);
