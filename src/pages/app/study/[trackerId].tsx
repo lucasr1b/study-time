@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import SubjectTimer from '../../../components/study/subject/timer/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
+import Link from 'next/link';
 
 const StudySubject = () => {
 
@@ -41,7 +42,7 @@ const StudySubject = () => {
           <p>{error}</p>
         ) : tracker ? (
           <>
-            <p className='text-4xl font-semibold mb-2'><a className='text-blue-500 hover:text-blue-600' href='/app/study'>Study</a> / {tracker.subject_name}</p>
+            <p className='text-4xl font-semibold mb-2'><Link className='text-blue-500 hover:text-blue-600' href='/app/study'>Study</Link> / {tracker.subject_name}</p>
             <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
               <SubjectTimer tracker={tracker} />
               <SubjectUnits />
