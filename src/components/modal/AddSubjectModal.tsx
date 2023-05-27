@@ -18,7 +18,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get(`/api/subjects/list`, axiosConfig)
+      await axios.get('/api/subjects/list', axiosConfig)
         .then((res) => {
           setSubjectList(res.data);
           setFilteredSubjects(res.data);
@@ -46,7 +46,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const addSubject = async (e: any) => {
     e.preventDefault();
-    await axios.post(`/api/subjects/add`, { id: selectedSubject?.subject_id })
+    await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id })
       .then((res) => {
         props.setSubjects([...props.subjects, res.data]);
         props.close();

@@ -14,7 +14,7 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     const fetchTrackers = async () => {
-      await axios.get(`/api/study/trackers/weekly`)
+      await axios.get('/api/study/trackers/weekly')
         .then((res) => {
           setTrackers(res.data);
         });

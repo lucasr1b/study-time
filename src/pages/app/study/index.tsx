@@ -10,7 +10,7 @@ const Study = () => {
 
   useEffect(() => {
     const fetchTrackers = async () => {
-      await axios.get(`/api/study/trackers`)
+      await axios.get('/api/study/trackers')
         .then((res) => {
           setTrackers(res.data);
         });

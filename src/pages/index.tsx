@@ -14,7 +14,7 @@ const Login = () => {
       password: password.value,
     };
 
-    await axios.post(`api/auth/login`, data, axiosConfig)
+    await axios.post('api/auth/login', data, axiosConfig)
       .then((res) => {
         console.log(res.data.user);
         Router.push('/app');

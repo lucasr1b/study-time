@@ -24,7 +24,7 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
 
   const setupTracker = async (e: any) => {
     e.preventDefault();
-    await axios.post(`/api/study/trackers/setup`, { id: props.tracker.tracker_id, hours, minutes })
+    await axios.post('/api/study/trackers/setup', { id: props.tracker.tracker_id, hours, minutes })
       .then((res) => {
         props.updateTrackers(res.data);
         props.closeModal();
