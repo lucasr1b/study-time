@@ -1,7 +1,7 @@
 export type Subject = {
-  subjectId: string;
-  subjectName: string;
-  subjectDescription: string;
-  subjectLevel: string;
-  subjectIcon: string;
+  subject_id: string;
+  subject_name: string;
+  subject_description: string;
+  subject_level: string;
+  subject_icon: string;
 };
