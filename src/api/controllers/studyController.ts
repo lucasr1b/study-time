@@ -73,7 +73,6 @@ export const updateStudyTrackerTimerController = async (req: NextApiRequest, res
   try {
     if (user) {
       const { trackerId } = req.query;
-      console.log(trackerId);
       const { time } = req.body;
       const tracker = await updateStudyTrackerTimerForSubject(trackerId, time);
       res.status(200).send(tracker);
