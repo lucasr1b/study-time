@@ -18,7 +18,7 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
     }
   } catch (err: any) {
     console.log(err);
-    res.status(400).json({ message: 'Subject not removed', error: err.message });
+    res.status(400).json({ message: 'Subject tracker not added', error: err.message });
   }
 };
 
@@ -39,7 +39,7 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
     }
   } catch (err: any) {
     console.log(err);
-    res.status(400).json({ message: 'Subject not removed', error: err.message });
+    res.status(400).json({ message: 'Subject tracker not edited', error: err.message });
   }
 };
 
@@ -60,7 +60,7 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
     }
   } catch (err: any) {
     console.log(err);
-    res.status(400).json({ message: 'Subject not removed', error: err.message });
+    res.status(400).json({ message: 'Subject tracker not removed', error: err.message });
   }
 };
 
@@ -82,6 +82,6 @@ export const updateStudyTrackerTimerController = async (req: NextApiRequest, res
     }
   } catch (err: any) {
     console.log(err);
-    res.status(400).json({ message: 'Subject tracker time not updated', error: err.message });
+    res.status(400).json({ message: 'Subject tracker timer not updated', error: err.message });
   }
 };
