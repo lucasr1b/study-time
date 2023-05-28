@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SubjectTracker from './SubjectTracker';
 import SetupStudyTrackerModal from '../../modal/SetupStudyTrackerModal';
-import EditStudyTrackerModal from '../../modal/EditTrackerModal';
+import EditStudyTrackerModal from '../../modal/EditStudyTrackerModal';
 
 type StudyTrackerProps = {
   trackers: any;
