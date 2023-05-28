@@ -25,18 +25,18 @@ export const validateUserCreationFields = async (name: string, email: string, pa
   } else {
     return 'All fields are required.';
   }
-}
+};
 
 export const createUserAndSession = async (req: NextApiRequest, name: string, email: string, password: string) => {
   const user = await User.create({
     name,
     email,
     password,
-    subjects: ['English', 'Maths'] // Remove in future
+    subjects: ['English', 'Maths'], // Remove in future
   });
   await createSession(req, user.name, user.email);
   return user;
-}
+};
 
 export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiRequest, email: string, password: string) => {
   if (email && password) {
@@ -55,4 +55,4 @@ export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiR
   } else {
     return 'All fields are required.';
   }
-}
+};

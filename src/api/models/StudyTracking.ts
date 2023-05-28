@@ -26,12 +26,12 @@ const StudyTrackingSchema = new mongoose.Schema({
 
   subject_id: {
     type: String,
-    required: true
+    required: true,
   },
 
   subject_name: {
     type: String,
-    required: true
+    required: true,
   },
 
   subject_icon: {
@@ -48,21 +48,21 @@ const StudyTrackingSchema = new mongoose.Schema({
   time_allocated: {
     type: Number,
     required: false,
-    default: 0
+    default: 0,
   },
 
   time_studied: {
     type: Number,
     required: false,
-    default: 0
+    default: 0,
   },
 
   completed: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
-})
+});
 
 const StudyTracking = mongoose.models.StudyTracking || mongoose.model<IStudyTracking>('StudyTracking', StudyTrackingSchema);
 

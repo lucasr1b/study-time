@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
 import SubjectProgress from './SubjectProgress';
-import axios from 'axios';
 
 type WeeklyProgressProps = {
   trackers: any;
-}
+};
 
 const WeeklyProgress = (props: WeeklyProgressProps) => {
 
@@ -17,7 +15,7 @@ const WeeklyProgress = (props: WeeklyProgressProps) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default WeeklyProgress;

@@ -1,12 +1,12 @@
-import type { NextPage } from 'next'
-import Sidebar from '../../components/sidebar/Sidebar'
-import SubjectOverview from '../../components/subjects/SubjectOverview'
-import Exams from '../../components/exams/Exams'
-import Events from '../../components/events/Events'
-import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination'
-import Tests from '../../components/tests/Tests'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import type { NextPage } from 'next';
+import Sidebar from '../../components/sidebar/Sidebar';
+import SubjectOverview from '../../components/subjects/SubjectOverview';
+import Exams from '../../components/exams/Exams';
+import Events from '../../components/events/Events';
+import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination';
+import Tests from '../../components/tests/Tests';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Dashboard: NextPage = () => {
 
@@ -14,10 +14,10 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     const fetchTrackers = async () => {
-      await axios.get(`/api/study/trackers/weekly`)
+      await axios.get('/api/study/trackers/weekly')
         .then((res) => {
           setTrackers(res.data);
-        })
+        });
     };
     fetchTrackers();
   }, []);
@@ -47,7 +47,7 @@ const Dashboard: NextPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;

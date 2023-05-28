@@ -24,7 +24,7 @@ export const authRegisterUserController = async (req: NextApiRequest, res: NextA
     console.log(err);
     res.status(400).json({ message: 'Account not created', error: err.message });
   }
-}
+};
 
 // @Desc Login user
 // @Route /api/auth/login
@@ -45,4 +45,4 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
     console.log(err);
     res.status(400).json({ message: 'Authentication failed', error: err.message });
   }
-}
+};

@@ -21,7 +21,7 @@ const Events = () => {
         </li>
       </ul>
     </aside>
-  )
-}
+  );
+};
 
 export default Events;

@@ -4,7 +4,7 @@ type SubjectTrackerProps = {
   tracker: any;
   openSetupModal: (tracker: any) => void;
   openEditModal: (tracker: any) => void;
-}
+};
 
 const SubjectTracker = (props: SubjectTrackerProps) => {
   return (
@@ -29,7 +29,7 @@ const SubjectTracker = (props: SubjectTrackerProps) => {
       }
 
     </div>
-  )
-}
+  );
+};
 
 export default SubjectTracker;

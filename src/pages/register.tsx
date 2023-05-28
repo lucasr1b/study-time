@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { axiosConfig } from '../utils/constants';
 import Router from 'next/router';
+import Link from 'next/link';
 
 const Register = () => {
 
@@ -16,16 +17,16 @@ const Register = () => {
       cpassword: cpassword.value,
     };
 
-    await axios.post(`api/auth/register`, data, axiosConfig)
+    await axios.post('api/auth/register', data, axiosConfig)
       .then((res) => {
         console.log(res);
         Router.push('/app');
       })
-      .catch((res) => {
+      .catch(() => {
         password.value = '';
         cpassword.value = '';
       });
-  }
+  };
 
 
   return (
@@ -54,13 +55,13 @@ const Register = () => {
             </div>
             <button type='submit' className='w-full bg-zinc-200 border border-zinc-300 hover:bg-zinc-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Sign up</button>
             <p className='text-sm font-light text-zinc-500'>
-              Already have an account? <a href='/' className='font-medium text-black hover:underline'>Sign in</a>
+              Already have an account? <Link href='/' className='font-medium text-black hover:underline'>Sign in</Link>
             </p>
           </form>
         </div>
       </div >
     </div >
-  )
-}
+  );
+};
 
 export default Register;

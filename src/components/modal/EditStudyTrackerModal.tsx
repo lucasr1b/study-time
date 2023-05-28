@@ -6,7 +6,7 @@ type EditStudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
   updateTrackers: (tracker: any) => void;
-}
+};
 
 const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
 
@@ -14,32 +14,32 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
   const [minutes, setMinutes] = useState(0);
 
   const handleHoursChange = (e: any) => {
-    const hours = parseInt(e.target.value);
-    setHours(hours)
-  }
+    const changedHours = parseInt(e.target.value);
+    setHours(changedHours);
+  };
 
   const handleMinutesChange = (e: any) => {
-    const minutes = parseInt(e.target.value);
-    setMinutes(minutes)
-  }
+    const changedMinutes = parseInt(e.target.value);
+    setMinutes(changedMinutes);
+  };
 
   const editTracker = async (e: any) => {
     e.preventDefault();
-    await axios.post(`/api/study/trackers/edit`, { id: props.tracker.tracker_id, hours, minutes })
+    await axios.post('/api/study/trackers/edit', { id: props.tracker.tracker_id, hours, minutes })
       .then((res) => {
-        props.updateTrackers(res.data)
+        props.updateTrackers(res.data);
         props.closeModal();
-      })
-  }
+      });
+  };
 
   const removeTracker = async (e: any) => {
     e.preventDefault();
-    await axios.post(`/api/study/trackers/remove`, { id: props.tracker.tracker_id })
+    await axios.post('/api/study/trackers/remove', { id: props.tracker.tracker_id })
       .then((res) => {
-        props.updateTrackers(res.data)
+        props.updateTrackers(res.data);
         props.closeModal();
-      })
-  }
+      });
+  };
 
   return (
     <>
@@ -100,7 +100,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
         </form>
       </div >
     </>
-  )
-}
+  );
+};
 
 export default EditStudyTrackerModal;

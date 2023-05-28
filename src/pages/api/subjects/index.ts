@@ -2,10 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../lib/session';
 import Cambridge from '../../../api/models/CambridgeSubject';
-import connectToDB from '../../../api/lib/mongodb';
 import User from '../../../api/models/User';
-
-export default withIronSessionApiRoute(subjectsRoute, sessionOptions);
 
 async function subjectsRoute(req: NextApiRequest, res: NextApiResponse) {
 
@@ -16,3 +13,5 @@ async function subjectsRoute(req: NextApiRequest, res: NextApiResponse) {
   res.send(subjects);
 
 }
+
+export default withIronSessionApiRoute(subjectsRoute, sessionOptions);

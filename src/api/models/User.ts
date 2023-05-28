@@ -38,10 +38,10 @@ const UserSchema = new mongoose.Schema({
   trackers: [{
     type: String,
     required: false,
-  }]
+  }],
 
 }, {
-  timestamps: true
+  timestamps: true,
 });
 
 UserSchema.pre('save', async function (next) {
@@ -55,12 +55,12 @@ UserSchema.pre('save', async function (next) {
   user.password = hashedPassword;
 
   next();
-})
+});
 
 UserSchema.methods.comparePassword = async function (password: string) {
   const user = this as IUser;
   return bcrypt.compareSync(password, user.password);
-}
+};
 
 const User = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
 

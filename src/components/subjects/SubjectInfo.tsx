@@ -3,7 +3,7 @@ import { Subject } from '../../utils/types';
 type SubjectInfoProps = {
   removeSubject: any;
   subject: Subject;
-}
+};
 
 const SubjectInfo = (props: SubjectInfoProps) => {
   return (
@@ -15,7 +15,7 @@ const SubjectInfo = (props: SubjectInfoProps) => {
         <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm' onClick={() => props.removeSubject(props.subject.subject_id)}>Remove</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SubjectInfo;

@@ -2,8 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../lib/session';
 
-export default withIronSessionApiRoute(userProfileRoute, sessionOptions);
-
 async function userProfileRoute(req: NextApiRequest, res: NextApiResponse) {
   const user = req.session.user;
 
@@ -14,3 +12,5 @@ async function userProfileRoute(req: NextApiRequest, res: NextApiResponse) {
   }
 
 }
+
+export default withIronSessionApiRoute(userProfileRoute, sessionOptions);

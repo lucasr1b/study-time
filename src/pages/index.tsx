@@ -14,15 +14,15 @@ const Login = () => {
       password: password.value,
     };
 
-    await axios.post(`api/auth/login`, data, axiosConfig)
+    await axios.post('api/auth/login', data, axiosConfig)
       .then((res) => {
         console.log(res.data.user);
         Router.push('/app');
       })
-      .catch((res) => {
+      .catch(() => {
         password.value = '';
       });
-  }
+  };
 
   return (
     <div className='flex items-center justify-center h-screen w-full'>
@@ -42,13 +42,13 @@ const Login = () => {
             </div>
             <button type='submit' className='w-full bg-zinc-200 border border-zinc-300 hover:bg-zinc-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Sign in</button>
             <p className='text-sm font-light text-zinc-500'>
-              Don't have an account yet? <a href='register' className='font-medium text-black hover:underline'>Sign up</a>
+              Don&apos;t have an account yet? <a href='register' className='font-medium text-black hover:underline'>Sign up</a>
             </p>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

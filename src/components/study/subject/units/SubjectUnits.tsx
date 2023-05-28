@@ -10,7 +10,7 @@ const SubjectUnits = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SubjectUnits;

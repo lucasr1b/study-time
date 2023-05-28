@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SubjectTracker from './SubjectTracker';
-import axios from 'axios';
 import SetupStudyTrackerModal from '../../modal/SetupStudyTrackerModal';
-import EditStudyTrackerModal from '../../modal/EditTrackerModal';
+import EditStudyTrackerModal from '../../modal/EditStudyTrackerModal';
 
 type StudyTrackerProps = {
   trackers: any;
   setTrackers: any;
-}
+};
 
 const StudyTracker = (props: StudyTrackerProps) => {
 
@@ -16,28 +15,28 @@ const StudyTracker = (props: StudyTrackerProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const openSetupModal = (tracker: any) => {
-    setSelectedTracker(tracker)
-    setIsSetupModalOpen(true)
-  }
+    setSelectedTracker(tracker);
+    setIsSetupModalOpen(true);
+  };
 
   const openEditModal = (tracker: any) => {
-    setSelectedTracker(tracker)
-    setIsEditModalOpen(true)
-  }
+    setSelectedTracker(tracker);
+    setIsEditModalOpen(true);
+  };
 
   const closeModal = () => {
-    setSelectedTracker({})
-    setIsSetupModalOpen(false)
-    setIsEditModalOpen(false)
-  }
+    setSelectedTracker({});
+    setIsSetupModalOpen(false);
+    setIsEditModalOpen(false);
+  };
 
   const updateTrackers = (updatedTracker: any) => {
     props.setTrackers(props.trackers.map((tracker: any) =>
       tracker.tracker_id === updatedTracker.tracker_id
         ? { ...tracker, time_allocated: updatedTracker.time_allocated, is_setup: updatedTracker.is_setup }
-        : tracker
+        : tracker,
     ));
-  }
+  };
 
   return (
     <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
@@ -50,7 +49,7 @@ const StudyTracker = (props: StudyTrackerProps) => {
       {isSetupModalOpen && <SetupStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} updateTrackers={updateTrackers} />}
       {isEditModalOpen && <EditStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} updateTrackers={updateTrackers} />}
     </div>
-  )
-}
+  );
+};
 
 export default StudyTracker;

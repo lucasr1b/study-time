@@ -12,7 +12,7 @@ const Exams = () => {
         <ExamSubject icon='📉' name='Maths' progress={0} total={144} />
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export default Exams;
