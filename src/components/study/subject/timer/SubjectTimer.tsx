@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { formatFancyTime } from '../../../../utils/helpers';
+import { formatFancyTime, formatSubjectTimer } from '../../../../utils/helpers';
 import axios from 'axios';
 import { axiosConfig } from '../../../../utils/constants';
 
@@ -41,7 +41,7 @@ const SubjectTimer = (props: TimerProps) => {
   const minutes = Math.floor((time % 3600) / 60);
   const seconds = time % 60;
 
-  const timeRemaining = `${hours.toString().padStart(1, '0')}h ${minutes.toString().padStart(1, '0')}m ${seconds.toString().padStart(1, '0')}s`;
+  const timeRemaining = formatSubjectTimer(hours, minutes, seconds);
 
   return (
 

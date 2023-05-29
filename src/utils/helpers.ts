@@ -35,3 +35,8 @@ export const formatWeeklyProgressBar = (time: number, maxTime: number) => {
   else percentage = (time / maxTime) * 100;
   return percentage;
 };
+
+export const formatSubjectTimer = (hours: number, minutes: number, seconds: number) => {
+  if (hours <= 0 && minutes <= 0 && seconds <= 0) return '0s';
+  return `${hours.toString().padStart(1, '0')}h ${minutes.toString().padStart(1, '0')}m ${seconds.toString().padStart(1, '0')}s`;
+};
