@@ -61,7 +61,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={addSubject}>
           <div className='w-full'>
             <label htmlFor='subject' className='block mb-2 text-sm font-medium'>Subject</label>
-            <input type='text' name='subject' id='subject' className='bg-white border border-zinc-300 rounded-lg block w-full p-2.5 focus:outline-zinc-300 placeholder:text-zinc-500' placeholder='Search subjects...' value={inputValue} onChange={handleInputChange} />
+            <input type='text' name='subject' id='subject' className='bg-white border border-zinc-300 rounded-lg block w-full p-2.5 focus:outline-zinc-300 placeholder:text-zinc-500' placeholder='Search subjects...' autoComplete='off' value={inputValue} onChange={handleInputChange} />
             {!selectedSubject &&
               <ul className='bg-white border border-zinc-200 rounded-lg mt-2 overflow-y-scroll h-64'>
                 {filteredSubjects.map((subject, index) => (
