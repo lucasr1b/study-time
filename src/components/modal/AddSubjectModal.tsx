@@ -77,7 +77,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
               </ul>}
             {selectedSubject &&
               <div className='flex flex-col gap-2 bg-white border border-zinc-200 h-auto rounded-lg mt-2 p-4'>
-                <p className='text-blue-600 hover:cursor-pointer hover:underline w-fit' onClick={resetSelectedSubject}>← Subjects</p>
+                <p className='text-blue-600 hover:cursor-pointer hover:underline w-fit' onClick={resetSelectedSubject}>← Back to list</p>
                 <div className='flex flex-row'>
                   <p className='text-lg font-medium'>{selectedSubject.subject_icon} {selectedSubject.subject_name}</p>
                   <div className='bg-zinc-200 rounded-lg py-1 px-2 ml-auto text-zinc-500 text-sm'>{selectedSubject.subject_level}</div>
