@@ -13,12 +13,14 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
   const [minutes, setMinutes] = useState(0);
 
   const handleHoursChange = (e: any) => {
-    const changedHours = parseInt(e.target.value);
+    const value = e.target.value;
+    const changedHours = (value === '' ? 0 : parseInt(value));
     setHours(changedHours);
   };
 
   const handleMinutesChange = (e: any) => {
-    const changedMinutes = parseInt(e.target.value);
+    const value = e.target.value;
+    const changedMinutes = (value === '' ? 0 : parseInt(value));
     setMinutes(changedMinutes);
   };
 
