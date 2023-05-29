@@ -53,12 +53,12 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
                 <h3>{props.tracker.subject_icon} {props.tracker.subject_name}:</h3>
                 <div className='flex'>
                   <div className='flex items-center relative w-fit'>
-                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border rounded w-20' onChange={handleHoursChange} defaultValue={hours} />
+                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border rounded w-20' onChange={handleHoursChange} value={hours} />
                     <span className='flex items-center justify-center absolute right-0 bg-zinc-100 border border-zinc-200 rounded p-2 h-full z-10'>hrs</span>
                   </div>
                   <span className="px-1">:</span>
                   <div className='flex items-center relative w-fit'>
-                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border rounded w-24' onChange={handleMinutesChange} defaultValue={minutes} />
+                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border rounded w-24' onChange={handleMinutesChange} value={minutes} />
                     <span className='flex items-center justify-center absolute right-0 bg-zinc-100 border border-zinc-200 rounded p-2 h-full z-10'>mins</span>
                   </div>
                   <span className="px-1 ml-1">per week</span>
