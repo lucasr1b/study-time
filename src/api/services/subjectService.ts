@@ -1,6 +1,7 @@
 import User from '../models/User';
 import CambridgeSubject from '../models/CambridgeSubject';
 import StudyTracking from '../models/StudyTracking';
+import { v4 as uuidv4 } from 'uuid';
 
 export const addSubjectToUser = async (id: string, email: string) => {
   await User.findOneAndUpdate({ email }, { $push: { subjects: id } });
@@ -17,7 +18,7 @@ export const removeSubjectFromUser = async (id: string, email: string) => {
 };
 
 export const createStudyTrackerAndAddToUser = async (subjectId: string, email: string) => {
-  let trackerId = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
+  const trackerId = uuidv4();
 
   const subjectDetails = await CambridgeSubject.findOne({ subject_id: subjectId });
 
