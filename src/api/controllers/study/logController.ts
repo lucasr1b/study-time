@@ -2,15 +2,15 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { logStudyTrackerSessionForSubject } from '../../services/study/logService';
 
 // @Desc Log study session
-// @Route /api/study/logs/{trackerId}/log
+// @Route /api/study/logs/log
 // @Method PUT
 
 export const logStudyTrackerSessionController = (req: NextApiRequest, res: NextApiResponse) => {
   const user = req.session.user;
   try {
     if (user) {
-      const { trackerId } = req.query;
-      const log = logStudyTrackerSessionForSubject(trackerId);
+      const { tracker, time } = req.body;
+      const log = logStudyTrackerSessionForSubject(tracker, time, user.email);
       res.status(200).send(log);
     } else {
       res.send('Not logged in.');
