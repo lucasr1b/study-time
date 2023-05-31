@@ -1,5 +1,5 @@
-import StudyTracking from '../models/StudyTracking';
-import { convertTimeToSeconds } from '../utils/helpers';
+import StudyTracking from '../../models/StudyTracking';
+import { convertTimeToSeconds } from '../../utils/helpers';
 
 export const setupStudyTrackerForSubject = async (trackerId: string, hours: number, minutes: number) => {
   await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { is_setup: true, time_allocated: convertTimeToSeconds(hours, minutes) });
