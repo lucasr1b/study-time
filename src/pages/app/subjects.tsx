@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectInfo from '../../components/subjects/SubjectInfo';
 import SubjectAdd from '../../components/subjects/SubjectAdd';
-import StudyLog from '../../components/log/StudyLog';
+import StudyLog from '../../components/logs/StudyLog';
 import AddSubjectModal from '../../components/modal/AddSubjectModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
