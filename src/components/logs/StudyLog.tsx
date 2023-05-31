@@ -18,9 +18,12 @@ const StudyLog = () => {
     <aside className='w-2/5 z-40 min-h-full max-h-screen p-4 border rounded-lg border-zinc-200 bg-white overflow-auto'>
       <h1 className='font-semibold'>Study log</h1>
       <div className='flex flex-col gap-4 mt-4'>
-        {logs.map((log: any, index: number) => (
+        {logs.slice(0, 10).map((log: any, index: number) => (
           <SubjectStudyLog log={log} key={index} />
         ))}
+        {logs.length > 9 && (
+          <span className='text-blue-600 hover:underline hover:cursor-pointer'>Load more</span>
+        )}
       </div>
     </aside>
   );
