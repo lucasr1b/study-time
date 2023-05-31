@@ -15,7 +15,7 @@ const StudyLog = () => {
   }, []);
 
   return (
-    <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-zinc-200 bg-white'>
+    <aside className='w-2/5 z-40 min-h-full max-h-screen p-4 border rounded-lg border-zinc-200 bg-white overflow-auto'>
       <h1 className='font-semibold'>Study log</h1>
       <div className='flex flex-col gap-4 mt-4'>
         {logs.map((log: any, index: number) => (
