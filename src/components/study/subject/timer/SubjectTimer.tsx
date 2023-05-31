@@ -11,12 +11,15 @@ const SubjectTimer = (props: TimerProps) => {
   const [time, setTime] = useState(props.tracker.time_allocated - props.tracker.time_studied);
   const [isPaused, setIsPaused] = useState(true);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [sessionTime, setSessionTime] = useState(0);
+  const [sessionStartTime, setSessionStartTime] = useState(0);
 
   const updateTimer = () => axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
 
   const logStudySession = () => {
-    const timeStudied = props.tracker.time_allocated - time;
-    axios.post('/api/study/sessions/log', { tracker: props.tracker, time: timeStudied }, axiosConfig);
+    axios.post('/api/study/sessions/log', { tracker: props.tracker, time: sessionTime }, axiosConfig);
+    setSessionStarted(false);
+    setSessionTime(0);
   };
 
   useEffect(() => {
@@ -25,6 +28,9 @@ const SubjectTimer = (props: TimerProps) => {
       timerInterval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
         if (time % 60 == 0) updateTimer();
+        if (sessionStarted) {
+          setSessionTime(Math.floor((Date.now() - sessionStartTime) / 1000));
+        }
       }, 1000);
     }
     return () => clearInterval(timerInterval);
@@ -33,6 +39,7 @@ const SubjectTimer = (props: TimerProps) => {
   const handleStart = () => {
     setIsPaused(false);
     setSessionStarted(true);
+    setSessionStartTime(Date.now());
   };
 
   const handleResume = () => setIsPaused(false);
