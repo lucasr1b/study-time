@@ -36,6 +36,6 @@ const StudySessionSchema = new mongoose.Schema({
   },
 });
 
-const StudySession = mongoose.models.StudyLogging || mongoose.model<IStudySession>('StudyLogging', StudySessionSchema);
+const StudySession = mongoose.models.StudySession || mongoose.model<IStudySession>('StudySession', StudySessionSchema);
 
 export default StudySession;

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { logStudyTrackerSessionForSubject } from '../../services/study/logService';
+import { logStudyTrackerSessionForSubject } from '../../services/study/sessionService';
 
 // @Desc Log study session
 // @Route /api/study/sessions/log
