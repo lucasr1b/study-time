@@ -40,3 +40,15 @@ export const formatSubjectTimer = (hours: number, minutes: number, seconds: numb
   if (hours <= 0 && minutes <= 0 && seconds <= 0) return '0s';
   return `${hours.toString().padStart(1, '0')}h ${minutes.toString().padStart(1, '0')}m ${seconds.toString().padStart(1, '0')}s`;
 };
+
+export const formatSubjectSessionLoggedTime = (time: number) => {
+  const minutes = getMinutes(time);
+  const hours = getHours(time);
+
+  if (hours == 0 && minutes == 0) return 'less than a minute';
+  if (minutes == 1 && hours == 0) return '1 minute';
+  if (minutes == 0 && hours == 1) return '1 hour';
+  if (minutes > 0 && hours == 0) return `${minutes} minutes`;
+  if (minutes == 0 && hours > 0) return `${hours} hours`;
+  return `${hours}h ${minutes}m`;
+};
