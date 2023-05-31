@@ -68,10 +68,10 @@ const SubjectTimer = (props: TimerProps) => {
           {isPaused ?
             <>
               {!sessionStarted
-                ? <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleStart}>Start</button>
+                ? <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleStart}>Start session</button>
                 : <>
                   <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleResume}>Resume</button>
-                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={logStudySession}>Log study</button>
+                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={logStudySession}>Log session</button>
                 </>
               }
             </>
