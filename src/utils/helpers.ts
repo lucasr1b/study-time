@@ -52,3 +52,17 @@ export const formatSubjectSessionLoggedTime = (time: number) => {
   if (minutes == 0 && hours > 0) return `${hours} hours`;
   return `${hours}h ${minutes}m`;
 };
+
+export const formatSubjectSessionLoggedDate = (date: Date) => {
+  date = new Date(date);
+  const options: Intl.DateTimeFormatOptions = {
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  };
+  const formattedDate = date.toLocaleString('en', options);
+  return `Logged at ${formattedDate}`;
+};
