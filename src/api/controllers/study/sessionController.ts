@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { logStudyTrackerSessionForSubject } from '../../services/study/logService';
 
 // @Desc Log study session
-// @Route /api/study/logs/log
+// @Route /api/study/sessions/log
 // @Method PUT
 
 export const logStudyTrackerSessionController = (req: NextApiRequest, res: NextApiResponse) => {

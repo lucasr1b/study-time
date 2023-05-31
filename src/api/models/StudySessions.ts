@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface IStudyLogging extends mongoose.Document {
-  log_id: string;
+export interface IStudySession extends mongoose.Document {
   log_user: string;
   subject_name: string;
   subject_icon: string;
@@ -9,12 +8,7 @@ export interface IStudyLogging extends mongoose.Document {
   date_logged: Date;
 }
 
-const StudyLoggingSchema = new mongoose.Schema({
-
-  log_id: {
-    type: String,
-    required: true,
-  },
+const StudySessionSchema = new mongoose.Schema({
 
   log_user: {
     type: String,
@@ -42,6 +36,6 @@ const StudyLoggingSchema = new mongoose.Schema({
   },
 });
 
-const StudyLogging = mongoose.models.StudyLogging || mongoose.model<IStudyLogging>('StudyLogging', StudyLoggingSchema);
+const StudySession = mongoose.models.StudyLogging || mongoose.model<IStudySession>('StudyLogging', StudySessionSchema);
 
-export default StudyLogging;
+export default StudySession;

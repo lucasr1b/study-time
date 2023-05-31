@@ -14,6 +14,11 @@ const SubjectTimer = (props: TimerProps) => {
 
   const updateTimer = () => axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
 
+  const logStudySession = () => {
+    const timeStudied = props.tracker.time_allocated - time;
+    axios.post('/api/study/sessions/log', { tracker: props.tracker, time: timeStudied }, axiosConfig);
+  };
+
   useEffect(() => {
     let timerInterval: any;
     if (!isPaused && time > 0) {
@@ -59,7 +64,7 @@ const SubjectTimer = (props: TimerProps) => {
                 ? <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleStart}>Start</button>
                 : <>
                   <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleResume}>Resume</button>
-                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Log study</button>
+                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={logStudySession}>Log study</button>
                 </>
               }
             </>
