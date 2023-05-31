@@ -12,7 +12,7 @@ const StudyLog = () => {
       setLogs(fetchedLogs.data);
     };
     fetchSessionsLogged();
-  });
+  }, []);
 
   return (
     <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-zinc-200 bg-white'>
