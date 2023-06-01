@@ -10,7 +10,7 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
   const user = req.session.user;
   try {
     if (user) {
-      const sessions = await StudySession.find({ log_user: user.email });
+      const sessions = await StudySession.find({ log_user: user.email }).sort({ date_logged: -1 });
       res.status(200).send(sessions);
     } else {
       res.send('Not logged in.');
