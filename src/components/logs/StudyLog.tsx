@@ -15,15 +15,13 @@ const StudyLog = () => {
   }, []);
 
   return (
-    <aside className='w-2/5 z-40 min-h-full max-h-screen overflow-y-auto p-4 border rounded-lg border-zinc-200 bg-white'>
+    <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-zinc-200 bg-white'>
       <h1 className='font-semibold'>Study log</h1>
       <div className='flex flex-col gap-4 mt-4'>
-        {logs.slice(0, 10).map((log: any, index: number) => (
+        {logs.slice(0, 9).map((log: any, index: number) => (
           <SubjectStudyLog log={log} key={index} />
         ))}
-        {logs.length > 9 && (
-          <span className='text-blue-600 hover:underline hover:cursor-pointer'>Load more</span>
-        )}
+        <span className='text-blue-600 hover:underline hover:cursor-pointer'>View all logs</span>
       </div>
     </aside>
   );
