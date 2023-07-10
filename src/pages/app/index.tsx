@@ -29,7 +29,7 @@ const Dashboard: NextPage = () => {
         <p className='text-4xl font-semibold mb-4'>Dashboard</p>
         <div className='flex flex-row gap-12 mt-2 w-full min-h-full pb-10'>
           <div className='flex flex-col gap-8 w-full'>
-            <div className='bg-white border border-zinc-200 h-full rounded-lg p-4'>
+            <div className='bg-white border border-zinc-200 h-4/5 rounded-lg p-4'>
               <h1 className='font-semibold mb-4'>Study overview</h1>
               <SubjectOverviewPagination />
               <div className='grid grid-cols-2 gap-4'>
