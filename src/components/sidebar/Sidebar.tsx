@@ -1,4 +1,4 @@
-import { AcademicCapIcon, ClockIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { AcademicCapIcon, ClockIcon, DocumentTextIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import SidebarItem from './SidebarItem';
 
 const Sidebar = () => {
@@ -9,6 +9,7 @@ const Sidebar = () => {
         <SidebarItem name='Dashboard' href='/app' icon={<Squares2X2Icon className='w-6 h-6' />} />
         <SidebarItem name='Subjects' href='/app/subjects' icon={<AcademicCapIcon className='w-6 h-6' />} />
         <SidebarItem name='Study' href='/app/study' icon={<ClockIcon className='w-6 h-6' />} />
+        <SidebarItem name='Assessments' href='/app/assessments' icon={<DocumentTextIcon className='w-6 h-6' />} />
       </ul>
     </aside >
   );
