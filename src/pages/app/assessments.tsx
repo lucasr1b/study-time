@@ -22,7 +22,7 @@ const Assessments: NextPage = () => {
             </div>
           </div>
           <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
-            <h1 className='font-semibold mb-4'>Upcoming tests</h1>
+            <h1 className='font-semibold mb-4'>Upcoming assessments</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
               <UpcomingTest text={'Linear graphing, graphs and functions'} />
               <UpcomingTest text={'Linear graphing, graphs and functions and trigonometry'} />
