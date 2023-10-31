@@ -1,4 +1,4 @@
-const SubjectTest = () => {
+const AssessmentOverview = () => {
   return (
     <div className='border border-zinc-200 rounded-lg px-2 py-2'>
       <div className='flex items-center'>
@@ -10,4 +10,4 @@ const SubjectTest = () => {
   );
 };
 
-export default SubjectTest;
+export default AssessmentOverview;

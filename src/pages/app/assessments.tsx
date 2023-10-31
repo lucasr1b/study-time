@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import PastPaper from '../../components/assessments/PastPaper';
-import UpcomingTest from '../../components/assessments/UpcomingTest';
-import AddUpcomingTest from '../../components/assessments/AddUpcomingTest';
+import UpcomingTest from '../../components/assessments/AssessmentItem';
+import AddUpcomingTest from '../../components/assessments/AddAssessment';
 
 const Assessments: NextPage = () => {
 

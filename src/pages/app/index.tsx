@@ -4,9 +4,9 @@ import SubjectOverview from '../../components/subjects/SubjectOverview';
 import Exams from '../../components/exams/Exams';
 import Events from '../../components/events/Events';
 import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination';
-import Tests from '../../components/tests/Tests';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import AssessmentList from '../../components/assessments/AssessmentList';
 
 const Dashboard: NextPage = () => {
 
@@ -41,7 +41,7 @@ const Dashboard: NextPage = () => {
             <Exams />
           </div>
           <div className='flex flex-col w-4/5 h-auto gap-8 flex-grow'>
-            <Tests />
+            <AssessmentList />
             <Events />
           </div>
         </div>

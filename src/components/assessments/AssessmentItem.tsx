@@ -1,4 +1,4 @@
-const UpcomingTest = (props: any) => {
+const AssessmentItem = (props: any) => {
   return (
     <div>
       <div className='flex flex-col border border-zinc-200 rounded-lg p-2 h-full'>
@@ -16,4 +16,4 @@ const UpcomingTest = (props: any) => {
   );
 };
 
-export default UpcomingTest;
+export default AssessmentItem;
