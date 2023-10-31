@@ -14,7 +14,7 @@ const SubjectTimer = (props: TimerProps) => {
   const [sessionTime, setSessionTime] = useState(0);
   const [sessionStartTime, setSessionStartTime] = useState(0);
 
-  const updateTimer = () => axios.put(`/api/study/trackers/${props.tracker.tracker_id}/update`, { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
+  const updateTimer = () => axios.put('/api/study/trackers/update', { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
 
   const logStudySession = () => {
     axios.post('/api/study/sessions/log', { tracker: props.tracker, time: sessionTime }, axiosConfig);

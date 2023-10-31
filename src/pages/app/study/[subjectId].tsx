@@ -13,14 +13,14 @@ const StudySubject = () => {
   const [error, setError] = useState('');
 
   const router = useRouter();
-  const { trackerId } = router.query;
+  const { subjectId } = router.query;
 
   useEffect(() => {
     const fetchTracker = async () => {
       setIsLoading(true);
       try {
-        if (trackerId !== undefined) {
-          const res = await axios.get(`/api/study/trackers/${trackerId}`);
+        if (subjectId !== undefined) {
+          const res = await axios.get(`/api/study/trackers/${subjectId}`);
           setTracker(res.data[0]);
         }
         setIsLoading(false);
@@ -30,7 +30,7 @@ const StudySubject = () => {
       }
     };
     fetchTracker();
-  }, [trackerId]);
+  }, [subjectId]);
 
   return (
     <div className='container h-screen'>

@@ -16,7 +16,7 @@ const SubjectTracker = (props: SubjectTrackerProps) => {
           <div className='mb-1 text-sm text-zinc-500'>{formatFancyTime(props.tracker.time_allocated)} allocated</div>
           <div className='flex gap-4 mt-1'>
             <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm' onClick={() => props.openEditModal(props.tracker)}>Edit</button>
-            <a className='flex items-center bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 hover:cursor-pointer text-sm' href={`study/${props.tracker.tracker_id}`}>Study</a>
+            <a className='flex items-center bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 hover:cursor-pointer text-sm' href={`study/${props.tracker.subject_id}`}>Study</a>
           </div>
         </>
         :

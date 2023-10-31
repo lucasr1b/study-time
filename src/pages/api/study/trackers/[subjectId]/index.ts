@@ -7,9 +7,10 @@ import StudyTracking from '../../../../../api/models/StudyTracking';
 async function subjectTrackerItemRoute(req: NextApiRequest, res: NextApiResponse) {
   connectToDB();
 
-  const { trackerId } = req.query;
+  const { subjectId } = req.query;
+  const user = req.session.user.email; // Change to id in future
 
-  const tracker = await StudyTracking.find({ tracker_id: trackerId });
+  const tracker = await StudyTracking.find({ subject_id: subjectId, tracker_user: user });
 
   res.send(tracker);
 }
