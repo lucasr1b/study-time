@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { padDate } from '../../utils/helpers';
 
-const DateSelector = () => {
+type DateSelectorProps = {
+  setSelectedDate?: any;
+};
+
+const DateSelector = (props: DateSelectorProps) => {
   const date = new Date();
   const currentYear = date.getFullYear();
   const lastYear = currentYear - 1;
@@ -10,7 +14,21 @@ const DateSelector = () => {
   const [month, setMonth] = useState(date.getMonth() + 1); // month starts from 0
   const [year, setYear] = useState(date.getFullYear());
 
+
+
+  const getDate = (selectedDay: number, selectedMonth: number, selectedYear: number): Date => {
+    return new Date(selectedYear, selectedMonth - 1, selectedDay); // month starts from 0
+  };
+
   const daysInMonth = (selectedYear: number, selectedMonth: number) => new Date(selectedYear, selectedMonth, 0).getDate();
+
+  const handleDayChange = (e: any) => {
+    const selectedDay = parseInt(e.target.value);
+    setDay(selectedDay);
+
+    const selectedDate = getDate(selectedDay, month, year);
+    props.setSelectedDate(selectedDate);
+  };
 
   const handleMonthChange = (e: any) => {
     const selectedMonth = parseInt(e.target.value);
@@ -19,6 +37,9 @@ const DateSelector = () => {
     if (day > daysInMonth(year, selectedMonth)) {
       setDay(1);
     }
+
+    const selectedDate = getDate(day, selectedMonth, year);
+    props.setSelectedDate(selectedDate);
   };
 
   const handleYearChange = (e: any) => {
@@ -28,6 +49,9 @@ const DateSelector = () => {
     if (day > daysInMonth(selectedYear, month)) {
       setDay(1);
     }
+
+    const selectedDate = getDate(day, month, selectedYear);
+    props.setSelectedDate(selectedDate);
   };
 
   const dayOptions = Array.from({ length: daysInMonth(year, month) }, (_, i) => (
@@ -43,10 +67,12 @@ const DateSelector = () => {
   ));
 
 
+
+
   return (
     <div className='flex items-center gap-1'>
       <div className='inline-flex border rounded-md p-2 w-full'>
-        <select value={day} onChange={(e) => setDay(parseInt(e.target.value))} className='w-full outline-none'>
+        <select value={day} onChange={handleDayChange} className='w-full outline-none'>
           {dayOptions}
         </select>
       </div>
