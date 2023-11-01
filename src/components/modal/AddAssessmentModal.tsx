@@ -1,10 +1,34 @@
+import { useEffect, useState } from 'react';
 import DateSelector from '../date/DateSelector';
+import axios from 'axios';
+import { axiosConfig } from '../../utils/constants';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
 };
 
 const AddAssessmentModal = (props: AddAssessmentModalProps) => {
+
+  const [subjects, setSubjects] = useState([]);
+
+  useEffect(() => {
+    const fetchSubjects = async () => {
+      await axios.get('/api/study/trackers', axiosConfig)
+        .then((res) => {
+
+          const subjectsData = res.data.map(({ subject_id, subject_icon, subject_name }: any) => ({
+            subject_id,
+            subject_icon,
+            subject_name,
+          }));
+
+          setSubjects(subjectsData);
+        });
+    };
+    fetchSubjects();
+  }, []);
+
+
   return (
     <>
       <div className='fixed z-40 flex items-center justify-center bg-black opacity-20 w-full h-full top-0 left-0' onClick={props.closeModal}></div>
@@ -14,9 +38,9 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
           <div className='mt-2 flex flex-col gap-4 w-full'>
             <div className='inline-flex border rounded-md p-2'>
               <select className='outline-none w-full'>
-                <option>📉 Mathematics</option>
-                <option>💼 Business Studies</option>
-                <option>🚀 Physics</option>
+                {subjects.map((subject: any) => (
+                  <option key={subject.subject_id}>{subject.subject_icon} {subject.subject_name}</option>
+                ))}
               </select>
             </div>
             <DateSelector />
