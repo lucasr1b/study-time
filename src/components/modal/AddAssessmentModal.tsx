@@ -33,8 +33,11 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
   }, []);
 
   const handleSubjectChange = (e: any) => {
-    const subject = e.target.value;
-    setSelectedSubject(subject);
+    const selectedSubjectId = e.target.options[e.target.selectedIndex].dataset.id;
+    console.log(selectedSubjectId);
+    const subject = subjects.find((subj: any) => subj.subject_id === selectedSubjectId);
+
+    if (subject) setSelectedSubject(subject);
   };
 
   const handleDescriptionChange = (e: any) => {
@@ -64,7 +67,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
             <div className='inline-flex border rounded-md p-2'>
               <select className='outline-none w-full' onChange={handleSubjectChange}>
                 {subjects.map((subject: any) => (
-                  <option key={subject.subject_id}>{subject.subject_icon} {subject.subject_name}</option>
+                  <option key={subject.subject_id} data-id={subject.subject_id}>{subject.subject_icon} {subject.subject_name}</option>
                 ))}
               </select>
             </div>
