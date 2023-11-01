@@ -3,8 +3,20 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import PastPaper from '../../components/assessments/PastPaper';
 import UpcomingTest from '../../components/assessments/AssessmentItem';
 import AddUpcomingTest from '../../components/assessments/AddAssessment';
+import { useState } from 'react';
+import AddAssessmentModal from '../../components/modal/AddAssessmentModal';
 
 const Assessments: NextPage = () => {
+
+  const [isAddAssessmentModalOpen, setIsAddAssessmentModalOpen] = useState(false);
+
+  const openAddAssessmentModal = () => {
+    setIsAddAssessmentModalOpen(true);
+  };
+
+  const closeAddAssessmentModal = () => {
+    setIsAddAssessmentModalOpen(false);
+  };
 
   return (
     <div className='container h-screen'>
@@ -27,11 +39,12 @@ const Assessments: NextPage = () => {
               <UpcomingTest text={'Linear graphing, graphs and functions'} />
               <UpcomingTest text={'Linear graphing, graphs and functions and trigonometry'} />
               <UpcomingTest text={'Background checking and sets'} />
-              <AddUpcomingTest />
+              <AddUpcomingTest openModal={openAddAssessmentModal} />
             </div>
           </div>
         </div>
       </div>
+      {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeAddAssessmentModal} />}
     </div>
   );
 };
