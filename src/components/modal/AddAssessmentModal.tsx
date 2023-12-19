@@ -5,6 +5,8 @@ import { axiosConfig } from '../../utils/constants';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
+  assessments: string[];
+  setAssessments: any;
 };
 
 const AddAssessmentModal = (props: AddAssessmentModalProps) => {
@@ -53,7 +55,8 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    await axios.post('/api/assessments/add', assessmentData, axiosConfig);
+    const response = await axios.post('/api/assessments/add', assessmentData, axiosConfig);
+    props.setAssessments([...props.assessments, response.data.assessment]);
     props.closeModal();
   };
 

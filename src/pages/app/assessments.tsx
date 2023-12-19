@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import PastPaper from '../../components/assessments/PastPaper';
-import UpcomingTest from '../../components/assessments/AssessmentItem';
-import AddUpcomingTest from '../../components/assessments/AddAssessment';
+import AssessmentItem from '../../components/assessments/AssessmentItem';
+import AddAssessment from '../../components/assessments/AddAssessment';
 import { useEffect, useState } from 'react';
 import AddAssessmentModal from '../../components/modal/AddAssessmentModal';
 import { axiosConfig } from '../../utils/constants';
@@ -50,14 +50,14 @@ const Assessments: NextPage = () => {
             <h1 className='font-semibold mb-4'>Upcoming assessments</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
               {assessments.map((assessment: any) => (
-                <UpcomingTest key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} description={assessment.description} />
+                <AssessmentItem key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} description={assessment.description} />
               ))}
-              <AddUpcomingTest openModal={openAddAssessmentModal} />
+              <AddAssessment openModal={openAddAssessmentModal} />
             </div>
           </div>
         </div>
       </div>
-      {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeAddAssessmentModal} />}
+      {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeAddAssessmentModal} assessments={assessments} setAssessments={setAssessments} />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 connectToDB();
 
 // @Desc Add new assessment
-// @Route /api/asessments/add
+// @Route /api/assessments/add
 // @Method POST
 
 export const addAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -19,7 +19,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
 
       const assessmentId = uuidv4();
 
-      await Assessment.create({
+      const assessment = await Assessment.create({
         assessment_id: assessmentId,
         user: user.email,
         subject_id: subject.subject_id,
@@ -29,7 +29,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
         date,
       });
 
-      res.status(200).json({ message: 'Assessment added' });
+      res.status(200).json({ assessment, message: 'Assessment added' });
     } else {
       res.send('Not logged in.');
     }
