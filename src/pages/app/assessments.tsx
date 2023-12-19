@@ -50,7 +50,7 @@ const Assessments: NextPage = () => {
             <h1 className='font-semibold mb-4'>Upcoming assessments</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
               {assessments.map((assessment: any) => (
-                <AssessmentItem key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} description={assessment.description} />
+                <AssessmentItem key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} date={assessment.date} description={assessment.description} />
               ))}
               <AddAssessment openModal={openAddAssessmentModal} />
             </div>
