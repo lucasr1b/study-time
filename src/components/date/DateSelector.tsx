@@ -75,11 +75,11 @@ const DateSelector = (props: DateSelectorProps) => {
         {dayOptions}
       </select>
       /
-      <select value={day} onChange={handleMonthChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+      <select value={month} onChange={handleMonthChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
         {monthOptions}
       </select>
       /
-      <select value={day} onChange={handleYearChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+      <select value={year} onChange={handleYearChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
         {yearOptions}
       </select>
     </div>
