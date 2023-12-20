@@ -66,3 +66,31 @@ export const formatSubjectSessionLoggedDate = (date: Date) => {
   const formattedDate = date.toLocaleString('en', options);
   return `Logged at ${formattedDate}`;
 };
+
+export const padDate = (date: number) => {
+  return date.toString().padStart(2, '0');
+};
+
+export const formatAssessmentDate = (date: Date) => {
+  date = new Date(date);
+
+  const year = date.getFullYear().toString().slice(2);
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+
+  return `${day}/${month}/${year}`;
+};
+
+export const formatFancyAssessmentOverviewDate = (date: Date) => {
+  date = new Date(date);
+  const currentDate = new Date();
+
+  const timeDifference = Number(date) - Number(currentDate);
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  if (daysDifference <= 30) {
+    return `assessed on ${daysDifference} days`;
+  } else {
+    return `assessed on ${formatAssessmentDate(date)}`;
+  }
+};
