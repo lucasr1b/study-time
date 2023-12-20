@@ -55,8 +55,10 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    const response = await axios.post('/api/assessments/add', assessmentData, axiosConfig);
-    props.setAssessments([...props.assessments, response.data.assessment]);
+    await axios.post('/api/assessments/add', assessmentData, axiosConfig)
+      .then((response) =>
+        props.setAssessments([...props.assessments, response.data.newAssessment]));
+
     props.closeModal();
   };
 

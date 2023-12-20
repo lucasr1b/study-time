@@ -19,7 +19,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
 
       const assessmentId = uuidv4();
 
-      const assessment = await Assessment.create({
+      const newAssessment = await Assessment.create({
         assessment_id: assessmentId,
         user: user.email,
         subject_id: subject.subject_id,
@@ -29,12 +29,35 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
         date,
       });
 
-      res.status(200).json({ assessment, message: 'Assessment added' });
+      res.status(200).json({ newAssessment, message: 'Assessment added' });
     } else {
       res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
     res.status(400).json({ message: 'Assessment not added', error: err.message });
+  }
+};
+
+// @Desc Delete assessment
+// @Route /api/assessments/delete
+// @Method DELETE
+
+export const deleteAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
+  const user = req.session.user;
+
+  try {
+    if (user) {
+      const { id } = req.body;
+
+      await Assessment.findOneAndDelete({ id });
+
+      res.status(200).json({ message: 'Assessment deleted' });
+    } else {
+      res.send('Not logged in.');
+    }
+  } catch (err: any) {
+    console.log(err);
+    res.status(400).json({ message: 'Assessment not deleted', error: err.message });
   }
 };

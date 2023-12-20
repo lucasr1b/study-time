@@ -5,7 +5,7 @@ type SubjectInfoProps = {
   subject: Subject;
 };
 
-const SubjectInfo = (props: SubjectInfoProps) => {
+const SubjectItem = (props: SubjectInfoProps) => {
   return (
     <div className='flex flex-col h-full w-full p-3 gap-1 rounded-lg bg-white border border-zinc-200'>
       <p className='text-m font-medium text-black'>{props.subject.subject_icon} {props.subject.subject_name}</p>
@@ -18,4 +18,4 @@ const SubjectInfo = (props: SubjectInfoProps) => {
   );
 };
 
-export default SubjectInfo;
+export default SubjectItem;
