@@ -80,3 +80,17 @@ export const formatAssessmentDate = (date: Date) => {
 
   return `${day}/${month}/${year}`;
 };
+
+export const formatFancyAssessmentOverviewDate = (date: Date) => {
+  date = new Date(date);
+  const currentDate = new Date();
+
+  const timeDifference = Number(date) - Number(currentDate);
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  if (daysDifference <= 30) {
+    return `assessed on ${daysDifference} days`;
+  } else {
+    return `assessed on ${formatAssessmentDate(date)}`;
+  }
+};
