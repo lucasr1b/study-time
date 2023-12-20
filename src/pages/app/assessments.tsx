@@ -7,11 +7,14 @@ import { useEffect, useState } from 'react';
 import AddAssessmentModal from '../../components/modal/AddAssessmentModal';
 import { axiosConfig } from '../../utils/constants';
 import axios from 'axios';
+import EditAssessmentModal from '../../components/modal/EditAssessmentModal';
 
 const Assessments: NextPage = () => {
 
   const [isAddAssessmentModalOpen, setIsAddAssessmentModalOpen] = useState(false);
-  const [assessments, setAssessments] = useState([]);
+  const [isEditAssessmentModalOpen, setIsEditAssessmentModalOpen] = useState(false);
+  const [selectedEditingAssessment, setSelectedEditingAssessment] = useState({});
+  const [assessments, setAssessments] = useState<any>([]);
 
   useEffect(() => {
     const fetchAssessments = async () => {
@@ -23,12 +26,17 @@ const Assessments: NextPage = () => {
     fetchAssessments();
   }, []);
 
-  const openAddAssessmentModal = () => {
-    setIsAddAssessmentModalOpen(true);
+  const openAddAssessmentModal = () => setIsAddAssessmentModalOpen(true);
+
+  const openEditAssessmentModal = (assessment: any) => {
+    setSelectedEditingAssessment(assessment);
+    setIsEditAssessmentModalOpen(true);
   };
 
-  const closeAddAssessmentModal = () => {
+  const closeModal = () => {
     setIsAddAssessmentModalOpen(false);
+    setIsEditAssessmentModalOpen(false);
+    setSelectedEditingAssessment({});
   };
 
   return (
@@ -52,13 +60,10 @@ const Assessments: NextPage = () => {
               {assessments.map((assessment: any) => (
                 <AssessmentItem
                   key={assessment.assessment_id}
-                  assessment_id={assessment.assessment_id}
+                  assessment={assessment}
                   assessments={assessments}
                   setAssessments={setAssessments}
-                  subject_icon={assessment.subject_icon}
-                  subject_name={assessment.subject_name}
-                  date={assessment.date}
-                  description={assessment.description}
+                  editAssessment={openEditAssessmentModal}
                 />
               ))}
               <AddAssessment openModal={openAddAssessmentModal} />
@@ -66,7 +71,8 @@ const Assessments: NextPage = () => {
           </div>
         </div>
       </div>
-      {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeAddAssessmentModal} assessments={assessments} setAssessments={setAssessments} />}
+      {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeModal} assessments={assessments} setAssessments={setAssessments} />}
+      {isEditAssessmentModalOpen && <EditAssessmentModal closeModal={closeModal} assessment={selectedEditingAssessment} assessments={assessments} setAssessments={setAssessments} />}
     </div>
   );
 };

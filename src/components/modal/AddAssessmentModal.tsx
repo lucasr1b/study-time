@@ -18,7 +18,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get('/api/study/trackers', axiosConfig)
+      await axios.get('/api/subjects', axiosConfig)
         .then((res) => {
 
           const subjectsData = res.data.map(({ subject_id, subject_icon, subject_name }: any) => ({

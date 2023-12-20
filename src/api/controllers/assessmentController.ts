@@ -39,6 +39,31 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
   }
 };
 
+// @Desc Edit assessment
+// @Route /api/assessments/edit
+// @Method POST
+
+export const editAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
+
+  const user = req.session.user;
+
+  try {
+    if (user) {
+      const { assessmentId, date, description } = req.body;
+
+      await Assessment.findOneAndUpdate({ assessment_id: assessmentId }, { date, description });
+      const updatedAssessment = await Assessment.findOne({ assessment_id: assessmentId });
+
+      res.status(200).json({ updatedAssessment, message: 'Assessment updated' });
+    } else {
+      res.send('Not logged in.');
+    }
+  } catch (err: any) {
+    console.log(err);
+    res.status(400).json({ message: 'Assessment not updated', error: err.message });
+  }
+};
+
 // @Desc Delete assessment
 // @Route /api/assessments/delete
 // @Method DELETE

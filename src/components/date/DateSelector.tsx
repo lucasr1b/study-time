@@ -71,23 +71,17 @@ const DateSelector = (props: DateSelectorProps) => {
 
   return (
     <div className='flex items-center gap-1'>
-      <div className='inline-flex border rounded-md p-2 w-full'>
-        <select value={day} onChange={handleDayChange} className='w-full outline-none'>
-          {dayOptions}
-        </select>
-      </div>
+      <select value={day} onChange={handleDayChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+        {dayOptions}
+      </select>
       /
-      <div className='inline-flex border rounded-md p-2 w-full'>
-        <select value={month} onChange={handleMonthChange} className='w-full outline-none'>
-          {monthOptions}
-        </select>
-      </div>
+      <select value={day} onChange={handleMonthChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+        {monthOptions}
+      </select>
       /
-      <div className='inline-flex border rounded-md p-2 w-full'>
-        <select defaultValue={currentYear} onChange={handleYearChange} className='w-full outline-none'>
-          {yearOptions}
-        </select>
-      </div>
+      <select value={day} onChange={handleYearChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+        {yearOptions}
+      </select>
     </div>
   );
 };

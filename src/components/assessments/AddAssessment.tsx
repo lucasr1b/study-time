@@ -1,7 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 
 type AddAssessmentProps = {
-  openModal: any;
+  openModal: () => void;
 };
 
 const AddAssessment = (props: AddAssessmentProps) => {
