@@ -20,9 +20,9 @@ const CambridgeSubjectSchema = new mongoose.Schema({
     required: true,
   },
 
-  subject_description: {
+  subject_curriculum: {
     type: String,
-    required: false,
+    required: true,
   },
 
   subject_level: {
@@ -32,7 +32,7 @@ const CambridgeSubjectSchema = new mongoose.Schema({
 
   subject_icon: {
     type: String,
-    required: false,
+    required: true,
   },
 });
 

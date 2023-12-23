@@ -82,7 +82,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
                   <p className='text-lg font-medium'>{selectedSubject.subject_icon} {selectedSubject.subject_name}</p>
                   <div className='bg-zinc-200 rounded-lg py-1 px-2 ml-auto text-zinc-500 text-sm'>{selectedSubject.subject_level}</div>
                 </div>
-                <p className='text-zinc-500'>{selectedSubject.subject_description}</p>
+                <p className='text-zinc-500'>{selectedSubject.subject_curriculum} {selectedSubject.subject_level}</p>
               </div>
             }
           </div>
@@ -102,4 +102,5 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 };
 
 export default AddSubjectModal;
+
 
