@@ -1,4 +1,4 @@
-const SubjectLoading = () => {
+const SubjectItemSkeleton = () => {
   return (
     <div className='flex flex-col h-full w-full p-3 gap-1 rounded-lg bg-white border border-zinc-200'>
       <div className='flex gap-1 mb-1'>
@@ -18,4 +18,4 @@ const SubjectLoading = () => {
   );
 };
 
-export default SubjectLoading;
+export default SubjectItemSkeleton;

@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectItem from '../../components/subjects/SubjectItem';
-import SubjectAdd from '../../components/subjects/SubjectAdd';
+import SubjectAddButton from '../../components/subjects/SubjectAddButton';
 import StudyLog from '../../components/logs/StudyLog';
-import AddSubjectModal from '../../components/modal/AddSubjectModal';
+import AddSubjectModal from '../../components/subjects/AddSubjectModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Subject } from '../../utils/types';
-import SubjectLoading from '../../components/subjects/SubjectLoading';
+import SubjectItemSkeleton from '../../components/subjects/SubjectItemSkeleton';
 
 const Subjects: NextPage = () => {
 
@@ -44,14 +44,14 @@ const Subjects: NextPage = () => {
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
               {isLoading ? (
                 [...Array(6)].map((x, i) => (
-                  <SubjectLoading key={i} />
+                  <SubjectItemSkeleton key={i} />
                 ))
               ) : (
                 <>
                   {subjects.map((subject, index) => (
                     <SubjectItem key={index} subject={subject} removeSubject={removeSubject} />
                   ))}
-                  <SubjectAdd openModal={() => setModalToggled(true)} />
+                  <SubjectAddButton openModal={() => setModalToggled(true)} />
                 </>
               )}
             </div>
