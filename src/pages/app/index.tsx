@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
-import SubjectOverview from '../../components/subjects/SubjectOverview';
-import Exams from '../../components/exams/Exams';
-import Events from '../../components/events/Events';
-import SubjectOverviewPagination from '../../components/pagination/SubjectOverviewPagination';
+import SubjectOverview from '../../components/dashboard/subjects/SubjectOverview';
+import AssessmentOverview from '../../components/dashboard/assessments/AssessmentOverview';
+import PastPaperOverview from '../../components/dashboard/papers/PastPaperOverview';
+import EventList from '../../components/dashboard/events/EventList';
+import SubjectOverviewPagination from '../../components/dashboard/subjects/SubjectOverviewPagination';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import AssessmentList from '../../components/assessments/AssessmentList';
 
 const Dashboard: NextPage = () => {
 
@@ -38,11 +38,11 @@ const Dashboard: NextPage = () => {
                 ))}
               </div>
             </div>
-            <Exams />
+            <PastPaperOverview />
           </div>
           <div className='flex flex-col w-4/5 h-auto gap-8 flex-grow'>
-            <AssessmentList />
-            <Events />
+            <AssessmentOverview />
+            <EventList />
           </div>
         </div>
       </div>

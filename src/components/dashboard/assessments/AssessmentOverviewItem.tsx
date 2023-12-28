@@ -1,13 +1,13 @@
-import { formatFancyAssessmentOverviewDate } from '../../utils/helpers';
+import { formatFancyAssessmentOverviewDate } from '../../../utils/helpers';
 
-type AssessmentOverviewProps = {
+type AssessmentOverviewItemProps = {
   subject_icon: string;
   subject_name: string;
   date: Date;
   description: string;
 };
 
-const AssessmentOverview = (props: AssessmentOverviewProps) => {
+const AssessmentOverviewItem = (props: AssessmentOverviewItemProps) => {
   return (
     <div className='border border-zinc-200 rounded-lg px-2 py-2'>
       <div className='flex items-center'>
@@ -19,4 +19,4 @@ const AssessmentOverview = (props: AssessmentOverviewProps) => {
   );
 };
 
-export default AssessmentOverview;
+export default AssessmentOverviewItem;

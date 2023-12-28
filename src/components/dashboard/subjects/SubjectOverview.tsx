@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { formatWeeklyProgressTime } from '../../utils/helpers';
+import { formatWeeklyProgressTime } from '../../../utils/helpers';
 
 const SubjectOverview = (props: { tracker: any }) => {
   return (

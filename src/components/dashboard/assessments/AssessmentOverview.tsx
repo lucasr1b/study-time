@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import AssessmentOverview from './AssessmentOverview';
-import { axiosConfig } from '../../utils/constants';
+import AssessmentOverviewItem from './AssessmentOverviewItem';
+import { axiosConfig } from '../../../utils/constants';
 import axios from 'axios';
 
-const Assessments = () => {
+const AssessmentOverview = () => {
 
   const [assessments, setAssessments] = useState([]);
 
@@ -22,11 +22,11 @@ const Assessments = () => {
       <h1 className='font-semibold pb-2'>Upcoming assessments</h1>
       <div className='overflow-y-auto flex flex-col gap-2 h-80 w-full rounded pr-4'>
         {assessments.map((assessment: any) => (
-          <AssessmentOverview key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} date={assessment.date} description={assessment.description} />
+          <AssessmentOverviewItem key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} date={assessment.date} description={assessment.description} />
         ))}
       </div>
     </aside>
   );
 };
 
-export default Assessments;
+export default AssessmentOverview;

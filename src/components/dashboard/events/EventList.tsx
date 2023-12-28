@@ -1,4 +1,4 @@
-const Events = () => {
+const EventList = () => {
   return (
     <aside className='w-full h-1/2 p-4 border rounded-lg border-zinc-200 bg-white'>
       <h1 className='font-semibold'>Upcoming events</h1>
@@ -24,4 +24,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default EventList;
