@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import SubjectStudyLog from './SubjectStudyLog';
+import SubjectStudyLogListItem from './SubjectStudyLogListItem';
 import axios from 'axios';
 
-const StudyLog = () => {
+const SubjectStudyLogList = () => {
 
   const [logs, setLogs] = useState([]);
 
@@ -19,7 +19,7 @@ const StudyLog = () => {
       <h1 className='font-semibold'>Study log</h1>
       <div className='flex flex-col gap-4 mt-4'>
         {logs.slice(0, 9).map((log: any, index: number) => (
-          <SubjectStudyLog log={log} key={index} />
+          <SubjectStudyLogListItem log={log} key={index} />
         ))}
         <span className='text-blue-600 hover:underline hover:cursor-pointer'>View all logs</span>
       </div>
@@ -27,4 +27,4 @@ const StudyLog = () => {
   );
 };
 
-export default StudyLog;
+export default SubjectStudyLogList;

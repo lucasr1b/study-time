@@ -1,10 +1,10 @@
 import { formatSubjectSessionLoggedDate, formatSubjectSessionLoggedTime } from '../../utils/helpers';
 
-type SubjectStudyLogProps = {
+type SubjectStudyLogListItemProps = {
   log: any;
 };
 
-const SubjectStudyLog = (props: SubjectStudyLogProps) => {
+const SubjectStudyLogListItem = (props: SubjectStudyLogListItemProps) => {
   return (
     <div className='flex flex-col gap-1 w-full p-2 border rounded-lg border-zinc-200 bg-white'>
       <div className='flex items-center'>
@@ -16,4 +16,4 @@ const SubjectStudyLog = (props: SubjectStudyLogProps) => {
   );
 };
 
-export default SubjectStudyLog;
+export default SubjectStudyLogListItem;

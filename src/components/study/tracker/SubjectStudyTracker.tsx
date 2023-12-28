@@ -1,12 +1,12 @@
 import { formatFancyTime } from '../../../utils/helpers';
 
-type SubjectTrackerProps = {
+type SubjectStudyTrackerProps = {
   tracker: any;
   openSetupModal: (tracker: any) => void;
   openEditModal: (tracker: any) => void;
 };
 
-const SubjectTracker = (props: SubjectTrackerProps) => {
+const SubjectStudyTracker = (props: SubjectStudyTrackerProps) => {
   return (
     <div className='flex flex-col items-center justify-center h-40 min-w-max p-8 rounded-lg bg-white border border-zinc-200'>
       <p className='text-2xl'>{props.tracker.subject_icon}</p>
@@ -32,4 +32,4 @@ const SubjectTracker = (props: SubjectTrackerProps) => {
   );
 };
 
-export default SubjectTracker;
+export default SubjectStudyTracker;

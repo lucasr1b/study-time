@@ -1,11 +1,11 @@
 import { Subject } from '../../utils/types';
 
-type SubjectInfoProps = {
+type SubjectItemProps = {
   removeSubject: any;
   subject: Subject;
 };
 
-const SubjectItem = (props: SubjectInfoProps) => {
+const SubjectItem = (props: SubjectItemProps) => {
   return (
     <div className='flex flex-col h-full w-full p-3 rounded-lg bg-white border border-zinc-200'>
       <p className='text-m font-medium text-black'>{props.subject.subject_icon} {props.subject.subject_name}</p>

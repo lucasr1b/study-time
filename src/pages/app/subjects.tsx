@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectItem from '../../components/subjects/SubjectItem';
 import SubjectAddButton from '../../components/subjects/SubjectAddButton';
-import StudyLog from '../../components/logs/StudyLog';
+import SubjectStudyLogList from '../../components/subjects/SubjectStudyLogList';
 import AddSubjectModal from '../../components/subjects/AddSubjectModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -56,7 +56,7 @@ const Subjects: NextPage = () => {
               )}
             </div>
           </div>
-          <StudyLog />
+          <SubjectStudyLogList />
         </div>
         {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} subjects={subjects} setSubjects={setSubjects} />}
       </div>

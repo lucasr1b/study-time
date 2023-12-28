@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import SubjectTracker from './SubjectTracker';
-import SetupStudyTrackerModal from '../../modal/SetupStudyTrackerModal';
-import EditStudyTrackerModal from '../../modal/EditStudyTrackerModal';
+import SubjectStudyTracker from './SubjectStudyTracker';
+import SetupStudyTrackerModal from '../modal/SetupStudyTrackerModal';
+import EditStudyTrackerModal from '../modal/EditStudyTrackerModal';
 
 type StudyTrackerProps = {
   trackers: any;
@@ -43,7 +43,7 @@ const StudyTracker = (props: StudyTrackerProps) => {
       <h1 className='font-semibold mb-4'>Study tracker</h1>
       <div className='grid grid-cols-3 grid-flow-row gap-6'>
         {props.trackers.map((tracker: any) => (
-          <SubjectTracker tracker={tracker} key={tracker.tracker_id} openSetupModal={openSetupModal} openEditModal={openEditModal} />
+          <SubjectStudyTracker tracker={tracker} key={tracker.tracker_id} openSetupModal={openSetupModal} openEditModal={openEditModal} />
         ))}
       </div>
       {isSetupModalOpen && <SetupStudyTrackerModal tracker={selectedTracker} closeModal={closeModal} updateTrackers={updateTrackers} />}

@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-type StudyTrackerModalProps = {
+type SetupStudyTrackerModalProps = {
   tracker: any;
   closeModal: () => void;
   updateTrackers: (tracker: any) => void;
 };
 
-const StudyTrackerModal = (props: StudyTrackerModalProps) => {
+const SetupStudyTrackerModal = (props: SetupStudyTrackerModalProps) => {
 
   const [hours, setHours] = useState(1);
   const [minutes, setMinutes] = useState(0);
@@ -68,4 +68,4 @@ const StudyTrackerModal = (props: StudyTrackerModalProps) => {
   );
 };
 
-export default StudyTrackerModal;
+export default SetupStudyTrackerModal;

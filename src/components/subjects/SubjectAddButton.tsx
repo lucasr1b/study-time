@@ -1,6 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 
-const SubjectInfoAdd = (props: { openModal: () => void }) => {
+const SubjectAddButton = (props: { openModal: () => void }) => {
 
   return (
     <div className='flex items-center justify-center min-h-28 w-full rounded-lg bg-white border border-zinc-200 hover:bg-zinc-200 hover:cursor-pointer' onClick={props.openModal}>
@@ -9,4 +9,4 @@ const SubjectInfoAdd = (props: { openModal: () => void }) => {
   );
 };
 
-export default SubjectInfoAdd;
+export default SubjectAddButton;

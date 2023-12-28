@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
-import PastPaper from '../../components/assessments/PastPaper';
+import AssessmentPastPaper from '../../components/assessments/AssessmentPastPaper';
 import AssessmentItem from '../../components/assessments/AssessmentItem';
-import AddAssessment from '../../components/assessments/AddAssessment';
+import AddAssessmentButton from '../../components/assessments/AddAssessmentButton';
 import { useEffect, useState } from 'react';
 import AddAssessmentModal from '../../components/modal/AddAssessmentModal';
 import { axiosConfig } from '../../utils/constants';
@@ -48,10 +48,10 @@ const Assessments: NextPage = () => {
           <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
             <h1 className='font-semibold mb-4'>Past papers</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 pb-4'>
-              <PastPaper />
-              <PastPaper />
-              <PastPaper />
-              <PastPaper />
+              <AssessmentPastPaper />
+              <AssessmentPastPaper />
+              <AssessmentPastPaper />
+              <AssessmentPastPaper />
             </div>
           </div>
           <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
@@ -66,7 +66,7 @@ const Assessments: NextPage = () => {
                   editAssessment={openEditAssessmentModal}
                 />
               ))}
-              <AddAssessment openModal={openAddAssessmentModal} />
+              <AddAssessmentButton openModal={openAddAssessmentModal} />
             </div>
           </div>
         </div>

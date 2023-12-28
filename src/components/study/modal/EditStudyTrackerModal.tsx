@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { getHours, getMinutes } from '../../utils/helpers';
+import { getHours, getMinutes } from '../../../utils/helpers';
 
 type EditStudyTrackerModalProps = {
   tracker: any;

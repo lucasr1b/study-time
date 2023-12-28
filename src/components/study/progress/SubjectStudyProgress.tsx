@@ -1,6 +1,6 @@
 import { formatWeeklyProgressBar, formatWeeklyProgressTime } from '../../../utils/helpers';
 
-const SubjectProgress = (props: { tracker: any }) => {
+const SubjectStudyProgress = (props: { tracker: any }) => {
 
 
   return (
@@ -15,4 +15,4 @@ const SubjectProgress = (props: { tracker: any }) => {
   );
 };
 
-export default SubjectProgress;
+export default SubjectStudyProgress;

@@ -1,4 +1,4 @@
-const PastPaper = () => {
+const AssessmentPastPaper = () => {
   return (
     <div className='flex flex-col items-center justify-center h-32 min-w-max p-8 rounded-lg bg-white border border-zinc-200 hover:bg-zinc-200 hover:cursor-pointer'>
       <p className='text-2xl'>⚡️</p>
@@ -8,4 +8,4 @@ const PastPaper = () => {
   );
 };
 
-export default PastPaper;
+export default AssessmentPastPaper;
