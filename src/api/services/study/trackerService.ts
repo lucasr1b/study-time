@@ -1,26 +1,21 @@
-import StudyTracking from '../../models/StudyTracking';
-import { convertTimeToSeconds } from '../../utils/helpers';
+import { convertTimeToSeconds, updateAndFetchTracker } from '../../utils/helpers';
 
 export const setupStudyTrackerForSubject = async (trackerId: string, hours: number, minutes: number) => {
-  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { is_setup: true, time_allocated: convertTimeToSeconds(hours, minutes) });
-  const tracker = await StudyTracking.findOne({ tracker_id: trackerId });
-  return tracker;
+  const updateData = { is_setup: true, time_allocated: convertTimeToSeconds(hours, minutes) };
+  return updateAndFetchTracker(trackerId, updateData);
 };
 
 export const editStudyTrackerTimeForSubject = async (trackerId: string, hours: number, minutes: number) => {
-  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { time_allocated: convertTimeToSeconds(hours, minutes) });
-  const tracker = await StudyTracking.findOne({ tracker_id: trackerId });
-  return tracker;
+  const updateData = { time_allocated: convertTimeToSeconds(hours, minutes) };
+  return updateAndFetchTracker(trackerId, updateData);
 };
 
 export const removeStudyTrackerForSubject = async (trackerId: string) => {
-  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { is_setup: false, time_allocated: 0, time_studied: 0, completed: false });
-  const tracker = await StudyTracking.findOne({ tracker_id: trackerId });
-  return tracker;
+  const updateData = { is_setup: false, time_allocated: 0, time_studied: 0, completed: false };
+  return updateAndFetchTracker(trackerId, updateData);
 };
 
-export const updateStudyTrackerTimerForSubject = async (trackerId: any, timeStudied: number) => {
-  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { time_studied: timeStudied });
-  const tracker = await StudyTracking.findOne({ tracker_id: trackerId });
-  return tracker;
+export const updateStudyTrackerTimerForSubject = async (trackerId: string, timeStudied: number) => {
+  const updateData = { time_studied: timeStudied };
+  return updateAndFetchTracker(trackerId, updateData);
 };
