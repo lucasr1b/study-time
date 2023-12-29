@@ -3,7 +3,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectOverview from '../../components/dashboard/subjects/SubjectOverview';
 import AssessmentOverview from '../../components/dashboard/assessments/AssessmentOverview';
 import PastPaperOverview from '../../components/dashboard/papers/PastPaperOverview';
-import EventList from '../../components/dashboard/events/EventList';
+import EventList from '../../components/dashboard/EventList';
 import SubjectOverviewPagination from '../../components/dashboard/subjects/SubjectOverviewPagination';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
