@@ -5,7 +5,7 @@ import connectToDB from '../../../../api/lib/mongodb';
 import StudyTracking from '../../../../api/models/StudyTracking';
 import User from '../../../../api/models/User';
 
-async function weeklyTrackesrProgressRoute(req: NextApiRequest, res: NextApiResponse) {
+async function weeklyTrackersProgressRoute(req: NextApiRequest, res: NextApiResponse) {
   connectToDB();
 
   const user = await User.findOne({ email: req.session.user.email });
@@ -15,4 +15,4 @@ async function weeklyTrackesrProgressRoute(req: NextApiRequest, res: NextApiResp
   res.send(trackers);
 }
 
-export default withIronSessionApiRoute(weeklyTrackesrProgressRoute, sessionOptions);
+export default withIronSessionApiRoute(weeklyTrackersProgressRoute, sessionOptions);
