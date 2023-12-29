@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { formatFancyTime, formatSubjectTimer } from '../../../../utils/helpers';
+import { formatFancyTime, formatSubjectTimer } from '../../../utils/helpers';
 import axios from 'axios';
-import { axiosConfig } from '../../../../utils/constants';
+import { axiosConfig } from '../../../utils/constants';
 
 type TimerProps = {
   tracker: any;

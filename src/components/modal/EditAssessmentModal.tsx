@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import DateSelector from '../date/DateSelector';
+import DateSelector from '../dashboard/DateSelector';
 import axios from 'axios';
 import { axiosConfig } from '../../utils/constants';
 

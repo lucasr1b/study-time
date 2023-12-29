@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Sidebar from '../../../components/sidebar/Sidebar';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import SubjectTimer from '../../../components/study/subject/timer/SubjectTimer';
+import SubjectTimer from '../../../components/study/subject/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
 import Link from 'next/link';
 
