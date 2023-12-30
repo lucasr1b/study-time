@@ -14,7 +14,7 @@ export const authRegisterUserController = async (req: NextApiRequest, res: NextA
 
     const userCreationFieldsValidation = await validateUserCreationFields(name, email, password, cpassword);
 
-    if (userCreationFieldsValidation === true) {
+    if (userCreationFieldsValidation) {
       const user = await createUserAndSession(req, name, email, password);
       res.status(201).json({ message: 'Account created', user });
     } else {
@@ -36,7 +36,7 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
 
     const userCrendetialFieldsValidation = await validateUserCrendetialFieldsAndCreateSession(req, email, password);
 
-    if (userCrendetialFieldsValidation === true) {
+    if (userCrendetialFieldsValidation) {
       res.status(200).json({ message: 'Successfully authenticated', user: req.session.user });
     } else {
       res.status(400).json({ message: 'Authentication failed', error: userCrendetialFieldsValidation });
