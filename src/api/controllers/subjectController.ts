@@ -5,6 +5,10 @@ import { getUserFromSession, isUserLoggedIn } from '../utils/helpers';
 
 connectToDB();
 
+// @Desc Add subject to user
+// @Route /api/subjects/add
+// @Method POST
+
 export const addSubjectController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (isUserLoggedIn(req, res)) {
@@ -19,6 +23,10 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
     res.status(400).json({ message: 'Subject not added', error: err.message });
   }
 };
+
+// @Desc Remove subject from user
+// @Route /api/subjects/add
+// @Method POST
 
 export const removeSubjectController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
