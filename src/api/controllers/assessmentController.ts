@@ -18,7 +18,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
 
     const { subject, date, description } = req.body;
 
-    const newAssessment = createAssessment(subject, date, description, user.email);
+    const newAssessment = await createAssessment(subject, date, description, user.email);
 
     res.status(200).json({ newAssessment, message: 'Assessment added' });
   } catch (err: any) {
@@ -41,7 +41,7 @@ export const editAssessmentController = async (req: NextApiRequest, res: NextApi
 
     const { assessmentId, date, description } = req.body;
 
-    const updatedAssessment = editAssessment(assessmentId, date, description);
+    const updatedAssessment = await editAssessment(assessmentId, date, description);
 
     res.status(200).json({ updatedAssessment, message: 'Assessment updated' });
   } catch (err: any) {
@@ -64,7 +64,7 @@ export const deleteAssessmentController = async (req: NextApiRequest, res: NextA
 
     const { assessmentId } = req.body;
 
-    deleteAssessment(assessmentId);
+    await deleteAssessment(assessmentId);
 
     res.status(200).json({ message: 'Assessment deleted' });
   } catch (err: any) {
