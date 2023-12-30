@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
-import Assessment from '../models/Assessment';
-import { v4 as uuidv4 } from 'uuid';
+import { createAssessment, deleteAssessment, editAssessment } from '../services/assessmentService';
 
 connectToDB();
 
@@ -10,31 +9,20 @@ connectToDB();
 // @Method POST
 
 export const addAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
-
-  const user = req.session.user;
-
   try {
-    if (user) {
-      const { subject, date, description } = req.body;
+    const user = req.session.user;
 
-      const assessmentId = uuidv4();
-
-      const newAssessment = await Assessment.create({
-        assessment_id: assessmentId,
-        user: user.email,
-        subject_id: subject.subject_id,
-        subject_name: subject.subject_name,
-        subject_icon: subject.subject_icon,
-        description,
-        date,
-      });
-
-      res.status(200).json({ newAssessment, message: 'Assessment added' });
-    } else {
-      res.send('Not logged in.');
+    if (!user) {
+      return res.status(401).json({ message: 'Not logged in.' });
     }
+
+    const { subject, date, description } = req.body;
+
+    const newAssessment = createAssessment(subject, date, description, user.email);
+
+    res.status(200).json({ newAssessment, message: 'Assessment added' });
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Assessment not added', error: err.message });
   }
 };
@@ -44,22 +32,20 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
 // @Method POST
 
 export const editAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
-
-  const user = req.session.user;
-
   try {
-    if (user) {
-      const { assessmentId, date, description } = req.body;
+    const user = req.session.user;
 
-      await Assessment.findOneAndUpdate({ assessment_id: assessmentId }, { date, description });
-      const updatedAssessment = await Assessment.findOne({ assessment_id: assessmentId });
-
-      res.status(200).json({ updatedAssessment, message: 'Assessment updated' });
-    } else {
-      res.send('Not logged in.');
+    if (!user) {
+      return res.status(401).json({ message: 'Not logged in.' });
     }
+
+    const { assessmentId, date, description } = req.body;
+
+    const updatedAssessment = editAssessment(assessmentId, date, description);
+
+    res.status(200).json({ updatedAssessment, message: 'Assessment updated' });
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Assessment not updated', error: err.message });
   }
 };
@@ -69,20 +55,20 @@ export const editAssessmentController = async (req: NextApiRequest, res: NextApi
 // @Method DELETE
 
 export const deleteAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
-
   try {
-    if (user) {
-      const { id } = req.body;
+    const user = req.session.user;
 
-      await Assessment.findOneAndDelete({ id });
-
-      res.status(200).json({ message: 'Assessment deleted' });
-    } else {
-      res.send('Not logged in.');
+    if (!user) {
+      return res.status(401).json({ message: 'Not logged in.' });
     }
+
+    const { assessmentId } = req.body;
+
+    deleteAssessment(assessmentId);
+
+    res.status(200).json({ message: 'Assessment deleted' });
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Assessment not deleted', error: err.message });
   }
 };
