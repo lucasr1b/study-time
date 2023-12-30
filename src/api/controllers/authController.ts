@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
 import { createUserAndSession, validateUserCreationFields, validateUserCrendetialFieldsAndCreateSession } from '../services/authService';
+import { getUserFromSession } from '../utils/helpers';
 
 connectToDB();
 
@@ -37,7 +38,7 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
     const userCrendetialFieldsValidation = await validateUserCrendetialFieldsAndCreateSession(req, email, password);
 
     if (userCrendetialFieldsValidation) {
-      res.status(200).json({ message: 'Successfully authenticated', user: req.session.user });
+      res.status(200).json({ message: 'Successfully authenticated', user: getUserFromSession(req) });
     } else {
       res.status(400).json({ message: 'Authentication failed', error: userCrendetialFieldsValidation });
     }

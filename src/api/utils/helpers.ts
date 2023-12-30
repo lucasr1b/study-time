@@ -1,5 +1,19 @@
-import { NextApiRequest } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import StudyTracking from '../models/StudyTracking';
+
+export const getUserFromSession = (req: NextApiRequest) => {
+  return req.session.user;
+};
+
+export const isUserLoggedIn = (req: NextApiRequest, res: NextApiResponse) => {
+  const user = getUserFromSession(req);
+
+  if (!user) {
+    res.status(401).json({ message: 'Not logged in.' });
+    return false;
+  }
+  return true;
+};
 
 export const createSession = async (req: NextApiRequest, name: string, email: string) => {
   req.session.user = {

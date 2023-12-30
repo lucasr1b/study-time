@@ -1,19 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { logStudyTrackerSessionForSubject } from '../../services/study/sessionService';
 import StudySession from '../../models/StudySessions';
+import { getUserFromSession, isUserLoggedIn } from '../../utils/helpers';
 
-// @Desc Log study session
+// @Desc Get all user study tracker sessions
 // @Route /api/study/sessions
 // @Method GET
 
 export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
+      const user = getUserFromSession(req);
       const sessions = await StudySession.find({ log_user: user.email }).sort({ date_logged: -1 });
       res.status(200).send(sessions);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
@@ -26,14 +25,12 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
 // @Method POST
 
 export const logStudyTrackerSessionController = (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { tracker, time } = req.body;
+      const user = getUserFromSession(req);
       const log = logStudyTrackerSessionForSubject(tracker, time, user.email);
       res.status(200).send(log);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);

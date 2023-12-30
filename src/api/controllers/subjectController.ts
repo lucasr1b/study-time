@@ -1,20 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
 import { updateSubjectForUser, createStudyTrackerAndAddToUser, deleteStudyTrackerAndRemoveFromUser } from '../services/subjectService';
+import { getUserFromSession, isUserLoggedIn } from '../utils/helpers';
 
 connectToDB();
 
 export const addSubjectController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
-
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { id } = req.body;
+      const user = getUserFromSession(req);
       const addedSubject = await updateSubjectForUser(id, user.email, 'add');
       await createStudyTrackerAndAddToUser(id, user.email);
       res.status(200).send(addedSubject);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
@@ -23,16 +21,13 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
 };
 
 export const removeSubjectController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
-
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { id } = req.body;
+      const user = getUserFromSession(req);
       const removedSubject = await updateSubjectForUser(id, user.email, 'remove');
       await deleteStudyTrackerAndRemoveFromUser(id, user.email);
       res.status(200).send(removedSubject);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);

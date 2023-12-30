@@ -1,20 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { editStudyTrackerTimeForSubject, removeStudyTrackerForSubject, setupStudyTrackerForSubject, updateStudyTrackerTimerForSubject } from '../../services/study/trackerService';
+import { isUserLoggedIn } from '../../utils/helpers';
 
 // @Desc Setup tracker for subject
 // @Route /api/study/trackers/setup
 // @Method POST
 
 export const setupStudyTrackerController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
-
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { id, hours, minutes } = req.body;
       const tracker = await setupStudyTrackerForSubject(id, hours, minutes);
       res.status(200).send(tracker);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
@@ -27,15 +24,11 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
 // @Method POST
 
 export const editStudyTrackerTimeController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
-
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { id, hours, minutes } = req.body;
       const tracker = await editStudyTrackerTimeForSubject(id, hours, minutes);
       res.status(200).send(tracker);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
@@ -48,15 +41,11 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
 // @Method POST
 
 export const removeStudyTrackerController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
-
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { id } = req.body;
       const tracker = await removeStudyTrackerForSubject(id);
       res.status(200).send(tracker);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
@@ -69,14 +58,11 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
 // @Method PUT
 
 export const updateStudyTrackerTimerController = async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.session.user;
   try {
-    if (user) {
+    if (isUserLoggedIn(req, res)) {
       const { id, time } = req.body;
       const tracker = await updateStudyTrackerTimerForSubject(id, time);
       res.status(200).send(tracker);
-    } else {
-      res.send('Not logged in.');
     }
   } catch (err: any) {
     console.log(err);
