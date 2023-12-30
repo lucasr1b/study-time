@@ -3,18 +3,12 @@ import CambridgeSubject from '../models/CambridgeSubject';
 import StudyTracking from '../models/StudyTracking';
 import { v4 as uuidv4 } from 'uuid';
 
-export const addSubjectToUser = async (id: string, email: string) => {
-  await User.findOneAndUpdate({ email }, { $push: { subjects: id } });
+export const updateSubjectForUser = async (id: string, email: string, operation: 'add' | 'remove') => {
+  const updateData = operation === 'add' ? { $push: { subjects: id } } : { $pull: { subjects: id } };
 
-  const addedSubject = await CambridgeSubject.findOne({ subject_id: id });
-  return addedSubject;
-};
+  await User.findOneAndUpdate({ email }, updateData);
 
-export const removeSubjectFromUser = async (id: string, email: string) => {
-  await User.findOneAndUpdate({ email }, { $pull: { subjects: id } });
-
-  const removedSubject = await CambridgeSubject.findOne({ subject_id: id });
-  return removedSubject;
+  return CambridgeSubject.findOne({ subject_id: id });
 };
 
 export const createStudyTrackerAndAddToUser = async (subjectId: string, email: string) => {

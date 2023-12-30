@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
-import { addSubjectToUser, createStudyTrackerAndAddToUser, deleteStudyTrackerAndRemoveFromUser, removeSubjectFromUser } from '../services/subjectService';
+import { updateSubjectForUser, createStudyTrackerAndAddToUser, deleteStudyTrackerAndRemoveFromUser } from '../services/subjectService';
 
 connectToDB();
 
@@ -10,7 +10,7 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
   try {
     if (user) {
       const { id } = req.body;
-      const addedSubject = await addSubjectToUser(id, user.email);
+      const addedSubject = await updateSubjectForUser(id, user.email, 'add');
       await createStudyTrackerAndAddToUser(id, user.email);
       res.status(200).send(addedSubject);
     } else {
@@ -28,7 +28,7 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
   try {
     if (user) {
       const { id } = req.body;
-      const removedSubject = await removeSubjectFromUser(id, user.email);
+      const removedSubject = await updateSubjectForUser(id, user.email, 'remove');
       await deleteStudyTrackerAndRemoveFromUser(id, user.email);
       res.status(200).send(removedSubject);
     } else {
