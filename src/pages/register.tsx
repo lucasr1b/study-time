@@ -17,7 +17,7 @@ const Register = () => {
       cpassword: cpassword.value,
     };
 
-    await axios.post('api/auth/register', data, axiosConfig)
+    await axios.post('/api/auth/register', data, axiosConfig)
       .then(() => {
         Router.push('/app');
       })
