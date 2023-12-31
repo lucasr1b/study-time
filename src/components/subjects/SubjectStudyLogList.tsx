@@ -9,7 +9,7 @@ const SubjectStudyLogList = () => {
   useEffect(() => {
     const fetchSessionsLogged = async () => {
       const fetchedLogs = await axios.get('/api/study/sessions');
-      setLogs(fetchedLogs.data);
+      setLogs(fetchedLogs.data.sessions);
     };
     fetchSessionsLogged();
   }, []);

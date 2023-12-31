@@ -52,5 +52,6 @@ export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiR
   }
 
   await createSession(req, user.name, user.email);
+
   return true;
 };

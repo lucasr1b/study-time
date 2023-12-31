@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
 import { createAssessment, deleteAssessment, editAssessment } from '../services/assessmentService';
-import { getUserFromSession, isUserLoggedIn } from '../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
 
 connectToDB();
 
@@ -15,11 +15,11 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
       const { subject, date, description } = req.body;
       const user = getUserFromSession(req);
       const newAssessment = await createAssessment(subject, date, description, user.email);
-      res.status(200).json({ newAssessment, message: 'Assessment added' });
+      sendSuccessCreatedResponse(res, 'Assessment added', { newAssessment });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Assessment not added', error: err.message });
+    sendErrorResponse(res, 'Assessment not added', err.message);
   }
 };
 
@@ -32,27 +32,27 @@ export const editAssessmentController = async (req: NextApiRequest, res: NextApi
     if (isUserLoggedIn(req, res)) {
       const { assessmentId, date, description } = req.body;
       const updatedAssessment = await editAssessment(assessmentId, date, description);
-      res.status(200).json({ updatedAssessment, message: 'Assessment updated' });
+      sendSuccessResponse(res, 'Assessment updated', { updatedAssessment });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Assessment not updated', error: err.message });
+    sendErrorResponse(res, 'Assessment not updated', err.message);
   }
 };
 
 // @Desc Delete assessment
 // @Route /api/assessments/delete
-// @Method DELETE
+// @Method POST
 
 export const deleteAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (isUserLoggedIn(req, res)) {
       const { assessmentId } = req.body;
       await deleteAssessment(assessmentId);
-      res.status(200).json({ message: 'Assessment deleted' });
+      sendSuccessNoContentResponse(res, 'Assessment deleted');
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Assessment not deleted', error: err.message });
+    sendErrorResponse(res, 'Assessment not deleted', err.message);
   }
 };

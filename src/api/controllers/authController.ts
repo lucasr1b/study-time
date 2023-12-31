@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
 import { createUserAndSession, validateUserCreationFields, validateUserCrendetialFieldsAndCreateSession } from '../services/authService';
-import { getUserFromSession } from '../utils/helpers';
+import { sendSuccessCreatedResponse, sendErrorResponse, sendSuccessNoContentResponse } from '../utils/helpers';
 
 connectToDB();
 
-// @Desc Register user
+// @Desc Register new user
 // @Route /api/auth/register
 // @Method POST
 
@@ -15,15 +15,15 @@ export const authRegisterUserController = async (req: NextApiRequest, res: NextA
 
     const userCreationFieldsValidation = await validateUserCreationFields(name, email, password, cpassword);
 
-    if (userCreationFieldsValidation) {
-      const user = await createUserAndSession(req, name, email, password);
-      res.status(201).json({ message: 'Account created', user });
+    if (userCreationFieldsValidation === true) {
+      await createUserAndSession(req, name, email, password);
+      sendSuccessCreatedResponse(res, 'Account created');
     } else {
-      res.status(400).json({ message: 'Account not created', error: userCreationFieldsValidation });
+      sendErrorResponse(res, 'Account not created', userCreationFieldsValidation);
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Account not created', error: err.message });
+    sendErrorResponse(res, 'Account not created', err.message);
   }
 };
 
@@ -37,13 +37,13 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
 
     const userCrendetialFieldsValidation = await validateUserCrendetialFieldsAndCreateSession(req, email, password);
 
-    if (userCrendetialFieldsValidation) {
-      res.status(200).json({ message: 'Successfully authenticated', user: getUserFromSession(req) });
+    if (userCrendetialFieldsValidation === true) {
+      sendSuccessNoContentResponse(res, 'Successfully authenticated');
     } else {
-      res.status(400).json({ message: 'Authentication failed', error: userCrendetialFieldsValidation });
+      sendErrorResponse(res, 'Authentication failed', userCrendetialFieldsValidation);
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Authentication failed', error: err.message });
+    sendErrorResponse(res, 'Authentication failed', err.message);
   }
 };

@@ -1,6 +1,26 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import StudyTracking from '../models/StudyTracking';
 
+export const sendSuccessResponse = (res: NextApiResponse, message: string, data: any) => {
+  res.status(200).json({ message, ...data });
+};
+
+export const sendSuccessCreatedResponse = (res: NextApiResponse, message: string, data?: any) => {
+  res.status(201).json({ message, ...data });
+};
+
+export const sendSuccessNoContentResponse = (res: NextApiResponse, message: string) => {
+  res.status(204).json({ message });
+};
+
+export const sendErrorResponse = (res: NextApiResponse, message: string, error: string) => {
+  res.status(400).json({ message, error });
+};
+
+export const sendErrorUnauthorizedResponse = (res: NextApiResponse, error?: string) => {
+  res.status(401).json({ error: error || 'Action failed, not logged in' });
+};
+
 export const getUserFromSession = (req: NextApiRequest) => {
   return req.session.user;
 };
@@ -9,7 +29,7 @@ export const isUserLoggedIn = (req: NextApiRequest, res: NextApiResponse) => {
   const user = getUserFromSession(req);
 
   if (!user) {
-    res.status(401).json({ message: 'Not logged in.' });
+    sendErrorUnauthorizedResponse(res);
     return false;
   }
   return true;

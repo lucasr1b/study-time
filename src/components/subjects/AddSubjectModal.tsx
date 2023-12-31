@@ -52,7 +52,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     e.preventDefault();
     await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id })
       .then((res) => {
-        props.setSubjects([...props.subjects, res.data]);
+        props.setSubjects([...props.subjects, res.data.addedSubject]);
         props.close();
       });
   };

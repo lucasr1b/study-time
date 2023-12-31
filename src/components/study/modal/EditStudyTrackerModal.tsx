@@ -29,7 +29,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
     e.preventDefault();
     await axios.post('/api/study/trackers/edit', { id: props.tracker.tracker_id, hours, minutes })
       .then((res) => {
-        props.updateTrackers(res.data);
+        props.updateTrackers(res.data.editedTracker);
         props.closeModal();
       });
   };
@@ -38,7 +38,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
     e.preventDefault();
     await axios.post('/api/study/trackers/remove', { id: props.tracker.tracker_id })
       .then((res) => {
-        props.updateTrackers(res.data);
+        props.updateTrackers(res.data.removedTracker);
         props.closeModal();
       });
   };

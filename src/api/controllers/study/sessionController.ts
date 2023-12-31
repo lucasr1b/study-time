@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { logStudyTrackerSessionForSubject } from '../../services/study/sessionService';
 import StudySession from '../../models/StudySessions';
-import { getUserFromSession, isUserLoggedIn } from '../../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessResponse } from '../../utils/helpers';
 import connectToDB from '../../lib/mongodb';
 
 connectToDB();
@@ -15,15 +15,15 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
       const sessions = await StudySession.find({ log_user: user.email }).sort({ date_logged: -1 });
-      res.status(200).send(sessions);
+      sendSuccessResponse(res, 'Study sessions fetched', { sessions });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Study sessions not fetched', error: err.message });
+    sendErrorResponse(res, 'Study sessions not fetched', err.message);
   }
 };
 
-// @Desc Log study session
+// @Desc Log new study session
 // @Route /api/study/sessions/log
 // @Method POST
 
@@ -32,11 +32,11 @@ export const logStudyTrackerSessionController = (req: NextApiRequest, res: NextA
     if (isUserLoggedIn(req, res)) {
       const { tracker, time } = req.body;
       const user = getUserFromSession(req);
-      const log = logStudyTrackerSessionForSubject(tracker, time, user.email);
-      res.status(200).send(log);
+      logStudyTrackerSessionForSubject(tracker, time, user.email);
+      sendSuccessCreatedResponse(res, 'Subject study session logged');
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Subject study session not logged', error: err.message });
+    sendErrorResponse(res, 'Subject study session not logged', err.message);
   }
 };

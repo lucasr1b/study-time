@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { editStudyTrackerTimeForSubject, removeStudyTrackerForSubject, setupStudyTrackerForSubject, updateStudyTrackerTimerForSubject } from '../../services/study/trackerService';
-import { isUserLoggedIn } from '../../utils/helpers';
+import { isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../../utils/helpers';
 import connectToDB from '../../lib/mongodb';
 
 connectToDB();
 
-// @Desc Setup tracker for subject
+// @Desc Setup new tracker for subject
 // @Route /api/study/trackers/setup
 // @Method POST
 
@@ -14,11 +14,11 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
     if (isUserLoggedIn(req, res)) {
       const { id, hours, minutes } = req.body;
       const tracker = await setupStudyTrackerForSubject(id, hours, minutes);
-      res.status(200).send(tracker);
+      sendSuccessCreatedResponse(res, 'Subject tracker added', { tracker });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Subject tracker not added', error: err.message });
+    sendErrorResponse(res, 'Subject tracker not added', err.message);
   }
 };
 
@@ -30,12 +30,12 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
   try {
     if (isUserLoggedIn(req, res)) {
       const { id, hours, minutes } = req.body;
-      const tracker = await editStudyTrackerTimeForSubject(id, hours, minutes);
-      res.status(200).send(tracker);
+      const editedTracker = await editStudyTrackerTimeForSubject(id, hours, minutes);
+      sendSuccessResponse(res, 'Subject tracker edited', { editedTracker });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Subject tracker not edited', error: err.message });
+    sendErrorResponse(res, 'Subject tracker not edited', err.message);
   }
 };
 
@@ -47,12 +47,12 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
   try {
     if (isUserLoggedIn(req, res)) {
       const { id } = req.body;
-      const tracker = await removeStudyTrackerForSubject(id);
-      res.status(200).send(tracker);
+      const removedTracker = await removeStudyTrackerForSubject(id);
+      sendSuccessResponse(res, 'Subject tracker removed', { removedTracker });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Subject tracker not removed', error: err.message });
+    sendErrorResponse(res, 'Subject tracker not removed', err.message);
   }
 };
 
@@ -64,11 +64,11 @@ export const updateStudyTrackerTimerController = async (req: NextApiRequest, res
   try {
     if (isUserLoggedIn(req, res)) {
       const { id, time } = req.body;
-      const tracker = await updateStudyTrackerTimerForSubject(id, time);
-      res.status(200).send(tracker);
+      await updateStudyTrackerTimerForSubject(id, time);
+      sendSuccessNoContentResponse(res, 'Subject tracker timer updated');
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).json({ message: 'Subject tracker timer not updated', error: err.message });
+    sendErrorResponse(res, 'Subject tracker timer not updated', err.message);
   }
 };
