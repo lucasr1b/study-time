@@ -18,7 +18,7 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
       res.status(200).send(sessions);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Study sessions not fetched', error: err.message });
   }
 };
@@ -36,7 +36,7 @@ export const logStudyTrackerSessionController = (req: NextApiRequest, res: NextA
       res.status(200).send(log);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject study session not logged', error: err.message });
   }
 };

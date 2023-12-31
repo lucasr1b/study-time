@@ -17,7 +17,7 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
       res.status(200).send(tracker);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject tracker not added', error: err.message });
   }
 };
@@ -34,7 +34,7 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
       res.status(200).send(tracker);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject tracker not edited', error: err.message });
   }
 };
@@ -51,7 +51,7 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
       res.status(200).send(tracker);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject tracker not removed', error: err.message });
   }
 };
@@ -68,7 +68,7 @@ export const updateStudyTrackerTimerController = async (req: NextApiRequest, res
       res.status(200).send(tracker);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject tracker timer not updated', error: err.message });
   }
 };

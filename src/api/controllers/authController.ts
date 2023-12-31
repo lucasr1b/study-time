@@ -22,7 +22,7 @@ export const authRegisterUserController = async (req: NextApiRequest, res: NextA
       res.status(400).json({ message: 'Account not created', error: userCreationFieldsValidation });
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Account not created', error: err.message });
   }
 };
@@ -43,7 +43,7 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
       res.status(400).json({ message: 'Authentication failed', error: userCrendetialFieldsValidation });
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Authentication failed', error: err.message });
   }
 };

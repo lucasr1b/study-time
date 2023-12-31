@@ -12,7 +12,7 @@ async function addSubjectsDevRoute(req: NextApiRequest, res: NextApiResponse) {
   try {
     subjects.forEach((subject) => CambridgeSubject.create(subject));
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 
   res.send('Created!');

@@ -19,7 +19,7 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
       res.status(200).send(addedSubject);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject not added', error: err.message });
   }
 };
@@ -38,7 +38,7 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
       res.status(200).send(removedSubject);
     }
   } catch (err: any) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({ message: 'Subject not removed', error: err.message });
   }
 };
