@@ -18,7 +18,7 @@ export const createAssessment = async (subject: any, date: any, description: any
 };
 
 export const editAssessment = async (assessmentId: string, date: any, description: any) => {
-  await Assessment.findOneAndUpdate({ assessment_id: assessmentId }, { date, description });
+  await Assessment.findOneAndUpdate({ assessment_id: assessmentId }, { $set: { date, description } });
   const updatedAssessment = await Assessment.findOne({ assessment_id: assessmentId });
   return updatedAssessment;
 };

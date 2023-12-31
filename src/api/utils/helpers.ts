@@ -54,6 +54,6 @@ export const convertTimeToSeconds = (hours: number, minutes: number) => {
 };
 
 export const updateAndFetchTracker = async (trackerId: string, updateData: object) => {
-  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, updateData);
+  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { $set: updateData });
   return StudyTracking.findOne({ tracker_id: trackerId });
 }; 

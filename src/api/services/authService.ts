@@ -33,11 +33,9 @@ export const createUserAndSession = async (req: NextApiRequest, name: string, em
     name,
     email,
     password,
-    subjects: ['English', 'Maths'], // Remove in future
   });
 
   await createSession(req, user.name, user.email);
-  return user;
 };
 
 export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiRequest, email: string, password: string) => {

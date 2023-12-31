@@ -4,9 +4,9 @@ import StudyTracking from '../models/StudyTracking';
 import { v4 as uuidv4 } from 'uuid';
 
 export const updateSubjectForUser = async (id: string, email: string, operation: 'add' | 'remove') => {
-  const updateData = operation === 'add' ? { $push: { subjects: id } } : { $pull: { subjects: id } };
+  const updateSubjectData = operation === 'add' ? { $push: { subjects: id } } : { $pull: { subjects: id } };
 
-  await User.findOneAndUpdate({ email }, updateData);
+  await User.findOneAndUpdate({ email }, updateSubjectData);
 
   return CambridgeSubject.findOne({ subject_id: id });
 };
