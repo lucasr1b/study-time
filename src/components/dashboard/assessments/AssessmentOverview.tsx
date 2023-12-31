@@ -3,16 +3,18 @@ import AssessmentOverviewItem from './AssessmentOverviewItem';
 import axios from 'axios';
 
 const AssessmentOverview = () => {
-
   const [assessments, setAssessments] = useState([]);
 
   useEffect(() => {
     const fetchAssessments = async () => {
-      await axios.get('/api/assessments')
-        .then((res) => {
-          setAssessments(res.data);
-        });
+      try {
+        const res = await axios.get('/api/assessments');
+        setAssessments(res.data);
+      } catch (error) {
+        console.error('Error fetching assessments:', error);
+      }
     };
+
     fetchAssessments();
   }, []);
 

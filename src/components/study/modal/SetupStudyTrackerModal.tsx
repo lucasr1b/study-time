@@ -8,20 +8,17 @@ type SetupStudyTrackerModalProps = {
 };
 
 const SetupStudyTrackerModal = (props: SetupStudyTrackerModalProps) => {
-
   const [hours, setHours] = useState(1);
   const [minutes, setMinutes] = useState(0);
 
   const handleHoursChange = (e: any) => {
     const value = e.target.value;
-    const changedHours = (value === '' ? 0 : parseInt(value));
-    setHours(changedHours);
+    setHours(value === '' ? 0 : parseInt(value));
   };
 
   const handleMinutesChange = (e: any) => {
     const value = e.target.value;
-    const changedMinutes = (value === '' ? 0 : parseInt(value));
-    setMinutes(changedMinutes);
+    setMinutes(value === '' ? 0 : parseInt(value));
   };
 
   const setupTracker = async (e: any) => {

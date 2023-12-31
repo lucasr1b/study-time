@@ -4,9 +4,9 @@ import AssessmentPastPaper from '../../components/assessments/AssessmentPastPape
 import AssessmentItem from '../../components/assessments/AssessmentItem';
 import AddAssessmentButton from '../../components/assessments/AddAssessmentButton';
 import { useEffect, useState } from 'react';
-import AddAssessmentModal from '../../components/modal/AddAssessmentModal';
+import AddAssessmentModal from '../../components/assessments/modal/AddAssessmentModal';
 import axios from 'axios';
-import EditAssessmentModal from '../../components/modal/EditAssessmentModal';
+import EditAssessmentModal from '../../components/assessments/modal/EditAssessmentModal';
 
 const Assessments: NextPage = () => {
 

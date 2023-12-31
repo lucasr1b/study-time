@@ -3,7 +3,6 @@ import SubjectStudyLogListItem from './SubjectStudyLogListItem';
 import axios from 'axios';
 
 const SubjectStudyLogList = () => {
-
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {

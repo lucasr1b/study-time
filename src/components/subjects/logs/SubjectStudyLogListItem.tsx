@@ -1,4 +1,4 @@
-import { formatSubjectSessionLoggedDate, formatSubjectSessionLoggedTime } from '../../utils/helpers';
+import { formatSubjectSessionLoggedDate, formatSubjectSessionLoggedTime } from '../../../utils/helpers';
 
 type SubjectStudyLogListItemProps = {
   log: any;

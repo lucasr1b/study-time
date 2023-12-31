@@ -9,7 +9,6 @@ type StudyTrackerProps = {
 };
 
 const StudyTracker = (props: StudyTrackerProps) => {
-
   const [selectedTracker, setSelectedTracker] = useState({});
   const [isSetupModalOpen, setIsSetupModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -31,11 +30,13 @@ const StudyTracker = (props: StudyTrackerProps) => {
   };
 
   const updateTrackers = (updatedTracker: any) => {
-    props.setTrackers(props.trackers.map((tracker: any) =>
-      tracker.tracker_id === updatedTracker.tracker_id
-        ? { ...tracker, time_allocated: updatedTracker.time_allocated, is_setup: updatedTracker.is_setup }
-        : tracker,
-    ));
+    props.setTrackers((prevTrackers: any) =>
+      prevTrackers.map((tracker: any) =>
+        tracker.tracker_id === updatedTracker.tracker_id
+          ? { ...tracker, time_allocated: updatedTracker.time_allocated, is_setup: updatedTracker.is_setup }
+          : tracker,
+      ),
+    );
   };
 
   return (

@@ -27,7 +27,6 @@ const SubjectStudyTracker = (props: SubjectStudyTrackerProps) => {
           </div>
         </>
       }
-
     </div>
   );
 };

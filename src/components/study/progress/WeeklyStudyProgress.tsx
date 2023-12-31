@@ -5,7 +5,6 @@ type WeeklyStudyProgressProps = {
 };
 
 const WeeklyStudyProgress = (props: WeeklyStudyProgressProps) => {
-
   return (
     <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
       <h1 className='font-semibold mb-4'>Weekly progress</h1>

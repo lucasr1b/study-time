@@ -9,7 +9,6 @@ type AddSubjectModalProps = {
 };
 
 const AddSubjectModal = (props: AddSubjectModalProps) => {
-
   const [inputValue, setInputValue] = useState('');
   const [subjectList, setSubjectList] = useState<Subject[]>([]);
   const [filteredSubjects, setFilteredSubjects] = useState<Subject[]>([]);
@@ -34,7 +33,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     setInputValue(input);
     setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())));
 
-    if (e.target.value != '' && selectedSubject) {
+    if (input !== '' && selectedSubject) {
       setSelectedSubject(undefined);
     }
   };

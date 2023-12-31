@@ -9,7 +9,6 @@ type EditStudyTrackerModalProps = {
 };
 
 const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
-
   const [hours, setHours] = useState(getHours(props.tracker.time_allocated));
   const [minutes, setMinutes] = useState(getMinutes(props.tracker.time_allocated));
 

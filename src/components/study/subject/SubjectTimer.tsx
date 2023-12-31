@@ -55,7 +55,6 @@ const SubjectTimer = (props: TimerProps) => {
   const timeRemaining = formatSubjectTimer(hours, minutes, seconds);
 
   return (
-
     <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
       <h1 className='font-semibold mb-4'>Timer</h1>
       <div className='flex flex-col items-center justify-center gap-4 pb-4'>

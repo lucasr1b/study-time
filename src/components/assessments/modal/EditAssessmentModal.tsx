@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import DateSelector from '../dashboard/DateSelector';
+import DateSelector from '../../dashboard/DateSelector';
 import axios from 'axios';
 
 type AddAssessmentModalProps = {
@@ -10,7 +10,6 @@ type AddAssessmentModalProps = {
 };
 
 const EditAssessmentModal = (props: AddAssessmentModalProps) => {
-
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
 
@@ -21,13 +20,13 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
 
   const editAssessment = async (e: any) => {
     e.preventDefault();
-    const assessmentData = {
+    const assessmentFormData = {
       assessmentId: props.assessment.assessment_id,
       date,
       description,
     };
 
-    await axios.put('/api/assessments/edit', assessmentData)
+    await axios.put('/api/assessments/edit', assessmentFormData)
       .then((response) =>
         props.setAssessments(props.assessments.map((assessment: any) =>
           assessment.assessment_id === response.data.updatedAssessment.assessment_id

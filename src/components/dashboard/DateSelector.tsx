@@ -14,9 +14,7 @@ const DateSelector = (props: DateSelectorProps) => {
   const [month, setMonth] = useState(date.getMonth() + 1); // month starts from 0
   const [year, setYear] = useState(date.getFullYear());
 
-
-
-  const getDate = (selectedDay: number, selectedMonth: number, selectedYear: number): Date => {
+  const createDate = (selectedDay: number, selectedMonth: number, selectedYear: number): Date => {
     return new Date(selectedYear, selectedMonth - 1, selectedDay); // month starts from 0
   };
 
@@ -26,7 +24,7 @@ const DateSelector = (props: DateSelectorProps) => {
     const selectedDay = parseInt(e.target.value);
     setDay(selectedDay);
 
-    const selectedDate = getDate(selectedDay, month, year);
+    const selectedDate = createDate(selectedDay, month, year);
     props.setSelectedDate(selectedDate);
   };
 
@@ -38,7 +36,7 @@ const DateSelector = (props: DateSelectorProps) => {
       setDay(1);
     }
 
-    const selectedDate = getDate(day, selectedMonth, year);
+    const selectedDate = createDate(day, selectedMonth, year);
     props.setSelectedDate(selectedDate);
   };
 
@@ -50,7 +48,7 @@ const DateSelector = (props: DateSelectorProps) => {
       setDay(1);
     }
 
-    const selectedDate = getDate(day, month, selectedYear);
+    const selectedDate = createDate(day, month, selectedYear);
     props.setSelectedDate(selectedDate);
   };
 
@@ -65,9 +63,6 @@ const DateSelector = (props: DateSelectorProps) => {
   const yearOptions = Array.from({ length: 5 }, (_, i) => (
     <option key={lastYear + i + 1} value={lastYear + i + 1}>{lastYear + i + 1}</option>
   ));
-
-
-
 
   return (
     <div className='flex items-center gap-1'>
