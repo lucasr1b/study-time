@@ -18,8 +18,7 @@ const Register = () => {
     };
 
     await axios.post('api/auth/register', data, axiosConfig)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         Router.push('/app');
       })
       .catch(() => {

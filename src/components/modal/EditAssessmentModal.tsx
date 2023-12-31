@@ -28,8 +28,6 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    console.log(assessmentData);
-
     await axios.post('/api/assessments/edit', assessmentData, axiosConfig)
       .then((response) =>
         props.setAssessments(props.assessments.map((assessment: any) =>

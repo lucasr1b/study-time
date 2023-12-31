@@ -36,7 +36,6 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
 
   const handleSubjectChange = (e: any) => {
     const selectedSubjectId = e.target.options[e.target.selectedIndex].dataset.id;
-    console.log(selectedSubjectId);
     const subject = subjects.find((subj: any) => subj.subject_id === selectedSubjectId);
 
     if (subject) setSelectedSubject(subject);

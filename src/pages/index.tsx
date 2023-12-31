@@ -15,8 +15,7 @@ const Login = () => {
     };
 
     await axios.post('api/auth/login', data, axiosConfig)
-      .then((res) => {
-        console.log(res.data.user);
+      .then(() => {
         Router.push('/app');
       })
       .catch(() => {

@@ -24,7 +24,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
           setFilteredSubjects(res.data);
         })
         .catch((res) => {
-          console.log(res.response.data.error);
+          console.error(res.response.data.error);
         });
     };
     fetchSubjects();
