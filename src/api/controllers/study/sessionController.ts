@@ -2,6 +2,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { logStudyTrackerSessionForSubject } from '../../services/study/sessionService';
 import StudySession from '../../models/StudySessions';
 import { getUserFromSession, isUserLoggedIn } from '../../utils/helpers';
+import connectToDB from '../../lib/mongodb';
+
+connectToDB();
 
 // @Desc Get all user study tracker sessions
 // @Route /api/study/sessions

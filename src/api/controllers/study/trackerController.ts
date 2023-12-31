@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { editStudyTrackerTimeForSubject, removeStudyTrackerForSubject, setupStudyTrackerForSubject, updateStudyTrackerTimerForSubject } from '../../services/study/trackerService';
 import { isUserLoggedIn } from '../../utils/helpers';
+import connectToDB from '../../lib/mongodb';
+
+connectToDB();
 
 // @Desc Setup tracker for subject
 // @Route /api/study/trackers/setup
