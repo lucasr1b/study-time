@@ -17,20 +17,17 @@ const Subjects: NextPage = () => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get('/api/subjects')
-        .then((res) => {
-          setSubjects(res.data);
-          setIsLoading(false);
-        });
+      const res = await axios.get('/api/subjects');
+      setSubjects(res.data);
+      setIsLoading(false);
     };
+
     fetchSubjects();
   }, []);
 
   const removeSubject = async (id: string) => {
-    await axios.post('/api/subjects/remove', { id })
-      .then(() => {
-        setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
-      });
+    await axios.post('/api/subjects/remove', { id });
+    setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
   };
 
   return (

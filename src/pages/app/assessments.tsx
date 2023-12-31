@@ -17,11 +17,10 @@ const Assessments: NextPage = () => {
 
   useEffect(() => {
     const fetchAssessments = async () => {
-      await axios.get('/api/assessments')
-        .then((res) => {
-          setAssessments(res.data);
-        });
+      const res = await axios.get('/api/assessments');
+      setAssessments(res.data);
     };
+
     fetchAssessments();
   }, []);
 

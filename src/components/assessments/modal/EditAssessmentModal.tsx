@@ -26,13 +26,16 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    await axios.put('/api/assessments/edit', assessmentFormData)
-      .then((response) =>
-        props.setAssessments(props.assessments.map((assessment: any) =>
-          assessment.assessment_id === response.data.updatedAssessment.assessment_id
-            ? { ...assessment, date: response.data.updatedAssessment.date, description: response.data.updatedAssessment.description }
-            : assessment,
-        )));
+    try {
+      const response = await axios.put('/api/assessments/edit', assessmentFormData);
+      props.setAssessments(props.assessments.map((assessment: any) =>
+        assessment.assessment_id === response.data.updatedAssessment.assessment_id
+          ? { ...assessment, date: response.data.updatedAssessment.date, description: response.data.updatedAssessment.description }
+          : assessment,
+      ));
+    } catch (error: any) {
+      console.error(error.response.data.error);
+    }
 
     props.closeModal();
   };

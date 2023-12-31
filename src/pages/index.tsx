@@ -17,7 +17,8 @@ const Login = () => {
       .then(() => {
         Router.push('/app');
       })
-      .catch(() => {
+      .catch((err: any) => {
+        console.error(err.response.data.error);
         password.value = '';
       });
   };

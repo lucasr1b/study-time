@@ -16,15 +16,11 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get('/api/subjects/list')
-        .then((res) => {
-          setSubjectList(res.data);
-          setFilteredSubjects(res.data);
-        })
-        .catch((res) => {
-          console.error(res.response.data.error);
-        });
+      const res = await axios.get('/api/subjects/list');
+      setSubjectList(res.data);
+      setFilteredSubjects(res.data);
     };
+
     fetchSubjects();
   }, []);
 
@@ -48,11 +44,9 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const addSubject = async (e: any) => {
     e.preventDefault();
-    await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id })
-      .then((res) => {
-        props.setSubjects([...props.subjects, res.data.addedSubject]);
-        props.close();
-      });
+    const res = await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id });
+    props.setSubjects([...props.subjects, res.data.addedSubject]);
+    props.close();
   };
 
   return (

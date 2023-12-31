@@ -16,19 +16,21 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get('/api/subjects')
-        .then((res) => {
+      try {
+        const res = await axios.get('/api/subjects');
+        const subjectsData = res.data.map(({ subject_id, subject_icon, subject_name }: any) => ({
+          subject_id,
+          subject_icon,
+          subject_name,
+        }));
 
-          const subjectsData = res.data.map(({ subject_id, subject_icon, subject_name }: any) => ({
-            subject_id,
-            subject_icon,
-            subject_name,
-          }));
-
-          setSubjects(subjectsData);
-          setSelectedSubject(subjectsData[0]);
-        });
+        setSubjects(subjectsData);
+        setSelectedSubject(subjectsData[0]);
+      } catch (err: any) {
+        console.error(err.response.data.error);
+      }
     };
+
     fetchSubjects();
   }, []);
 
@@ -51,9 +53,8 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    await axios.post('/api/assessments/add', assessmentFormData)
-      .then((response) =>
-        props.setAssessments([...props.assessments, response.data.newAssessment]));
+    const res = await axios.post('/api/assessments/add', assessmentFormData);
+    props.setAssessments([...props.assessments, res.data.newAssessment]);
 
     props.closeModal();
   };

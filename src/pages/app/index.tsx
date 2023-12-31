@@ -14,11 +14,10 @@ const Dashboard: NextPage = () => {
 
   useEffect(() => {
     const fetchTrackers = async () => {
-      await axios.get('/api/study/trackers/weekly')
-        .then((res) => {
-          setTrackers(res.data);
-        });
+      const res = await axios.get('/api/study/trackers/weekly');
+      setTrackers(res.data);
     };
+
     fetchTrackers();
   }, []);
 
