@@ -18,7 +18,7 @@ export const sendErrorResponse = (res: NextApiResponse, message: string, error: 
 };
 
 export const sendErrorUnauthorizedResponse = (res: NextApiResponse, error?: string) => {
-  res.status(401).json({ error: error || 'Action failed, not logged in' });
+  res.status(401).json({ error: error || 'Not logged in' });
 };
 
 export const getUserFromSession = (req: NextApiRequest) => {
