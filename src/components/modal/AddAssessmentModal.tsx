@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import DateSelector from '../dashboard/DateSelector';
 import axios from 'axios';
-import { axiosConfig } from '../../utils/constants';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
@@ -18,7 +17,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get('/api/subjects', axiosConfig)
+      await axios.get('/api/subjects')
         .then((res) => {
 
           const subjectsData = res.data.map(({ subject_id, subject_icon, subject_name }: any) => ({
@@ -54,7 +53,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    await axios.post('/api/assessments/add', assessmentData, axiosConfig)
+    await axios.post('/api/assessments/add', assessmentData)
       .then((response) =>
         props.setAssessments([...props.assessments, response.data.newAssessment]));
 

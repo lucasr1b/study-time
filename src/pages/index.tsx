@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { axiosConfig } from '../utils/constants';
 import Router from 'next/router';
 
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
       password: password.value,
     };
 
-    await axios.post('/api/auth/login', data, axiosConfig)
+    await axios.post('/api/auth/login', data)
       .then(() => {
         Router.push('/app');
       })

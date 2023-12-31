@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import DateSelector from '../dashboard/DateSelector';
 import axios from 'axios';
-import { axiosConfig } from '../../utils/constants';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
@@ -28,7 +27,7 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    await axios.post('/api/assessments/edit', assessmentData, axiosConfig)
+    await axios.put('/api/assessments/edit', assessmentData)
       .then((response) =>
         props.setAssessments(props.assessments.map((assessment: any) =>
           assessment.assessment_id === response.data.updatedAssessment.assessment_id

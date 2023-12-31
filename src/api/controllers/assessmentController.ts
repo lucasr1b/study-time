@@ -25,7 +25,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
 
 // @Desc Edit assessment
 // @Route /api/assessments/edit
-// @Method POST
+// @Method PUT
 
 export const editAssessmentController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

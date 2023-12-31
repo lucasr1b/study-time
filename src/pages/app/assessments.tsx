@@ -5,7 +5,6 @@ import AssessmentItem from '../../components/assessments/AssessmentItem';
 import AddAssessmentButton from '../../components/assessments/AddAssessmentButton';
 import { useEffect, useState } from 'react';
 import AddAssessmentModal from '../../components/modal/AddAssessmentModal';
-import { axiosConfig } from '../../utils/constants';
 import axios from 'axios';
 import EditAssessmentModal from '../../components/modal/EditAssessmentModal';
 
@@ -18,7 +17,7 @@ const Assessments: NextPage = () => {
 
   useEffect(() => {
     const fetchAssessments = async () => {
-      await axios.get('/api/assessments', axiosConfig)
+      await axios.get('/api/assessments')
         .then((res) => {
           setAssessments(res.data);
         });

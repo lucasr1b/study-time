@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { axiosConfig } from '../../utils/constants';
 import { Subject } from '../../utils/types';
 
 type AddSubjectModalProps = {
@@ -18,7 +17,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      await axios.get('/api/subjects/list', axiosConfig)
+      await axios.get('/api/subjects/list')
         .then((res) => {
           setSubjectList(res.data);
           setFilteredSubjects(res.data);

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { formatAssessmentDate } from '../../utils/helpers';
-import { axiosConfig } from '../../utils/constants';
 
 type AssessmentItemProps = {
   assessment: any;
@@ -12,7 +11,7 @@ type AssessmentItemProps = {
 const AssessmentItem = (props: AssessmentItemProps) => {
 
   const deleteAssessment = async () => {
-    await axios.post('/api/assessments/delete', { assessmentId: props.assessment.assessment_id }, axiosConfig)
+    await axios.post('/api/assessments/delete', { assessmentId: props.assessment.assessment_id })
       .then(() => {
         props.setAssessments(props.assessments.filter((assessment: any) => assessment.assessment_id !== props.assessment.assessment_id));
       });

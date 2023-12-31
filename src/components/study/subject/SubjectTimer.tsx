@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { formatFancyTime, formatSubjectTimer } from '../../../utils/helpers';
 import axios from 'axios';
-import { axiosConfig } from '../../../utils/constants';
 
 type TimerProps = {
   tracker: any;
@@ -14,10 +13,10 @@ const SubjectTimer = (props: TimerProps) => {
   const [sessionTime, setSessionTime] = useState(0);
   const [sessionStartTime, setSessionStartTime] = useState(0);
 
-  const updateTimer = () => axios.put('/api/study/trackers/update', { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time }, axiosConfig);
+  const updateTimer = () => axios.put('/api/study/trackers/update', { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time });
 
   const logStudySession = () => {
-    axios.post('/api/study/sessions/log', { tracker: props.tracker, time: sessionTime }, axiosConfig);
+    axios.post('/api/study/sessions/log', { tracker: props.tracker, time: sessionTime });
     setSessionStarted(false);
     setSessionTime(0);
   };

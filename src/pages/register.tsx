@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { axiosConfig } from '../utils/constants';
 import Router from 'next/router';
 import Link from 'next/link';
 
@@ -17,7 +16,7 @@ const Register = () => {
       cpassword: cpassword.value,
     };
 
-    await axios.post('/api/auth/register', data, axiosConfig)
+    await axios.post('/api/auth/register', data)
       .then(() => {
         Router.push('/app');
       })

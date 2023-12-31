@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import AssessmentOverviewItem from './AssessmentOverviewItem';
-import { axiosConfig } from '../../../utils/constants';
 import axios from 'axios';
 
 const AssessmentOverview = () => {
@@ -9,7 +8,7 @@ const AssessmentOverview = () => {
 
   useEffect(() => {
     const fetchAssessments = async () => {
-      await axios.get('/api/assessments', axiosConfig)
+      await axios.get('/api/assessments')
         .then((res) => {
           setAssessments(res.data);
         });
