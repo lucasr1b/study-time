@@ -25,7 +25,7 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
 };
 
 // @Desc Remove subject from user
-// @Route /api/subjects/add
+// @Route /api/subjects/remove
 // @Method POST
 
 export const removeSubjectController = async (req: NextApiRequest, res: NextApiResponse) => {
