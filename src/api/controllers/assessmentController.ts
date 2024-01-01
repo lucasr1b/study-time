@@ -2,8 +2,26 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
 import { createAssessment, deleteAssessment, editAssessment } from '../services/assessmentService';
 import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
+import Assessment from '../models/Assessment';
 
 connectToDB();
+
+// @Desc Get all assessments
+// @Route /api/assessments
+// @Method GET
+
+export const getAllAssessmentsController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    if (isUserLoggedIn(req, res)) {
+      const user = getUserFromSession(req);
+      const assessments = await Assessment.find({ user: user.email });
+      sendSuccessResponse(res, 'All assessments fetched', { assessments });
+    }
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Assessments not fetched', err.message);
+  }
+};
 
 // @Desc Add new assessment
 // @Route /api/assessments/add

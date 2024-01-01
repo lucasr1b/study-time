@@ -14,7 +14,7 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
       const sessions = await fetchAllStudyTrackerSessionsForUser(user.email);
-      sendSuccessResponse(res, 'Study sessions fetched', { sessions });
+      sendSuccessResponse(res, 'All study sessions fetched', { sessions });
     }
   } catch (err: any) {
     console.error(err);

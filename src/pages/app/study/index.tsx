@@ -12,7 +12,7 @@ const Study = () => {
     const fetchTrackers = async () => {
       try {
         const res = await axios.get('/api/study/trackers');
-        setTrackers(res.data);
+        setTrackers(res.data.trackers);
       } catch (err: any) {
         console.error('Error fetching trackers:', err.response.data.error);
       }

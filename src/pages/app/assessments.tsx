@@ -19,7 +19,7 @@ const Assessments: NextPage = () => {
     const fetchAssessments = async () => {
       try {
         const res = await axios.get('/api/assessments');
-        setAssessments(res.data);
+        setAssessments(res.data.assessments);
       } catch (err: any) {
         console.error('Error fetching assessments:', err.response.data.error);
       }

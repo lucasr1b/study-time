@@ -18,7 +18,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
     const fetchSubjects = async () => {
       try {
         const res = await axios.get('/api/subjects');
-        const subjectsData = res.data.map(({ subject_id, subject_icon, subject_name }: any) => ({
+        const subjectsData = res.data.subjects.map(({ subject_id, subject_icon, subject_name }: any) => ({
           subject_id,
           subject_icon,
           subject_name,

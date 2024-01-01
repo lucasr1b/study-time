@@ -21,7 +21,7 @@ const StudySubject = () => {
       try {
         if (subjectId !== undefined) {
           const res = await axios.get(`/api/study/trackers/${subjectId}`);
-          setTracker(res.data[0]);
+          setTracker(res.data.tracker);
         }
       } catch (err: any) {
         console.error('Error fetching tracker:', err.response.data.error);

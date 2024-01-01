@@ -18,8 +18,8 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     const fetchSubjects = async () => {
       try {
         const res = await axios.get('/api/subjects/list');
-        setSubjectList(res.data);
-        setFilteredSubjects(res.data);
+        setSubjectList(res.data.subjects);
+        setFilteredSubjects(res.data.subjects);
       } catch (err: any) {
         console.error('Error fetching subjects:', err.response.data.error);
       }

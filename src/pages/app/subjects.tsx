@@ -19,7 +19,7 @@ const Subjects: NextPage = () => {
     const fetchSubjects = async () => {
       try {
         const res = await axios.get('/api/subjects');
-        setSubjects(res.data);
+        setSubjects(res.data.subjects);
       } catch (err: any) {
         console.error('Error fetching subjects:', err.response.data.error);
       } finally {

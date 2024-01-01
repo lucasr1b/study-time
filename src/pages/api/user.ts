@@ -1,17 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../lib/session';
-import { getUserFromSession, sendErrorUnauthorizedResponse, sendSuccessResponse } from '../../api/utils/helpers';
+import { getUserProfileController } from '../../api/controllers/userController';
 
 async function userProfileRoute(req: NextApiRequest, res: NextApiResponse) {
-  const user = getUserFromSession(req);
-
-  if (user) {
-    sendSuccessResponse(res, 'User profile fetched', user);
-  } else {
-    sendErrorUnauthorizedResponse(res);
-  }
-
+  return getUserProfileController(req, res);
 }
 
 export default withIronSessionApiRoute(userProfileRoute, sessionOptions);

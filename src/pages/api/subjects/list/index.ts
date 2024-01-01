@@ -1,17 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../lib/session';
-import Cambridge from '../../../../api/models/CambridgeSubject';
-import connectToDB from '../../../../api/lib/mongodb';
+import { getSubjectListController } from '../../../../api/controllers/subjectController';
 
 async function subjectListRoute(req: NextApiRequest, res: NextApiResponse) {
-
-  connectToDB();
-
-  const subjects = await Cambridge.find({});
-
-  res.send(subjects);
-
+  return getSubjectListController(req, res);
 }
 
 export default withIronSessionApiRoute(subjectListRoute, sessionOptions);

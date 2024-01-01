@@ -1,9 +1,28 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
 import { updateSubjectForUser, createStudyTrackerAndAddToUser, deleteStudyTrackerAndRemoveFromUser } from '../services/subjectService';
-import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse } from '../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
+import User from '../models/User';
+import CambridgeSubject from '../models/CambridgeSubject';
 
 connectToDB();
+
+// @Desc Get all subjects
+// @Route /api/subjects
+// @Method GET
+
+export const getAllSubjectsController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    if (isUserLoggedIn(req, res)) {
+      const user = await User.findOne({ email: req.session.user.email });
+      const subjects = await CambridgeSubject.find({ subject_id: { $in: user.subjects } });
+      sendSuccessResponse(res, 'All subjects fetched', { subjects });
+    }
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subjects not fetched', err.message);
+  }
+};
 
 // @Desc Add new subject to user
 // @Route /api/subjects/add
@@ -40,5 +59,38 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject not removed', err.message);
+  }
+};
+
+// @Desc Get all subjects from subject list
+// @Route /api/subjects/list
+// @Method GET
+
+export const getSubjectListController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    if (isUserLoggedIn(req, res)) {
+      const subjects = await CambridgeSubject.find();
+      sendSuccessResponse(res, 'Subject list fetched', { subjects });
+    }
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subject list not fetched', err.message);
+  }
+};
+
+// @Desc Get subject from subjects list
+// @Route /api/subjects/list/:id
+// @Method GET
+
+export const getSubjectListItemController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    if (isUserLoggedIn(req, res)) {
+      const { id } = req.query;
+      const subject = await CambridgeSubject.findOne({ subject_id: id });
+      sendSuccessResponse(res, 'Subject fetched', { subject });
+    }
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subject not fetched', err.message);
   }
 };
