@@ -10,8 +10,8 @@ const AssessmentOverview = () => {
       try {
         const res = await axios.get('/api/assessments');
         setAssessments(res.data);
-      } catch (error) {
-        console.error('Error fetching assessments:', error);
+      } catch (err: any) {
+        console.error('Error fetching assessments:', err.response.data.error);
       }
     };
 

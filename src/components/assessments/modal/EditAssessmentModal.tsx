@@ -33,8 +33,8 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
           ? { ...assessment, date: response.data.updatedAssessment.date, description: response.data.updatedAssessment.description }
           : assessment,
       ));
-    } catch (error: any) {
-      console.error(error.response.data.error);
+    } catch (err: any) {
+      console.error('Error editing assessment', err.response.data.error);
     }
 
     props.closeModal();

@@ -23,9 +23,13 @@ const SetupStudyTrackerModal = (props: SetupStudyTrackerModalProps) => {
 
   const setupTracker = async (e: any) => {
     e.preventDefault();
-    const res = await axios.post('/api/study/trackers/setup', { id: props.tracker.tracker_id, hours, minutes });
-    props.updateTrackers(res.data.tracker);
-    props.closeModal();
+    try {
+      const res = await axios.post('/api/study/trackers/setup', { id: props.tracker.tracker_id, hours, minutes });
+      props.updateTrackers(res.data.tracker);
+      props.closeModal();
+    } catch (err: any) {
+      console.error('Error setting up tracker:', err.response.data.error);
+    }
   };
 
   return (

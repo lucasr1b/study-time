@@ -13,14 +13,13 @@ const Login = () => {
       password: password.value,
     };
 
-    await axios.post('/api/auth/login', data)
-      .then(() => {
-        Router.push('/app');
-      })
-      .catch((err: any) => {
-        console.error(err.response.data.error);
-        password.value = '';
-      });
+    try {
+      await axios.post('/api/auth/login', data);
+      Router.push('/app');
+    } catch (err: any) {
+      console.error('Error during login:', err.response.data.error);
+      password.value = '';
+    }
   };
 
   return (

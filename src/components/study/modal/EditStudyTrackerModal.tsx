@@ -26,16 +26,24 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
 
   const editTracker = async (e: any) => {
     e.preventDefault();
-    const res = await axios.post('/api/study/trackers/edit', { id: props.tracker.tracker_id, hours, minutes });
-    props.updateTrackers(res.data.editedTracker);
-    props.closeModal();
+    try {
+      const res = await axios.post('/api/study/trackers/edit', { id: props.tracker.tracker_id, hours, minutes });
+      props.updateTrackers(res.data.editedTracker);
+      props.closeModal();
+    } catch (err: any) {
+      console.error('Error editing tracker:', err.response.data.error);
+    }
   };
 
   const removeTracker = async (e: any) => {
     e.preventDefault();
-    const res = await axios.post('/api/study/trackers/remove', { id: props.tracker.tracker_id });
-    props.updateTrackers(res.data.removedTracker);
-    props.closeModal();
+    try {
+      const res = await axios.post('/api/study/trackers/remove', { id: props.tracker.tracker_id });
+      props.updateTrackers(res.data.removedTracker);
+      props.closeModal();
+    } catch (err: any) {
+      console.error('Error removing tracker:', err.response.data.error);
+    }
   };
 
   return (

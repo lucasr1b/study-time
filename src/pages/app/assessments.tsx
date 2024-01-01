@@ -17,8 +17,12 @@ const Assessments: NextPage = () => {
 
   useEffect(() => {
     const fetchAssessments = async () => {
-      const res = await axios.get('/api/assessments');
-      setAssessments(res.data);
+      try {
+        const res = await axios.get('/api/assessments');
+        setAssessments(res.data);
+      } catch (err: any) {
+        console.error('Error fetching assessments:', err.response.data.error);
+      }
     };
 
     fetchAssessments();

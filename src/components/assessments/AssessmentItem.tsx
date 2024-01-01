@@ -13,8 +13,8 @@ const AssessmentItem = (props: AssessmentItemProps) => {
     try {
       await axios.post('/api/assessments/delete', { assessmentId: props.assessment.assessment_id });
       props.setAssessments(props.assessments.filter((assessment: any) => assessment.assessment_id !== props.assessment.assessment_id));
-    } catch (error) {
-      console.error('Error deleting assessment:', error);
+    } catch (err: any) {
+      console.error('Error deleting assessment:', err.response.data.error);
     }
   };
 

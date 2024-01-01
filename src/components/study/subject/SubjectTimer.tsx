@@ -13,12 +13,22 @@ const SubjectTimer = (props: TimerProps) => {
   const [sessionTime, setSessionTime] = useState(0);
   const [sessionStartTime, setSessionStartTime] = useState(0);
 
-  const updateTimer = () => axios.put('/api/study/trackers/update', { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time });
+  const updateTimer = async () => {
+    try {
+      await axios.put('/api/study/trackers/update', { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time });
+    } catch (err: any) {
+      console.error('Error updating tracker:', err.response.data.error);
+    }
+  };
 
-  const logStudySession = () => {
-    axios.post('/api/study/sessions/log', { tracker: props.tracker, time: sessionTime });
-    setSessionStarted(false);
-    setSessionTime(0);
+  const logStudySession = async () => {
+    try {
+      await axios.post('/api/study/sessions/log', { tracker: props.tracker, time: sessionTime });
+      setSessionStarted(false);
+      setSessionTime(0);
+    } catch (err: any) {
+      console.error('Error logging session:', err.response.data.error);
+    }
   };
 
   useEffect(() => {

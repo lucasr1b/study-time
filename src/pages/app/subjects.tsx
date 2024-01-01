@@ -17,17 +17,26 @@ const Subjects: NextPage = () => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      const res = await axios.get('/api/subjects');
-      setSubjects(res.data);
-      setIsLoading(false);
+      try {
+        const res = await axios.get('/api/subjects');
+        setSubjects(res.data);
+      } catch (err: any) {
+        console.error('Error fetching subjects:', err.response.data.error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchSubjects();
   }, []);
 
   const removeSubject = async (id: string) => {
-    await axios.post('/api/subjects/remove', { id });
-    setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
+    try {
+      await axios.post('/api/subjects/remove', { id });
+      setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
+    } catch (err: any) {
+      console.error('Error removing subjects:', err.response.data.error);
+    }
   };
 
   return (

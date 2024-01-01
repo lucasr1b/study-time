@@ -16,9 +16,13 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   useEffect(() => {
     const fetchSubjects = async () => {
-      const res = await axios.get('/api/subjects/list');
-      setSubjectList(res.data);
-      setFilteredSubjects(res.data);
+      try {
+        const res = await axios.get('/api/subjects/list');
+        setSubjectList(res.data);
+        setFilteredSubjects(res.data);
+      } catch (err: any) {
+        console.error('Error fetching subjects:', err.response.data.error);
+      }
     };
 
     fetchSubjects();
@@ -44,9 +48,13 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const addSubject = async (e: any) => {
     e.preventDefault();
-    const res = await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id });
-    props.setSubjects([...props.subjects, res.data.addedSubject]);
-    props.close();
+    try {
+      const res = await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id });
+      props.setSubjects([...props.subjects, res.data.addedSubject]);
+      props.close();
+    } catch (err: any) {
+      console.error('Error adding subject:', err.response.data.error);
+    }
   };
 
   return (

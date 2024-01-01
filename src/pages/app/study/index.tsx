@@ -10,8 +10,12 @@ const Study = () => {
 
   useEffect(() => {
     const fetchTrackers = async () => {
-      const res = await axios.get('/api/study/trackers');
-      setTrackers(res.data);
+      try {
+        const res = await axios.get('/api/study/trackers');
+        setTrackers(res.data);
+      } catch (err: any) {
+        console.error('Error fetching trackers:', err.response.data.error);
+      }
     };
 
     fetchTrackers();

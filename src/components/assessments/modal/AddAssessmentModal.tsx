@@ -27,7 +27,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
         setSubjects(subjectsData);
         setSelectedSubject(subjectsData[0]);
       } catch (err: any) {
-        console.error(err.response.data.error);
+        console.error('Error fetching subjects:', err.response.data.error);
       }
     };
 
@@ -53,8 +53,12 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
       description,
     };
 
-    const res = await axios.post('/api/assessments/add', assessmentFormData);
-    props.setAssessments([...props.assessments, res.data.newAssessment]);
+    try {
+      const res = await axios.post('/api/assessments/add', assessmentFormData);
+      props.setAssessments([...props.assessments, res.data.newAssessment]);
+    } catch (err: any) {
+      console.error('Error adding assessment:', err.response.data.error);
+    }
 
     props.closeModal();
   };

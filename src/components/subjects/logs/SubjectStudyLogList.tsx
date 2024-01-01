@@ -7,8 +7,12 @@ const SubjectStudyLogList = () => {
 
   useEffect(() => {
     const fetchSessionsLogged = async () => {
-      const fetchedLogs = await axios.get('/api/study/sessions');
-      setLogs(fetchedLogs.data.sessions);
+      try {
+        const fetchedLogs = await axios.get('/api/study/sessions');
+        setLogs(fetchedLogs.data.sessions);
+      } catch (err: any) {
+        console.error('Error fetching sessions:', err.response.data.error);
+      }
     };
     fetchSessionsLogged();
   }, []);

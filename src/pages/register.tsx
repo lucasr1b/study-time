@@ -16,16 +16,15 @@ const Register = () => {
       cpassword: cpassword.value,
     };
 
-    await axios.post('/api/auth/register', data)
-      .then(() => {
-        Router.push('/app');
-      })
-      .catch(() => {
-        password.value = '';
-        cpassword.value = '';
-      });
+    try {
+      await axios.post('/api/auth/register', data);
+      Router.push('/app');
+    } catch (err: any) {
+      console.error('Error during register:', err.response.data.error);
+      password.value = '';
+      cpassword.value = '';
+    }
   };
-
 
   return (
     <div className='flex items-center justify-center h-screen w-full'>
