@@ -3,7 +3,7 @@ import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../lib/session';
 import { getAllUserStudyTrackerSessions } from '../../../../api/controllers/study/sessionController';
 
-async function studySessionsRoute(req: NextApiRequest, res: NextApiResponse) {
+function studySessionsRoute(req: NextApiRequest, res: NextApiResponse) {
   return getAllUserStudyTrackerSessions(req, res);
 }
 

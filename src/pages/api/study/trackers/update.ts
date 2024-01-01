@@ -3,7 +3,7 @@ import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../lib/session';
 import { updateStudyTrackerTimerController } from '../../../../api/controllers/study/trackerController';
 
-async function updateStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
+function updateStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
   return updateStudyTrackerTimerController(req, res);
 }
 

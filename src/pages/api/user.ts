@@ -3,7 +3,7 @@ import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../lib/session';
 import { getUserProfileController } from '../../api/controllers/userController';
 
-async function userProfileRoute(req: NextApiRequest, res: NextApiResponse) {
+function userProfileRoute(req: NextApiRequest, res: NextApiResponse) {
   return getUserProfileController(req, res);
 }
 

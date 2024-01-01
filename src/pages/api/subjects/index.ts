@@ -3,7 +3,7 @@ import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../lib/session';
 import { getAllSubjectsController } from '../../../api/controllers/subjectController';
 
-async function subjectsRoute(req: NextApiRequest, res: NextApiResponse) {
+function subjectsRoute(req: NextApiRequest, res: NextApiResponse) {
   return getAllSubjectsController(req, res);
 }
 
