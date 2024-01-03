@@ -42,16 +42,16 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
   }
 };
 
-// @Desc Get all weekly progress for subject trackers 
+// @Desc Get all trackers that are setup to track weekly progress
 // @Route /api/study/trackers/weekly
 // @Method GET
 
-export const getAllWeeklyTrackersProgressController = async (req: NextApiRequest, res: NextApiResponse) => {
+export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (isUserLoggedIn(req, res)) {
       const user = await User.findOne({ email: req.session.user.email });
-      const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers }, is_setup: true });
-      sendSuccessResponse(res, 'All weekly progress for trackers fetched', { trackers });
+      const weeklyTrackers = await StudyTracking.find({ tracker_id: { $in: user.trackers }, is_setup: true });
+      sendSuccessResponse(res, 'All weekly progress for trackers fetched', { weeklyTrackers });
     }
   } catch (err: any) {
     console.error(err);
@@ -67,8 +67,8 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
   try {
     if (isUserLoggedIn(req, res)) {
       const { id, hours, minutes } = req.body;
-      const tracker = await setupStudyTrackerForSubject(id, hours, minutes);
-      sendSuccessCreatedResponse(res, 'Subject tracker added', { tracker });
+      const newTracker = await setupStudyTrackerForSubject(id, hours, minutes);
+      sendSuccessCreatedResponse(res, 'Subject tracker added', { newTracker });
     }
   } catch (err: any) {
     console.error(err);
@@ -84,8 +84,8 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
   try {
     if (isUserLoggedIn(req, res)) {
       const { id, hours, minutes } = req.body;
-      const editedTracker = await editStudyTrackerTimeForSubject(id, hours, minutes);
-      sendSuccessResponse(res, 'Subject tracker edited', { editedTracker });
+      const updatedTracker = await editStudyTrackerTimeForSubject(id, hours, minutes);
+      sendSuccessResponse(res, 'Subject tracker edited', { updatedTracker });
     }
   } catch (err: any) {
     console.error(err);

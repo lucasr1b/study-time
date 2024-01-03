@@ -12,7 +12,7 @@ export const getUserProfileController = async (req: NextApiRequest, res: NextApi
   try {
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
-      sendSuccessResponse(res, 'User profile fetched', user);
+      sendSuccessResponse(res, 'User profile fetched', { user });
     }
   } catch (err: any) {
     console.error(err);

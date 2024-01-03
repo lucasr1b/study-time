@@ -28,7 +28,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/study/trackers/edit', { id: props.tracker.tracker_id, hours, minutes });
-      props.updateTrackers(res.data.editedTracker);
+      props.updateTrackers(res.data.updatedTracker);
       props.closeModal();
     } catch (err: any) {
       console.error('Error editing tracker:', err.response.data.error);
