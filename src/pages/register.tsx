@@ -2,7 +2,7 @@ import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
 
-const Register = () => {
+const RegisterPage = () => {
 
   const registerUser = async (e: any) => {
     e.preventDefault();
@@ -61,4 +61,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

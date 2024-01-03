@@ -8,7 +8,7 @@ import SubjectOverviewPagination from '../../components/dashboard/subjects/Subje
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Dashboard: NextPage = () => {
+const DashboardPage: NextPage = () => {
 
   const [trackers, setTrackers] = useState<any[]>([]);
 
@@ -53,4 +53,4 @@ const Dashboard: NextPage = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

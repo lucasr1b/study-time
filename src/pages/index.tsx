@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Router from 'next/router';
 
-const Login = () => {
+const LoginPage = () => {
 
   const authenticateUser = async (e: any) => {
     e.preventDefault();
@@ -49,4 +49,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

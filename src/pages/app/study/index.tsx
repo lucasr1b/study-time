@@ -4,7 +4,7 @@ import WeeklyStudyProgress from '../../../components/study/progress/WeeklyStudyP
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Study = () => {
+const StudyPage = () => {
 
   const [trackers, setTrackers] = useState([]);
 
@@ -36,4 +36,4 @@ const Study = () => {
   );
 };
 
-export default Study;
+export default StudyPage;

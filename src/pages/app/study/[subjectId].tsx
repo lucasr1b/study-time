@@ -6,7 +6,7 @@ import SubjectTimer from '../../../components/study/subject/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
 import Link from 'next/link';
 
-const StudySubject = () => {
+const StudySubjectPage = () => {
 
   const [tracker, setTracker] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
@@ -57,4 +57,4 @@ const StudySubject = () => {
   );
 };
 
-export default StudySubject;
+export default StudySubjectPage;

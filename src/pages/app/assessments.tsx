@@ -8,7 +8,7 @@ import AddAssessmentModal from '../../components/assessments/modal/AddAssessment
 import axios from 'axios';
 import EditAssessmentModal from '../../components/assessments/modal/EditAssessmentModal';
 
-const Assessments: NextPage = () => {
+const AssessmentsPage: NextPage = () => {
 
   const [isAddAssessmentModalOpen, setIsAddAssessmentModalOpen] = useState(false);
   const [isEditAssessmentModalOpen, setIsEditAssessmentModalOpen] = useState(false);
@@ -79,4 +79,4 @@ const Assessments: NextPage = () => {
   );
 };
 
-export default Assessments;
+export default AssessmentsPage;

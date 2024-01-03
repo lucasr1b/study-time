@@ -9,7 +9,7 @@ import axios from 'axios';
 import { Subject } from '../../utils/types';
 import SubjectItemSkeleton from '../../components/subjects/SubjectItemSkeleton';
 
-const Subjects: NextPage = () => {
+const SubjectsPage: NextPage = () => {
 
   const [modalToggled, setModalToggled] = useState(false);
   const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -70,4 +70,4 @@ const Subjects: NextPage = () => {
   );
 };
 
-export default Subjects;
+export default SubjectsPage;
