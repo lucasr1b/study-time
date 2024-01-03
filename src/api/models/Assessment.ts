@@ -6,7 +6,7 @@ export interface IAssessment extends mongoose.Document {
   subject_id: string;
   subject_name: string;
   subject_icon: string
-  description: string;
+  description?: string;
   date: Date;
 }
 
