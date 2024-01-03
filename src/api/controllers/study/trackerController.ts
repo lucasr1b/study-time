@@ -33,7 +33,7 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
     if (isUserLoggedIn(req, res)) {
       const { subjectId } = req.query;
       const user = req.session.user.email; // Change to id in future
-      const [tracker] = await StudyTracking.find({ subject_id: subjectId, tracker_user: user });
+      const [tracker] = await StudyTracking.find({ subject_id: subjectId, user });
       sendSuccessResponse(res, 'Subject tracker fetched', { tracker });
     }
   } catch (err: any) {

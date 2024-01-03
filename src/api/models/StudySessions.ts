@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface IStudySession extends mongoose.Document {
-  log_user: string;
+  user: string;
   subject_name: string;
   subject_icon: string;
   time_studied: number;
@@ -10,7 +10,7 @@ export interface IStudySession extends mongoose.Document {
 
 const StudySessionSchema = new mongoose.Schema({
 
-  log_user: {
+  user: {
     type: String,
     required: true,
   },
