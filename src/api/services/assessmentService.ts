@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import Assessment from '../models/Assessment';
+import { Subject } from '../utils/types';
 
-export const createAssessment = async (subject: any, date: any, description: any, email: any) => {
+export const createAssessment = async (subject: Subject, date: Date, description: string, email: string) => {
   const assessmentId = uuidv4();
 
   const newAssessment = await Assessment.create({
@@ -17,7 +18,7 @@ export const createAssessment = async (subject: any, date: any, description: any
   return newAssessment;
 };
 
-export const editAssessment = async (assessmentId: string, date: any, description: any) => {
+export const editAssessment = async (assessmentId: string, date: Date, description: string) => {
   await Assessment.findOneAndUpdate({ assessment_id: assessmentId }, { $set: { date, description } });
   const updatedAssessment = await Assessment.findOne({ assessment_id: assessmentId });
   return updatedAssessment;
