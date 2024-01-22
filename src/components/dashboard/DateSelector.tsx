@@ -60,7 +60,7 @@ const DateSelector = (props: DateSelectorProps) => {
     <option key={i + 1} value={i + 1}>{padDate(i + 1)}</option>
   ));
 
-  const yearOptions = Array.from({ length: 5 }, (_, i) => (
+  const yearOptions = Array.from({ length: 2 }, (_, i) => (
     <option key={lastYear + i + 1} value={lastYear + i + 1}>{lastYear + i + 1}</option>
   ));
 
