@@ -1,24 +1,25 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import DateSelector from '../../dashboard/DateSelector';
 import axios from 'axios';
+import { Assessment, SetAssessments } from '../../../utils/types';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
-  assessment: any;
-  assessments: string[];
-  setAssessments: any;
+  assessment: Assessment;
+  assessments: Assessment[];
+  setAssessments: SetAssessments;
 };
 
 const EditAssessmentModal = (props: AddAssessmentModalProps) => {
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
 
-  const handleDescriptionChange = (e: any) => {
+  const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
     const descriptionData = e.target.value;
     setDescription(descriptionData);
   };
 
-  const editAssessment = async (e: any) => {
+  const editAssessment = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const assessmentFormData = {
       assessmentId: props.assessment.assessment_id,
@@ -28,7 +29,7 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
 
     try {
       const response = await axios.put('/api/assessments/edit', assessmentFormData);
-      props.setAssessments(props.assessments.map((assessment: any) =>
+      props.setAssessments(props.assessments.map((assessment: Assessment) =>
         assessment.assessment_id === response.data.updatedAssessment.assessment_id
           ? { ...assessment, date: response.data.updatedAssessment.date, description: response.data.updatedAssessment.description }
           : assessment,

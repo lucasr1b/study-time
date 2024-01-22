@@ -7,13 +7,14 @@ import { useEffect, useState } from 'react';
 import AddAssessmentModal from '../../components/assessments/modal/AddAssessmentModal';
 import axios from 'axios';
 import EditAssessmentModal from '../../components/assessments/modal/EditAssessmentModal';
+import { Assessment } from '../../utils/types';
 
 const AssessmentsPage: NextPage = () => {
 
   const [isAddAssessmentModalOpen, setIsAddAssessmentModalOpen] = useState(false);
   const [isEditAssessmentModalOpen, setIsEditAssessmentModalOpen] = useState(false);
-  const [selectedEditingAssessment, setSelectedEditingAssessment] = useState({});
-  const [assessments, setAssessments] = useState<any>([]);
+  const [selectedEditingAssessment, setSelectedEditingAssessment] = useState<Assessment>({} as Assessment);
+  const [assessments, setAssessments] = useState<Assessment[]>([]);
 
   useEffect(() => {
     const fetchAssessments = async () => {
@@ -30,7 +31,7 @@ const AssessmentsPage: NextPage = () => {
 
   const openAddAssessmentModal = () => setIsAddAssessmentModalOpen(true);
 
-  const openEditAssessmentModal = (assessment: any) => {
+  const openEditAssessmentModal = (assessment: Assessment) => {
     setSelectedEditingAssessment(assessment);
     setIsEditAssessmentModalOpen(true);
   };
@@ -38,7 +39,7 @@ const AssessmentsPage: NextPage = () => {
   const closeModal = () => {
     setIsAddAssessmentModalOpen(false);
     setIsEditAssessmentModalOpen(false);
-    setSelectedEditingAssessment({});
+    setSelectedEditingAssessment({} as Assessment);
   };
 
   return (
@@ -65,7 +66,7 @@ const AssessmentsPage: NextPage = () => {
                   assessment={assessment}
                   assessments={assessments}
                   setAssessments={setAssessments}
-                  editAssessment={openEditAssessmentModal}
+                  openEditAssessmentModal={openEditAssessmentModal}
                 />
               ))}
               <AddAssessmentButton openModal={openAddAssessmentModal} />

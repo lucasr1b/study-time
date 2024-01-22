@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { formatAssessmentDate } from '../../utils/helpers';
+import { Assessment, SetAssessments } from '../../utils/types';
 
 type AssessmentItemProps = {
-  assessment: any;
-  assessments: string[];
-  setAssessments: any;
-  editAssessment: any;
+  assessment: Assessment;
+  assessments: Assessment[];
+  setAssessments: SetAssessments;
+  openEditAssessmentModal: (assessment: Assessment) => void;
 };
 
 const AssessmentItem = (props: AssessmentItemProps) => {
   const deleteAssessment = async () => {
     try {
       await axios.post('/api/assessments/delete', { assessmentId: props.assessment.assessment_id });
-      props.setAssessments(props.assessments.filter((assessment: any) => assessment.assessment_id !== props.assessment.assessment_id));
+      props.setAssessments(props.assessments.filter((assessment: Assessment) => assessment.assessment_id !== props.assessment.assessment_id));
     } catch (err: any) {
       console.error('Error deleting assessment:', err.response.data.error);
     }
@@ -29,7 +30,7 @@ const AssessmentItem = (props: AssessmentItemProps) => {
         <div className='flex gap-4 py-1 mt-auto'>
           <button
             className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'
-            onClick={() => props.editAssessment(props.assessment)}>
+            onClick={() => props.openEditAssessmentModal(props.assessment)}>
             Edit
           </button>
           <button

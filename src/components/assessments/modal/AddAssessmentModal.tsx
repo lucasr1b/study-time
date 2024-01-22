@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import DateSelector from '../../dashboard/DateSelector';
 import axios from 'axios';
+import { Assessment, SetAssessments, Subject } from '../../../utils/types';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
-  assessments: string[];
-  setAssessments: any;
+  assessments: Assessment[];
+  setAssessments: SetAssessments;
 };
 
 const AddAssessmentModal = (props: AddAssessmentModalProps) => {
@@ -18,7 +19,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
     const fetchSubjects = async () => {
       try {
         const res = await axios.get('/api/subjects');
-        const subjectsData = res.data.subjects.map(({ subject_id, subject_icon, subject_name }: any) => ({
+        const subjectsData = res.data.subjects.map(({ subject_id, subject_icon, subject_name }: Subject) => ({
           subject_id,
           subject_icon,
           subject_name,
@@ -34,18 +35,18 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
     fetchSubjects();
   }, []);
 
-  const handleSubjectChange = (e: any) => {
+  const handleSubjectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedSubjectId = e.target.options[e.target.selectedIndex].dataset.id;
-    const subject = subjects.find((subj: any) => subj.subject_id === selectedSubjectId);
+    const subject = subjects.find((subj: Subject) => subj.subject_id === selectedSubjectId);
 
     if (subject) setSelectedSubject(subject);
   };
 
-  const handleDescriptionChange = (e: any) => {
+  const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
   };
 
-  const addAssessment = async (e: any) => {
+  const addAssessment = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const assessmentFormData = {
       subject: selectedSubject,
@@ -72,7 +73,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
           <div className='mt-2 flex flex-col gap-4 w-full'>
             <div className='inline-flex border rounded-md p-2'>
               <select className='outline-none w-full' onChange={handleSubjectChange}>
-                {subjects.map((subject: any) => (
+                {subjects.map((subject: Subject) => (
                   <option key={subject.subject_id} data-id={subject.subject_id}>{subject.subject_icon} {subject.subject_name}</option>
                 ))}
               </select>
