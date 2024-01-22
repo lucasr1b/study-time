@@ -38,7 +38,7 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
     const userCrendetialFieldsValidation = await validateUserCrendetialFieldsAndCreateSession(req, email, password);
 
     if (userCrendetialFieldsValidation === true) {
-      sendSuccessNoContentResponse(res, 'Successfully authenticated');
+      sendSuccessNoContentResponse(res);
     } else {
       sendErrorResponse(res, 'Authentication failed', userCrendetialFieldsValidation);
     }

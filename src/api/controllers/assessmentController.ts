@@ -67,7 +67,7 @@ export const deleteAssessmentController = async (req: NextApiRequest, res: NextA
     if (isUserLoggedIn(req, res)) {
       const { assessmentId } = req.body;
       await deleteAssessment(assessmentId);
-      sendSuccessNoContentResponse(res, 'Assessment deleted');
+      sendSuccessNoContentResponse(res);
     }
   } catch (err: any) {
     console.error(err);

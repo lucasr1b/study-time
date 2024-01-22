@@ -54,7 +54,7 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
       const user = getUserFromSession(req);
       await updateSubjectForUser(id, user.email, 'remove');
       await deleteStudyTrackerAndRemoveFromUser(id, user.email);
-      sendSuccessNoContentResponse(res, 'Subject removed');
+      sendSuccessNoContentResponse(res);
     }
   } catch (err: any) {
     console.error(err);

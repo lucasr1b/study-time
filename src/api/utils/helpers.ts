@@ -9,8 +9,8 @@ export const sendSuccessCreatedResponse = (res: NextApiResponse, message: string
   res.status(201).json({ message, ...data });
 };
 
-export const sendSuccessNoContentResponse = (res: NextApiResponse, message: string) => {
-  res.status(204).json({ message });
+export const sendSuccessNoContentResponse = (res: NextApiResponse) => {
+  res.status(204).end();
 };
 
 export const sendErrorResponse = (res: NextApiResponse, message: string, error: string) => {

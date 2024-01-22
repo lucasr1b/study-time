@@ -119,7 +119,7 @@ export const updateStudyTrackerTimerController = async (req: NextApiRequest, res
     if (isUserLoggedIn(req, res)) {
       const { id, time } = req.body;
       await updateStudyTrackerTimerForSubject(id, time);
-      sendSuccessNoContentResponse(res, 'Subject tracker timer updated');
+      sendSuccessNoContentResponse(res);
     }
   } catch (err: any) {
     console.error(err);
