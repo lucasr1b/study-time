@@ -12,7 +12,7 @@ type AddAssessmentModalProps = {
 
 const EditAssessmentModal = (props: AddAssessmentModalProps) => {
   const [date, setDate] = useState<Date>(new Date());
-  const [description, setDescription] = useState<string>('');
+  const [description, setDescription] = useState<string>(props.assessment.description);
 
   const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
     const descriptionData = e.target.value;
