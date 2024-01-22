@@ -58,7 +58,7 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
               <textarea placeholder='Description (optional)' className='w-full resize-none outline-none' defaultValue={props.assessment.description} />
             </div>
             <div className='flex gap-2 mt-2'>
-              <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
+              <button type='button' className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
               <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm'>Save</button>
             </div>
           </div>

@@ -92,7 +92,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
               <div className='flex items-center justify-center bg-white border border-zinc-200 h-40 w-40 rounded-md'>
                 <p className='text-6xl hover:cursor-pointer'>🚀</p>
               </div>
-              <button className='bg-white border border-zinc-200 rounded-md h-10 px-4 hover:bg-zinc-200 text-sm font-medium' type='submit'>Add subject</button>
+              <button className='bg-white border border-zinc-200 rounded-md h-10 px-4 hover:bg-zinc-200 text-sm font-medium'>Add subject</button>
             </div>
           </div>
         </form>

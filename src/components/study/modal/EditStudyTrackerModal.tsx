@@ -72,9 +72,9 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
               </div>
             </div>
             <div className='flex gap-2 mt-2 justify-between'>
-              <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm text-red-500' onClick={removeTracker}>Remove</button>
+              <button type='button' className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm text-red-500' onClick={removeTracker}>Remove</button>
               <div className='flex gap-2'>
-                <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
+                <button type='button' className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={props.closeModal}>Cancel</button>
                 <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={editTracker}>Save</button>
               </div>
             </div>
