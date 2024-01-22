@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Subject } from '../../utils/types';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
+import { SetSubjects, Subject } from '../../utils/types';
 
 type AddSubjectModalProps = {
   close: () => void;
-  subjects: any;
-  setSubjects: any;
+  subjects: Subject[];
+  setSubjects: SetSubjects;
 };
 
 const AddSubjectModal = (props: AddSubjectModalProps) => {
@@ -28,7 +28,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     fetchSubjects();
   }, []);
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setInputValue(input);
     setFilteredSubjects(subjectList.filter((subject) => subject.subject_name.toLowerCase().includes(input.toLowerCase())));
@@ -46,7 +46,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     setSelectedSubject(subject);
   };
 
-  const addSubject = async (e: any) => {
+  const addSubject = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { padDate } from '../../utils/helpers';
 
 type DateSelectorProps = {
@@ -20,7 +20,7 @@ const DateSelector = (props: DateSelectorProps) => {
 
   const daysInMonth = (selectedYear: number, selectedMonth: number) => new Date(selectedYear, selectedMonth, 0).getDate();
 
-  const handleDayChange = (e: any) => {
+  const handleDayChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedDay = parseInt(e.target.value);
     setDay(selectedDay);
 
@@ -28,7 +28,7 @@ const DateSelector = (props: DateSelectorProps) => {
     props.setSelectedDate(selectedDate);
   };
 
-  const handleMonthChange = (e: any) => {
+  const handleMonthChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedMonth = parseInt(e.target.value);
     setMonth(selectedMonth);
 
@@ -40,7 +40,7 @@ const DateSelector = (props: DateSelectorProps) => {
     props.setSelectedDate(selectedDate);
   };
 
-  const handleYearChange = (e: any) => {
+  const handleYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedYear = parseInt(e.target.value);
     setYear(selectedYear);
 

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { formatFancyTime, formatSubjectTimer } from '../../../utils/helpers';
 import axios from 'axios';
+import { Tracker } from '../../../utils/types';
 
 type TimerProps = {
-  tracker: any;
+  tracker: Tracker;
 };
 
 const SubjectTimer = (props: TimerProps) => {
@@ -32,7 +33,7 @@ const SubjectTimer = (props: TimerProps) => {
   };
 
   useEffect(() => {
-    let timerInterval: any;
+    let timerInterval: NodeJS.Timer;
     if (!isPaused && time > 0) {
       timerInterval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);

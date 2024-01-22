@@ -1,6 +1,7 @@
 import { formatWeeklyProgressBar, formatWeeklyProgressTime } from '../../../utils/helpers';
+import { Tracker } from '../../../utils/types';
 
-const SubjectStudyProgress = (props: { tracker: any }) => {
+const SubjectStudyProgress = (props: { tracker: Tracker }) => {
   return (
     <div className='flex flex-col items-center justify-center h-32 min-w-max p-8 rounded-lg bg-white border border-zinc-200'>
       <p className='text-2xl'>{props.tracker.subject_icon}</p>

@@ -60,7 +60,7 @@ const AssessmentsPage: NextPage = () => {
           <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
             <h1 className='font-semibold mb-4'>Upcoming assessments</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
-              {assessments.map((assessment: any) => (
+              {assessments.map((assessment: Assessment) => (
                 <AssessmentItem
                   key={assessment.assessment_id}
                   assessment={assessment}

@@ -7,10 +7,11 @@ import EventList from '../../components/dashboard/EventList';
 import SubjectOverviewPagination from '../../components/dashboard/subjects/SubjectOverviewPagination';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Tracker } from '../../utils/types';
 
 const DashboardPage: NextPage = () => {
 
-  const [trackers, setTrackers] = useState<any[]>([]);
+  const [trackers, setTrackers] = useState<Tracker[]>([]);
 
   useEffect(() => {
     const fetchTrackers = async () => {

@@ -1,7 +1,8 @@
 import { formatSubjectSessionLoggedDate, formatSubjectSessionLoggedTime } from '../../../utils/helpers';
+import { StudyLog } from '../../../utils/types';
 
 type SubjectStudyLogListItemProps = {
-  log: any;
+  log: StudyLog;
 };
 
 const SubjectStudyLogListItem = (props: SubjectStudyLogListItemProps) => {

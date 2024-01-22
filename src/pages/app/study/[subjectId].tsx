@@ -5,10 +5,11 @@ import axios from 'axios';
 import SubjectTimer from '../../../components/study/subject/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
 import Link from 'next/link';
+import { Tracker } from '../../../utils/types';
 
 const StudySubjectPage = () => {
 
-  const [tracker, setTracker] = useState<any>();
+  const [tracker, setTracker] = useState<Tracker>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 

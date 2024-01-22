@@ -1,30 +1,31 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import { getHours, getMinutes } from '../../../utils/helpers';
+import { Tracker } from '../../../utils/types';
 
 type EditStudyTrackerModalProps = {
-  tracker: any;
+  tracker: Tracker;
   closeModal: () => void;
-  updateTrackers: (tracker: any) => void;
+  updateTrackers: (tracker: Tracker) => void;
 };
 
 const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
   const [hours, setHours] = useState(getHours(props.tracker.time_allocated));
   const [minutes, setMinutes] = useState(getMinutes(props.tracker.time_allocated));
 
-  const handleHoursChange = (e: any) => {
+  const handleHoursChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const changedHours = (value === '' ? 0 : parseInt(value));
     setHours(changedHours);
   };
 
-  const handleMinutesChange = (e: any) => {
+  const handleMinutesChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const changedMinutes = (value === '' ? 0 : parseInt(value));
     setMinutes(changedMinutes);
   };
 
-  const editTracker = async (e: any) => {
+  const editTracker = async (e: SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/study/trackers/edit', { id: props.tracker.tracker_id, hours, minutes });
@@ -35,7 +36,7 @@ const EditStudyTrackerModal = (props: EditStudyTrackerModalProps) => {
     }
   };
 
-  const removeTracker = async (e: any) => {
+  const removeTracker = async (e: SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/study/trackers/remove', { id: props.tracker.tracker_id });

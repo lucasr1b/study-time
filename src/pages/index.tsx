@@ -1,9 +1,10 @@
 import axios from 'axios';
 import Router from 'next/router';
+import { SyntheticEvent } from 'react';
 
 const LoginPage = () => {
 
-  const authenticateUser = async (e: any) => {
+  const authenticateUser = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { email, password } = document.forms[0];

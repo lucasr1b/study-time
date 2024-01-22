@@ -1,7 +1,7 @@
 import { Subject } from '../../utils/types';
 
 type SubjectItemProps = {
-  removeSubject: any;
+  removeSubject: (id: string) => void;
   subject: Subject;
 };
 

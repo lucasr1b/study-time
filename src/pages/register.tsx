@@ -1,10 +1,11 @@
 import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
+import { SyntheticEvent } from 'react';
 
 const RegisterPage = () => {
 
-  const registerUser = async (e: any) => {
+  const registerUser = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { uname, email, password, cpassword } = document.forms[0];

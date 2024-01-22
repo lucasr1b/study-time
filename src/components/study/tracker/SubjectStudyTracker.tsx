@@ -1,9 +1,10 @@
 import { formatFancyTime } from '../../../utils/helpers';
+import { Tracker } from '../../../utils/types';
 
 type SubjectStudyTrackerProps = {
-  tracker: any;
-  openSetupModal: (tracker: any) => void;
-  openEditModal: (tracker: any) => void;
+  tracker: Tracker;
+  openSetupModal: (tracker: Tracker) => void;
+  openEditModal: (tracker: Tracker) => void;
 };
 
 const SubjectStudyTracker = (props: SubjectStudyTrackerProps) => {

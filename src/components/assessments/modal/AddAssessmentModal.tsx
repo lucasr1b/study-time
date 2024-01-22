@@ -10,10 +10,10 @@ type AddAssessmentModalProps = {
 };
 
 const AddAssessmentModal = (props: AddAssessmentModalProps) => {
-  const [subjects, setSubjects] = useState([]);
-  const [selectedSubject, setSelectedSubject] = useState({});
-  const [date, setDate] = useState(new Date());
-  const [description, setDescription] = useState('');
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [selectedSubject, setSelectedSubject] = useState<Subject>({} as Subject);
+  const [date, setDate] = useState<Date>(new Date());
+  const [description, setDescription] = useState<string>('');
 
   useEffect(() => {
     const fetchSubjects = async () => {

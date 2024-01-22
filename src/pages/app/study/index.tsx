@@ -3,10 +3,11 @@ import StudyTracker from '../../../components/study/tracker/StudyTracker';
 import WeeklyStudyProgress from '../../../components/study/progress/WeeklyStudyProgress';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Tracker } from '../../../utils/types';
 
 const StudyPage = () => {
 
-  const [trackers, setTrackers] = useState([]);
+  const [trackers, setTrackers] = useState<Tracker[]>([]);
 
   useEffect(() => {
     const fetchTrackers = async () => {
