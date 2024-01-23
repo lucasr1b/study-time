@@ -8,6 +8,7 @@ import SubjectOverviewPagination from '../../components/dashboard/subjects/Subje
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Tracker } from '../../utils/types';
+import SubjectOverviewAddButton from '../../components/dashboard/subjects/SubjectOverviewAddButton';
 
 const DashboardPage: NextPage = () => {
 
@@ -40,6 +41,7 @@ const DashboardPage: NextPage = () => {
                 {trackers.map(tracker => (
                   <SubjectOverview tracker={tracker} key={tracker.tracker_id} />
                 ))}
+                <SubjectOverviewAddButton />
               </div>
             </div>
             <PastPaperOverview />
