@@ -47,3 +47,17 @@ export const authLoginUserController = async (req: NextApiRequest, res: NextApiR
     sendErrorResponse(res, 'Authentication failed', err.message);
   }
 };
+
+// @Desc Logout user
+// @Route /api/auth/logout
+// @Method POST
+
+export const authLogoutUserController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    req.session.destroy();
+    sendSuccessNoContentResponse(res);
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Logout failed', err.message);
+  }
+};
