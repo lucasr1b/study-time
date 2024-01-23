@@ -41,3 +41,6 @@ export type StudyLog = {
   time_studied: number;
   date_logged: Date;
 };
+
+export type SetNumberState = React.Dispatch<React.SetStateAction<number>>;
+export type SetDateState = React.Dispatch<React.SetStateAction<Date>>;

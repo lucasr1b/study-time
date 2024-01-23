@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { padDate } from '../../utils/helpers';
+import { padDate, validateAssessmentDate } from '../../utils/helpers';
 
 type DateSelectorProps = {
   setSelectedDate?: any;
@@ -10,7 +10,7 @@ const DateSelector = (props: DateSelectorProps) => {
   const currentYear = date.getFullYear();
   const lastYear = currentYear - 1;
 
-  const [day, setDay] = useState(date.getDate());
+  const [day, setDay] = useState(date.getDate() + 1); // so assessment is not instantly due if accidentally added
   const [month, setMonth] = useState(date.getMonth() + 1); // month starts from 0
   const [year, setYear] = useState(date.getFullYear());
 
@@ -25,7 +25,7 @@ const DateSelector = (props: DateSelectorProps) => {
     setDay(selectedDay);
 
     const selectedDate = createDate(selectedDay, month, year);
-    props.setSelectedDate(selectedDate);
+    validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
   };
 
   const handleMonthChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -37,7 +37,7 @@ const DateSelector = (props: DateSelectorProps) => {
     }
 
     const selectedDate = createDate(day, selectedMonth, year);
-    props.setSelectedDate(selectedDate);
+    validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
   };
 
   const handleYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -49,7 +49,7 @@ const DateSelector = (props: DateSelectorProps) => {
     }
 
     const selectedDate = createDate(day, month, selectedYear);
-    props.setSelectedDate(selectedDate);
+    validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
   };
 
   const dayOptions = Array.from({ length: daysInMonth(year, month) }, (_, i) => (

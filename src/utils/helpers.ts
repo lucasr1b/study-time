@@ -1,3 +1,5 @@
+import { SetDateState, SetNumberState } from './types';
+
 export const getMinutes = (time: number) => { return Math.floor((time / 60) % 60); };
 export const getHours = (time: number) => { return Math.floor((((time / 60) % 3600) / 60)); };
 
@@ -92,5 +94,19 @@ export const formatFancyAssessmentOverviewDate = (date: Date) => {
     return `assessed on ${daysDifference} days`;
   } else {
     return `assessed on ${formatAssessmentDate(date)}`;
+  }
+};
+
+export const validateAssessmentDate = (selectedDate: Date, setDay: SetNumberState, setMonth: SetNumberState, setYear: SetNumberState, setSelectedDate: SetDateState) => {
+  const currentDate = new Date();
+  if (selectedDate < currentDate) {
+    const tomorrow = new Date(currentDate);
+    tomorrow.setDate(currentDate.getDate() + 1);
+    setDay(tomorrow.getDate());
+    setMonth(tomorrow.getMonth() + 1);
+    setYear(tomorrow.getFullYear());
+    setSelectedDate(tomorrow);
+  } else {
+    setSelectedDate(selectedDate);
   }
 };
