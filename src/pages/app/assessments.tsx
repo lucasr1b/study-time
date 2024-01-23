@@ -15,12 +15,25 @@ const AssessmentsPage: NextPage = () => {
   const [isEditAssessmentModalOpen, setIsEditAssessmentModalOpen] = useState(false);
   const [selectedEditingAssessment, setSelectedEditingAssessment] = useState<Assessment>({} as Assessment);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
+  const [pastDueAssessments, setPastDueAssessments] = useState<Assessment[]>([]);
 
   useEffect(() => {
     const fetchAssessments = async () => {
       try {
         const res = await axios.get('/api/assessments');
-        setAssessments(res.data.assessments);
+
+        setAssessments([]); // remove possible duplicate assessments
+        setPastDueAssessments([]); // reset past duplicate assessments
+
+        res.data.assessments.forEach((assessment: Assessment) => {
+          console.log(new Date(assessment.date));
+          if (new Date(assessment.date) < new Date()) {
+            setPastDueAssessments(prevPastDueAssessments => [...prevPastDueAssessments, assessment]);
+          } else {
+            setAssessments(prevAssessments => [...prevAssessments, assessment]);
+          }
+        });
+
       } catch (err: any) {
         console.error('Error fetching assessments:', err.response.data.error);
       }
@@ -40,6 +53,16 @@ const AssessmentsPage: NextPage = () => {
     setIsAddAssessmentModalOpen(false);
     setIsEditAssessmentModalOpen(false);
     setSelectedEditingAssessment({} as Assessment);
+  };
+
+  const deleteAssessment = async (assessmentId: string) => {
+    try {
+      await axios.post('/api/assessments/delete', { assessmentId });
+      setAssessments(assessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId));
+      setPastDueAssessments(pastDueAssessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId));
+    } catch (err: any) {
+      console.error('Error deleting assessment:', err.response.data.error);
+    }
   };
 
   return (
@@ -64,14 +87,29 @@ const AssessmentsPage: NextPage = () => {
                 <AssessmentItem
                   key={assessment.assessment_id}
                   assessment={assessment}
-                  assessments={assessments}
-                  setAssessments={setAssessments}
+                  deleteAssessment={deleteAssessment}
                   openEditAssessmentModal={openEditAssessmentModal}
                 />
               ))}
               <AddAssessmentButton openModal={openAddAssessmentModal} />
             </div>
           </div>
+          {pastDueAssessments.length > 0 &&
+            <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
+              <h1 className='font-semibold mb-4'>Past due assessments</h1>
+              <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
+                {pastDueAssessments.map((assessment: Assessment) => (
+                  <AssessmentItem
+                    key={assessment.assessment_id}
+                    assessment={assessment}
+                    deleteAssessment={deleteAssessment}
+                    openEditAssessmentModal={openEditAssessmentModal}
+                    pastDue={true}
+                  />
+                ))}
+              </div>
+            </div>
+          }
         </div>
       </div>
       {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeModal} assessments={assessments} setAssessments={setAssessments} />}

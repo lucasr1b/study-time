@@ -1,24 +1,14 @@
-import axios from 'axios';
 import { formatAssessmentDate } from '../../utils/helpers';
-import { Assessment, SetAssessments } from '../../utils/types';
+import { Assessment } from '../../utils/types';
 
 type AssessmentItemProps = {
   assessment: Assessment;
-  assessments: Assessment[];
-  setAssessments: SetAssessments;
+  deleteAssessment: (assessmentId: string) => void;
   openEditAssessmentModal: (assessment: Assessment) => void;
+  pastDue?: boolean;
 };
 
 const AssessmentItem = (props: AssessmentItemProps) => {
-  const deleteAssessment = async () => {
-    try {
-      await axios.post('/api/assessments/delete', { assessmentId: props.assessment.assessment_id });
-      props.setAssessments(props.assessments.filter((assessment: Assessment) => assessment.assessment_id !== props.assessment.assessment_id));
-    } catch (err: any) {
-      console.error('Error deleting assessment:', err.response.data.error);
-    }
-  };
-
   return (
     <div>
       <div className='flex flex-col border border-zinc-200 rounded-lg p-2 h-full'>
@@ -28,14 +18,16 @@ const AssessmentItem = (props: AssessmentItemProps) => {
         </div>
         <p className='font-normal text-sm py-1'>{props.assessment.description}</p>
         <div className='flex gap-4 py-1 mt-auto'>
+          {!props.pastDue &&
+            <button
+              className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'
+              onClick={() => props.openEditAssessmentModal(props.assessment)}>
+              Edit
+            </button>
+          }
           <button
             className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'
-            onClick={() => props.openEditAssessmentModal(props.assessment)}>
-            Edit
-          </button>
-          <button
-            className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'
-            onClick={deleteAssessment}>
+            onClick={() => props.deleteAssessment(props.assessment.assessment_id)}>
             Delete
           </button>
         </div>
