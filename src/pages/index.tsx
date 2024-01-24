@@ -33,13 +33,13 @@ const LoginPage = () => {
           <form className='space-y-4' onSubmit={authenticateUser}>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm font-medium'>Email</label>
-              <input type='text' name='email' id='email' className='bg-zinc-50 border border-zinc-300 rounded-lg block w-full p-2.5 focus:outline-zinc-300 placeholder:text-zinc-500' placeholder='john.doe@gmail.com' />
+              <input type='text' name='email' id='email' className='border border-zinc-200 rounded-lg block w-full p-2.5 focus:outline-zinc-200 placeholder:text-zinc-500' placeholder='john.doe@gmail.com' />
             </div>
             <div>
               <label htmlFor='password' className='block mb-2 text-sm font-medium'>Password</label>
-              <input type='password' name='password' id='password' placeholder='••••••••' className='bg-zinc-50 border border-zinc-300 rounded-lg block w-full p-2.5 focus:outline-zinc-300 placeholder:text-zinc-500' />
+              <input type='password' name='password' id='password' placeholder='••••••••' className='border border-zinc-200 rounded-lg block w-full p-2.5 focus:outline-zinc-200 placeholder:text-zinc-500' />
             </div>
-            <button className='w-full bg-zinc-200 border border-zinc-300 hover:bg-zinc-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Sign in</button>
+            <button className='w-full border border-zinc-200 hover:bg-zinc-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Sign in</button>
             <p className='text-sm font-light text-zinc-500'>
               Don&apos;t have an account yet? <a href='register' className='font-medium text-black hover:underline'>Sign up</a>
             </p>
