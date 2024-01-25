@@ -48,14 +48,14 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
         <h1 className='font-semibold'>Editing assessment</h1>
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={editAssessment}>
           <div className='mt-2 flex flex-col gap-4 w-full'>
-            <div className='inline-flex border bg-lighter-accent rounded-md p-2 cursor-default'>
+            <div className='inline-flex border border-accent bg-lighter-accent rounded-md p-2 cursor-default'>
               <div className='outline-none w-full'>
                 {props.assessment.subject_icon} {props.assessment.subject_name}
               </div>
             </div>
             <DateSelector setSelectedDate={setDate} />
-            <div className='inline-flex border rounded-md p-2' onChange={handleDescriptionChange}>
-              <textarea placeholder='Description (optional)' className='w-full resize-none outline-none' defaultValue={props.assessment.description} />
+            <div className='inline-flex border border-accent rounded-md p-2' onChange={handleDescriptionChange}>
+              <textarea placeholder='Description (optional)' className='w-full resize-none outline-none bg-primary' defaultValue={props.assessment.description} />
             </div>
             <div className='flex gap-2 mt-2'>
               <button type='button' className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={props.closeModal}>Cancel</button>
