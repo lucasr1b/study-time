@@ -1,4 +1,4 @@
-import { AcademicCapIcon, ArrowLeftOnRectangleIcon, ClockIcon, Cog6ToothIcon, DocumentTextIcon, MoonIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { AcademicCapIcon, ArrowLeftOnRectangleIcon, ClockIcon, Cog6ToothIcon, DocumentTextIcon, MoonIcon, Squares2X2Icon, SunIcon } from '@heroicons/react/24/outline';
 import SidebarItem from './SidebarItem';
 import { useState } from 'react';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import Router from 'next/router';
 const Sidebar = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const logoutUser = async () => {
     try {
@@ -21,9 +22,11 @@ const Sidebar = () => {
     if (localStorage.getItem('theme') === 'light' || undefined) {
       localStorage.setItem('theme', 'dark');
       document.documentElement.classList.add('dark');
+      setDarkMode(true);
     } else {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
+      setDarkMode(false);
     }
 
   };
@@ -42,8 +45,19 @@ const Sidebar = () => {
       {isDropdownOpen && (
         <div className='top-full right-0 mb-2 bg-primary border border-accent p-2 rounded-md shadow'>
           <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent' onClick={toggleTheme}>
-            <MoonIcon className='w-5 h-5' />
-            Dark Mode
+            {darkMode ? (
+              <>
+                <SunIcon className='w-5 h-5' />
+                Light Mode
+              </>
+            ) : (
+              <>
+                <MoonIcon className='w-5 h-5' />
+                Dark Mode
+              </>
+            )
+            }
+
           </div>
           <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent'
             onClick={logoutUser}>
