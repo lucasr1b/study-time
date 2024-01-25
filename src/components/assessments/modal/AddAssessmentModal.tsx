@@ -84,7 +84,7 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
             <div className='inline-flex border border-accent rounded-md p-2' onChange={handleDescriptionChange}>
               <textarea placeholder='Description (optional)' className='w-full resize-none outline-none bg-primary' />
             </div>
-            <div className='flex gap-2 mt-2'>
+            <div className='flex gap-2 mt-2 ml-auto'>
               <button type='button' className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={props.closeModal}>Cancel</button>
               <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm'>Add</button>
             </div>
