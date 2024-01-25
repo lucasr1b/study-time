@@ -43,7 +43,7 @@ const Sidebar = () => {
         </ul>
       </div>
       {isDropdownOpen && (
-        <div className='top-full right-0 mb-2 bg-primary border border-accent p-2 rounded-md shadow'>
+        <div className='top-full right-0 mb-2 bg-primary border border-accent p-2 rounded-md shadow-md shadow-dropdown-shadow'>
           <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent' onClick={toggleTheme}>
             {darkMode ? (
               <>

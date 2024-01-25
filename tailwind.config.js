@@ -18,6 +18,7 @@ module.exports = {
         "text-secondary": "rgba(var(--text-secondary))",
         skeleton: "rgba(var(--skeleton))",
         "modal-backdrop": "rgba(var(--modal-backdrop))",
+        "dropdown-shadow": "rgba(var(--dropdown-shadow))",
       },
       minHeight: (theme) => ({
         ...theme('spacing'),
