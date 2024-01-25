@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import DateSelector from '../../dashboard/DateSelector';
 import axios from 'axios';
 import { Assessment, SetAssessments, Subject } from '../../../utils/types';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type AddAssessmentModalProps = {
   closeModal: () => void;
@@ -71,16 +72,17 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
         <h1 className='font-semibold'>Add new assessment</h1>
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={addAssessment}>
           <div className='mt-2 flex flex-col gap-4 w-full'>
-            <div className='inline-flex border rounded-md p-2'>
-              <select className='outline-none w-full' onChange={handleSubjectChange}>
+            <div className='grid'>
+              <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+              <select className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent' onChange={handleSubjectChange}>
                 {subjects.map((subject: Subject) => (
                   <option key={subject.subject_id} data-id={subject.subject_id}>{subject.subject_icon} {subject.subject_name}</option>
                 ))}
               </select>
             </div>
             <DateSelector setSelectedDate={setDate} />
-            <div className='inline-flex border rounded-md p-2' onChange={handleDescriptionChange}>
-              <textarea placeholder='Description (optional)' className='w-full resize-none outline-none' />
+            <div className='inline-flex border border-accent rounded-md p-2' onChange={handleDescriptionChange}>
+              <textarea placeholder='Description (optional)' className='w-full resize-none outline-none bg-primary' />
             </div>
             <div className='flex gap-2 mt-2'>
               <button type='button' className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={props.closeModal}>Cancel</button>

@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { padDate, validateAssessmentDate } from '../../utils/helpers';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type DateSelectorProps = {
   setSelectedDate?: any;
@@ -66,17 +67,26 @@ const DateSelector = (props: DateSelectorProps) => {
 
   return (
     <div className='flex items-center gap-1'>
-      <select value={day} onChange={handleDayChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-lighter-accent'>
-        {dayOptions}
-      </select>
+      <div className='grid w-full'>
+        <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+        <select value={day} onChange={handleDayChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
+          {dayOptions}
+        </select>
+      </div>
       /
-      <select value={month} onChange={handleMonthChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-lighter-accent'>
-        {monthOptions}
-      </select>
+      <div className='grid w-full'>
+        <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+        <select value={month} onChange={handleMonthChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
+          {monthOptions}
+        </select>
+      </div>
       /
-      <select value={year} onChange={handleYearChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-lighter-accent'>
-        {yearOptions}
-      </select>
+      <div className='grid w-full'>
+        <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+        <select value={year} onChange={handleYearChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
+          {yearOptions}
+        </select>
+      </div>
     </div>
   );
 };
