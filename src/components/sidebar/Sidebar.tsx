@@ -17,8 +17,19 @@ const Sidebar = () => {
     }
   };
 
+  const toggleTheme = () => {
+    if (localStorage.getItem('theme') === 'light' || undefined) {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+
+  };
+
   return (
-    <aside className='fixed top-0 left-0 z-40 w-64 h-full px-3 py-4 border-r bg-white border-zinc-200 overflow-y-auto flex flex-col'>
+    <aside className='fixed top-0 left-0 z-40 w-64 h-full px-3 py-4 border-r bg-primary border-accent overflow-y-auto flex flex-col'>
       <div className='flex-1'>
         <h1 className='text-3xl text-center font-semibold pt-4 pb-8'>Study Time</h1>
         <ul className='space-y-2'>
@@ -29,19 +40,19 @@ const Sidebar = () => {
         </ul>
       </div>
       {isDropdownOpen && (
-        <div className='top-full right-0 mb-2 bg-white border border-zinc-200 p-2 rounded-md shadow'>
-          <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-zinc-100'>
+        <div className='top-full right-0 mb-2 bg-primary border border-accent p-2 rounded-md shadow'>
+          <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent' onClick={toggleTheme}>
             <MoonIcon className='w-5 h-5' />
             Dark Mode
           </div>
-          <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-zinc-100'
+          <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent'
             onClick={logoutUser}>
             <ArrowLeftOnRectangleIcon className='w-5 h-5' />
             Logout
           </div>
         </div>
       )}
-      <div className='border border-zinc-200 p-3 rounded-md mb-2 cursor-pointer hover:bg-zinc-200'
+      <div className='border border-accent p-3 rounded-md mb-2 cursor-pointer hover:bg-accent'
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
         <span className='flex gap-2'><Cog6ToothIcon className='w-6 h-6' />
           Settings

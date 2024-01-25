@@ -19,7 +19,7 @@ const SubjectStudyLogList = () => {
   }, []);
 
   return (
-    <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-zinc-200 bg-white'>
+    <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-accent bg-primary'>
       <h1 className='font-semibold'>Study log</h1>
       <div className='flex flex-col gap-4 mt-4'>
         {logs.slice(0, 9).map((log: StudyLog, index: number) => (

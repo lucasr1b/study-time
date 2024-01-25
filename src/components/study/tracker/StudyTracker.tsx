@@ -41,7 +41,7 @@ const StudyTracker = (props: StudyTrackerProps) => {
   };
 
   return (
-    <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
+    <div className='bg-primary border border-accent rounded-lg p-4 w-full'>
       <h1 className='font-semibold mb-4'>Study tracker</h1>
       <div className='grid grid-cols-3 grid-flow-row gap-6'>
         {props.trackers.map((tracker: Tracker) => (

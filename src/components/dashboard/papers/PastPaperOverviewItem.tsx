@@ -7,7 +7,7 @@ type PastPapersOverviewItemProps = {
 
 const PastPaperOverviewItem = (props: PastPapersOverviewItemProps) => {
   return (
-    <li className='py-1 px-2 rounded hover:bg-zinc-200 hover:cursor-pointer'>
+    <li className='py-1 px-2 rounded hover:bg-accent hover:cursor-pointer'>
       {props.icon} {props.name} ({props.progress}/{props.total})
     </li>
   );

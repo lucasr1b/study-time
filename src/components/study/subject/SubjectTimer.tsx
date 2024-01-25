@@ -66,7 +66,7 @@ const SubjectTimer = (props: TimerProps) => {
   const timeRemaining = formatSubjectTimer(hours, minutes, seconds);
 
   return (
-    <div className='bg-white border border-zinc-200 rounded-lg p-4 w-full'>
+    <div className='bg-primary border border-accent rounded-lg p-4 w-full'>
       <h1 className='font-semibold mb-4'>Timer</h1>
       <div className='flex flex-col items-center justify-center gap-4 pb-4'>
         <div className='flex flex-col items-center gap-1'>
@@ -77,15 +77,15 @@ const SubjectTimer = (props: TimerProps) => {
           {isPaused ?
             <>
               {!sessionStarted
-                ? <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleStart}>Start session</button>
+                ? <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={handleStart}>Start session</button>
                 : <>
-                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handleResume}>Resume</button>
-                  <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={logStudySession}>Log session</button>
+                  <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={handleResume}>Resume</button>
+                  <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={logStudySession}>Log session</button>
                 </>
               }
             </>
             :
-            <button className='bg-white border border-zinc-200 rounded-md h-8 w-fit px-3 hover:bg-zinc-200 text-sm' onClick={handlePause}>Pause</button>
+            <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={handlePause}>Pause</button>
           }
         </div>
       </div>

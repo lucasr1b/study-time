@@ -12,7 +12,7 @@ const SidebarItem = (props: SidebarItemProps) => {
 
   return (
     <li>
-      <Link href={props.href} className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == props.href ? 'bg-zinc-200 font-medium' : 'hover:bg-zinc-200 '}`}>
+      <Link href={props.href} className={`flex items-center p-2.5 text-base rounded-lg ${router.pathname == props.href ? 'bg-accent font-medium' : 'hover:bg-accent '}`}>
         <span className='flex gap-2'>
           {props.icon} {props.name}
         </span>

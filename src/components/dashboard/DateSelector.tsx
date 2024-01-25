@@ -66,15 +66,15 @@ const DateSelector = (props: DateSelectorProps) => {
 
   return (
     <div className='flex items-center gap-1'>
-      <select value={day} onChange={handleDayChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+      <select value={day} onChange={handleDayChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-lighter-accent'>
         {dayOptions}
       </select>
       /
-      <select value={month} onChange={handleMonthChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+      <select value={month} onChange={handleMonthChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-lighter-accent'>
         {monthOptions}
       </select>
       /
-      <select value={year} onChange={handleYearChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-zinc-100'>
+      <select value={year} onChange={handleYearChange} className='inline-flex border rounded-md p-2 w-full outline-none hover:bg-lighter-accent'>
         {yearOptions}
       </select>
     </div>

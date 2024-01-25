@@ -7,12 +7,12 @@ type SubjectItemProps = {
 
 const SubjectItem = (props: SubjectItemProps) => {
   return (
-    <div className='flex flex-col h-full w-full p-3 rounded-lg bg-white border border-zinc-200'>
-      <p className='text-m font-medium text-black'>{props.subject.subject_icon} {props.subject.subject_name}</p>
-      <p className='text-zinc-500 mb-2'>{props.subject.subject_curriculum} {props.subject.subject_level}</p>
+    <div className='flex flex-col h-full w-full p-3 rounded-lg bg-primary border border-accent'>
+      <p className='text-m font-medium text-text'>{props.subject.subject_icon} {props.subject.subject_name}</p>
+      <p className='text-text-secondary mb-2'>{props.subject.subject_curriculum} {props.subject.subject_level}</p>
       <div className='flex gap-4 mt-auto'>
-        <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm'>Edit</button>
-        <button className='bg-white border border-zinc-200 rounded-md h-8 px-3 hover:bg-zinc-200 text-sm' onClick={() => props.removeSubject(props.subject.subject_id)}>Remove</button>
+        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'>Edit</button>
+        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm' onClick={() => props.removeSubject(props.subject.subject_id)}>Remove</button>
       </div>
     </div>
   );
