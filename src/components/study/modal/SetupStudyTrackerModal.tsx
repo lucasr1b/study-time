@@ -40,17 +40,17 @@ const SetupStudyTrackerModal = (props: SetupStudyTrackerModalProps) => {
         <h1 className='font-semibold'>Setup study tracker</h1>
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={setupTracker}>
           <div className='mt-2 flex flex-col'>
-            <div className="inline-flex border rounded-md p-2">
+            <div className='inline-flex border border-accent rounded-md p-2'>
               <div className='flex gap-2 items-center'>
                 <h3>{props.tracker.subject_icon} {props.tracker.subject_name}:</h3>
                 <div className='flex'>
                   <div className='flex items-center relative w-fit'>
-                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border rounded w-20' onChange={handleHoursChange} value={hours} />
+                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border border-accent rounded w-20' onChange={handleHoursChange} value={hours} />
                     <span className='flex items-center justify-center absolute right-0 bg-lighter-accent border border-accent rounded p-2 h-full z-10'>hrs</span>
                   </div>
                   <span className="px-1">:</span>
                   <div className='flex items-center relative w-fit'>
-                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border rounded w-24' onChange={handleMinutesChange} value={minutes} />
+                    <input type='text' className='block px-2 outline-none appearance-none bg-transparent border border-accent rounded w-24' onChange={handleMinutesChange} value={minutes} />
                     <span className='flex items-center justify-center absolute right-0 bg-lighter-accent border border-accent rounded p-2 h-full z-10'>mins</span>
                   </div>
                   <span className="px-1 ml-1">per week</span>
