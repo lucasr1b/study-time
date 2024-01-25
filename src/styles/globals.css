@@ -11,6 +11,7 @@
   --darker-accent: 212, 212, 216; /* zinc-300 */
   --text: 0, 0, 0; /* black */
   --text-secondary: 113, 113, 122; /* zinc-500 */
+  --modal-backdrop: 0, 0, 0, 0.2; /* black */
 }
 
 .dark {
@@ -20,6 +21,7 @@
   --darker-accent: 82 82 91; /* zinc-600 */
   --text: 255, 255, 255; /* white */
   --text-secondary: 161 161 170; /* zinc-500 */
+  --modal-backdrop: 0, 0, 0, 0.5; /* black */
 }
 
 html,

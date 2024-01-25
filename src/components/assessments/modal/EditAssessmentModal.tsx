@@ -43,7 +43,7 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
 
   return (
     <>
-      <div className='fixed z-40 flex items-center justify-center bg-black opacity-20 w-full h-full top-0 left-0' onClick={props.closeModal}></div>
+      <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={props.closeModal}></div>
       <div className='fixed z-50 flex flex-col w-1/5 h-auto p-4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary'>
         <h1 className='font-semibold'>Editing assessment</h1>
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={editAssessment}>
