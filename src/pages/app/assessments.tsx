@@ -8,13 +8,13 @@ import AddAssessmentModal from '../../components/assessments/modal/AddAssessment
 import axios from 'axios';
 import EditAssessmentModal from '../../components/assessments/modal/EditAssessmentModal';
 import { Assessment } from '../../utils/types';
-import ConfirmDeleteModal from '../../components/assessments/modal/ConfirmDeleteModal';
+import DeleteAssessmentModal from '../../components/assessments/modal/DeleteAssessmentModal';
 
 const AssessmentsPage: NextPage = () => {
 
   const [isAddAssessmentModalOpen, setIsAddAssessmentModalOpen] = useState(false);
   const [isEditAssessmentModalOpen, setIsEditAssessmentModalOpen] = useState(false);
-  const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false);
+  const [isDeleteAssessmentModalOpen, setIsDeleteAssessmentModalOpen] = useState(false);
   const [selectedEditingAssessment, setSelectedEditingAssessment] = useState<Assessment>({} as Assessment);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [pastDueAssessments, setPastDueAssessments] = useState<Assessment[]>([]);
@@ -51,15 +51,15 @@ const AssessmentsPage: NextPage = () => {
     setIsEditAssessmentModalOpen(true);
   };
 
-  const openConfirmDeleteModal = (assessment: Assessment) => {
-    setIsConfirmDeleteModalOpen(true);
+  const openDeleteAssessmentModal = (assessment: Assessment) => {
+    setIsDeleteAssessmentModalOpen(true);
     setSelectedEditingAssessment(assessment);
   };
 
   const closeModal = () => {
     setIsAddAssessmentModalOpen(false);
     setIsEditAssessmentModalOpen(false);
-    setIsConfirmDeleteModalOpen(false);
+    setIsDeleteAssessmentModalOpen(false);
     setSelectedEditingAssessment({} as Assessment);
   };
 
@@ -96,7 +96,7 @@ const AssessmentsPage: NextPage = () => {
                 <AssessmentItem
                   key={assessment.assessment_id}
                   assessment={assessment}
-                  openConfirmDeleteAssessment={openConfirmDeleteModal}
+                  openDeleteAssessmentModal={openDeleteAssessmentModal}
                   deleteAssessment={deleteAssessment}
                   openEditAssessmentModal={openEditAssessmentModal}
                 />
@@ -124,7 +124,7 @@ const AssessmentsPage: NextPage = () => {
       </div>
       {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeModal} assessments={assessments} setAssessments={setAssessments} />}
       {isEditAssessmentModalOpen && <EditAssessmentModal closeModal={closeModal} assessment={selectedEditingAssessment} assessments={assessments} setAssessments={setAssessments} />}
-      {isConfirmDeleteModalOpen && <ConfirmDeleteModal closeModal={closeModal} confirm={deleteAssessment} assessment={selectedEditingAssessment} />}
+      {isDeleteAssessmentModalOpen && <DeleteAssessmentModal closeModal={closeModal} confirm={deleteAssessment} assessment={selectedEditingAssessment} />}
     </div>
   );
 };

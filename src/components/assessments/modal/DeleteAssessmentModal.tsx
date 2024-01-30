@@ -1,12 +1,12 @@
 import { Assessment } from '../../../utils/types';
 
-type ConfirmDeleteModalProps = {
+type DeleteAssessmentModalProps = {
   assessment: Assessment;
   confirm: (assessment_id: string) => void;
   closeModal: () => void;
 };
 
-const ConfirmDeleteModal = (props: ConfirmDeleteModalProps) => {
+const DeleteAssessmentModal = (props: DeleteAssessmentModalProps) => {
 
   return (
     <>
@@ -31,4 +31,4 @@ const ConfirmDeleteModal = (props: ConfirmDeleteModalProps) => {
 
 };
 
-export default ConfirmDeleteModal;
+export default DeleteAssessmentModal;
