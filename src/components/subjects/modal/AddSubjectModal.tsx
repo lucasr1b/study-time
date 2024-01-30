@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
-import { SetSubjects, Subject } from '../../utils/types';
+import { SetSubjects, Subject } from '../../../utils/types';
 
 type AddSubjectModalProps = {
-  close: () => void;
+  closeModal: () => void;
   subjects: Subject[];
   setSubjects: SetSubjects;
 };
@@ -51,7 +51,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
     try {
       const res = await axios.post('/api/subjects/add', { id: selectedSubject?.subject_id });
       props.setSubjects([...props.subjects, res.data.addedSubject]);
-      props.close();
+      props.closeModal();
     } catch (err: any) {
       console.error('Error adding subject:', err.response.data.error);
     }
@@ -59,7 +59,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   return (
     <>
-      <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={props.close}></div>
+      <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={props.closeModal}></div>
       <div className='fixed z-50 flex flex-col w-2/5 h-auto p-4 rounded-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary'>
         <h1 className='font-semibold'>Add a new subject</h1>
         <form className='flex flex-row items-baseline space-y-4 gap-4 h-full' onSubmit={addSubject}>

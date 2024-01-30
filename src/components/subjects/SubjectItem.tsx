@@ -1,8 +1,9 @@
 import { Subject } from '../../utils/types';
 
 type SubjectItemProps = {
-  removeSubject: (id: string) => void;
+  openRemoveSubjectModal: (subject: Subject) => void;
   subject: Subject;
+  setSelectedSubject: any;
 };
 
 const SubjectItem = (props: SubjectItemProps) => {
@@ -12,7 +13,7 @@ const SubjectItem = (props: SubjectItemProps) => {
       <p className='text-text-secondary mb-2'>{props.subject.subject_curriculum} {props.subject.subject_level}</p>
       <div className='flex gap-4 mt-auto'>
         <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'>Edit</button>
-        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm' onClick={() => props.removeSubject(props.subject.subject_id)}>Remove</button>
+        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm' onClick={() => props.openRemoveSubjectModal(props.subject)}>Remove</button>
       </div>
     </div>
   );

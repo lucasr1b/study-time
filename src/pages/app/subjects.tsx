@@ -3,16 +3,19 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectItem from '../../components/subjects/SubjectItem';
 import SubjectAddButton from '../../components/subjects/SubjectAddButton';
 import SubjectStudyLogList from '../../components/subjects/logs/SubjectStudyLogList';
-import AddSubjectModal from '../../components/subjects/AddSubjectModal';
+import AddSubjectModal from '../../components/subjects/modal/AddSubjectModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Subject } from '../../utils/types';
 import SubjectItemSkeleton from '../../components/subjects/SubjectItemSkeleton';
+import RemoveSubjectModal from '../../components/subjects/modal/RemoveSubjectModal';
 
 const SubjectsPage: NextPage = () => {
 
-  const [modalToggled, setModalToggled] = useState(false);
+  const [isAddSubjetModalOpen, setIsAddSubjectModalOpen] = useState(false);
+  const [isRemoveSubjectModalOpen, setIsRemoveSubjectModalOpen] = useState(false);
   const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [selectedSubject, setSelectedSubject] = useState<Subject>({} as Subject);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,10 +33,23 @@ const SubjectsPage: NextPage = () => {
     fetchSubjects();
   }, []);
 
+  const openAddSubjectModal = () => setIsAddSubjectModalOpen(true);
+
+  const openRemoveSubjectModal = (subject: Subject) => {
+    setIsRemoveSubjectModalOpen(true);
+    setSelectedSubject(subject);
+  };
+
+  const closeModal = () => {
+    setIsAddSubjectModalOpen(false);
+    setIsRemoveSubjectModalOpen(false);
+  };
+
   const removeSubject = async (id: string) => {
     try {
       await axios.post('/api/subjects/remove', { id });
       setSubjects(subjects.filter((subject: Subject) => subject.subject_id !== id));
+      closeModal();
     } catch (err: any) {
       console.error('Error removing subjects:', err.response.data.error);
     }
@@ -55,16 +71,17 @@ const SubjectsPage: NextPage = () => {
               ) : (
                 <>
                   {subjects.map((subject, index) => (
-                    <SubjectItem key={index} subject={subject} removeSubject={removeSubject} />
+                    <SubjectItem key={index} subject={subject} openRemoveSubjectModal={openRemoveSubjectModal} setSelectedSubject={setSelectedSubject} />
                   ))}
-                  <SubjectAddButton openModal={() => setModalToggled(true)} />
+                  <SubjectAddButton openModal={openAddSubjectModal} />
                 </>
               )}
             </div>
           </div>
           <SubjectStudyLogList />
         </div>
-        {modalToggled && <AddSubjectModal close={() => setModalToggled(false)} subjects={subjects} setSubjects={setSubjects} />}
+        {isAddSubjetModalOpen && <AddSubjectModal closeModal={closeModal} subjects={subjects} setSubjects={setSubjects} />}
+        {isRemoveSubjectModalOpen && <RemoveSubjectModal closeModal={closeModal} confirm={removeSubject} subject={selectedSubject} />}
       </div>
     </div >
   );

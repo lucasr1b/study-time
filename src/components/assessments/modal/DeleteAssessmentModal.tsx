@@ -2,7 +2,7 @@ import { Assessment } from '../../../utils/types';
 
 type DeleteAssessmentModalProps = {
   assessment: Assessment;
-  confirm: (assessment_id: string) => void;
+  confirm: (assessmentId: string) => void;
   closeModal: () => void;
 };
 
@@ -17,10 +17,10 @@ const DeleteAssessmentModal = (props: DeleteAssessmentModalProps) => {
         <div className='mt-2 flex flex-col gap-4 w-full'>
           <div className='inline-flex border border-accent bg-lighter-accent rounded-md p-2 cursor-default'>
             <div className='outline-none w-full'>
-              💼 Bussiness Studies
+              {props.assessment.subject_icon} {props.assessment.subject_name}
             </div>
           </div>
-          <div className='flex gap-2 mt-2 ml-auto'>
+          <div className='flex gap-2 ml-auto'>
             <button type='button' className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={props.closeModal}>Cancel</button>
             <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm text-red-500' onClick={() => props.confirm(props.assessment.assessment_id)}>Confirm</button>
           </div>
