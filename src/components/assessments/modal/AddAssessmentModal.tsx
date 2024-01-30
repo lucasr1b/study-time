@@ -11,9 +11,12 @@ type AddAssessmentModalProps = {
 };
 
 const AddAssessmentModal = (props: AddAssessmentModalProps) => {
+  const tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate() + 1);
+
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<Subject>({} as Subject);
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>(tomorrow);
   const [description, setDescription] = useState<string>('');
 
   useEffect(() => {
