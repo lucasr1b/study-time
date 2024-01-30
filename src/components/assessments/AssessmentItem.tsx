@@ -3,6 +3,7 @@ import { Assessment } from '../../utils/types';
 
 type AssessmentItemProps = {
   assessment: Assessment;
+  openConfirmDeleteAssessment?: (assessment: Assessment) => void;
   deleteAssessment: (assessmentId: string) => void;
   openEditAssessmentModal: (assessment: Assessment) => void;
   pastDue?: boolean;
@@ -18,18 +19,31 @@ const AssessmentItem = (props: AssessmentItemProps) => {
         </div>
         <p className='font-normal text-sm py-1'>{props.assessment.description}</p>
         <div className='flex gap-4 py-1 mt-auto'>
-          {!props.pastDue &&
-            <button
-              className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'
-              onClick={() => props.openEditAssessmentModal(props.assessment)}>
-              Edit
-            </button>
+          {!props.pastDue
+            ?
+            (
+              <>
+                <button
+                  className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'
+                  onClick={() => props.openEditAssessmentModal(props.assessment)}>
+                  Edit
+                </button>
+                <button
+                  className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'
+                  onClick={() => props.openConfirmDeleteAssessment?.(props.assessment)}>
+                  Delete
+                </button>
+              </>
+            )
+            :
+            (
+              <button
+                className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'
+                onClick={() => props.deleteAssessment(props.assessment.assessment_id)}>
+                Delete
+              </button>
+            )
           }
-          <button
-            className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'
-            onClick={() => props.deleteAssessment(props.assessment.assessment_id)}>
-            Delete
-          </button>
         </div>
       </div>
     </div>
