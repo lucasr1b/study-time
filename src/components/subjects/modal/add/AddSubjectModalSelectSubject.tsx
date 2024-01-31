@@ -6,6 +6,8 @@ type AddSubjectModalSelectSubjectProps = {
   closeModal: () => void;
   subjects: Subject[];
   setSubjects: SetSubjects;
+  examBoard: string;
+  examBoardLevel: string;
 };
 
 const AddSubjectModalSelectSubject = (props: AddSubjectModalSelectSubjectProps) => {
@@ -18,6 +20,14 @@ const AddSubjectModalSelectSubject = (props: AddSubjectModalSelectSubjectProps) 
     const fetchSubjects = async () => {
       try {
         const res = await axios.get('/api/subjects/list');
+
+        // Filter out subjects that are already in the user's subjects
+        const userSubjects = props.subjects.map((subject) => subject.subject_id);
+        res.data.subjects = res.data.subjects.filter((subject: Subject) => !userSubjects.includes(subject.subject_id));
+
+        // Filter out subjects that don't match the exam board and level
+        res.data.subjects = res.data.subjects.filter((subject: Subject) => subject.subject_board === props.examBoard && subject.subject_level === props.examBoardLevel);
+
         setSubjectList(res.data.subjects);
         setFilteredSubjects(res.data.subjects);
       } catch (err: any) {

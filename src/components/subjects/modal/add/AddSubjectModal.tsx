@@ -12,15 +12,15 @@ type AddSubjectModalProps = {
 const AddSubjectModal = (props: AddSubjectModalProps) => {
 
   const [examBoard, setExamBoard] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState('');
+  const [examBoardLevel, setExamBoardLevel] = useState('');
 
   return (
     <>
       <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={props.closeModal}></div>
-      {!selectedLevel ? (
-        <AddSubjectModalSelectLevel setExamBoard={setExamBoard} setSelectedLevel={setSelectedLevel} />
+      {!examBoardLevel ? (
+        <AddSubjectModalSelectLevel setExamBoard={setExamBoard} setExamBoardLevel={setExamBoardLevel} />
       ) : (
-        <AddSubjectModalSelectSubject closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} />
+        <AddSubjectModalSelectSubject closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} examBoard={examBoard} examBoardLevel={examBoardLevel} />
       )}
     </>
   );
