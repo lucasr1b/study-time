@@ -13,12 +13,14 @@ import SubjectOverviewAddButton from '../../components/dashboard/subjects/Subjec
 const DashboardPage: NextPage = () => {
 
   const [trackers, setTrackers] = useState<Tracker[]>([]);
+  const [allTrackersSetup, setAllTrackersSetup] = useState(false);
 
   useEffect(() => {
     const fetchTrackers = async () => {
       try {
         const res = await axios.get('/api/study/trackers/weekly');
         setTrackers(res.data.weeklyTrackers);
+        setAllTrackersSetup(res.data.isAllTrackersSetup);
       } catch (err: any) {
         console.error('Error fetching weekly study trackers:', err.response.data.error);
       }
@@ -41,7 +43,7 @@ const DashboardPage: NextPage = () => {
                 {trackers.map(tracker => (
                   <SubjectOverview tracker={tracker} key={tracker.tracker_id} />
                 ))}
-                <SubjectOverviewAddButton />
+                {!allTrackersSetup && <SubjectOverviewAddButton />}
               </div>
             </div>
             <PastPaperOverview />
