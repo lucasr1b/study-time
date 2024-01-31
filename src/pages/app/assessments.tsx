@@ -28,7 +28,6 @@ const AssessmentsPage: NextPage = () => {
         setPastDueAssessments([]); // reset past duplicate assessments
 
         res.data.assessments.forEach((assessment: Assessment) => {
-          console.log(new Date(assessment.date));
           if (new Date(assessment.date) < new Date()) {
             setPastDueAssessments(prevPastDueAssessments => [...prevPastDueAssessments, assessment]);
           } else {

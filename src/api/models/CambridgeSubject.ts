@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export interface ICambridgeSubject extends mongoose.Document {
   subject_id: string;
   subject_name: string;
-  subject_curriculum: string;
+  subject_board: string;
   subject_level: string;
   subject_icon: string;
 }
@@ -20,7 +20,7 @@ const CambridgeSubjectSchema = new mongoose.Schema({
     required: true,
   },
 
-  subject_curriculum: {
+  subject_board: {
     type: String,
     required: true,
   },

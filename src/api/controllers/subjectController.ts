@@ -4,6 +4,7 @@ import { updateSubjectForUser, createStudyTrackerAndAddToUser, deleteStudyTracke
 import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
 import User from '../models/User';
 import CambridgeSubject from '../models/CambridgeSubject';
+import ExamBoard from '../models/ExamBoard';
 
 connectToDB();
 
@@ -59,6 +60,22 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject not removed', err.message);
+  }
+};
+
+// @Desc Get all subject exam boards
+// @Route /api/subjects/boards
+// @Method GET
+
+export const getAllSubjectBoardsController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    if (isUserLoggedIn(req, res)) {
+      const examBoards = await ExamBoard.find();
+      sendSuccessResponse(res, 'All exam boards fetched', { examBoards });
+    }
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Exam boards not fetched', err.message);
   }
 };
 

@@ -3,7 +3,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import SubjectItem from '../../components/subjects/SubjectItem';
 import SubjectAddButton from '../../components/subjects/SubjectAddButton';
 import SubjectStudyLogList from '../../components/subjects/logs/SubjectStudyLogList';
-import AddSubjectModal from '../../components/subjects/modal/AddSubjectModal';
+import AddSubjectModal from '../../components/subjects/modal/add/AddSubjectModal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Subject } from '../../utils/types';
