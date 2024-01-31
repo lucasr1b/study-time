@@ -40,7 +40,7 @@ const AddSubjectModalConfirm = (props: AddSubjectModalConfirmProps) => {
                 <p className='text-lg font-medium'>{props.selectedSubject.subject_icon} {props.selectedSubject.subject_name}</p>
                 <div className='bg-accent rounded-lg py-1 px-2 ml-auto text-text-secondary text-sm'>{props.selectedSubject.subject_level}</div>
               </div>
-              <p className='text-text-secondary'>{props.selectedSubject.subject_board} {props.selectedSubject.subject_level}</p>
+              <p className='text-text-secondary'>{props.selectedSubject.subject_board}</p>
             </div>
           </div>
           <div className='h-5/6'>
