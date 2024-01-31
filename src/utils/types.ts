@@ -1,7 +1,7 @@
 export type Subject = {
   subject_id: string;
   subject_name: string;
-  subject_curriculum: string;
+  subject_board: string;
   subject_level: string;
   subject_icon: string;
 };
@@ -43,4 +43,5 @@ export type StudyLog = {
 };
 
 export type SetNumberState = React.Dispatch<React.SetStateAction<number>>;
+export type SetStringState = React.Dispatch<React.SetStateAction<string>>;
 export type SetDateState = React.Dispatch<React.SetStateAction<Date>>;
