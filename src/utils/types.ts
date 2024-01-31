@@ -7,6 +7,12 @@ export type Subject = {
 };
 
 export type SetSubjects = React.Dispatch<React.SetStateAction<Subject[]>>;
+export type SetSubject = React.Dispatch<React.SetStateAction<Subject | undefined>>;
+
+export type ExamBoard = {
+  exam_board: string;
+  levels: string[];
+};
 
 export type Assessment = {
   assessment_id: string;

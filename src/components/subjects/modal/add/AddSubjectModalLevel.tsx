@@ -1,26 +1,20 @@
 import axios from 'axios';
-import { SetStringState } from '../../../../utils/types';
+import { ExamBoard, SetStringState } from '../../../../utils/types';
 import { useEffect, useState } from 'react';
 import React from 'react';
 
-type ExamBoard = {
-  exam_board: string;
-  levels: string[];
-};
-
-type AddSubjectModalSelectLevelProps = {
+type AddSubjectModalLevelProps = {
   setExamBoard: SetStringState;
   setExamBoardLevel: SetStringState;
 };
 
-const AddSubjectModalSelectLevel = (props: AddSubjectModalSelectLevelProps) => {
+const AddSubjectModalLevel = (props: AddSubjectModalLevelProps) => {
   const [examBoards, setExamBoards] = useState<ExamBoard[]>([]);
 
   const fetchExamBoardsAndLevels = async () => {
     try {
       const res = await axios.get('/api/subjects/boards');
       setExamBoards(res.data.examBoards);
-      console.log(res.data);
     } catch (err: any) {
       console.error('Error fetching exam boards:', err.response.data.error);
     }
@@ -42,7 +36,7 @@ const AddSubjectModalSelectLevel = (props: AddSubjectModalSelectLevelProps) => {
         <div className='w-full'>
           <ul className='bg-primary border border-accent rounded-lg mt-2 overflow-y-scroll h-64'>
             {examBoards.map((board: ExamBoard) => (
-              <>
+              <div key={board.exam_board}>
                 {board.levels.map((level: string) => (
                   <li
                     key={level}
@@ -51,7 +45,7 @@ const AddSubjectModalSelectLevel = (props: AddSubjectModalSelectLevelProps) => {
                     <p className='font-medium'>{`${board.exam_board} ${level}`}</p>
                   </li>
                 ))}
-              </>
+              </div>
             ))}
           </ul>
         </div>
@@ -60,4 +54,4 @@ const AddSubjectModalSelectLevel = (props: AddSubjectModalSelectLevelProps) => {
   );
 };
 
-export default AddSubjectModalSelectLevel;
+export default AddSubjectModalLevel;

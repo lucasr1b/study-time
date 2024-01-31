@@ -1,9 +1,9 @@
-import { Subject } from '../../utils/types';
+import { SetSubject, Subject } from '../../utils/types';
 
 type SubjectItemProps = {
   openRemoveSubjectModal: (subject: Subject) => void;
   subject: Subject;
-  setSelectedSubject: any;
+  setSelectedSubject: SetSubject;
 };
 
 const SubjectItem = (props: SubjectItemProps) => {
