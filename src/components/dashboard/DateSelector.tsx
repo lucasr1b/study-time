@@ -4,14 +4,18 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type DateSelectorProps = {
   setSelectedDate?: any;
+  date?: Date;
 };
 
 const DateSelector = (props: DateSelectorProps) => {
-  const date = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1); // so assessment is not instantly due if accidentally added
+
+  const date = props.date || tomorrow;
   const currentYear = date.getFullYear();
   const lastYear = currentYear - 1;
 
-  const [day, setDay] = useState(date.getDate() + 1); // so assessment is not instantly due if accidentally added
+  const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth() + 1); // month starts from 0
   const [year, setYear] = useState(date.getFullYear());
 
