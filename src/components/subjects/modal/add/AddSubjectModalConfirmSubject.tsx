@@ -47,7 +47,7 @@ const AddSubjectModalConfirm = (props: AddSubjectModalConfirmProps) => {
             <label htmlFor='subject' className='block mb-2 text-sm font-medium'>Icon</label>
             <div className='flex flex-col gap-4 h-full'>
               <div className='flex items-center justify-center bg-primary border border-accent h-32 w-32 rounded-md'>
-                <p className='text-5xl hover:cursor-pointer hover:bg-accent rounded p-4'>🚀</p>
+                <p className='text-5xl hover:cursor-pointer hover:bg-accent rounded p-4'>{props.selectedSubject.subject_icon}</p>
               </div>
             </div>
             <button className='bg-primary border border-accent rounded-md h-10 w-full px-4 hover:bg-accent text-sm font-medium mt-4'>Add subject</button>
