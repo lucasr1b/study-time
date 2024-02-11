@@ -1,7 +1,16 @@
+import { useState } from 'react';
+import ManageEventsModal from './ManageEventsModal';
+
 const EventList = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <aside className='w-full h-1/2 p-4 border rounded-lg border-accent bg-primary'>
       <h1 className='font-semibold'>Upcoming events</h1>
+      <p className='text-blue-600 cursor-pointer hover:underline' onClick={() => setIsModalOpen(true)}>Manage events</p>
       <ul className='flex flex-col gap-2 mt-4'>
         <li className='flex gap-2'>
           <span className='font-medium'>Wed 25 Jan</span>
@@ -20,6 +29,7 @@ const EventList = () => {
           <p>Photolife</p>
         </li>
       </ul>
+      {isModalOpen && <ManageEventsModal closeModal={closeModal} />}
     </aside>
   );
 };

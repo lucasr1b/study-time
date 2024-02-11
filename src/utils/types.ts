@@ -50,4 +50,5 @@ export type StudyLog = {
 
 export type SetNumberState = React.Dispatch<React.SetStateAction<number>>;
 export type SetStringState = React.Dispatch<React.SetStateAction<string>>;
+export type SetBooleanState = React.Dispatch<React.SetStateAction<boolean>>;
 export type SetDateState = React.Dispatch<React.SetStateAction<Date>>;
