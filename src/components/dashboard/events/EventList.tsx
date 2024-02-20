@@ -1,35 +1,53 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ManageEventsModal from './ManageEventsModal';
+import UpdateEventModal from './UpdateEventModal';
+import axios from 'axios';
 
 const EventList = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [events, setEvents] = useState([]);
 
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedEvent(null);
+  };
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const fetchedEvents = await axios.get('/api/events');
+        setEvents(fetchedEvents.data.events);
+      } catch (err: any) {
+        console.error('Error fetching events:', err.response.data.error);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   return (
     <aside className='w-full h-1/2 p-4 border rounded-lg border-accent bg-primary'>
       <h1 className='font-semibold'>Upcoming events</h1>
       <p className='text-blue-600 cursor-pointer hover:underline' onClick={() => setIsModalOpen(true)}>Manage events</p>
       <ul className='flex flex-col gap-2 mt-4'>
-        <li className='flex gap-2'>
-          <span className='font-medium'>Wed 25 Jan</span>
-          <p>Tutor day</p>
-        </li>
-        <li className='flex gap-2'>
-          <span className='font-medium'>Thu 26 Jan</span>
-          <p>Tutor day</p>
-        </li>
-        <li className='flex gap-2'>
-          <span className='font-medium'>Mon 30 Jan</span>
-          <p>Auckland anniversary</p>
-        </li>
-        <li className='flex gap-2'>
-          <span className='font-medium'>Thu 2 Feb</span>
-          <p>Photolife</p>
-        </li>
+        {events.map((event: any) => (
+          <li key={event._id} className='flex gap-2'>
+            <span className='font-medium'>Wed 25 Jan</span>
+            <p>{event.title}</p>
+          </li>
+        ))}
       </ul>
-      {isModalOpen && <ManageEventsModal closeModal={closeModal} />}
+      {isModalOpen && (
+        <>
+          <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={closeModal}></div>
+          {!selectedEvent ? (
+            <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} />
+          ) : (
+            <UpdateEventModal closeModal={closeModal} selectedEvent={selectedEvent} />
+          )}
+        </>
+      )}
     </aside>
   );
 };

@@ -1,8 +1,11 @@
 type ManageEventsModalProps = {
   closeModal: () => void;
+  events: any;
+  setSelectedEvent: (event: any) => void;
 };
 
 const ManageEventsModal = (props: ManageEventsModalProps) => {
+
   return (
     <>
       <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={props.closeModal}></div>
@@ -10,22 +13,12 @@ const ManageEventsModal = (props: ManageEventsModalProps) => {
         <h1 className='font-semibold'>Manage Events</h1>
         <div className='w-full'>
           <ul className='bg-primary border border-accent rounded-lg mt-2 overflow-y-scroll h-64'>
-            <li className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer'>
-              <p className='font-medium'>Tutor day</p>
-              <p className='text-xs text-text-secondary'>Wed 25 Jan</p>
-            </li>
-            <li className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer'>
-              <p className='font-medium'>Tutor day</p>
-              <p className='text-xs text-text-secondary'>Thu 26 Jan</p>
-            </li>
-            <li className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer'>
-              <p className='font-medium'>Tutor day</p>
-              <p className='text-xs text-text-secondary'>Mon 30 Jan</p>
-            </li>
-            <li className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer'>
-              <p className='font-medium'>Tutor day</p>
-              <p className='text-xs text-text-secondary'>Thu 2 Feb</p>
-            </li>
+            {props.events.map((event: any) => (
+              <li key={event._id} className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer' onClick={() => props.setSelectedEvent(event)}>
+                <p className='font-medium'>{event.title}</p>
+                <p className='text-xs text-text-secondary'>Wed 25 Jan</p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

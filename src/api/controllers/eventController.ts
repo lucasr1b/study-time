@@ -6,7 +6,7 @@ export const getEventsController = async (req: NextApiRequest, res: NextApiRespo
   try {
     const user = getUserFromSession(req).email;
     const events = await Event.find({ user });
-    sendSuccessResponse(res, 'All events fetched', events);
+    sendSuccessResponse(res, 'All events fetched', { events });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Events not fetched', err.message);
