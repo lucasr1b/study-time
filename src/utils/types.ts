@@ -48,6 +48,15 @@ export type StudyLog = {
   date_logged: Date;
 };
 
+export type Event = {
+  _id: string;
+  user: string;
+  title: string;
+  date: Date;
+};
+
+export type SetEvent = React.Dispatch<React.SetStateAction<Event | undefined>>;
+
 export type SetNumberState = React.Dispatch<React.SetStateAction<number>>;
 export type SetStringState = React.Dispatch<React.SetStateAction<string>>;
 export type SetBooleanState = React.Dispatch<React.SetStateAction<boolean>>;

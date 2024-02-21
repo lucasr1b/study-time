@@ -1,7 +1,10 @@
+import { formatEventDate } from '../../../utils/helpers';
+import { Event, SetEvent } from '../../../utils/types';
+
 type ManageEventsModalProps = {
   closeModal: () => void;
-  events: any;
-  setSelectedEvent: (event: any) => void;
+  events: Event[];
+  setSelectedEvent: SetEvent;
 };
 
 const ManageEventsModal = (props: ManageEventsModalProps) => {
@@ -13,10 +16,10 @@ const ManageEventsModal = (props: ManageEventsModalProps) => {
         <h1 className='font-semibold'>Manage Events</h1>
         <div className='w-full'>
           <ul className='bg-primary border border-accent rounded-lg mt-2 overflow-y-scroll h-64'>
-            {props.events.map((event: any) => (
+            {props.events.map((event: Event) => (
               <li key={event._id} className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer' onClick={() => props.setSelectedEvent(event)}>
                 <p className='font-medium'>{event.title}</p>
-                <p className='text-xs text-text-secondary'>Wed 25 Jan</p>
+                <p className='text-xs text-text-secondary'>{formatEventDate(event.date)}</p>
               </li>
             ))}
           </ul>
