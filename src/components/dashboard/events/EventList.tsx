@@ -46,7 +46,7 @@ const EventList = () => {
           {!selectedEvent ? (
             <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} />
           ) : (
-            <UpdateEventModal closeModal={closeModal} selectedEvent={selectedEvent} />
+            <UpdateEventModal closeModal={closeModal} setSelectedEvent={setSelectedEvent} selectedEvent={selectedEvent} />
           )}
         </>
       )}
