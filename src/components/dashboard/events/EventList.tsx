@@ -4,16 +4,22 @@ import UpdateEventModal from './UpdateEventModal';
 import axios from 'axios';
 import { Event } from '../../../utils/types';
 import { formatEventDate } from '../../../utils/helpers';
+import AddEventModal from './AddEventModal';
 
 const EventList = () => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<Event>();
+  const [selectedEvent, setSelectedEvent] = useState<Event | undefined>();
+  const [eventModalAction, setEventModalAction] = useState('');
   const [events, setEvents] = useState<Event[]>([]);
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedEvent(undefined);
+  };
+
+  const goBack = () => {
+    setSelectedEvent(undefined);
+    setEventModalAction('');
   };
 
   useEffect(() => {
@@ -43,15 +49,19 @@ const EventList = () => {
       {isModalOpen && (
         <>
           <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={closeModal}></div>
-          {!selectedEvent ? (
-            <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} />
-          ) : (
-            <UpdateEventModal closeModal={closeModal} setSelectedEvent={setSelectedEvent} selectedEvent={selectedEvent} />
-          )}
+          {eventModalAction === '' &&
+            <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} setEventModalAction={setEventModalAction} />
+          }
+          {eventModalAction === 'add' &&
+            <AddEventModal back={goBack} />
+          }
+          {eventModalAction === 'edit' && selectedEvent &&
+            <UpdateEventModal closeModal={closeModal} back={goBack} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} />
+          }
         </>
       )}
     </aside>
   );
 };
 
-export default EventList;
+export default EventList; 
