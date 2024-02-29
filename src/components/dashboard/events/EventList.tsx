@@ -23,6 +23,36 @@ const EventList = () => {
     setEventModalAction('');
   };
 
+  const addEvent = async (title: string, date: Date) => {
+    try {
+      const res = await axios.post('/api/events/add', { title, date });
+      setEvents([...events, res.data.newEvent]);
+      closeModal();
+    } catch (err: any) {
+      console.error('Error adding event:', err.response.data.error);
+    }
+  };
+
+  const deleteEvent = async (id: string) => {
+    try {
+      await axios.post('/api/events/delete', { id });
+      setEvents(events.filter((event: Event) => event._id !== id));
+      closeModal();
+    } catch (err: any) {
+      console.error('Error deleting event:', err.response.data.error);
+    }
+  };
+
+  const updateEvent = async (id: string, title: string, date: Date) => {
+    try {
+      const res = await axios.post('/api/events/update', { id, title, date });
+      setEvents(events.map((event: Event) => event._id === id ? res.data.updatedEvent : event));
+      closeModal();
+    } catch (err: any) {
+      console.error('Error updating event:', err.response.data.error);
+    }
+  };
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -54,10 +84,10 @@ const EventList = () => {
             <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} setEventModalAction={setEventModalAction} />
           }
           {eventModalAction === 'add' &&
-            <AddEventModal closeModal={closeModal} back={goBack} />
+            <AddEventModal closeModal={closeModal} back={goBack} addEvent={addEvent} />
           }
           {eventModalAction === 'edit' && selectedEvent &&
-            <UpdateEventModal closeModal={closeModal} back={goBack} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} />
+            <UpdateEventModal closeModal={closeModal} back={goBack} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} deleteEvent={deleteEvent} updateEvent={updateEvent} />
           }
         </>
       )}
