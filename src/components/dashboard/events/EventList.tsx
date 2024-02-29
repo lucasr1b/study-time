@@ -15,6 +15,7 @@ const EventList = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedEvent(undefined);
+    setEventModalAction('');
   };
 
   const goBack = () => {
@@ -53,7 +54,7 @@ const EventList = () => {
             <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} setEventModalAction={setEventModalAction} />
           }
           {eventModalAction === 'add' &&
-            <AddEventModal back={goBack} />
+            <AddEventModal closeModal={closeModal} back={goBack} />
           }
           {eventModalAction === 'edit' && selectedEvent &&
             <UpdateEventModal closeModal={closeModal} back={goBack} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} />
