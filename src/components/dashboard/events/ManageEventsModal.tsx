@@ -1,12 +1,12 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { formatEventDate } from '../../../utils/helpers';
-import { Event, SetEvent } from '../../../utils/types';
+import { Event, SetEvent, SetStringState } from '../../../utils/types';
 
 type ManageEventsModalProps = {
   closeModal: () => void;
   events: Event[];
   setSelectedEvent: SetEvent;
-  setEventModalAction: any;
+  setEventModalAction: SetStringState;
 };
 
 const ManageEventsModal = (props: ManageEventsModalProps) => {
