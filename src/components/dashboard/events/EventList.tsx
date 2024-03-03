@@ -26,7 +26,9 @@ const EventList = () => {
   const addEvent = async (title: string, date: Date) => {
     try {
       const res = await axios.post('/api/events/add', { title, date });
-      setEvents([...events, res.data.newEvent]);
+      const newEvent = res.data.newEvent;
+      const updatedEvents = [...events, newEvent].sort((eventA: Event, eventB: Event) => new Date(eventA.date).getTime() - new Date(eventB.date).getTime());
+      setEvents(updatedEvents);
       closeModal();
     } catch (err: any) {
       console.error('Error adding event:', err.response.data.error);
@@ -36,7 +38,8 @@ const EventList = () => {
   const deleteEvent = async (id: string) => {
     try {
       await axios.post('/api/events/delete', { id });
-      setEvents(events.filter((event: Event) => event._id !== id));
+      const updatedEvents = events.filter((event: Event) => event._id !== id);
+      setEvents(updatedEvents);
       closeModal();
     } catch (err: any) {
       console.error('Error deleting event:', err.response.data.error);
@@ -46,7 +49,9 @@ const EventList = () => {
   const updateEvent = async (id: string, title: string, date: Date) => {
     try {
       const res = await axios.post('/api/events/update', { id, title, date });
-      setEvents(events.map((event: Event) => event._id === id ? res.data.updatedEvent : event));
+      const updatedEvent = res.data.updatedEvent;
+      const updatedEvents = events.map((event: Event) => event._id === id ? updatedEvent : event).sort((eventA: Event, eventB: Event) => new Date(eventA.date).getTime() - new Date(eventB.date).getTime());
+      setEvents(updatedEvents);
       closeModal();
     } catch (err: any) {
       console.error('Error updating event:', err.response.data.error);
