@@ -3,19 +3,17 @@ import { padDate, validateAssessmentDate } from '../../utils/helpers';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type DateSelectorProps = {
-  setSelectedDate?: any;
   date?: Date;
+  setSelectedDate: any;
+  isStrict?: boolean;
 };
 
 const DateSelector = (props: DateSelectorProps) => {
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1); // so assessment is not instantly due if accidentally added
-
-  const date = props.date || tomorrow;
+  const date = props.date || new Date();
   const currentYear = date.getFullYear();
   const lastYear = currentYear - 1;
 
-  const [day, setDay] = useState(date.getDate());
+  const [day, setDay] = useState(props.date ? date.getDate() : date.getDate() + 1); // so assessment is not instantly due if accidentally added
   const [month, setMonth] = useState(date.getMonth() + 1); // month starts from 0
   const [year, setYear] = useState(date.getFullYear());
 
@@ -30,7 +28,12 @@ const DateSelector = (props: DateSelectorProps) => {
     setDay(selectedDay);
 
     const selectedDate = createDate(selectedDay, month, year);
-    validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
+    props.setSelectedDate(selectedDate);
+
+    if (props.isStrict) {
+      validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
+    }
+
   };
 
   const handleMonthChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -42,7 +45,11 @@ const DateSelector = (props: DateSelectorProps) => {
     }
 
     const selectedDate = createDate(day, selectedMonth, year);
-    validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
+    props.setSelectedDate(selectedDate);
+
+    if (props.isStrict) {
+      validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
+    }
   };
 
   const handleYearChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -54,7 +61,11 @@ const DateSelector = (props: DateSelectorProps) => {
     }
 
     const selectedDate = createDate(day, month, selectedYear);
-    validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
+    props.setSelectedDate(selectedDate);
+
+    if (props.isStrict) {
+      validateAssessmentDate(selectedDate, setDay, setMonth, setYear, props.setSelectedDate);
+    }
   };
 
   const dayOptions = Array.from({ length: daysInMonth(year, month) }, (_, i) => (
@@ -96,3 +107,8 @@ const DateSelector = (props: DateSelectorProps) => {
 };
 
 export default DateSelector;
+
+
+DateSelector.defaultProps = {
+  isStrict: true,
+};

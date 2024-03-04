@@ -110,3 +110,10 @@ export const validateAssessmentDate = (selectedDate: Date, setDay: SetNumberStat
     setSelectedDate(selectedDate);
   }
 };
+
+export const formatEventDate = (date: Date) => {
+  date = new Date(date);
+  const options = { weekday: 'short', day: 'numeric', month: 'short' } as Intl.DateTimeFormatOptions;
+
+  return date.toLocaleDateString('en-NZ', options);
+};
