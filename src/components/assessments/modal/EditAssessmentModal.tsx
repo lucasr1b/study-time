@@ -11,7 +11,7 @@ type AddAssessmentModalProps = {
 };
 
 const EditAssessmentModal = (props: AddAssessmentModalProps) => {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>(new Date(props.assessment.date));
   const [description, setDescription] = useState<string>(props.assessment.description);
 
   const handleDescriptionChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +53,7 @@ const EditAssessmentModal = (props: AddAssessmentModalProps) => {
                 {props.assessment.subject_icon} {props.assessment.subject_name}
               </div>
             </div>
-            <DateSelector setSelectedDate={setDate} />
+            <DateSelector date={date} setSelectedDate={setDate} />
             <div className='inline-flex border border-accent rounded-md p-2' onChange={handleDescriptionChange}>
               <textarea placeholder='Description (optional)' className='w-full resize-none outline-none bg-primary' defaultValue={props.assessment.description} />
             </div>
