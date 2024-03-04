@@ -43,30 +43,33 @@ const Sidebar = () => {
         </ul>
       </div>
       {isDropdownOpen && (
-        <div className='top-full right-0 mb-2 bg-primary border border-accent p-2 rounded-md shadow-md shadow-dropdown-shadow'>
-          <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent' onClick={toggleTheme}>
-            {darkMode ? (
-              <>
-                <SunIcon className='w-5 h-5' />
-                Light Mode
-              </>
-            ) : (
-              <>
-                <MoonIcon className='w-5 h-5' />
-                Dark Mode
-              </>
-            )
-            }
+        <>
+          <div className='fixed z-40 flex items-center justify-center w-full h-full top-0 left-0' onClick={() => setIsDropdownOpen(false)}></div>
+          <div className='top-full right-0 mb-2 bg-primary border border-accent p-2 rounded-md shadow-md shadow-dropdown-shadow z-50'>
+            <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent' onClick={toggleTheme}>
+              {darkMode ? (
+                <>
+                  <SunIcon className='w-5 h-5' />
+                  Light Mode
+                </>
+              ) : (
+                <>
+                  <MoonIcon className='w-5 h-5' />
+                  Dark Mode
+                </>
+              )
+              }
 
+            </div>
+            <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent'
+              onClick={logoutUser}>
+              <ArrowLeftOnRectangleIcon className='w-5 h-5' />
+              Logout
+            </div>
           </div>
-          <div className='flex items-center gap-2 p-2 rounded cursor-pointer hover:bg-lighter-accent'
-            onClick={logoutUser}>
-            <ArrowLeftOnRectangleIcon className='w-5 h-5' />
-            Logout
-          </div>
-        </div>
+        </>
       )}
-      <div className='border border-accent p-3 rounded-md mb-2 cursor-pointer hover:bg-accent'
+      <div className='border border-accent p-3 rounded-md mb-2 cursor-pointer hover:bg-accent z-50'
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
         <span className='flex gap-2'><Cog6ToothIcon className='w-6 h-6' />
           Settings
