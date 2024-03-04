@@ -37,7 +37,7 @@ const AddSubjectModalConfirm = (props: AddSubjectModalConfirmProps) => {
             <div className='flex flex-col gap-2 bg-primary border border-accent h-32 rounded-lg p-4'>
               <p className='text-blue-600 hover:cursor-pointer hover:underline w-fit' onClick={resetSelectedSubject}>← Back to list</p>
               <div className='flex flex-row'>
-                <p className='text-lg font-medium'>{props.selectedSubject.subject_icon} {props.selectedSubject.subject_name}</p>
+                <p className='text-lg font-medium'>{props.selectedSubject.subject_name}</p>
                 <div className='bg-accent rounded-lg py-1 px-2 ml-auto text-text-secondary text-sm'>{props.selectedSubject.subject_level}</div>
               </div>
               <p className='text-text-secondary'>{props.selectedSubject.subject_board}</p>
