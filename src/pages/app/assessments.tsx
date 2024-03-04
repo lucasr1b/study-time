@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Sidebar from '../../components/sidebar/Sidebar';
-import AssessmentPastPaper from '../../components/assessments/AssessmentPastPaper';
+// import AssessmentPastPaper from '../../components/assessments/AssessmentPastPaper';
 import AssessmentItem from '../../components/assessments/AssessmentItem';
 import AddAssessmentButton from '../../components/assessments/AddAssessmentButton';
 import { useEffect, useState } from 'react';
@@ -79,13 +79,14 @@ const AssessmentsPage: NextPage = () => {
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Assessments</p>
         <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
-          <div className='bg-primary border border-accent rounded-lg p-4 w-full'>
+          <div className='bg-primary border border-accent rounded-lg p-4 w-full min-h-60'>
             <h1 className='font-semibold mb-4'>Past papers</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 pb-4'>
+              {/* <AssessmentPastPaper />
               <AssessmentPastPaper />
               <AssessmentPastPaper />
-              <AssessmentPastPaper />
-              <AssessmentPastPaper />
+              <AssessmentPastPaper /> */}
+              <span className='font-medium italic'>✨ COMING SOON ✨</span>
             </div>
           </div>
           <div className='bg-primary border border-accent rounded-lg p-4 w-full'>
