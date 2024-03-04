@@ -15,7 +15,7 @@ const SubjectsPage: NextPage = () => {
   const [isAddSubjetModalOpen, setIsAddSubjectModalOpen] = useState(false);
   const [isRemoveSubjectModalOpen, setIsRemoveSubjectModalOpen] = useState(false);
   const [subjects, setSubjects] = useState<Subject[]>([]);
-  const [selectedSubject, setSelectedSubject] = useState<Subject>({} as Subject);
+  const [selectedSubject, setSelectedSubject] = useState<Subject>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const SubjectsPage: NextPage = () => {
           <SubjectStudyLogList />
         </div>
         {isAddSubjetModalOpen && <AddSubjectModal closeModal={closeModal} subjects={subjects} setSubjects={setSubjects} />}
-        {isRemoveSubjectModalOpen && <RemoveSubjectModal closeModal={closeModal} confirm={removeSubject} subject={selectedSubject} />}
+        {isRemoveSubjectModalOpen && selectedSubject && <RemoveSubjectModal closeModal={closeModal} confirm={removeSubject} subject={selectedSubject} />}
       </div>
     </div >
   );
