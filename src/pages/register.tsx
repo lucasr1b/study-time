@@ -36,12 +36,12 @@ const RegisterPage = () => {
           </h1>
           <form className='space-y-4' onSubmit={registerUser}>
             <div>
-              <label htmlFor='uname' className='block mb-2 text-sm font-medium'>Name</label>
-              <input type='text' name='uname' id='uname' className='border border-accent rounded-lg block w-full p-2.5 focus:outline-accent placeholder:text-text-secondary bg-primary' placeholder='John Doe' />
-            </div>
-            <div>
               <label htmlFor='email' className='block mb-2 text-sm font-medium'>Email</label>
               <input type='text' name='email' id='email' className='border border-accent rounded-lg block w-full p-2.5 focus:outline-accent placeholder:text-text-secondary bg-primary' placeholder='john.doe@gmail.com' />
+            </div>
+            <div>
+              <label htmlFor='uname' className='block mb-2 text-sm font-medium'>Name</label>
+              <input type='text' name='uname' id='uname' className='border border-accent rounded-lg block w-full p-2.5 focus:outline-accent placeholder:text-text-secondary bg-primary' placeholder='John Doe' />
             </div>
             <div>
               <label htmlFor='password' className='block mb-2 text-sm font-medium'>Password</label>
