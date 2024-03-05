@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Link from 'next/link';
 import Router from 'next/router';
 import { SyntheticEvent } from 'react';
 
@@ -41,7 +42,7 @@ const LoginPage = () => {
             </div>
             <button className='w-full border border-accent hover:bg-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Sign in</button>
             <p className='text-sm font-light text-text-secondary'>
-              Don&apos;t have an account yet? <a href='register' className='font-medium text-text hover:underline'>Sign up</a>
+              Don&apos;t have an account yet? <Link href='/register' className='font-medium text-text hover:underline'>Sign up</Link>
             </p>
           </form>
         </div>
