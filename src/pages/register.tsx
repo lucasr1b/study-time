@@ -53,7 +53,7 @@ const RegisterPage = () => {
             </div>
             <button type='submit' className='w-full border border-accent hover:bg-accent font-medium rounded-lg text-sm px-5 py-2.5 text-center'>Sign up</button>
             <p className='text-sm font-light text-text-secondary'>
-              Already have an account? <Link href='/' className='font-medium text-text hover:underline'>Sign in</Link>
+              Already have an account? <Link href='/login' className='font-medium text-text hover:underline'>Sign in</Link>
             </p>
           </form>
         </div>
