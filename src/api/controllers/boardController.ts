@@ -11,10 +11,8 @@ connectToDB();
 
 export const getAllExamBoardsController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (isUserLoggedIn(req, res)) {
-      const examBoards = await ExamBoard.find();
-      sendSuccessResponse(res, 'All exam boards fetched', { examBoards });
-    }
+    const examBoards = await ExamBoard.find();
+    sendSuccessResponse(res, 'All exam boards fetched', { examBoards });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Exam boards not fetched', err.message);
