@@ -2,6 +2,8 @@ import axios from 'axios';
 import Router from 'next/router';
 import Link from 'next/link';
 import { SyntheticEvent } from 'react';
+import { withIronSessionSsr } from 'iron-session/next';
+import { sessionOptions } from '../lib/session';
 
 const RegisterPage = () => {
 
@@ -61,5 +63,24 @@ const RegisterPage = () => {
     </div >
   );
 };
+
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req }) => {
+    const user = req.session.user;
+
+    if (user) {
+      return {
+        redirect: {
+          destination: '/app',
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {},
+    };
+  }, sessionOptions,
+);
 
 export default RegisterPage;

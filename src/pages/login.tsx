@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { withIronSessionSsr } from 'iron-session/next';
 import Link from 'next/link';
 import Router from 'next/router';
 import { SyntheticEvent } from 'react';
+import { sessionOptions } from '../lib/session';
 
 const LoginPage = () => {
 
@@ -50,5 +52,24 @@ const LoginPage = () => {
     </div>
   );
 };
+
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req }) => {
+    const user = req.session.user;
+
+    if (user) {
+      return {
+        redirect: {
+          destination: '/app',
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {},
+    };
+  }, sessionOptions,
+);
 
 export default LoginPage;
