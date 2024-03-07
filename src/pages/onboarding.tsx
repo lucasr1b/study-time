@@ -16,14 +16,6 @@ const OnboardingPage = () => {
   const totalSteps = 4;
   const progressWidth = `${(100 / totalSteps) * step}%`;
 
-  const handleNextStep = () => {
-    setStep(step + 1);
-  };
-
-  const handlePreviousStep = () => {
-    setStep(step - 1);
-  };
-
   const handleYearLevel = (e: any) => setYearLevel(parseInt(e.target.value));
   const handleCountry = (e: any) => setCountry(e.target.value);
   const handleExamBoard = (board: string, level?: string) => {
@@ -50,13 +42,27 @@ const OnboardingPage = () => {
       try {
         const res = await axios.get('/api/boards');
         setExamBoardsList(res.data.examBoards);
-        console.log(res.data.examBoards);
       } catch (err: any) {
         console.error('Error fetching exam boards:', err.response.data.error);
       }
     };
+
     fetchExamBoardsAndLevels();
   }, []);
+
+  const fetchSubjects = async (boardName: string, boardLevel: string) => { // fetch from ids
+    console.log('Fetching subjects for', boardName, boardLevel);
+  };
+
+  const handleNextStep = () => {
+    setStep(step + 1);
+
+    if (step === 3) fetchSubjects(examBoard, examLevel);
+  };
+
+  const handlePreviousStep = () => {
+    setStep(step - 1);
+  };
 
   return (
     <div className='px-8 py-4 h-screen flex flex-col justify-center items-center'>
@@ -123,21 +129,21 @@ const OnboardingPage = () => {
               <div className='flex justify-center mb-6'>
                 {examBoardsList.map((board: ExamBoard, i) => (
                   <div key={i}>
-                    {(!board.levels || board.levels.length === 0) && (
+                    {(!board.board_levels || board.board_levels.length === 0) && (
                       <button
-                        className={`border border-gray-400 rounded-md py-2 px-4 mr-4 ${examBoard === board.exam_board ? 'bg-accent' : 'bg-white'}`}
-                        onClick={() => handleExamBoard(board.exam_board)}>
-                        {board.exam_board}
+                        className={`border border-gray-400 rounded-md py-2 px-4 mr-4 ${examBoard === board.board_name ? 'bg-accent' : 'bg-white'}`}
+                        onClick={() => handleExamBoard(board.board_name)}>
+                        {board.board_name}
                       </button>
                     )}
-                    {board.levels && board.levels.length > 0 && (
+                    {board.board_levels && board.board_levels.length > 0 && (
                       <div className="ml-2">
-                        {board.levels.map((level: string, j) => (
+                        {board.board_levels.map((level: string, j) => (
                           <button
                             key={j}
-                            className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${examBoard === board.exam_board && examLevel === level ? 'bg-accent' : 'bg-white'}`}
-                            onClick={() => handleExamBoard(board.exam_board, level)}>
-                            {board.exam_board} {level}
+                            className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${examBoard === board.board_name && examLevel === level ? 'bg-accent' : 'bg-white'}`}
+                            onClick={() => handleExamBoard(board.board_name, level)}>
+                            {board.board_name} {level}
                           </button>
                         ))}
                       </div>

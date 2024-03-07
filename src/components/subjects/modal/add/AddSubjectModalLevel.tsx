@@ -21,7 +21,7 @@ const AddSubjectModalLevel = (props: AddSubjectModalLevelProps) => {
   };
 
   const selectBoardAndLevel = (board: ExamBoard, level: string) => {
-    props.setExamBoard(board.exam_board);
+    props.setExamBoard(board.board_name);
     props.setExamBoardLevel(level);
   };
 
@@ -36,13 +36,13 @@ const AddSubjectModalLevel = (props: AddSubjectModalLevelProps) => {
         <div className='w-full'>
           <ul className='bg-primary border border-accent rounded-lg mt-2 overflow-y-scroll h-64'>
             {examBoards.map((board: ExamBoard) => (
-              <div key={board.exam_board}>
-                {board.levels.map((level: string) => (
+              <div key={board.board_name}>
+                {board.board_levels.map((level: string) => (
                   <li
                     key={level}
                     className='flex items-center h-12 w-full p-2 hover:bg-accent hover:cursor-pointer'
                     onClick={() => selectBoardAndLevel(board, level)}>
-                    <p className='font-medium'>{`${board.exam_board} ${level}`}</p>
+                    <p className='font-medium'>{`${board.board_name} ${level}`}</p>
                   </li>
                 ))}
               </div>

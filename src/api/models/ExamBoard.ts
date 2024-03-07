@@ -1,18 +1,17 @@
 import mongoose from 'mongoose';
 
 export interface IExamBoard extends mongoose.Document {
-  exam_board: string;
-  levels: string[];
+  board_name: string;
+  board_levels: string[];
 }
 
 const ExamBoardSchema = new mongoose.Schema({
-
-  exam_board: {
+  board_name: {
     type: String,
     required: true,
   },
 
-  levels: [{
+  board_levels: [{
     type: String,
     required: true,
   }],

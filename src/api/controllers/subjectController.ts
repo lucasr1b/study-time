@@ -76,7 +76,7 @@ export const getSubjectListController = async (req: NextApiRequest, res: NextApi
   }
 };
 
-// @Desc Get subject from subjects list
+// @Desc Get a subject from subjects list
 // @Route /api/subjects/list/:id
 // @Method GET
 
@@ -85,6 +85,22 @@ export const getSubjectListItemController = async (req: NextApiRequest, res: Nex
     const { id } = req.query;
     const subject = await CambridgeSubject.findOne({ subject_id: id });
     sendSuccessResponse(res, 'Subject fetched', { subject });
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subject not fetched', err.message);
+  }
+};
+
+// @Desc Get subjects from subjects list with board filter
+// @Route /api/subjects/list/:board
+// @Method GET
+
+export const getSubjectListItemFromExamBoardController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { board } = req.query;
+    console.log(board);
+    const subjects = await CambridgeSubject.find({ subject_board: board });
+    sendSuccessResponse(res, 'Subjects fetched', { subjects });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject not fetched', err.message);
