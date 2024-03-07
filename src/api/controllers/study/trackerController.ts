@@ -7,7 +7,7 @@ import User from '../../models/User';
 
 connectToDB();
 
-// @Desc Get all trackers
+// @Desc Get all trackers for user
 // @Route /api/study/trackers
 // @Method GET
 
@@ -24,7 +24,7 @@ export const getAllSubjectTrackersController = async (req: NextApiRequest, res: 
   }
 };
 
-// @Desc Get tracker for a subject
+// @Desc Get tracker for user for a subject
 // @Route /api/study/trackers/:subjectId
 // @Method GET
 
@@ -42,7 +42,7 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
   }
 };
 
-// @Desc Get all trackers that are setup to track weekly progress
+// @Desc Get all trackers that are setup to track weekly progress for user
 // @Route /api/study/trackers/weekly
 // @Method GET
 
@@ -65,7 +65,7 @@ export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, r
   }
 };
 
-// @Desc Setup new tracker for subject
+// @Desc Setup new tracker for user for a subject
 // @Route /api/study/trackers/setup
 // @Method POST
 
@@ -82,7 +82,7 @@ export const setupStudyTrackerController = async (req: NextApiRequest, res: Next
   }
 };
 
-// @Desc Edit tracker time for subject
+// @Desc Edit tracker time for user for a subject
 // @Route /api/study/trackers/edit
 // @Method POST
 
@@ -99,7 +99,7 @@ export const editStudyTrackerTimeController = async (req: NextApiRequest, res: N
   }
 };
 
-// @Desc Remove tracker for subject
+// @Desc Remove tracker for user for a subject
 // @Route /api/study/trackers/remove
 // @Method POST
 
@@ -116,7 +116,7 @@ export const removeStudyTrackerController = async (req: NextApiRequest, res: Nex
   }
 };
 
-// @Desc Update time for study tracker
+// @Desc Update time for user study tracker
 // @Route /api/study/trackers/update
 // @Method PUT
 

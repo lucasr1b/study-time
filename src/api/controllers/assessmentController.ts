@@ -6,7 +6,7 @@ import Assessment from '../models/Assessment';
 
 connectToDB();
 
-// @Desc Get all assessments
+// @Desc Get all assessments for user
 // @Route /api/assessments
 // @Method GET
 
@@ -23,7 +23,7 @@ export const getAllAssessmentsController = async (req: NextApiRequest, res: Next
   }
 };
 
-// @Desc Add new assessment
+// @Desc Add new assessment to user
 // @Route /api/assessments/add
 // @Method POST
 
@@ -41,7 +41,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
   }
 };
 
-// @Desc Edit assessment
+// @Desc Edit assessment for user
 // @Route /api/assessments/edit
 // @Method PUT
 
@@ -58,7 +58,7 @@ export const editAssessmentController = async (req: NextApiRequest, res: NextApi
   }
 };
 
-// @Desc Delete assessment
+// @Desc Delete assessment for user
 // @Route /api/assessments/delete
 // @Method POST
 

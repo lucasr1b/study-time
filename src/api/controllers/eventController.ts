@@ -6,7 +6,7 @@ import { createEvent, deleteEvent, updateEvent } from '../services/eventService'
 
 connectToDB();
 
-// @Desc Get all events
+// @Desc Get all events for user
 // @Route /api/events
 // @Method GET
 

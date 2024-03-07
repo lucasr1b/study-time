@@ -7,7 +7,7 @@ import CambridgeSubject from '../models/CambridgeSubject';
 
 connectToDB();
 
-// @Desc Get all subjects
+// @Desc Get all subjects for user
 // @Route /api/subjects
 // @Method GET
 
@@ -68,10 +68,8 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
 
 export const getSubjectListController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (isUserLoggedIn(req, res)) {
-      const subjects = await CambridgeSubject.find();
-      sendSuccessResponse(res, 'Subject list fetched', { subjects });
-    }
+    const subjects = await CambridgeSubject.find();
+    sendSuccessResponse(res, 'Subject list fetched', { subjects });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject list not fetched', err.message);
@@ -84,11 +82,9 @@ export const getSubjectListController = async (req: NextApiRequest, res: NextApi
 
 export const getSubjectListItemController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (isUserLoggedIn(req, res)) {
-      const { id } = req.query;
-      const subject = await CambridgeSubject.findOne({ subject_id: id });
-      sendSuccessResponse(res, 'Subject fetched', { subject });
-    }
+    const { id } = req.query;
+    const subject = await CambridgeSubject.findOne({ subject_id: id });
+    sendSuccessResponse(res, 'Subject fetched', { subject });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject not fetched', err.message);
