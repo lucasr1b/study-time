@@ -13,7 +13,7 @@ const AddSubjectModalLevel = (props: AddSubjectModalLevelProps) => {
 
   const fetchExamBoardsAndLevels = async () => {
     try {
-      const res = await axios.get('/api/subjects/boards');
+      const res = await axios.get('/api/boards');
       setExamBoards(res.data.examBoards);
     } catch (err: any) {
       console.error('Error fetching exam boards:', err.response.data.error);
