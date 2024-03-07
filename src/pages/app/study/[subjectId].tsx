@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Sidebar from '../../../components/sidebar/Sidebar';
+import Sidebar from '../../../components/navigation/sidebar/Sidebar';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import SubjectTimer from '../../../components/study/subject/SubjectTimer';

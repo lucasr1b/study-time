@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Navbar from '../components/navigation/Navbar';
 
 const OnboardingPage = () => {
   const [step, setStep] = useState(1);
@@ -42,13 +42,7 @@ const OnboardingPage = () => {
 
   return (
     <div className='px-8 py-4 h-screen flex flex-col justify-center items-center'>
-      <div className='flex w-full'>
-        <Link href='/' className='text-3xl font-semibold'>Study Time</Link>
-        <div className='flex gap-4 ml-auto'>
-          <Link href='/login' className='border border-accent rounded-lg py-2 px-4 w-fit font-medium hover:bg-accent hover:cursor-pointer'>Login</Link>
-          <Link href='/register' className='border border-accent rounded-lg py-2 px-4 w-fit font-medium hover:bg-accent hover:cursor-pointer'>Sign up</Link>
-        </div>
-      </div>
+      <Navbar hideAuth={true} />
       <div className='flex flex-col items-center justify-center h-full w-full'>
         <div className='flex justify-center w-full max-w-lg'>
           {step === 1 && (

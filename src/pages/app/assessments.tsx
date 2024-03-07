@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Sidebar from '../../components/sidebar/Sidebar';
+import Sidebar from '../../components/navigation/sidebar/Sidebar';
 // import AssessmentPastPaper from '../../components/assessments/AssessmentPastPaper';
 import AssessmentItem from '../../components/assessments/AssessmentItem';
 import AddAssessmentButton from '../../components/assessments/AddAssessmentButton';
