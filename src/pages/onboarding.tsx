@@ -3,6 +3,12 @@ import Navbar from '../components/navigation/Navbar';
 import { ExamBoardDetails, Subject } from '../utils/types';
 import { fetchExamBoardDetails } from '../utils/helpers';
 import axios from 'axios';
+import SelectYearLevel from '../components/onboarding/steps/SelectYearLevel';
+import SelectCountry from '../components/onboarding/steps/SelectCountry';
+import SelectExamBoard from '../components/onboarding/steps/SelectExamBoard';
+import SelectSubjects from '../components/onboarding/steps/SelectSubjects';
+import StepsNavigation from '../components/onboarding/StepsNavigation';
+import StepsProgress from '../components/onboarding/StepsProgress';
 
 const OnboardingPage = () => {
   const [examBoardsDetails, setExamBoardsDetails] = useState<ExamBoardDetails[]>([]);
@@ -20,19 +26,28 @@ const OnboardingPage = () => {
   const totalSteps = 4;
   const progressWidth = `${(100 / totalSteps) * step}%`;
 
-  const handleYearLevel = (e: ChangeEvent<HTMLSelectElement>) => setYearLevel(parseInt(e.target.value));
-  const handleCountry = (e: ChangeEvent<HTMLSelectElement>) => setCountry(e.target.value);
+  const [canProceed, setCanProceed] = useState(false);
+
+  const handleYearLevel = (e: ChangeEvent<HTMLSelectElement>) => {
+    setYearLevel(parseInt(e.target.value));
+  };
+
+  const handleCountry = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCountry(e.target.value);
+  };
+
   const handleExamBoard = (board: ExamBoardDetails) => {
     setExamLevel(''); // reset exam level if exam board changes
     setExamLevelId('');
+    setSelectedSubjects([]);
     setExamBoard(board.board_name);
     setExamBoardId(board.board_id);
     if (board.level_name != '') {
       setExamLevel(board.level_name);
       setExamLevelId(board.level_id);
     }
-    setSelectedSubjects([]);
   };
+
   const handleSubjects = (subject: string) => {
     if (selectedSubjects.includes(subject)) {
       setSelectedSubjects(prev => prev.filter(s => s !== subject));
@@ -41,7 +56,29 @@ const OnboardingPage = () => {
     }
   };
 
-  const handleFinish = () => {
+  useEffect(() => {
+    const checkCanProceed = () => {
+      switch (step) {
+        case 1:
+          setCanProceed(yearLevel !== 0);
+          break;
+        case 2:
+          setCanProceed(country !== '');
+          break;
+        case 3:
+          setCanProceed(examBoard !== '');
+          break;
+        case 4:
+          setCanProceed(selectedSubjects.length > 0);
+          break;
+      }
+    };
+
+    checkCanProceed();
+  }, [yearLevel, country, examBoard, selectedSubjects, step]);
+
+
+  const finish = () => {
     // Handle finishing onboarding process
     console.log('Onboarding finished with year level:', yearLevel, 'country:', country, 'exam board:', examBoard, 'exam level:', examLevel, 'subjects:', selectedSubjects);
   };
@@ -65,13 +102,12 @@ const OnboardingPage = () => {
     }
   };
 
-  const handleNextStep = () => {
+  const nextStep = () => {
     setStep(step + 1);
-
     if (step === 3) fetchSubjects(examBoardId, examLevelId);
   };
 
-  const handlePreviousStep = () => {
+  const previousStep = () => {
     setStep(step - 1);
   };
 
@@ -80,119 +116,43 @@ const OnboardingPage = () => {
       <Navbar hideAuth={true} />
       <div className='flex flex-col items-center justify-center h-full w-full'>
         <div className='flex justify-center w-full max-w-6xl'>
-          {step === 1 && (
-            <div>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-4xl font-semibold mb-8'>Select Year Level</h1>
-              </div>
-              <select
-                className='border border-gray-400 rounded-md py-2 px-4 w-full mb-6'
-                value={yearLevel}
-                onChange={handleYearLevel}>
-                <option value='0'>Select your year level</option>
-                <option value='9'>Year 9</option>
-                <option value='10'>Year 10</option>
-                <option value='11'>Year 11</option>
-                <option value='12'>Year 12</option>
-                <option value='13'>Year 13</option>
-              </select>
-              <div className='flex justify-center gap-2'>
-                {yearLevel === 0 ? (
-                  <button className='bg-accent border border-accent rounded-lg py-2 px-6 text-text-secondary font-medium hover:cursor-default text-lg'>Next</button>
-                ) : (
-                  <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={handleNextStep}>Next</button>
-                )}
-              </div>
-            </div>
-          )}
-          {step === 2 && (
-            <div>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-4xl font-semibold mb-8'>Select Country</h1>
-              </div>
-              <select
-                className='border border-gray-400 rounded-md py-2 px-4 w-full mb-6'
-                value={country}
-                onChange={handleCountry}>
-                <option value=''>Select your country</option>
-                <option value='USA'>United States</option>
-                <option value='UK'>United Kingdom</option>
-                <option value='AU'>Australia</option>
-                <option value='NZ'>New Zealand</option>
-                {/* Add more countries as needed */}
-              </select>
-              <div className='flex justify-center gap-2'>
-                <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg' onClick={handlePreviousStep}>Previous</button>
-                {country === '' ? (
-                  <button className='bg-accent border border-accent rounded-lg py-2 px-6 text-text-secondary font-medium hover:cursor-default text-lg'>Next</button>
-                ) : (
-                  <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={handleNextStep}>Next</button>
-                )}
-              </div>
-            </div>
-          )}
-          {step === 3 && (
-            <div>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-4xl font-semibold mb-2'>Select Exam Board</h1>
-                <span className='block mb-4'>You can change this at anytime</span>
-              </div>
-              <div className='flex justify-center mb-6'>
-                {examBoardsDetails.map((board: ExamBoardDetails, i) => (
-                  <div key={i}>
-                    <button
-                      className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${examBoard === board.board_name && examLevel === board.level_name ? 'bg-accent' : 'bg-white'}`}
-                      onClick={() => handleExamBoard(board)}>
-                      {board.board_name} {board.level_name}
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <div className='flex justify-center gap-2'>
-                <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg' onClick={handlePreviousStep}>Previous</button>
-                {examBoard === '' && examLevel === '' ? (
-                  <button className='bg-accent border border-accent rounded-lg py-2 px-6 text-text-secondary font-medium hover:cursor-default text-lg'>Next</button>
-                ) : (
-                  <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={handleNextStep}>Next</button>
-                )}
-              </div>
-            </div>
-          )}
-          {step === 4 && (
-            <div>
-              <div className='flex flex-col items-center'>
-                <h1 className='text-4xl font-semibold mb-2'>Select Subjects</h1>
-                <span className='block mb-4'>Select <span className='font-medium'>{examBoard} {examLevel}</span> Subjects:</span>
-              </div>
-              <div>
-                <div className='flex justify-center mb-6 gap-2 flex-wrap'>
-                  {subjectsList.map((subject: Subject, i) => (
-                    <button
-                      key={i}
-                      className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${selectedSubjects.includes(subject.subject_id) ? 'bg-accent' : 'bg-white'}`}
-                      onClick={() => handleSubjects(subject.subject_id)}>
-                      {subject.subject_name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className='flex justify-center gap-2'>
-                <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg' onClick={handlePreviousStep}>Previous</button>
-                {selectedSubjects.length === 0 ? (
-                  <button className='bg-accent border border-accent rounded-lg py-2 px-6 text-text-secondary font-medium hover:cursor-default text-lg'>Finish</button>
-                ) : (
-                  <button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={handleFinish}>Finish</button>
-                )}
-              </div>
-            </div>
-          )}
+          <div>
+            {step === 1 &&
+              <SelectYearLevel
+                yearLevel={yearLevel}
+                handleYearLevel={handleYearLevel}
+                nextStep={nextStep}
+              />}
+            {step === 2 &&
+              <SelectCountry
+                country={country}
+                handleCountry={handleCountry}
+                previousStep={previousStep}
+                nextStep={nextStep}
+              />}
+            {step === 3 &&
+              <SelectExamBoard
+                examBoard={examBoard}
+                examLevel={examLevel}
+                handleExamBoard={handleExamBoard}
+                examBoardsDetails={examBoardsDetails}
+                previousStep={previousStep}
+                nextStep={nextStep}
+              />}
+            {step === 4 &&
+              <SelectSubjects
+                examBoard={examBoard}
+                examLevel={examLevel}
+                subjectsList={subjectsList}
+                selectedSubjects={selectedSubjects}
+                handleSubjects={handleSubjects}
+                previousStep={previousStep}
+              />}
+            <StepsNavigation step={step} canProceed={canProceed} previousStep={previousStep} nextStep={nextStep} finish={finish} />
+          </div>
         </div>
       </div>
-      <div className='flex flex-col items-center w-full max-w-lg'>
-        <div className='w-full h-4 bg-gray-200 rounded-full mb-4'>
-          <div className='h-full bg-blue-600 rounded-full transition-all duration-300 ease-in-out' style={{ width: progressWidth }}></div>
-        </div>
-      </div>
+      <StepsProgress progress={progressWidth} />
     </div >
   );
 };
