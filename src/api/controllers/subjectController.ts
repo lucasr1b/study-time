@@ -98,8 +98,31 @@ export const getSubjectListItemController = async (req: NextApiRequest, res: Nex
 export const getSubjectListItemFromExamBoardController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { board } = req.query;
-    console.log(board);
-    const subjects = await CambridgeSubject.find({ subject_board: board });
+    const boardId = board?.[0] ?? '';
+    const levelId = board?.[1] ?? '';
+
+    if (levelId === '') {
+      const subjects = await CambridgeSubject.find({ board_id: boardId });
+      sendSuccessResponse(res, 'Subjects fetched', { subjects });
+    } else {
+      const subjects = await CambridgeSubject.find({ board_id: boardId, level_id: levelId });
+      sendSuccessResponse(res, 'Subjects fetched', { subjects });
+    }
+
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subject not fetched', err.message);
+  }
+};
+
+// @Desc Get subjects from subjects list with board and level filter
+// @Route /api/subjects/list/:board/:level
+// @Method GET
+
+export const getSubjectListItemFromExamBoardLevelController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { boardId, levelId } = req.query;
+    const subjects = await CambridgeSubject.find({ board_id: boardId, level_id: levelId });
     sendSuccessResponse(res, 'Subjects fetched', { subjects });
   } catch (err: any) {
     console.error(err);

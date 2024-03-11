@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Navbar from '../components/navigation/Navbar';
-import { ExamBoardDetails } from '../utils/types';
+import { ExamBoardDetails, Subject } from '../utils/types';
 import { fetchExamBoardDetails } from '../utils/helpers';
+import axios from 'axios';
 
 const OnboardingPage = () => {
   const [examBoardsDetails, setExamBoardsDetails] = useState<ExamBoardDetails[]>([]);
+  const [subjectsList, setSubjectsList] = useState<Subject[]>([]);
 
   const [step, setStep] = useState(1);
   const [yearLevel, setYearLevel] = useState(0);
   const [country, setCountry] = useState('');
   const [examBoard, setExamBoard] = useState('');
   const [examLevel, setExamLevel] = useState('');
+  const [examBoardId, setExamBoardId] = useState('');
+  const [examLevelId, setExamLevelId] = useState('');
   const [selectedSubjects, setSelectedSubjects] = useState([] as string[]);
 
   const totalSteps = 4;
   const progressWidth = `${(100 / totalSteps) * step}%`;
 
-  const handleYearLevel = (e: any) => setYearLevel(parseInt(e.target.value));
-  const handleCountry = (e: any) => setCountry(e.target.value);
-  const handleExamBoard = (board: string, level: string) => {
+  const handleYearLevel = (e: ChangeEvent<HTMLSelectElement>) => setYearLevel(parseInt(e.target.value));
+  const handleCountry = (e: ChangeEvent<HTMLSelectElement>) => setCountry(e.target.value);
+  const handleExamBoard = (board: ExamBoardDetails) => {
     setExamLevel(''); // reset exam level if exam board changes
-    setExamBoard(board);
-    if (level != '') setExamLevel(level);
+    setExamLevelId('');
+    setExamBoard(board.board_name);
+    setExamBoardId(board.board_id);
+    if (board.level_name != '') {
+      setExamLevel(board.level_name);
+      setExamLevelId(board.level_id);
+    }
     setSelectedSubjects([]);
   };
   const handleSubjects = (subject: string) => {
@@ -46,14 +55,20 @@ const OnboardingPage = () => {
     setExamBoardsAndLevels();
   }, []);
 
-  const fetchSubjects = async (boardName: string, boardLevel: string) => { // fetch from ids
-    console.log('Fetching subjects for', boardName, boardLevel);
+  const fetchSubjects = async (boardId: string, levelId: string) => {
+    if (levelId === '') {
+      const res = await axios.get(`/api/subjects/list/boards/${boardId}`);
+      setSubjectsList(res.data.subjects);
+    } else {
+      const res = await axios.get(`/api/subjects/list/boards/${boardId}/${levelId}`);
+      setSubjectsList(res.data.subjects);
+    }
   };
 
   const handleNextStep = () => {
     setStep(step + 1);
 
-    if (step === 3) fetchSubjects(examBoard, examLevel);
+    if (step === 3) fetchSubjects(examBoardId, examLevelId);
   };
 
   const handlePreviousStep = () => {
@@ -64,7 +79,7 @@ const OnboardingPage = () => {
     <div className='px-8 py-4 h-screen flex flex-col justify-center items-center'>
       <Navbar hideAuth={true} />
       <div className='flex flex-col items-center justify-center h-full w-full'>
-        <div className='flex justify-center w-full max-w-lg'>
+        <div className='flex justify-center w-full max-w-6xl'>
           {step === 1 && (
             <div>
               <div className='flex flex-col items-center'>
@@ -127,7 +142,7 @@ const OnboardingPage = () => {
                   <div key={i}>
                     <button
                       className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${examBoard === board.board_name && examLevel === board.level_name ? 'bg-accent' : 'bg-white'}`}
-                      onClick={() => handleExamBoard(board.board_name, board.level_name)}>
+                      onClick={() => handleExamBoard(board)}>
                       {board.board_name} {board.level_name}
                     </button>
                   </div>
@@ -150,10 +165,15 @@ const OnboardingPage = () => {
                 <span className='block mb-4'>Select <span className='font-medium'>{examBoard} {examLevel}</span> Subjects:</span>
               </div>
               <div>
-                <div className='flex justify-center mb-6'>
-                  <button className={`border border-gray-400 rounded-md py-2 px-4 mr-4 ${selectedSubjects.includes('Maths') ? 'bg-accent' : 'bg-white'}`} onClick={() => handleSubjects('Maths')}>Maths</button>
-                  <button className={`border border-gray-400 rounded-md py-2 px-4 mr-4 ${selectedSubjects.includes('Science') ? 'bg-accent' : 'bg-white'}`} onClick={() => handleSubjects('Science')}>Science</button>
-                  <button className={`border border-gray-400 rounded-md py-2 px-4 mr-4 ${selectedSubjects.includes('English') ? 'bg-accent' : 'bg-white'}`} onClick={() => handleSubjects('English')}>English</button>
+                <div className='flex justify-center mb-6 gap-2 flex-wrap'>
+                  {subjectsList.map((subject: Subject, i) => (
+                    <button
+                      key={i}
+                      className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${selectedSubjects.includes(subject.subject_id) ? 'bg-accent' : 'bg-white'}`}
+                      onClick={() => handleSubjects(subject.subject_id)}>
+                      {subject.subject_name}
+                    </button>
+                  ))}
                 </div>
               </div>
               <div className='flex justify-center gap-2'>
@@ -173,7 +193,7 @@ const OnboardingPage = () => {
           <div className='h-full bg-blue-600 rounded-full transition-all duration-300 ease-in-out' style={{ width: progressWidth }}></div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

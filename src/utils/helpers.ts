@@ -149,10 +149,10 @@ export const fetchExamBoardDetails = async () => {
       if (board.board_levels.length > 0) {
         const levels = examLevels.filter((level: ExamLevel) => level.board_id === board.board_id);
         for (const level of levels) {
-          boardsData.push({ board_name: board.board_name, level_name: level.level_name });
+          boardsData.push({ board_id: board.board_id, board_name: board.board_name, level_id: level.level_id, level_name: level.level_name });
         }
       } else {
-        boardsData.push({ board_name: board.board_name, level_name: '' });
+        boardsData.push({ board_id: board.board_id, board_name: board.board_name, level_id: '', level_name: '' });
       }
     }
     return boardsData;
