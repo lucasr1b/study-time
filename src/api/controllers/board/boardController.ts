@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import connectToDB from '../lib/mongodb';
-import ExamBoard from '../models/ExamBoard';
-import { sendErrorResponse, sendSuccessResponse } from '../utils/helpers';
+import connectToDB from '../../lib/mongodb';
+import ExamBoard from '../../models/ExamBoard';
+import { sendErrorResponse, sendSuccessResponse } from '../../utils/helpers';
 
 connectToDB();
 

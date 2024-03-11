@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navigation/Navbar';
-import axios from 'axios';
-import { ExamBoard } from '../utils/types';
+import { ExamBoardDetails } from '../utils/types';
+import { fetchExamBoardDetails } from '../utils/helpers';
 
 const OnboardingPage = () => {
-  const [examBoardsList, setExamBoardsList] = useState<ExamBoard[]>([]);
+  const [examBoardsDetails, setExamBoardsDetails] = useState<ExamBoardDetails[]>([]);
 
   const [step, setStep] = useState(1);
   const [yearLevel, setYearLevel] = useState(0);
@@ -18,10 +18,10 @@ const OnboardingPage = () => {
 
   const handleYearLevel = (e: any) => setYearLevel(parseInt(e.target.value));
   const handleCountry = (e: any) => setCountry(e.target.value);
-  const handleExamBoard = (board: string, level?: string) => {
+  const handleExamBoard = (board: string, level: string) => {
     setExamLevel(''); // reset exam level if exam board changes
     setExamBoard(board);
-    if (level) setExamLevel(level);
+    if (level != '') setExamLevel(level);
     setSelectedSubjects([]);
   };
   const handleSubjects = (subject: string) => {
@@ -38,16 +38,12 @@ const OnboardingPage = () => {
   };
 
   useEffect(() => {
-    const fetchExamBoardsAndLevels = async () => {
-      try {
-        const res = await axios.get('/api/boards');
-        setExamBoardsList(res.data.examBoards);
-      } catch (err: any) {
-        console.error('Error fetching exam boards:', err.response.data.error);
-      }
+    const setExamBoardsAndLevels = async () => {
+      const examBoardsData = await fetchExamBoardDetails();
+      setExamBoardsDetails(examBoardsData);
     };
 
-    fetchExamBoardsAndLevels();
+    setExamBoardsAndLevels();
   }, []);
 
   const fetchSubjects = async (boardName: string, boardLevel: string) => { // fetch from ids
@@ -127,27 +123,13 @@ const OnboardingPage = () => {
                 <span className='block mb-4'>You can change this at anytime</span>
               </div>
               <div className='flex justify-center mb-6'>
-                {examBoardsList.map((board: ExamBoard, i) => (
+                {examBoardsDetails.map((board: ExamBoardDetails, i) => (
                   <div key={i}>
-                    {(!board.board_levels || board.board_levels.length === 0) && (
-                      <button
-                        className={`border border-gray-400 rounded-md py-2 px-4 mr-4 ${examBoard === board.board_name ? 'bg-accent' : 'bg-white'}`}
-                        onClick={() => handleExamBoard(board.board_name)}>
-                        {board.board_name}
-                      </button>
-                    )}
-                    {board.board_levels && board.board_levels.length > 0 && (
-                      <div className="ml-2">
-                        {board.board_levels.map((level: string, j) => (
-                          <button
-                            key={j}
-                            className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${examBoard === board.board_name && examLevel === level ? 'bg-accent' : 'bg-white'}`}
-                            onClick={() => handleExamBoard(board.board_name, level)}>
-                            {board.board_name} {level}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+                    <button
+                      className={`border border-gray-400 rounded-md py-2 px-4 mr-2 ${examBoard === board.board_name && examLevel === board.level_name ? 'bg-accent' : 'bg-white'}`}
+                      onClick={() => handleExamBoard(board.board_name, board.level_name)}>
+                      {board.board_name} {board.level_name}
+                    </button>
                   </div>
                 ))}
               </div>

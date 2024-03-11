@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
-import { sessionOptions } from '../../lib/session';
-import { getAllExamBoardsController } from '../../api/controllers/boardController';
+import { sessionOptions } from '../../../lib/session';
+import { getAllExamBoardsController } from '../../../api/controllers/board/boardController';
 
 function examBoardsRoute(req: NextApiRequest, res: NextApiResponse) {
   return getAllExamBoardsController(req, res);
