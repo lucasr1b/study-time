@@ -35,10 +35,11 @@ export const isUserLoggedIn = (req: NextApiRequest, res: NextApiResponse) => {
   return true;
 };
 
-export const createSession = async (req: NextApiRequest, name: string, email: string) => {
+export const createSession = async (req: NextApiRequest, name: string, email: string, onboarding: boolean) => {
   req.session.user = {
     name,
     email,
+    onboarding,
   };
   await req.session.save();
 };

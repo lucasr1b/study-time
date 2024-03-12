@@ -64,6 +64,8 @@ const RegisterPage = () => {
   );
 };
 
+export default RegisterPage;
+
 export const getServerSideProps = withIronSessionSsr(
   async ({ req }) => {
     const user = req.session.user;
@@ -82,5 +84,3 @@ export const getServerSideProps = withIronSessionSsr(
     };
   }, sessionOptions,
 );
-
-export default RegisterPage;

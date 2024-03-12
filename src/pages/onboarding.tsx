@@ -9,6 +9,9 @@ import SelectExamBoard from '../components/onboarding/steps/SelectExamBoard';
 import SelectSubjects from '../components/onboarding/steps/SelectSubjects';
 import StepsNavigation from '../components/onboarding/StepsNavigation';
 import StepsProgress from '../components/onboarding/StepsProgress';
+import { withIronSessionSsr } from 'iron-session/next';
+import { sessionOptions } from '../lib/session';
+import Router from 'next/router';
 
 const OnboardingPage = () => {
   const [examBoardsDetails, setExamBoardsDetails] = useState<ExamBoardDetails[]>([]);
@@ -78,9 +81,13 @@ const OnboardingPage = () => {
   }, [yearLevel, country, examBoard, selectedSubjects, step]);
 
 
-  const finish = () => {
-    // Handle finishing onboarding process
-    console.log('Onboarding finished with year level:', yearLevel, 'country:', country, 'exam board:', examBoard, 'exam level:', examLevel, 'subjects:', selectedSubjects);
+  const finishOnboarding = async () => {
+    await axios.post('/api/user/finishOnboarding', {
+      yearLevel: yearLevel,
+      country: country,
+      subjects: selectedSubjects,
+    });
+    Router.push('/app');
   };
 
   useEffect(() => {
@@ -113,7 +120,7 @@ const OnboardingPage = () => {
 
   return (
     <div className='px-8 py-4 h-screen flex flex-col justify-center items-center'>
-      <Navbar hideAuth={true} />
+      <Navbar hideAuth={true} showLogout={true} />
       <div className='flex flex-col items-center justify-center h-full w-full'>
         <div className='flex justify-center w-full max-w-6xl'>
           <div>
@@ -148,7 +155,7 @@ const OnboardingPage = () => {
                 handleSubjects={handleSubjects}
                 previousStep={previousStep}
               />}
-            <StepsNavigation step={step} canProceed={canProceed} previousStep={previousStep} nextStep={nextStep} finish={finish} />
+            <StepsNavigation step={step} canProceed={canProceed} previousStep={previousStep} nextStep={nextStep} finishOnboarding={finishOnboarding} />
           </div>
         </div>
       </div>
@@ -158,3 +165,22 @@ const OnboardingPage = () => {
 };
 
 export default OnboardingPage;
+
+export const getServerSideProps = withIronSessionSsr(
+  async ({ req }) => {
+    const user = req.session.user;
+
+    if (!user) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {},
+    };
+  }, sessionOptions,
+);

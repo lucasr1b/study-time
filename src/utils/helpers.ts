@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ExamLevel, SetDateState, SetNumberState } from './types';
+import Router from 'next/router';
 
 export const getMinutes = (time: number) => { return Math.floor((time / 60) % 60); };
 export const getHours = (time: number) => { return Math.floor((((time / 60) % 3600) / 60)); };
@@ -159,5 +160,14 @@ export const fetchExamBoardDetails = async () => {
   } catch (err: any) {
     console.error('Error fetching boards and levels:', err);
     return [];
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    await axios.post('/api/auth/logout');
+    Router.push('/');
+  } catch (err: any) {
+    console.error('Error during logout:', err.response.data.error);
   }
 };

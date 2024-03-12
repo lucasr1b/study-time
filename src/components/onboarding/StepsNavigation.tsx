@@ -3,7 +3,7 @@ type StepNavigationProps = {
   canProceed: boolean;
   previousStep: () => void;
   nextStep: () => void;
-  finish: () => void;
+  finishOnboarding: () => void;
 };
 
 const StepsNavigation = (props: StepNavigationProps) => {
@@ -19,7 +19,7 @@ const StepsNavigation = (props: StepNavigationProps) => {
           <button className='bg-accent border border-accent rounded-lg py-2 px-6 text-text-secondary font-medium hover:cursor-default text-lg'>Next</button>
         )) : (
         props.step === 4 ? (
-          < button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={props.finish}>Finish</button>
+          < button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={props.finishOnboarding}>Finish</button>
         ) : (
           < button className='bg-primary border border-accent rounded-lg py-2 px-6 font-medium hover:bg-accent text-lg transition ease-in' onClick={props.nextStep}>Next</button>
         ))}
