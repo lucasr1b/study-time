@@ -13,7 +13,7 @@ connectToDB();
 export const getEventsController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const user = getUserFromSession(req);
-    const events = await Event.find({ user: user.email }).sort({ date: 1 });
+    const events = await Event.find({ user: user.email }).sort({ date: 'asc' });
     sendSuccessResponse(res, 'All events fetched', { events });
   } catch (err: any) {
     console.error(err);

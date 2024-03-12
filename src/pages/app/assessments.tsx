@@ -65,7 +65,8 @@ const AssessmentsPage: NextPage = () => {
   const deleteAssessment = async (assessmentId: string) => {
     try {
       await axios.post('/api/assessments/delete', { assessmentId });
-      setAssessments(assessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId));
+      const updatedAssessments = assessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId);
+      setAssessments(updatedAssessments);
       setPastDueAssessments(pastDueAssessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId));
       closeModal();
     } catch (err: any) {

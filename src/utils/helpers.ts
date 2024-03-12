@@ -93,9 +93,9 @@ export const formatFancyAssessmentOverviewDate = (date: Date) => {
   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   if (daysDifference <= 30) {
-    return `assessed on ${daysDifference} days`;
+    return `assessed in ${daysDifference} days`;
   } else {
-    return `assessed on ${formatAssessmentDate(date)}`;
+    return `assessed in ${formatAssessmentDate(date)}`;
   }
 };
 

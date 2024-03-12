@@ -14,7 +14,7 @@ export const getAllAssessmentsController = async (req: NextApiRequest, res: Next
   try {
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
-      const assessments = await Assessment.find({ user: user.email });
+      const assessments = await Assessment.find({ user: user.email }).sort({ date: 'asc' });
       sendSuccessResponse(res, 'All assessments fetched', { assessments });
     }
   } catch (err: any) {

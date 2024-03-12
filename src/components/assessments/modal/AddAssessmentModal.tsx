@@ -60,7 +60,9 @@ const AddAssessmentModal = (props: AddAssessmentModalProps) => {
 
     try {
       const res = await axios.post('/api/assessments/add', assessmentFormData);
-      props.setAssessments([...props.assessments, res.data.newAssessment]);
+      const newAssessment = res.data.newAssessment;
+      const updatedAssessments = [...props.assessments, newAssessment].sort((a: Assessment, b: Assessment) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      props.setAssessments(updatedAssessments);
     } catch (err: any) {
       console.error('Error adding assessment:', err.response.data.error);
     }
