@@ -4,14 +4,30 @@ export type Subject = {
   subject_board: string;
   subject_level: string;
   subject_icon: string;
+  board_id: string;
+  level_id: string;
 };
 
 export type SetSubjects = React.Dispatch<React.SetStateAction<Subject[]>>;
 export type SetSubject = React.Dispatch<React.SetStateAction<Subject | undefined>>;
 
 export type ExamBoard = {
-  exam_board: string;
-  levels: string[];
+  board_id: string;
+  board_name: string;
+  board_levels: string[];
+};
+
+export type ExamLevel = {
+  level_id: string
+  level_name: string;
+  board_id: string;
+};
+
+export type ExamBoardDetails = {
+  board_id: string;
+  board_name: string;
+  level_id: string;
+  level_name: string;
 };
 
 export type Assessment = {

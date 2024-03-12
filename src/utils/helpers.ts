@@ -1,4 +1,6 @@
-import { SetDateState, SetNumberState } from './types';
+import axios from 'axios';
+import { ExamLevel, SetDateState, SetNumberState } from './types';
+import Router from 'next/router';
 
 export const getMinutes = (time: number) => { return Math.floor((time / 60) % 60); };
 export const getHours = (time: number) => { return Math.floor((((time / 60) % 3600) / 60)); };
@@ -116,4 +118,56 @@ export const formatEventDate = (date: Date) => {
   const options = { weekday: 'short', day: 'numeric', month: 'short' } as Intl.DateTimeFormatOptions;
 
   return date.toLocaleDateString('en-NZ', options);
+};
+
+export const fetchExamBoardDetails = async () => {
+  const fetchExamBoards = async () => {
+    try {
+      const res = await axios.get('/api/boards');
+      return res.data.examBoards;
+    } catch (err: any) {
+      console.error('Error fetching exam boards:', err.response.data.error);
+      return [];
+    }
+  };
+
+  const fetchExamLevels = async () => {
+    try {
+      const res = await axios.get('/api/boards/levels');
+      return res.data.examLevels;
+    } catch (err: any) {
+      console.error('Error fetching exam levels:', err.response.data.error);
+      return [];
+    }
+  };
+
+  try {
+    const [examBoards, examLevels] = await Promise.all([fetchExamBoards(), fetchExamLevels()]);
+
+    let boardsData = [];
+
+    for (const board of examBoards) {
+      if (board.board_levels.length > 0) {
+        const levels = examLevels.filter((level: ExamLevel) => level.board_id === board.board_id);
+        for (const level of levels) {
+          boardsData.push({ board_id: board.board_id, board_name: board.board_name, level_id: level.level_id, level_name: level.level_name });
+        }
+      } else {
+        boardsData.push({ board_id: board.board_id, board_name: board.board_name, level_id: '', level_name: '' });
+      }
+    }
+    return boardsData;
+  } catch (err: any) {
+    console.error('Error fetching boards and levels:', err);
+    return [];
+  }
+};
+
+export const logoutUser = async () => {
+  try {
+    await axios.post('/api/auth/logout');
+    Router.push('/');
+  } catch (err: any) {
+    console.error('Error during logout:', err.response.data.error);
+  }
 };

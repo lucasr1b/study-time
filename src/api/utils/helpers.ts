@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import StudyTracking from '../models/StudyTracking';
+import CambridgeSubject from '../models/CambridgeSubject';
+import { v4 as uuidv4 } from 'uuid';
 
 export const sendSuccessResponse = (res: NextApiResponse, message: string, data: any) => {
   res.status(200).json({ message, ...data });
@@ -35,10 +37,11 @@ export const isUserLoggedIn = (req: NextApiRequest, res: NextApiResponse) => {
   return true;
 };
 
-export const createSession = async (req: NextApiRequest, name: string, email: string) => {
+export const createSession = async (req: NextApiRequest, name: string, email: string, onboarding: boolean) => {
   req.session.user = {
     name,
     email,
+    onboarding,
   };
   await req.session.save();
 };
@@ -51,6 +54,22 @@ export const validateEmail = (email: string) => {
 export const convertTimeToSeconds = (hours: number, minutes: number) => {
   const time = ((hours * 60) + minutes) * 60;
   return time;
+};
+
+export const createStudyTracker = async (subjectId: string, email: string) => {
+  const trackerId = uuidv4();
+
+  const subjectDetails = await CambridgeSubject.findOne({ subject_id: subjectId });
+
+  await StudyTracking.create({
+    tracker_id: trackerId,
+    user: email,
+    subject_id: subjectId,
+    subject_name: subjectDetails.subject_name,
+    subject_icon: subjectDetails.subject_icon,
+  });
+
+  return trackerId;
 };
 
 export const updateAndFetchTracker = async (trackerId: string, updateData: object) => {

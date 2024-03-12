@@ -1,4 +1,4 @@
-import Sidebar from '../../../components/sidebar/Sidebar';
+import Sidebar from '../../../components/navigation/sidebar/Sidebar';
 import StudyTracker from '../../../components/study/tracker/StudyTracker';
 import WeeklyStudyProgress from '../../../components/study/progress/WeeklyStudyProgress';
 import { useEffect, useState } from 'react';

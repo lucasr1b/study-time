@@ -1,22 +1,12 @@
 import { AcademicCapIcon, ArrowLeftOnRectangleIcon, ClockIcon, Cog6ToothIcon, DocumentTextIcon, MoonIcon, Squares2X2Icon, SunIcon } from '@heroicons/react/24/outline';
 import SidebarItem from './SidebarItem';
 import { useState } from 'react';
-import axios from 'axios';
-import Router from 'next/router';
+import { logoutUser } from '../../../utils/helpers';
 
 const Sidebar = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-
-  const logoutUser = async () => {
-    try {
-      await axios.post('/api/auth/logout');
-      Router.push('/');
-    } catch (err: any) {
-      console.error('Error during login:', err.response.data.error);
-    }
-  };
 
   const toggleTheme = () => {
     if (localStorage.getItem('theme') === 'light' || undefined) {

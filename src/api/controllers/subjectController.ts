@@ -4,11 +4,10 @@ import { updateSubjectForUser, createStudyTrackerAndAddToUser, deleteStudyTracke
 import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
 import User from '../models/User';
 import CambridgeSubject from '../models/CambridgeSubject';
-import ExamBoard from '../models/ExamBoard';
 
 connectToDB();
 
-// @Desc Get all subjects
+// @Desc Get all subjects for user
 // @Route /api/subjects
 // @Method GET
 
@@ -63,49 +62,68 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
   }
 };
 
-// @Desc Get all subject exam boards
-// @Route /api/subjects/boards
-// @Method GET
-
-export const getAllSubjectBoardsController = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    if (isUserLoggedIn(req, res)) {
-      const examBoards = await ExamBoard.find();
-      sendSuccessResponse(res, 'All exam boards fetched', { examBoards });
-    }
-  } catch (err: any) {
-    console.error(err);
-    sendErrorResponse(res, 'Exam boards not fetched', err.message);
-  }
-};
-
 // @Desc Get all subjects from subject list
 // @Route /api/subjects/list
 // @Method GET
 
 export const getSubjectListController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (isUserLoggedIn(req, res)) {
-      const subjects = await CambridgeSubject.find();
-      sendSuccessResponse(res, 'Subject list fetched', { subjects });
-    }
+    const subjects = await CambridgeSubject.find();
+    sendSuccessResponse(res, 'Subject list fetched', { subjects });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject list not fetched', err.message);
   }
 };
 
-// @Desc Get subject from subjects list
+// @Desc Get a subject from subjects list
 // @Route /api/subjects/list/:id
 // @Method GET
 
 export const getSubjectListItemController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (isUserLoggedIn(req, res)) {
-      const { id } = req.query;
-      const subject = await CambridgeSubject.findOne({ subject_id: id });
-      sendSuccessResponse(res, 'Subject fetched', { subject });
+    const { id } = req.query;
+    const subject = await CambridgeSubject.findOne({ subject_id: id });
+    sendSuccessResponse(res, 'Subject fetched', { subject });
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subject not fetched', err.message);
+  }
+};
+
+// @Desc Get subjects from subjects list with board filter
+// @Route /api/subjects/list/:board
+// @Method GET
+
+export const getSubjectListItemFromExamBoardController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { board } = req.query;
+    const boardId = board?.[0] ?? '';
+    const levelId = board?.[1] ?? '';
+
+    if (levelId === '') {
+      const subjects = await CambridgeSubject.find({ board_id: boardId });
+      sendSuccessResponse(res, 'Subjects fetched', { subjects });
+    } else {
+      const subjects = await CambridgeSubject.find({ board_id: boardId, level_id: levelId });
+      sendSuccessResponse(res, 'Subjects fetched', { subjects });
     }
+
+  } catch (err: any) {
+    console.error(err);
+    sendErrorResponse(res, 'Subject not fetched', err.message);
+  }
+};
+
+// @Desc Get subjects from subjects list with board and level filter
+// @Route /api/subjects/list/:board/:level
+// @Method GET
+
+export const getSubjectListItemFromExamBoardLevelController = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const { boardId, levelId } = req.query;
+    const subjects = await CambridgeSubject.find({ board_id: boardId, level_id: levelId });
+    sendSuccessResponse(res, 'Subjects fetched', { subjects });
   } catch (err: any) {
     console.error(err);
     sendErrorResponse(res, 'Subject not fetched', err.message);

@@ -22,7 +22,7 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
   }
 };
 
-// @Desc Log new study session
+// @Desc Log new study session for user
 // @Route /api/study/sessions/log
 // @Method POST
 

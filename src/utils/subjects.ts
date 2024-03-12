@@ -5,6 +5,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '💰',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0610',
@@ -12,6 +14,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🔬',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0450',
@@ -19,6 +23,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '💼',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0620',
@@ -26,6 +32,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🧪',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0478',
@@ -33,6 +41,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '💻',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0445',
@@ -40,6 +50,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🛠️',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0411',
@@ -47,6 +59,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🎭',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0455',
@@ -54,6 +68,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '💰',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0475',
@@ -61,6 +77,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '📚',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0500',
@@ -68,6 +86,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '📚',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0460',
@@ -75,6 +95,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🌎',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0470',
@@ -82,6 +104,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '📜',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0580',
@@ -89,6 +113,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '📉',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0980',
@@ -96,6 +122,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '📊',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0410',
@@ -103,6 +131,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🎵',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0413',
@@ -110,6 +140,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '⚽️',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '0625',
@@ -117,6 +149,8 @@ export const subjects = [
     'subject_level': 'IGCSE',
     'subject_board': 'Cambridge',
     'subject_icon': '🚀',
+    'board_id': 1,
+    'level_id': 1,
   },
   {
     'subject_id': '9706',
@@ -124,6 +158,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '💰',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9700',
@@ -131,6 +167,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🔬',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9707',
@@ -138,6 +176,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '💼',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9701',
@@ -145,6 +185,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🧪',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9618',
@@ -152,6 +194,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '💻',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9705',
@@ -159,6 +203,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🛠️',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9482',
@@ -166,6 +212,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🎭',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9708',
@@ -173,6 +221,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '💰',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9695',
@@ -180,6 +230,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '📚',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9093',
@@ -187,6 +239,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '📚',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9231',
@@ -194,6 +248,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '📊',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9696',
@@ -201,6 +257,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🌎',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9489',
@@ -208,6 +266,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '📜',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9709',
@@ -215,6 +275,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '📉',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9396',
@@ -222,6 +284,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '⚽️',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9702',
@@ -229,6 +293,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🚀',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9990',
@@ -236,6 +302,8 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🧠',
+    'board_id': 1,
+    'level_id': 2,
   },
   {
     'subject_id': '9699',
@@ -243,5 +311,7 @@ export const subjects = [
     'subject_level': 'AS',
     'subject_board': 'Cambridge',
     'subject_icon': '🌐',
+    'board_id': 1,
+    'level_id': 2,
   },
 ];

@@ -12,6 +12,10 @@ export const middleware = async (req: NextRequest) => {
     return NextResponse.redirect(new URL('/login', req.url));
   }
 
+  if (user.onboarding) {
+    return NextResponse.redirect(new URL('/onboarding', req.url));
+  }
+
   return res;
 };
 

@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Sidebar from '../../components/sidebar/Sidebar';
+import Sidebar from '../../components/navigation/sidebar/Sidebar';
 import SubjectItem from '../../components/subjects/SubjectItem';
 import SubjectAddButton from '../../components/subjects/SubjectAddButton';
 import SubjectStudyLogList from '../../components/subjects/logs/SubjectStudyLogList';

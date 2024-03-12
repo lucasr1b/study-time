@@ -35,7 +35,7 @@ export const createUserAndSession = async (req: NextApiRequest, name: string, em
     password,
   });
 
-  await createSession(req, user.name, user.email);
+  await createSession(req, user.name, user.email, true);
 };
 
 export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiRequest, email: string, password: string) => {
@@ -49,7 +49,7 @@ export const validateUserCrendetialFieldsAndCreateSession = async (req: NextApiR
     return 'Email or password is incorrect.';
   }
 
-  await createSession(req, user.name, user.email);
+  await createSession(req, user.name, user.email, user.onboarding);
 
   return true;
 };

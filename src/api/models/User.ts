@@ -9,7 +9,9 @@ export interface IUser extends mongoose.Document {
   trackers: string[],
   createdAt: Date,
   updatedAt: Date,
-  comparePassword(password: string): Promise<Boolean>,
+  yearLevel: number,
+  country: string,
+  comparePassword(password: string): Promise<boolean>,
 }
 
 const UserSchema = new mongoose.Schema({
@@ -40,6 +42,18 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: false,
   }],
+
+  yearLevel: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
+
+  country: {
+    type: String,
+    default: '',
+    required: false,
+  },
 
 }, {
   timestamps: true,
