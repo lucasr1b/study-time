@@ -1,7 +1,7 @@
 import User from '../models/User';
 import CambridgeSubject from '../models/CambridgeSubject';
 import StudyTracking from '../models/StudyTracking';
-import { v4 as uuidv4 } from 'uuid';
+import { createStudyTracker } from '../utils/helpers';
 
 export const updateSubjectForUser = async (id: string, email: string, operation: 'add' | 'remove') => {
   const updateSubjectData = operation === 'add' ? { $push: { subjects: id } } : { $pull: { subjects: id } };
@@ -12,17 +12,7 @@ export const updateSubjectForUser = async (id: string, email: string, operation:
 };
 
 export const createStudyTrackerAndAddToUser = async (subjectId: string, email: string) => {
-  const trackerId = uuidv4();
-
-  const subjectDetails = await CambridgeSubject.findOne({ subject_id: subjectId });
-
-  await StudyTracking.create({
-    tracker_id: trackerId,
-    user: email,
-    subject_id: subjectId,
-    subject_name: subjectDetails.subject_name,
-    subject_icon: subjectDetails.subject_icon,
-  });
+  const trackerId = await createStudyTracker(subjectId, email);
 
   await User.findOneAndUpdate({ email }, { $push: { trackers: trackerId } });
 };
