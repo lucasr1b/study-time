@@ -20,12 +20,16 @@ const SubjectStudyLogList = () => {
 
   return (
     <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-accent bg-primary'>
-      <h1 className='font-semibold'>Study log</h1>
+      <div className='flex justify-between items-center'>
+        <h1 className='font-semibold'>Study log</h1>
+        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'>
+          View all logs
+        </button>
+      </div>
       <div className='flex flex-col gap-4 mt-4'>
         {logs.slice(0, 9).map((log: StudyLog, index: number) => (
           <SubjectStudyLogListItem log={log} key={index} />
         ))}
-        <span className='text-blue-600 hover:underline hover:cursor-pointer'>View all logs</span>
       </div>
     </aside>
   );

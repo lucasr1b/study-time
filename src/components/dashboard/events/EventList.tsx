@@ -72,8 +72,12 @@ const EventList = () => {
 
   return (
     <aside className='w-full h-1/2 p-4 border rounded-lg border-accent bg-primary'>
-      <h1 className='font-semibold'>Upcoming events</h1>
-      <p className='text-blue-600 cursor-pointer hover:underline' onClick={() => setIsModalOpen(true)}>Manage events</p>
+      <div className='flex justify-between items-center'>
+        <h1 className='font-semibold'>Upcoming events</h1>
+        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm' onClick={() => setIsModalOpen(true)}>
+          Manage events
+        </button>
+      </div>
       <ul className='flex flex-col gap-2 mt-4'>
         {events.map((event: Event) => (
           <li key={event._id} className='flex gap-2'>
@@ -82,21 +86,23 @@ const EventList = () => {
           </li>
         ))}
       </ul>
-      {isModalOpen && (
-        <>
-          <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={closeModal}></div>
-          {eventModalAction === '' &&
-            <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} setEventModalAction={setEventModalAction} />
-          }
-          {eventModalAction === 'add' &&
-            <AddEventModal closeModal={closeModal} back={goBack} addEvent={addEvent} />
-          }
-          {eventModalAction === 'edit' && selectedEvent &&
-            <UpdateEventModal closeModal={closeModal} back={goBack} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} deleteEvent={deleteEvent} updateEvent={updateEvent} />
-          }
-        </>
-      )}
-    </aside>
+      {
+        isModalOpen && (
+          <>
+            <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={closeModal}></div>
+            {eventModalAction === '' &&
+              <ManageEventsModal closeModal={closeModal} events={events} setSelectedEvent={setSelectedEvent} setEventModalAction={setEventModalAction} />
+            }
+            {eventModalAction === 'add' &&
+              <AddEventModal closeModal={closeModal} back={goBack} addEvent={addEvent} />
+            }
+            {eventModalAction === 'edit' && selectedEvent &&
+              <UpdateEventModal closeModal={closeModal} back={goBack} selectedEvent={selectedEvent} setSelectedEvent={setSelectedEvent} deleteEvent={deleteEvent} updateEvent={updateEvent} />
+            }
+          </>
+        )
+      }
+    </aside >
   );
 };
 
