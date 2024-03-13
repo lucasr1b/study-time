@@ -17,8 +17,8 @@ const DashboardPage: NextPage = () => {
   useEffect(() => {
     const fetchTrackers = async () => {
       try {
-        const res = await axios.get('/api/study/trackers/weekly');
-        setTrackers(res.data.weeklyTrackers);
+        const res = await axios.get('/api/study/trackers');
+        setTrackers(res.data.trackers);
       } catch (err: any) {
         console.error('Error fetching weekly study trackers:', err.response.data.error);
       }

@@ -16,6 +16,7 @@ export const getAllSubjectTrackersController = async (req: NextApiRequest, res: 
     if (isUserLoggedIn(req, res)) {
       const user = await User.findOne({ email: req.session.user.email });
       const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+      trackers.sort((trackerA, trackerB) => (trackerA.is_setup === trackerB.is_setup) ? 0 : trackerA.is_setup ? -1 : 1);
       sendSuccessResponse(res, 'All subject trackers fetched', { trackers });
     }
   } catch (err: any) {
@@ -42,6 +43,7 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
   }
 };
 
+// @UNUSED ROUTE
 // @Desc Get all trackers that are setup to track weekly progress for user
 // @Route /api/study/trackers/weekly
 // @Method GET
@@ -51,10 +53,12 @@ export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, r
     if (isUserLoggedIn(req, res)) {
       const user = await User.findOne({ email: req.session.user.email });
       if (!user.trackers || user.trackers.length === 0) {
-        sendSuccessResponse(res, 'User has no subject trackers', { weeklyTrackers: [] });
+        sendSuccessResponse(res, 'User has no subject trackers', { isAllTrackersSetup: false, weeklyTrackers: [] });
       } else {
-        const weeklyTrackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
-        sendSuccessResponse(res, 'All weekly progress for trackers fetched', { weeklyTrackers });
+        const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+        const isAllTrackersSetup = trackers.every((tracker) => tracker.is_setup);
+        const weeklyTrackers = trackers.filter((tracker) => tracker.is_setup);
+        sendSuccessResponse(res, 'All weekly progress for trackers fetched', { isAllTrackersSetup, weeklyTrackers });
       }
     }
   } catch (err: any) {
