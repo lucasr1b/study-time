@@ -22,6 +22,7 @@ const AssessmentOverview = () => {
   return (
     <aside className='flex flex-col w-full h-1/2 p-4 border rounded-lg border-accent bg-primary'>
       <h1 className='font-semibold pb-2'>Upcoming assessments</h1>
+      {assessments.length === 0 && <p className='italic'>No upcoming assessments.</p>}
       <div className='overflow-y-scroll flex flex-col gap-2 w-full rounded pr-4 m-auto'>
         {assessments.map((assessment: Assessment) => (
           new Date(assessment.date) > new Date() && (

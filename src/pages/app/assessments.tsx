@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
 import Sidebar from '../../components/navigation/sidebar/Sidebar';
-// import AssessmentPastPaper from '../../components/assessments/AssessmentPastPaper';
+import AssessmentPastPaper from '../../components/assessments/AssessmentPastPaper';
 import AssessmentItem from '../../components/assessments/AssessmentItem';
 import AddAssessmentButton from '../../components/assessments/AddAssessmentButton';
 import { useEffect, useState } from 'react';
 import AddAssessmentModal from '../../components/assessments/modal/AddAssessmentModal';
 import axios from 'axios';
 import EditAssessmentModal from '../../components/assessments/modal/EditAssessmentModal';
-import { Assessment } from '../../utils/types';
+import { Assessment, Subject } from '../../utils/types';
 import DeleteAssessmentModal from '../../components/assessments/modal/DeleteAssessmentModal';
 
 const AssessmentsPage: NextPage = () => {
@@ -18,6 +18,8 @@ const AssessmentsPage: NextPage = () => {
   const [selectedEditingAssessment, setSelectedEditingAssessment] = useState<Assessment>({} as Assessment);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [pastDueAssessments, setPastDueAssessments] = useState<Assessment[]>([]);
+
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
     const fetchAssessments = async () => {
@@ -39,9 +41,20 @@ const AssessmentsPage: NextPage = () => {
         console.error('Error fetching assessments:', err.response.data.error);
       }
     };
+    const fetchSubjects = async () => {
+      try {
+        const res = await axios.get('/api/subjects');
+        setSubjects(res.data.subjects);
+      } catch (err: any) {
+        console.error('Error fetching subjects:', err.response.data.error);
+      }
+    };
 
+    fetchSubjects();
     fetchAssessments();
   }, []);
+
+
 
   const openAddAssessmentModal = () => setIsAddAssessmentModalOpen(true);
 
@@ -81,13 +94,12 @@ const AssessmentsPage: NextPage = () => {
         <p className='text-4xl font-semibold mb-4'>Assessments</p>
         <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
           <div className='bg-primary border border-accent rounded-lg p-4 w-full min-h-60'>
-            <h1 className='font-semibold mb-4'>Past papers</h1>
+            <h1 className='font-semibold'>Past papers</h1>
+            <p className='font-medium italic my-4'>✨ COMING SOON ✨</p>
             <div className='grid grid-flow-row grid-cols-3 gap-4 pb-4'>
-              {/* <AssessmentPastPaper />
-              <AssessmentPastPaper />
-              <AssessmentPastPaper />
-              <AssessmentPastPaper /> */}
-              <span className='font-medium italic'>✨ COMING SOON ✨</span>
+              {subjects.map((subject: Subject, index) => (
+                <AssessmentPastPaper key={index} icon={subject.subject_icon} name={subject.subject_name} progress={0} />
+              ))}
             </div>
           </div>
           <div className='bg-primary border border-accent rounded-lg p-4 w-full'>

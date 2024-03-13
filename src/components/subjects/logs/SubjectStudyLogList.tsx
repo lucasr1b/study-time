@@ -26,6 +26,7 @@ const SubjectStudyLogList = () => {
           View all logs
         </button>
       </div>
+      {logs.length === 0 && <p className='italic mt-2'>Log study sessions in the study page.</p>}
       <div className='flex flex-col gap-4 mt-4'>
         {logs.slice(0, 9).map((log: StudyLog, index: number) => (
           <SubjectStudyLogListItem log={log} key={index} />

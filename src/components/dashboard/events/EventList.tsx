@@ -78,6 +78,7 @@ const EventList = () => {
           Manage events
         </button>
       </div>
+      {events.length === 0 && <p className='italic'>No upcoming events.</p>}
       <ul className='flex flex-col gap-2 mt-4'>
         {events.map((event: Event) => (
           <li key={event._id} className='flex gap-2'>
