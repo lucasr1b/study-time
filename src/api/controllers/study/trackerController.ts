@@ -51,12 +51,10 @@ export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, r
     if (isUserLoggedIn(req, res)) {
       const user = await User.findOne({ email: req.session.user.email });
       if (!user.trackers || user.trackers.length === 0) {
-        sendSuccessResponse(res, 'User has no subject trackers', { isAllTrackersSetup: false, weeklyTrackers: [] });
+        sendSuccessResponse(res, 'User has no subject trackers', { weeklyTrackers: [] });
       } else {
-        const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
-        const isAllTrackersSetup = trackers.every((tracker) => tracker.is_setup);
-        const weeklyTrackers = trackers.filter((tracker) => tracker.is_setup);
-        sendSuccessResponse(res, 'All weekly progress for trackers fetched', { isAllTrackersSetup, weeklyTrackers });
+        const weeklyTrackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+        sendSuccessResponse(res, 'All weekly progress for trackers fetched', { weeklyTrackers });
       }
     }
   } catch (err: any) {

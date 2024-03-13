@@ -8,19 +8,17 @@ import SubjectOverviewPagination from '../../components/dashboard/subjects/Subje
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Tracker } from '../../utils/types';
-import SubjectOverviewAddButton from '../../components/dashboard/subjects/SubjectOverviewAddButton';
+import SubjectOverviewSetup from '../../components/dashboard/subjects/SubjectOverviewSetup';
 
 const DashboardPage: NextPage = () => {
 
   const [trackers, setTrackers] = useState<Tracker[]>([]);
-  const [allTrackersSetup, setAllTrackersSetup] = useState(false);
 
   useEffect(() => {
     const fetchTrackers = async () => {
       try {
         const res = await axios.get('/api/study/trackers/weekly');
         setTrackers(res.data.weeklyTrackers);
-        setAllTrackersSetup(res.data.isAllTrackersSetup);
       } catch (err: any) {
         console.error('Error fetching weekly study trackers:', err.response.data.error);
       }
@@ -41,9 +39,12 @@ const DashboardPage: NextPage = () => {
               <SubjectOverviewPagination />
               <div className='grid grid-cols-2 gap-4'>
                 {trackers.map(tracker => (
-                  <SubjectOverview tracker={tracker} key={tracker.tracker_id} />
+                  tracker.is_setup ? (
+                    <SubjectOverview key={tracker.tracker_id} tracker={tracker} />
+                  ) : (
+                    <SubjectOverviewSetup key={tracker.tracker_id} tracker={tracker} />
+                  )
                 ))}
-                {!allTrackersSetup && <SubjectOverviewAddButton />}
               </div>
             </div>
             <PastPaperOverview />
