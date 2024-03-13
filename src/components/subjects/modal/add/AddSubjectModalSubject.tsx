@@ -61,9 +61,8 @@ const AddSubjectModalSubject = (props: AddSubjectModalSubjectProps) => {
           <input type='text' name='subject' id='subject' className='bg-primary border border-darker-accent rounded-lg block w-full p-2.5 my-2 focus:outline-darker-accent placeholder:text-text-secondary' placeholder='Search subjects...' autoComplete='off' value={search} onChange={handleSearch} />
           <ul className='bg-primary border border-accent rounded-lg mt-2 overflow-y-scroll h-64'>
             {filteredSubjects.map((subject, index) => (
-              <li key={index} className='h-14 w-full p-2 hover:bg-accent hover:cursor-pointer' onClick={() => selectSubject(subject)}>
+              <li key={index} className='flex items-center h-14 w-full p-2 hover:bg-accent hover:cursor-pointer' onClick={() => selectSubject(subject)}>
                 <p className='font-medium'>{subject.subject_name}</p>
-                <p className='text-xs text-text-secondary'>{subject.subject_level}</p>
               </li>
             ))}
           </ul>
