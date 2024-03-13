@@ -93,15 +93,6 @@ const AssessmentsPage: NextPage = () => {
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Assessments</p>
         <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
-          <div className='bg-primary border border-accent rounded-lg p-4 w-full min-h-60'>
-            <h1 className='font-semibold'>Past papers</h1>
-            <p className='font-medium italic my-4'>✨ COMING SOON ✨</p>
-            <div className='grid grid-flow-row grid-cols-3 gap-4 pb-4'>
-              {subjects.map((subject: Subject, index) => (
-                <AssessmentPastPaper key={index} icon={subject.subject_icon} name={subject.subject_name} progress={0} />
-              ))}
-            </div>
-          </div>
           <div className='bg-primary border border-accent rounded-lg p-4 w-full'>
             <h1 className='font-semibold mb-4'>Upcoming assessments</h1>
             <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
@@ -133,6 +124,15 @@ const AssessmentsPage: NextPage = () => {
               </div>
             </div>
           }
+          <div className='bg-primary border border-accent rounded-lg p-4 w-full min-h-60'>
+            <h1 className='font-semibold'>Past papers</h1>
+            <p className='font-medium italic my-4'>✨ COMING SOON ✨</p>
+            <div className='grid grid-flow-row grid-cols-3 gap-4 pb-4'>
+              {subjects.map((subject: Subject, index) => (
+                <AssessmentPastPaper key={index} icon={subject.subject_icon} name={subject.subject_name} progress={0} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
       {isAddAssessmentModalOpen && <AddAssessmentModal closeModal={closeModal} assessments={assessments} setAssessments={setAssessments} />}
