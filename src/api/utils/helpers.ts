@@ -47,7 +47,7 @@ export const createSession = async (req: NextApiRequest, name: string, email: st
 };
 
 export const validateEmail = (email: string) => {
-  const regexPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+  const regexPattern = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/);
   return regexPattern.test(email);
 };
 
