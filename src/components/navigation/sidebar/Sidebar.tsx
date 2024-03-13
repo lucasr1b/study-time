@@ -9,7 +9,7 @@ const Sidebar = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleTheme = () => {
-    if (localStorage.getItem('theme') === 'light' || undefined) {
+    if (localStorage.getItem('theme') === 'light' || localStorage.getItem('theme') === null) {
       localStorage.setItem('theme', 'dark');
       document.documentElement.classList.add('dark');
       setDarkMode(true);
