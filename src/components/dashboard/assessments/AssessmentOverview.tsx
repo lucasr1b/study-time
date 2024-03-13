@@ -20,9 +20,9 @@ const AssessmentOverview = () => {
   }, []);
 
   return (
-    <aside className='w-full h-1/2 p-4 border rounded-lg border-accent bg-primary'>
+    <aside className='flex flex-col w-full h-1/2 p-4 border rounded-lg border-accent bg-primary'>
       <h1 className='font-semibold pb-2'>Upcoming assessments</h1>
-      <div className='overflow-y-auto flex flex-col gap-2 h-80 w-full rounded pr-4'>
+      <div className='overflow-y-scroll flex flex-col gap-2 w-full rounded pr-4 m-auto'>
         {assessments.map((assessment: Assessment) => (
           new Date(assessment.date) > new Date() && (
             <AssessmentOverviewItem key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} date={assessment.date} description={assessment.description} />
