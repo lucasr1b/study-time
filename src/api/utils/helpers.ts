@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import StudyTracking from '../models/StudyTracking';
 import CambridgeSubject from '../models/CambridgeSubject';
-import { v4 as uuidv4 } from 'uuid';
 
 export const sendSuccessResponse = (res: NextApiResponse, message: string, data: any) => {
   res.status(200).json({ message, ...data });
@@ -57,22 +56,17 @@ export const convertTimeToSeconds = (hours: number, minutes: number) => {
 };
 
 export const createStudyTracker = async (subjectId: string, email: string) => {
-  const trackerId = uuidv4();
-
   const subjectDetails = await CambridgeSubject.findOne({ subject_id: subjectId });
 
   await StudyTracking.create({
-    tracker_id: trackerId,
     user: email,
     subject_id: subjectId,
     subject_name: subjectDetails.subject_name,
     subject_icon: subjectDetails.subject_icon,
   });
-
-  return trackerId;
 };
 
 export const updateAndFetchTracker = async (trackerId: string, updateData: object) => {
-  await StudyTracking.findOneAndUpdate({ tracker_id: trackerId }, { $set: updateData });
-  return StudyTracking.findOne({ tracker_id: trackerId });
+  await StudyTracking.findOneAndUpdate({ _id: trackerId }, { $set: updateData });
+  return StudyTracking.findOne({ _id: trackerId });
 }; 

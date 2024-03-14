@@ -16,7 +16,7 @@ const SubjectTimer = (props: TimerProps) => {
 
   const updateTimer = async () => {
     try {
-      await axios.put('/api/study/trackers/update', { id: props.tracker.tracker_id, time: props.tracker.time_allocated - time });
+      await axios.put('/api/study/trackers/update', { id: props.tracker._id, time: props.tracker.time_allocated - time });
     } catch (err: any) {
       console.error('Error updating tracker:', err.response.data.error);
     }

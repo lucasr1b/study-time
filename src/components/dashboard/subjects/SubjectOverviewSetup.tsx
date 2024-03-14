@@ -14,7 +14,7 @@ const SubjectOverviewSetup = (props: SubjectOverviewSetupProps) => {
   const updateTrackers = (updatedTracker: Tracker) => {
     props.setTrackers((prevTrackers: Tracker[]) => {
       const updatedTrackers = prevTrackers.map((tracker: Tracker) =>
-        tracker.tracker_id === updatedTracker.tracker_id
+        tracker._id === updatedTracker._id
           ? { ...tracker, time_allocated: updatedTracker.time_allocated, is_setup: updatedTracker.is_setup }
           : tracker);
       updatedTrackers.sort((trackerA, trackerB) => trackerA.is_setup === trackerB.is_setup ? 0 : trackerA.is_setup ? -1 : 1);

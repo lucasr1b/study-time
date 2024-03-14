@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 export interface IStudyTracking extends mongoose.Document {
-  tracker_id: string;
   user: string;
   subject_id: string;
   subject_name: string;
@@ -13,11 +12,6 @@ export interface IStudyTracking extends mongoose.Document {
 }
 
 const StudyTrackingSchema = new mongoose.Schema({
-
-  tracker_id: {
-    type: String,
-    required: true,
-  },
 
   user: {
     type: String,

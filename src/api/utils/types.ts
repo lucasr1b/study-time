@@ -16,7 +16,7 @@ export type Subject = {
 };
 
 export type Tracker = {
-  tracker_id: string;
+  _id: string;
   user: string;
   subject_id: string;
   subject_name: string;

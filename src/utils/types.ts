@@ -43,7 +43,7 @@ export type Assessment = {
 export type SetAssessments = React.Dispatch<React.SetStateAction<Assessment[]>>;
 
 export type Tracker = {
-  tracker_id: string;
+  _id: string;
   user: string;
   subject_id: string;
   subject_name: string;
