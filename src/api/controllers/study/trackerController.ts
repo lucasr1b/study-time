@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { editStudyTrackerTimeForSubject, removeStudyTrackerForSubject, setupStudyTrackerForSubject, updateStudyTrackerTimerForSubject } from '../../services/study/trackerService';
-import { isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../../utils/helpers';
 import connectToDB from '../../lib/mongodb';
 import StudyTracking from '../../models/StudyTracking';
 import User from '../../models/User';
@@ -14,8 +14,8 @@ connectToDB();
 export const getAllSubjectTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (isUserLoggedIn(req, res)) {
-      const user = await User.findOne({ email: req.session.user.email });
-      const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+      const user = getUserFromSession(req);
+      const trackers = await StudyTracking.find({ user: user.email });
       trackers.sort((trackerA, trackerB) => (trackerA.is_setup === trackerB.is_setup) ? 0 : trackerA.is_setup ? -1 : 1);
       sendSuccessResponse(res, 'All subject trackers fetched', { trackers });
     }

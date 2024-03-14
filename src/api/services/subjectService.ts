@@ -12,12 +12,9 @@ export const updateSubjectForUser = async (id: string, email: string, operation:
 };
 
 export const createStudyTrackerAndAddToUser = async (subjectId: string, email: string) => {
-  const trackerId = await createStudyTracker(subjectId, email);
-
-  await User.findOneAndUpdate({ email }, { $push: { trackers: trackerId } });
+  await createStudyTracker(subjectId, email);
 };
 
 export const deleteStudyTrackerAndRemoveFromUser = async (subjectId: string, email: string) => {
-  const tracker = await StudyTracking.findOneAndDelete({ subject_id: subjectId, user: email });
-  await User.findOneAndUpdate({ email }, { $pull: { trackers: tracker.tracker_id } });
+  await StudyTracking.findOneAndDelete({ subject_id: subjectId, user: email });
 };
