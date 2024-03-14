@@ -3,7 +3,6 @@ import { editStudyTrackerTimeForSubject, removeStudyTrackerForSubject, setupStud
 import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../../utils/helpers';
 import connectToDB from '../../lib/mongodb';
 import StudyTracking from '../../models/StudyTracking';
-import User from '../../models/User';
 
 connectToDB();
 
@@ -48,24 +47,24 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
 // @Route /api/study/trackers/weekly
 // @Method GET
 
-export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    if (isUserLoggedIn(req, res)) {
-      const user = await User.findOne({ email: req.session.user.email });
-      if (!user.trackers || user.trackers.length === 0) {
-        sendSuccessResponse(res, 'User has no subject trackers', { isAllTrackersSetup: false, weeklyTrackers: [] });
-      } else {
-        const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
-        const isAllTrackersSetup = trackers.every((tracker) => tracker.is_setup);
-        const weeklyTrackers = trackers.filter((tracker) => tracker.is_setup);
-        sendSuccessResponse(res, 'All weekly progress for trackers fetched', { isAllTrackersSetup, weeklyTrackers });
-      }
-    }
-  } catch (err: any) {
-    console.error(err);
-    sendErrorResponse(res, 'Weekly progress for trackers not fetched', err.message);
-  }
-};
+// export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
+//   try {
+//     if (isUserLoggedIn(req, res)) {
+//       const user = await User.findOne({ email: req.session.user.email });
+//       if (!user.trackers || user.trackers.length === 0) {
+//         sendSuccessResponse(res, 'User has no subject trackers', { isAllTrackersSetup: false, weeklyTrackers: [] });
+//       } else {
+//         const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+//         const isAllTrackersSetup = trackers.every((tracker) => tracker.is_setup);
+//         const weeklyTrackers = trackers.filter((tracker) => tracker.is_setup);
+//         sendSuccessResponse(res, 'All weekly progress for trackers fetched', { isAllTrackersSetup, weeklyTrackers });
+//       }
+//     }
+//   } catch (err: any) {
+//     console.error(err);
+//     sendErrorResponse(res, 'Weekly progress for trackers not fetched', err.message);
+//   }
+// };
 
 // @Desc Setup new tracker for user for a subject
 // @Route /api/study/trackers/setup
