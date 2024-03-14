@@ -42,7 +42,7 @@ const DashboardPage: NextPage = () => {
                   tracker.is_setup ? (
                     <SubjectOverview key={tracker.tracker_id} tracker={tracker} />
                   ) : (
-                    <SubjectOverviewSetup key={tracker.tracker_id} tracker={tracker} />
+                    <SubjectOverviewSetup key={tracker.tracker_id} tracker={tracker} setTrackers={setTrackers} />
                   )
                 ))}
               </div>
