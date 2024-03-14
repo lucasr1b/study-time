@@ -26,7 +26,7 @@ const Sidebar = () => {
     <aside className='fixed top-0 left-0 z-40 w-64 h-full px-3 py-4 border-r bg-primary border-accent overflow-y-auto flex flex-col'>
       <div className='flex-1'>
         <div className='block text-3xl text-center font-semibold pt-4 pb-8'>
-          <Link href='/app'>Study Time</Link>
+          <Link href='/app' className='p-1'>Study Time</Link>
         </div>
         <ul className='space-y-2'>
           <SidebarItem name='Dashboard' href='/app' icon={<Squares2X2Icon className='w-6 h-6' />} />
