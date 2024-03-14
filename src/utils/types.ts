@@ -31,7 +31,7 @@ export type ExamBoardDetails = {
 };
 
 export type Assessment = {
-  assessment_id: string;
+  _id: string;
   user: string;
   subject_id: string;
   subject_name: string;

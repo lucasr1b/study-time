@@ -22,7 +22,7 @@ const DeleteAssessmentModal = (props: DeleteAssessmentModalProps) => {
           </div>
           <div className='flex gap-2 ml-auto'>
             <button type='button' className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={props.closeModal}>Cancel</button>
-            <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm text-red-500' onClick={() => props.confirm(props.assessment.assessment_id)}>Confirm</button>
+            <button className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm text-red-500' onClick={() => props.confirm(props.assessment._id)}>Confirm</button>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 export interface IAssessment extends mongoose.Document {
-  assessment_id: string;
   user: string;
   subject_id: string;
   subject_name: string;
@@ -11,11 +10,6 @@ export interface IAssessment extends mongoose.Document {
 }
 
 const AssessmentSchema = new mongoose.Schema({
-
-  assessment_id: {
-    type: String,
-    required: true,
-  },
 
   user: {
     type: String,
