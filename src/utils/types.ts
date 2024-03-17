@@ -12,13 +12,13 @@ export type SetSubjects = React.Dispatch<React.SetStateAction<Subject[]>>;
 export type SetSubject = React.Dispatch<React.SetStateAction<Subject | undefined>>;
 
 export type ExamBoard = {
-  board_id: string;
+  _id: string;
   board_name: string;
   board_levels: string[];
 };
 
 export type ExamLevel = {
-  level_id: string
+  _id: string
   level_name: string;
   board_id: string;
 };

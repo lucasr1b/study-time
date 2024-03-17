@@ -119,7 +119,6 @@ export const formatEventDate = (date: Date) => {
 
   return date.toLocaleDateString('en-NZ', options);
 };
-
 export const fetchExamBoardDetails = async () => {
   const fetchExamBoards = async () => {
     try {
@@ -148,12 +147,12 @@ export const fetchExamBoardDetails = async () => {
 
     for (const board of examBoards) {
       if (board.board_levels.length > 0) {
-        const levels = examLevels.filter((level: ExamLevel) => level.board_id === board.board_id);
+        const levels = examLevels.filter((level: ExamLevel) => level.board_id === board._id);
         for (const level of levels) {
-          boardsData.push({ board_id: board.board_id, board_name: board.board_name, level_id: level.level_id, level_name: level.level_name });
+          boardsData.push({ board_id: board._id, board_name: board.board_name, level_id: level._id, level_name: level.level_name });
         }
       } else {
-        boardsData.push({ board_id: board.board_id, board_name: board.board_name, level_id: '', level_name: '' });
+        boardsData.push({ board_id: board._id, board_name: board.board_name, level_id: '', level_name: '' });
       }
     }
     return boardsData;
@@ -162,6 +161,7 @@ export const fetchExamBoardDetails = async () => {
     return [];
   }
 };
+
 
 export const logoutUser = async () => {
   try {
