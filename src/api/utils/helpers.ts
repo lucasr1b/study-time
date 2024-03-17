@@ -36,8 +36,9 @@ export const isUserLoggedIn = (req: NextApiRequest, res: NextApiResponse) => {
   return true;
 };
 
-export const createSession = async (req: NextApiRequest, name: string, email: string, onboarding: boolean) => {
+export const createSession = async (req: NextApiRequest, _id: string, name: string, email: string, onboarding: boolean) => {
   req.session.user = {
+    _id,
     name,
     email,
     onboarding,
@@ -55,11 +56,11 @@ export const convertTimeToSeconds = (hours: number, minutes: number) => {
   return time;
 };
 
-export const createStudyTracker = async (subjectId: string, email: string) => {
+export const createStudyTracker = async (subjectId: string, _id: string) => {
   const subjectDetails = await CambridgeSubject.findOne({ subject_id: subjectId });
 
   await StudyTracking.create({
-    user: email,
+    user: _id,
     subject_id: subjectId,
     subject_name: subjectDetails.subject_name,
     subject_icon: subjectDetails.subject_icon,

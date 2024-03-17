@@ -13,7 +13,7 @@ export const getAllUserStudyTrackerSessions = async (req: NextApiRequest, res: N
   try {
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
-      const sessions = await fetchAllStudyTrackerSessionsForUser(user.email);
+      const sessions = await fetchAllStudyTrackerSessionsForUser(user._id);
       sendSuccessResponse(res, 'All study sessions fetched', { sessions });
     }
   } catch (err: any) {
@@ -31,7 +31,7 @@ export const logStudyTrackerSessionController = async (req: NextApiRequest, res:
     if (isUserLoggedIn(req, res)) {
       const { tracker, time } = req.body;
       const user = getUserFromSession(req);
-      await logStudyTrackerSessionForSubject(tracker, time, user.email);
+      await logStudyTrackerSessionForSubject(tracker, time, user._id);
       sendSuccessCreatedResponse(res, 'Subject study session logged');
     }
   } catch (err: any) {

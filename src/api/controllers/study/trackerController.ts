@@ -14,7 +14,7 @@ export const getAllSubjectTrackersController = async (req: NextApiRequest, res: 
   try {
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
-      const trackers = await StudyTracking.find({ user: user.email });
+      const trackers = await StudyTracking.find({ user: user._id });
       trackers.sort((trackerA, trackerB) => (trackerA.is_setup === trackerB.is_setup) ? 0 : trackerA.is_setup ? -1 : 1);
       sendSuccessResponse(res, 'All subject trackers fetched', { trackers });
     }
@@ -32,8 +32,8 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
   try {
     if (isUserLoggedIn(req, res)) {
       const { subjectId } = req.query;
-      const user = req.session.user.email; // Change to id in future
-      const [tracker] = await StudyTracking.find({ subject_id: subjectId, user });
+      const user = getUserFromSession(req);
+      const [tracker] = await StudyTracking.find({ subject_id: subjectId, user: user._id });
       sendSuccessResponse(res, 'Subject tracker fetched', { tracker });
     }
   } catch (err: any) {

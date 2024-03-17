@@ -12,6 +12,7 @@ export const sessionOptions: IronSessionOptions = {
 declare module 'iron-session' {
   interface IronSessionData {
     user: {
+      _id: string;
       name: string;
       email: string;
       onboarding: boolean;

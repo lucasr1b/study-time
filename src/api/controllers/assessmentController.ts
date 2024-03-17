@@ -14,7 +14,7 @@ export const getAllAssessmentsController = async (req: NextApiRequest, res: Next
   try {
     if (isUserLoggedIn(req, res)) {
       const user = getUserFromSession(req);
-      const assessments = await Assessment.find({ user: user.email }).sort({ date: 'asc' });
+      const assessments = await Assessment.find({ user: user._id }).sort({ date: 'asc' });
       sendSuccessResponse(res, 'All assessments fetched', { assessments });
     }
   } catch (err: any) {
@@ -32,7 +32,7 @@ export const addAssessmentController = async (req: NextApiRequest, res: NextApiR
     if (isUserLoggedIn(req, res)) {
       const { subject, date, description } = req.body;
       const user = getUserFromSession(req);
-      const newAssessment = await createAssessment(subject, date, description, user.email);
+      const newAssessment = await createAssessment(subject, date, description, user._id);
       sendSuccessCreatedResponse(res, 'Assessment added', { newAssessment });
     }
   } catch (err: any) {
