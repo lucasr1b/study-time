@@ -1,10 +1,10 @@
 import Assessment from '../models/Assessment';
 import { Subject } from '../utils/types';
 
-export const createAssessment = async (subject: Subject, date: Date, description: string, email: string) => {
+export const createAssessment = async (subject: Subject, date: Date, description: string, _id: string) => {
 
   const newAssessment = await Assessment.create({
-    user: email,
+    user: _id,
     subject_id: subject.subject_id,
     subject_name: subject.subject_name,
     subject_icon: subject.subject_icon,
