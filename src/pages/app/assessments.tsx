@@ -78,9 +78,9 @@ const AssessmentsPage: NextPage = () => {
   const deleteAssessment = async (assessmentId: string) => {
     try {
       await axios.post('/api/assessments/delete', { assessmentId });
-      const updatedAssessments = assessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId);
+      const updatedAssessments = assessments.filter((assessment: Assessment) => assessment._id !== assessmentId);
       setAssessments(updatedAssessments);
-      setPastDueAssessments(pastDueAssessments.filter((assessment: Assessment) => assessment.assessment_id !== assessmentId));
+      setPastDueAssessments(pastDueAssessments.filter((assessment: Assessment) => assessment._id !== assessmentId));
       closeModal();
     } catch (err: any) {
       console.error('Error deleting assessment:', err.response.data.error);
@@ -98,7 +98,7 @@ const AssessmentsPage: NextPage = () => {
             <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
               {assessments.map((assessment: Assessment) => (
                 <AssessmentItem
-                  key={assessment.assessment_id}
+                  key={assessment._id}
                   assessment={assessment}
                   openDeleteAssessmentModal={openDeleteAssessmentModal}
                   deleteAssessment={deleteAssessment}
@@ -114,7 +114,7 @@ const AssessmentsPage: NextPage = () => {
               <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
                 {pastDueAssessments.map((assessment: Assessment) => (
                   <AssessmentItem
-                    key={assessment.assessment_id}
+                    key={assessment._id}
                     assessment={assessment}
                     deleteAssessment={deleteAssessment}
                     openEditAssessmentModal={openEditAssessmentModal}

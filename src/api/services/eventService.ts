@@ -1,8 +1,8 @@
 import Event from '../models/Event';
 
-export const createEvent = async (title: string, date: Date, email: string) => {
+export const createEvent = async (title: string, date: Date, _id: string) => {
   const newEvent = await Event.create({
-    user: email,
+    user: _id,
     title: title,
     date,
   });

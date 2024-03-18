@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { editStudyTrackerTimeForSubject, removeStudyTrackerForSubject, setupStudyTrackerForSubject, updateStudyTrackerTimerForSubject } from '../../services/study/trackerService';
-import { isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../../utils/helpers';
 import connectToDB from '../../lib/mongodb';
 import StudyTracking from '../../models/StudyTracking';
-import User from '../../models/User';
 
 connectToDB();
 
@@ -14,8 +13,8 @@ connectToDB();
 export const getAllSubjectTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (isUserLoggedIn(req, res)) {
-      const user = await User.findOne({ email: req.session.user.email });
-      const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+      const user = getUserFromSession(req);
+      const trackers = await StudyTracking.find({ user: user._id });
       trackers.sort((trackerA, trackerB) => (trackerA.is_setup === trackerB.is_setup) ? 0 : trackerA.is_setup ? -1 : 1);
       sendSuccessResponse(res, 'All subject trackers fetched', { trackers });
     }
@@ -33,8 +32,8 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
   try {
     if (isUserLoggedIn(req, res)) {
       const { subjectId } = req.query;
-      const user = req.session.user.email; // Change to id in future
-      const [tracker] = await StudyTracking.find({ subject_id: subjectId, user });
+      const user = getUserFromSession(req);
+      const [tracker] = await StudyTracking.find({ subject_id: subjectId, user: user._id });
       sendSuccessResponse(res, 'Subject tracker fetched', { tracker });
     }
   } catch (err: any) {
@@ -48,24 +47,24 @@ export const getSubjectTrackerItemController = async (req: NextApiRequest, res: 
 // @Route /api/study/trackers/weekly
 // @Method GET
 
-export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    if (isUserLoggedIn(req, res)) {
-      const user = await User.findOne({ email: req.session.user.email });
-      if (!user.trackers || user.trackers.length === 0) {
-        sendSuccessResponse(res, 'User has no subject trackers', { isAllTrackersSetup: false, weeklyTrackers: [] });
-      } else {
-        const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
-        const isAllTrackersSetup = trackers.every((tracker) => tracker.is_setup);
-        const weeklyTrackers = trackers.filter((tracker) => tracker.is_setup);
-        sendSuccessResponse(res, 'All weekly progress for trackers fetched', { isAllTrackersSetup, weeklyTrackers });
-      }
-    }
-  } catch (err: any) {
-    console.error(err);
-    sendErrorResponse(res, 'Weekly progress for trackers not fetched', err.message);
-  }
-};
+// export const getAllSetupWeeklyTrackersController = async (req: NextApiRequest, res: NextApiResponse) => {
+//   try {
+//     if (isUserLoggedIn(req, res)) {
+//       const user = await User.findOne({ email: req.session.user.email });
+//       if (!user.trackers || user.trackers.length === 0) {
+//         sendSuccessResponse(res, 'User has no subject trackers', { isAllTrackersSetup: false, weeklyTrackers: [] });
+//       } else {
+//         const trackers = await StudyTracking.find({ tracker_id: { $in: user.trackers } });
+//         const isAllTrackersSetup = trackers.every((tracker) => tracker.is_setup);
+//         const weeklyTrackers = trackers.filter((tracker) => tracker.is_setup);
+//         sendSuccessResponse(res, 'All weekly progress for trackers fetched', { isAllTrackersSetup, weeklyTrackers });
+//       }
+//     }
+//   } catch (err: any) {
+//     console.error(err);
+//     sendErrorResponse(res, 'Weekly progress for trackers not fetched', err.message);
+//   }
+// };
 
 // @Desc Setup new tracker for user for a subject
 // @Route /api/study/trackers/setup

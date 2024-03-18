@@ -26,7 +26,7 @@ const AssessmentOverview = () => {
       <div className='overflow-y-scroll flex flex-col gap-2 w-full rounded pr-4'>
         {assessments.map((assessment: Assessment) => (
           new Date(assessment.date) > new Date() && (
-            <AssessmentOverviewItem key={assessment.assessment_id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} date={assessment.date} description={assessment.description} />
+            <AssessmentOverviewItem key={assessment._id} subject_icon={assessment.subject_icon} subject_name={assessment.subject_name} date={assessment.date} description={assessment.description} />
           )
         ))}
       </div>

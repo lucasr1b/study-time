@@ -40,9 +40,9 @@ const DashboardPage: NextPage = () => {
               <div className='grid grid-cols-2 gap-4'>
                 {trackers.map(tracker => (
                   tracker.is_setup ? (
-                    <SubjectOverview key={tracker.tracker_id} tracker={tracker} />
+                    <SubjectOverview key={tracker._id} tracker={tracker} />
                   ) : (
-                    <SubjectOverviewSetup key={tracker.tracker_id} tracker={tracker} setTrackers={setTrackers} />
+                    <SubjectOverviewSetup key={tracker._id} tracker={tracker} setTrackers={setTrackers} />
                   )
                 ))}
               </div>

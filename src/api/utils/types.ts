@@ -16,7 +16,7 @@ export type Subject = {
 };
 
 export type Tracker = {
-  tracker_id: string;
+  _id: string;
   user: string;
   subject_id: string;
   subject_name: string;
@@ -28,7 +28,7 @@ export type Tracker = {
 };
 
 export type Assessment = {
-  assessment_id: string;
+  _id: string
   user: string;
   subject_id: string;
   subject_name: string;

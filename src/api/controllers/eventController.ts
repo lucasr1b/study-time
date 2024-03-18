@@ -13,7 +13,7 @@ connectToDB();
 export const getEventsController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const user = getUserFromSession(req);
-    const events = await Event.find({ user: user.email }).sort({ date: 'asc' });
+    const events = await Event.find({ user: user._id }).sort({ date: 'asc' });
     sendSuccessResponse(res, 'All events fetched', { events });
   } catch (err: any) {
     console.error(err);
@@ -29,7 +29,7 @@ export const addEventController = async (req: NextApiRequest, res: NextApiRespon
   try {
     const { title, date } = req.body;
     const user = getUserFromSession(req);
-    const newEvent = await createEvent(title, date, user.email);
+    const newEvent = await createEvent(title, date, user._id);
     sendSuccessResponse(res, 'Event added', { newEvent });
   } catch (err: any) {
     console.error(err);

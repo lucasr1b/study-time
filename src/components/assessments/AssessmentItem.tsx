@@ -36,7 +36,7 @@ const AssessmentItem = (props: AssessmentItemProps) => {
             ) : (
               <button
                 className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'
-                onClick={() => props.deleteAssessment(props.assessment.assessment_id)}>
+                onClick={() => props.deleteAssessment(props.assessment._id)}>
                 Delete
               </button>
             )

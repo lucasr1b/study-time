@@ -14,7 +14,8 @@ connectToDB();
 export const getAllSubjectsController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (isUserLoggedIn(req, res)) {
-      const user = await User.findOne({ email: req.session.user.email });
+      const id = getUserFromSession(req)._id;
+      const user = await User.findOne({ _id: id });
       const subjects = await CambridgeSubject.find({ subject_id: { $in: user.subjects } });
       sendSuccessResponse(res, 'All subjects fetched', { subjects });
     }
@@ -33,8 +34,8 @@ export const addSubjectController = async (req: NextApiRequest, res: NextApiResp
     if (isUserLoggedIn(req, res)) {
       const { id } = req.body;
       const user = getUserFromSession(req);
-      const addedSubject = await updateSubjectForUser(id, user.email, 'add');
-      await createStudyTrackerAndAddToUser(id, user.email);
+      const addedSubject = await updateSubjectForUser(id, user._id, 'add');
+      await createStudyTrackerAndAddToUser(id, user._id);
       sendSuccessCreatedResponse(res, 'Subject added', { addedSubject });
     }
   } catch (err: any) {
@@ -52,8 +53,8 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
     if (isUserLoggedIn(req, res)) {
       const { id } = req.body;
       const user = getUserFromSession(req);
-      await updateSubjectForUser(id, user.email, 'remove');
-      await deleteStudyTrackerAndRemoveFromUser(id, user.email);
+      await updateSubjectForUser(id, user._id, 'remove');
+      await deleteStudyTrackerAndRemoveFromUser(id, user._id);
       sendSuccessNoContentResponse(res);
     }
   } catch (err: any) {
