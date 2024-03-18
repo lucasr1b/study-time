@@ -1,4 +1,6 @@
-export const subjects = [
+import { Subject } from './types';
+
+export const subjects: Subject[] = [
   {
     'subject_id': '0452',
     'subject_name': 'Accounting',

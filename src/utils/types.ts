@@ -1,3 +1,8 @@
+export type Country = {
+  code: string;
+  name: string;
+};
+
 export type Subject = {
   subject_id: string;
   subject_name: string;

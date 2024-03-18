@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import countries from '../../../utils/countries';
 
 type SelectCountryProps = {
   country: string;
@@ -18,10 +19,9 @@ const SelectCountry = (props: SelectCountryProps) => {
         value={props.country}
         onChange={props.handleCountry}>
         <option value=''>Select your country</option>
-        <option value='USA'>United States</option>
-        <option value='UK'>United Kingdom</option>
-        <option value='AU'>Australia</option>
-        <option value='NZ'>New Zealand</option>
+        {countries.map((country) => (
+          <option key={country.code} value={country.code}>{country.name}</option>
+        ))}
       </select>
     </>
   );
