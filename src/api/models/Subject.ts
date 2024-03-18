@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface ICambridgeSubject extends mongoose.Document {
+export interface ISubject extends mongoose.Document {
   subject_id: string;
   subject_name: string;
   subject_board: string;
@@ -10,7 +10,7 @@ export interface ICambridgeSubject extends mongoose.Document {
   level_id: string;
 }
 
-const CambridgeSubjectSchema = new mongoose.Schema({
+const SubjectSchema = new mongoose.Schema({
 
   subject_id: {
     type: String,
@@ -48,6 +48,6 @@ const CambridgeSubjectSchema = new mongoose.Schema({
   },
 });
 
-const CambridgeSubject = mongoose.models.CambridgeSubject || mongoose.model<ICambridgeSubject>('CambridgeSubject', CambridgeSubjectSchema);
+const Subject = mongoose.models.Subject || mongoose.model<ISubject>('Subject', SubjectSchema);
 
-export default CambridgeSubject;
+export default Subject;

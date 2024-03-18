@@ -1,5 +1,5 @@
 import User from '../models/User';
-import CambridgeSubject from '../models/CambridgeSubject';
+import Subject from '../models/Subject';
 import StudyTracking from '../models/StudyTracking';
 import { createStudyTracker } from '../utils/helpers';
 
@@ -8,7 +8,7 @@ export const updateSubjectForUser = async (subjectId: string, _id: string, opera
 
   await User.findOneAndUpdate({ _id }, updateSubjectData);
 
-  return CambridgeSubject.findOne({ subject_id: subjectId });
+  return Subject.findOne({ subject_id: subjectId });
 };
 
 export const createStudyTrackerAndAddToUser = async (subjectId: string, _id: string) => {

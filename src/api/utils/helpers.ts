@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import StudyTracking from '../models/StudyTracking';
-import CambridgeSubject from '../models/CambridgeSubject';
+import Subject from '../models/Subject';
 
 export const sendSuccessResponse = (res: NextApiResponse, message: string, data: any) => {
   res.status(200).json({ message, ...data });
@@ -67,7 +67,7 @@ export const convertTimeToSeconds = (hours: number, minutes: number) => {
 };
 
 export const createStudyTracker = async (subjectId: string, _id: string) => {
-  const subjectDetails = await CambridgeSubject.findOne({ subject_id: subjectId });
+  const subjectDetails = await Subject.findOne({ subject_id: subjectId });
 
   await StudyTracking.create({
     user: _id,

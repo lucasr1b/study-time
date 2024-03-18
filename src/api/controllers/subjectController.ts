@@ -3,7 +3,7 @@ import connectToDB from '../lib/mongodb';
 import { updateSubjectForUser, createStudyTrackerAndAddToUser, deleteStudyTrackerAndRemoveFromUser } from '../services/subjectService';
 import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessCreatedResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
 import User from '../models/User';
-import CambridgeSubject from '../models/CambridgeSubject';
+import Subject from '../models/Subject';
 
 connectToDB();
 
@@ -16,7 +16,7 @@ export const getAllSubjectsController = async (req: NextApiRequest, res: NextApi
     if (isUserLoggedIn(req, res)) {
       const id = getUserFromSession(req)._id;
       const user = await User.findOne({ _id: id });
-      const subjects = await CambridgeSubject.find({ subject_id: { $in: user.subjects } });
+      const subjects = await Subject.find({ subject_id: { $in: user.subjects } });
       sendSuccessResponse(res, 'All subjects fetched', { subjects });
     }
   } catch (err: any) {
@@ -69,7 +69,7 @@ export const removeSubjectController = async (req: NextApiRequest, res: NextApiR
 
 export const getSubjectListController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const subjects = await CambridgeSubject.find();
+    const subjects = await Subject.find();
     sendSuccessResponse(res, 'Subject list fetched', { subjects });
   } catch (err: any) {
     console.error(err);
@@ -84,7 +84,7 @@ export const getSubjectListController = async (req: NextApiRequest, res: NextApi
 export const getSubjectListItemController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query;
-    const subject = await CambridgeSubject.findOne({ subject_id: id });
+    const subject = await Subject.findOne({ subject_id: id });
     sendSuccessResponse(res, 'Subject fetched', { subject });
   } catch (err: any) {
     console.error(err);
@@ -103,10 +103,10 @@ export const getSubjectListItemFromExamBoardController = async (req: NextApiRequ
     const levelId = board?.[1] ?? '';
 
     if (levelId === '') {
-      const subjects = await CambridgeSubject.find({ board_id: boardId });
+      const subjects = await Subject.find({ board_id: boardId });
       sendSuccessResponse(res, 'Subjects fetched', { subjects });
     } else {
-      const subjects = await CambridgeSubject.find({ board_id: boardId, level_id: levelId });
+      const subjects = await Subject.find({ board_id: boardId, level_id: levelId });
       sendSuccessResponse(res, 'Subjects fetched', { subjects });
     }
 
@@ -123,7 +123,7 @@ export const getSubjectListItemFromExamBoardController = async (req: NextApiRequ
 export const getSubjectListItemFromExamBoardLevelController = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { boardId, levelId } = req.query;
-    const subjects = await CambridgeSubject.find({ board_id: boardId, level_id: levelId });
+    const subjects = await Subject.find({ board_id: boardId, level_id: levelId });
     sendSuccessResponse(res, 'Subjects fetched', { subjects });
   } catch (err: any) {
     console.error(err);
