@@ -51,6 +51,16 @@ export const validateEmail = (email: string) => {
   return regexPattern.test(email);
 };
 
+export const capitalizeName = (name: string) => {
+  const fullName = name.toLowerCase().split(' ');
+
+  const capitalizedNames = fullName.map((word: string) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  return capitalizedNames.join(' ');
+};
+
 export const convertTimeToSeconds = (hours: number, minutes: number) => {
   const time = ((hours * 60) + minutes) * 60;
   return time;
@@ -70,4 +80,4 @@ export const createStudyTracker = async (subjectId: string, _id: string) => {
 export const updateAndFetchTracker = async (trackerId: string, updateData: object) => {
   await StudyTracking.findOneAndUpdate({ _id: trackerId }, { $set: updateData });
   return StudyTracking.findOne({ _id: trackerId });
-}; 
+};

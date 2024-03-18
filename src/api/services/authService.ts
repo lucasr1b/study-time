@@ -1,6 +1,6 @@
 import { NextApiRequest } from 'next';
 import User from '../models/User';
-import { createSession, validateEmail } from '../utils/helpers';
+import { capitalizeName, createSession, validateEmail } from '../utils/helpers';
 
 export const validateUserCreationFields = async (name: string, email: string, password: string, cpassword: string) => {
   const doesAccountExist = await User.findOne({ email });
@@ -29,6 +29,8 @@ export const validateUserCreationFields = async (name: string, email: string, pa
 };
 
 export const createUserAndSession = async (req: NextApiRequest, name: string, email: string, password: string) => {
+  name = capitalizeName(name); // capitalize name to be put into db
+
   const user = await User.create({
     name,
     email,
