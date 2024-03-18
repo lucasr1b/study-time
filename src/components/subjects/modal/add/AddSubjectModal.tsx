@@ -18,11 +18,11 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
   return (
     <>
       <div className='fixed z-40 flex items-center justify-center bg-modal-backdrop w-full h-full top-0 left-0' onClick={props.closeModal}></div>
-      {!examBoardLevel ? (
+      {!examBoard ? (
         <AddSubjectModalLevel setExamBoard={setExamBoard} setExamBoardLevel={setExamBoardLevel} />
       ) : (
         !selectedSubject ? (
-          <AddSubjectModalSubject closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} setSelectedSubject={setSelectedSubject} selectedSubject={selectedSubject} examBoard={examBoard} examBoardLevel={examBoardLevel} setExamBoardLevel={setExamBoardLevel} />
+          <AddSubjectModalSubject closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} setSelectedSubject={setSelectedSubject} selectedSubject={selectedSubject} examBoard={examBoard} examBoardLevel={examBoardLevel} setExamBoard={setExamBoard} />
         ) : (
           <AddSubjectModalConfirm closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} selectedSubject={selectedSubject} setSelectedSubject={setSelectedSubject} />
         )

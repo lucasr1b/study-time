@@ -20,9 +20,9 @@ const AddSubjectModalLevel = (props: AddSubjectModalLevelProps) => {
     setExamBoardsAndLevels();
   }, []);
 
-  const selectBoardAndLevel = (board_name: string, level: string) => {
-    props.setExamBoard(board_name);
-    props.setExamBoardLevel(level);
+  const selectBoardAndLevel = (boardName: string, levelName: string) => {
+    props.setExamBoard(boardName);
+    props.setExamBoardLevel(levelName);
   };
 
   return (

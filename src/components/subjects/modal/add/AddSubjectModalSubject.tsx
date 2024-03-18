@@ -9,8 +9,8 @@ type AddSubjectModalSubjectProps = {
   selectedSubject: Subject | undefined;
   setSelectedSubject: SetSubject;
   examBoard: string;
+  setExamBoard: SetStringState;
   examBoardLevel: string;
-  setExamBoardLevel: SetStringState;
 };
 
 const AddSubjectModalSubject = (props: AddSubjectModalSubjectProps) => {
@@ -67,7 +67,7 @@ const AddSubjectModalSubject = (props: AddSubjectModalSubjectProps) => {
               </li>
             ))}
           </ul>
-          <button className='bg-primary border border-accent rounded-md h-10 w-32 px-4 hover:bg-accent text-sm font-medium mt-4' onClick={() => props.setExamBoardLevel('')}>← Go back</button>
+          <button className='bg-primary border border-accent rounded-md h-10 w-32 px-4 hover:bg-accent text-sm font-medium mt-4' onClick={() => props.setExamBoard('')}>← Go back</button>
         </div>
       </div>
     </div>
