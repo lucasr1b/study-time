@@ -22,9 +22,9 @@ const SubjectStudyLogList = () => {
     <aside className='w-2/5 z-40 min-h-full p-4 border rounded-lg border-accent bg-primary'>
       <div className='flex justify-between items-center'>
         <h1 className='font-semibold'>Study log</h1>
-        <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'>
+        {/* <button className='bg-primary border border-accent rounded-md h-8 px-3 hover:bg-accent text-sm'>
           View all logs
-        </button>
+        </button> */}
       </div>
       {logs.length === 0 && <p className='italic mt-2'>Log study sessions in the study page.</p>}
       <div className='flex flex-col gap-4 mt-4'>
