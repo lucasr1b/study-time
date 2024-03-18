@@ -22,7 +22,7 @@ const AddSubjectModal = (props: AddSubjectModalProps) => {
         <AddSubjectModalLevel setExamBoard={setExamBoard} setExamBoardLevel={setExamBoardLevel} />
       ) : (
         !selectedSubject ? (
-          <AddSubjectModalSubject closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} setSelectedSubject={setSelectedSubject} selectedSubject={selectedSubject} examBoard={examBoard} examBoardLevel={examBoardLevel} />
+          <AddSubjectModalSubject closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} setSelectedSubject={setSelectedSubject} selectedSubject={selectedSubject} examBoard={examBoard} examBoardLevel={examBoardLevel} setExamBoardLevel={setExamBoardLevel} />
         ) : (
           <AddSubjectModalConfirm closeModal={props.closeModal} subjects={props.subjects} setSubjects={props.setSubjects} selectedSubject={selectedSubject} setSelectedSubject={setSelectedSubject} />
         )

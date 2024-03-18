@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { SetSubject, SetSubjects, Subject } from '../../../../utils/types';
+import { SetStringState, SetSubject, SetSubjects, Subject } from '../../../../utils/types';
 import axios from 'axios';
 
 type AddSubjectModalSubjectProps = {
@@ -10,6 +10,7 @@ type AddSubjectModalSubjectProps = {
   setSelectedSubject: SetSubject;
   examBoard: string;
   examBoardLevel: string;
+  setExamBoardLevel: SetStringState;
 };
 
 const AddSubjectModalSubject = (props: AddSubjectModalSubjectProps) => {
@@ -66,6 +67,7 @@ const AddSubjectModalSubject = (props: AddSubjectModalSubjectProps) => {
               </li>
             ))}
           </ul>
+          <button className='bg-primary border border-accent rounded-md h-10 w-32 px-4 hover:bg-accent text-sm font-medium mt-4' onClick={() => props.setExamBoardLevel('')}>← Go back</button>
         </div>
       </div>
     </div>

@@ -35,13 +35,13 @@ const AddSubjectModalConfirm = (props: AddSubjectModalConfirmProps) => {
           <div className='w-full'>
             <label htmlFor='subject' className='block mb-2 text-sm font-medium'>Subject</label>
             <div className='flex flex-col gap-2 bg-primary border border-accent h-32 rounded-lg p-4'>
-              <p className='text-blue-600 hover:cursor-pointer hover:underline w-fit' onClick={resetSelectedSubject}>← Back to list</p>
               <div className='flex flex-row'>
                 <p className='text-lg font-medium'>{props.selectedSubject.subject_name}</p>
                 <div className='bg-accent rounded-lg py-1 px-2 ml-auto text-text-secondary text-sm'>{props.selectedSubject.subject_level}</div>
               </div>
               <p className='text-text-secondary'>{props.selectedSubject.subject_board}</p>
             </div>
+            <button className='bg-primary border border-accent rounded-md h-10 w-32 px-4 hover:bg-accent text-sm font-medium mt-4' onClick={resetSelectedSubject}>← Go back</button>
           </div>
           <div className='h-5/6'>
             <label htmlFor='subject' className='block mb-2 text-sm font-medium'>Icon</label>
