@@ -20,9 +20,8 @@ const LoginPage = () => {
     };
 
     try {
-      await axios.post('/api/auth/login', data).then(async () => {
-        await Router.push('/app');
-      });
+      await axios.post('/api/auth/login', data);
+      Router.reload();
     } catch (err: any) {
       console.error('Error during login:', err.response.data.error);
       password.value = '';
