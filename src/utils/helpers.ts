@@ -165,8 +165,8 @@ export const fetchExamBoardDetails = async () => {
 
 export const logoutUser = async () => {
   try {
-    await axios.post('/api/auth/logout').then(() => {
-      Router.push('/');
+    await axios.post('/api/auth/logout').then(async () => {
+      await Router.push('/');
     });
   } catch (err: any) {
     console.error('Error during logout:', err.response.data.error);

@@ -22,8 +22,8 @@ const RegisterPage = () => {
     };
 
     try {
-      await axios.post('/api/auth/register', data).then(() => {
-        Router.push('/app');
+      await axios.post('/api/auth/register', data).then(async () => {
+        await Router.push('/app');
       });
     } catch (err: any) {
       console.error('Error during register:', err.response.data.error);

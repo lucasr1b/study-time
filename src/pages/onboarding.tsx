@@ -86,8 +86,8 @@ const OnboardingPage = () => {
       yearLevel: yearLevel,
       country: country,
       subjects: selectedSubjects,
-    }).then(() => {
-      Router.push('/app');
+    }).then(async () => {
+      await Router.push('/app');
     });
   };
 
