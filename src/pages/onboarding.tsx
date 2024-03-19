@@ -86,9 +86,9 @@ const OnboardingPage = () => {
       yearLevel: yearLevel,
       country: country,
       subjects: selectedSubjects,
+    }).then(() => {
+      Router.push('/app');
     });
-    console.log('Successful?');
-    Router.push('/app');
   };
 
   useEffect(() => {
