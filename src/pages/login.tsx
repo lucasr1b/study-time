@@ -66,7 +66,8 @@ const LoginPage = () => {
 export default LoginPage;
 
 export const getServerSideProps = withIronSessionSsr(
-  async ({ req }) => {
+  async ({ req, res }) => {
+    res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`)
     const user = req.session.user;
 
     if (user) {
