@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../../lib/session';
-import { getSubjectListItemFromExamBoardController } from '../../../../../api/controllers/subjectController';
+import { getSubjectListItemFromExamBoardController } from '../../../../../backend/controllers/subjectController';
 
 function subjectListItemFromExamBoardRoute(req: NextApiRequest, res: NextApiResponse) {
   return getSubjectListItemFromExamBoardController(req, res);

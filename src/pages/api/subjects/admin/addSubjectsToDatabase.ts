@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../lib/session';
-import Subject from '../../../../api/models/Subject';
-import connectToDB from '../../../../api/lib/mongodb';
+import Subject from '../../../../backend/models/Subject';
+import connectToDB from '../../../../backend/lib/mongodb';
 import { subjects } from '../../../../utils/subjects';
 
 async function addSubjectsDevRoute(req: NextApiRequest, res: NextApiResponse) {

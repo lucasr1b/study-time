@@ -1,7 +1,7 @@
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../lib/session';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { authLogoutUserController } from '../../../api/controllers/authController';
+import { authLogoutUserController } from '../../../backend/controllers/authController';
 
 function logoutRoute(req: NextApiRequest, res: NextApiResponse) {
   return authLogoutUserController(req, res);

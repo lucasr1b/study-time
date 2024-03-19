@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../lib/session';
-import { getAllSubjectTrackersController } from '../../../../api/controllers/study/trackerController';
+import { getAllSubjectTrackersController } from '../../../../backend/controllers/study/trackerController';
 
 function subjectTrackersRoute(req: NextApiRequest, res: NextApiResponse) {
   return getAllSubjectTrackersController(req, res);

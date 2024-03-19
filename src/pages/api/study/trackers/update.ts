@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../../lib/session';
-import { updateStudyTrackerTimerController } from '../../../../api/controllers/study/trackerController';
+import { updateStudyTrackerTimerController } from '../../../../backend/controllers/study/trackerController';
 
 function updateStudyTrackerRoute(req: NextApiRequest, res: NextApiResponse) {
   return updateStudyTrackerTimerController(req, res);

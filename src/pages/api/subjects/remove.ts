@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { sessionOptions } from '../../../lib/session';
-import { removeSubjectController } from '../../../api/controllers/subjectController';
+import { removeSubjectController } from '../../../backend/controllers/subjectController';
 
 function removeSubjectRoute(req: NextApiRequest, res: NextApiResponse) {
   return removeSubjectController(req, res);
