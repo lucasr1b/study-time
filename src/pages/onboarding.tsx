@@ -82,13 +82,18 @@ const OnboardingPage = () => {
 
 
   const finishOnboarding = async () => {
-    await axios.post('/api/user/finishOnboarding', {
-      yearLevel: yearLevel,
-      country: country,
-      subjects: selectedSubjects,
-    }).then(async () => {
-      await Router.push('/app');
-    });
+    try {
+      await axios.post('/api/user/finishOnboarding', {
+        yearLevel: yearLevel,
+        country: country,
+        subjects: selectedSubjects,
+      }).then(async () => {
+        await Router.push('/app');
+      });
+    } catch (err: any) {
+      console.error('Error during onboarding:', err.response.data.error);
+    }
+
   };
 
   useEffect(() => {
