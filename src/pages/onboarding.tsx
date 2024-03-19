@@ -87,6 +87,7 @@ const OnboardingPage = () => {
       country: country,
       subjects: selectedSubjects,
     });
+    console.log('Successful?');
     Router.push('/app');
   };
 

@@ -31,11 +31,11 @@ export const finishUserOnboardingController = async (req: NextApiRequest, res: N
     if (isUserLoggedIn(req, res)) {
       const { yearLevel, country, subjects } = req.body;
       const user = getUserFromSession(req);
-      await User.updateOne({ _id: user._id }, { yearLevel, country, subjects, onboarding: false });
+      await User.updateOne({ _id: user._id }, { yearLevel, country, subjects });
       await createOnboardingSubjectStudyTrackerAndAddToUser(subjects, user._id);
       req.session.user.onboarding = false;
       await req.session.save();
-      sendSuccessNoContentResponse(res);
+      sendSuccessResponse(res, 'User onboarding completed', req.session);
     }
   } catch (err: any) {
     console.error(err);
