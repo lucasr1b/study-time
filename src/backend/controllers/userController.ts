@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
-import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessResponse } from '../utils/helpers';
 import User from '../models/User';
 import { createOnboardingSubjectStudyTrackerAndAddToUser } from '../services/userService';
 
