@@ -87,8 +87,10 @@ const OnboardingPage = () => {
         yearLevel: yearLevel,
         country: country,
         subjects: selectedSubjects,
-      }).then(async () => {
+      }).then(async (res) => {
+        console.log(res);
         await Router.push('/app');
+        return Promise.resolve();
       });
     } catch (err: any) {
       console.error('Error during onboarding:', err.response.data.error);

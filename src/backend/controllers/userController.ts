@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connectToDB from '../lib/mongodb';
-import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessNoContentResponse, sendSuccessResponse } from '../utils/helpers';
+import { getUserFromSession, isUserLoggedIn, sendErrorResponse, sendSuccessResponse } from '../utils/helpers';
 import User from '../models/User';
 import { createOnboardingSubjectStudyTrackerAndAddToUser } from '../services/userService';
 
@@ -35,7 +35,7 @@ export const finishUserOnboardingController = async (req: NextApiRequest, res: N
       await createOnboardingSubjectStudyTrackerAndAddToUser(subjects, user._id);
       req.session.user.onboarding = false;
       await req.session.save();
-      sendSuccessNoContentResponse(res);
+      sendSuccessResponse(res, 'User onboarding completed', req.session);
     }
   } catch (err: any) {
     console.error(err);
