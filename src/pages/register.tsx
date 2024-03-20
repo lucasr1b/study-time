@@ -77,8 +77,7 @@ const RegisterPage = () => {
 export default RegisterPage;
 
 export const getServerSideProps = withIronSessionSsr(
-  async ({ req, res }) => {
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+  async ({ req }) => {
     const user = req.session.user;
 
     if (user) {
