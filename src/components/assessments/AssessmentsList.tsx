@@ -79,7 +79,7 @@ const AssessmentsList = () => {
         <h1 className='font-semibold mb-4'>Upcoming assessments</h1>
         <div className='grid grid-flow-row grid-cols-3 gap-4 auto-cols-min pb-4'>
           {isLoading ? (
-            [...Array(4)].map((x, i) => (
+            [...Array(3)].map((x, i) => (
               <AssessmentItemSkeleton key={i} />
             ))
           ) : (

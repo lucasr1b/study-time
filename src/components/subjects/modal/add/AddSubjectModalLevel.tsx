@@ -15,12 +15,17 @@ const AddSubjectModalLevel = (props: AddSubjectModalLevelProps) => {
 
   useEffect(() => {
     const setExamBoardsAndLevels = async () => {
-      const examBoards = await fetchExamBoardDetails();
-      setExamBoardsDetails(examBoards);
-      setExamBoardsAndLevels();
+      try {
+        const examBoards = await fetchExamBoardDetails();
+        setExamBoardsDetails(examBoards);
+        setExamBoardsAndLevels();
+      } catch (err: any) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
     setExamBoardsAndLevels();
-    setIsLoading(false); // FINALLY CATCH BLOCK ?
   }, []);
 
   const selectBoardAndLevel = (boardName: string, levelName: string) => {
