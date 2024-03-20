@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { SetTrackers, Tracker } from '../../../utils/types';
 import SetupStudyTrackerModal from '../../study/modal/SetupStudyTrackerModal';
 
-type SubjectOverviewSetupProps = {
+type StudyOverviewItemSetupProps = {
   tracker: Tracker;
   setTrackers: SetTrackers;
 };
 
-const SubjectOverviewSetup = (props: SubjectOverviewSetupProps) => {
+const StudyOverviewItemSetup = (props: StudyOverviewItemSetupProps) => {
 
   const [isSetupModalOpen, setIsSetupModalOpen] = useState(false);
 
@@ -36,4 +36,4 @@ const SubjectOverviewSetup = (props: SubjectOverviewSetupProps) => {
   );
 };
 
-export default SubjectOverviewSetup;
+export default StudyOverviewItemSetup;

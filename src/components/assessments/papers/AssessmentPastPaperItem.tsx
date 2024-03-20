@@ -1,10 +1,10 @@
-type AssessmentPastPaperProps = {
+type AssessmentPastPaperItemProps = {
   name: string;
   icon: string;
   progress: number;
 };
 
-const AssessmentPastPaper = (props: AssessmentPastPaperProps) => {
+const AssessmentPastPaperItem = (props: AssessmentPastPaperItemProps) => {
   return (
     <div className='flex flex-col items-center justify-center h-32 min-w-max p-8 rounded-lg bg-primary border border-accent hover:cursor-default'>
       <p className='text-2xl'>{props.icon}</p>
@@ -14,4 +14,4 @@ const AssessmentPastPaper = (props: AssessmentPastPaperProps) => {
   );
 };
 
-export default AssessmentPastPaper;
+export default AssessmentPastPaperItem;

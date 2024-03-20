@@ -1,6 +1,6 @@
 import { ArrowSmallLeftIcon, ArrowSmallRightIcon } from '@heroicons/react/24/outline';
 
-const SubjectOverviewPagination = () => {
+const StudyOverviewPagination = () => {
   return (
     <div className='flex items-center gap-2 my-4'>
       <button className='flex items-center justify-center w-6 h-6 rounded border border-accent text-text-secondary hover:bg-accent'>
@@ -14,4 +14,4 @@ const SubjectOverviewPagination = () => {
   );
 };
 
-export default SubjectOverviewPagination;
+export default StudyOverviewPagination;

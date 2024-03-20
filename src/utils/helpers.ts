@@ -68,7 +68,7 @@ export const formatSubjectSessionLoggedDate = (date: Date) => {
     hour12: true,
   };
   const formattedDate = date.toLocaleString('en', options);
-  return `Logged at ${formattedDate}`;
+  return formattedDate;
 };
 
 export const padDate = (date: number) => {
