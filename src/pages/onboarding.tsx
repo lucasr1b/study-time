@@ -88,7 +88,7 @@ const OnboardingPage = () => {
         country: country,
         subjects: selectedSubjects,
       });
-      Router.reload();
+      Router.push('/app');
     } catch (err: any) {
       console.error('Error during onboarding:', err.response.data.error);
     }
@@ -179,6 +179,15 @@ export const getServerSideProps = withIronSessionSsr(
       return {
         redirect: {
           destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+
+    if (!user.onboarding) {
+      return {
+        redirect: {
+          destination: '/app',
           permanent: false,
         },
       };

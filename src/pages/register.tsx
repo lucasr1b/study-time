@@ -23,7 +23,7 @@ const RegisterPage = () => {
 
     try {
       await axios.post('/api/auth/register', data);
-      Router.reload();
+      Router.push('/app');
     } catch (err: any) {
       console.error('Error during register:', err.response.data.error);
       password.value = '';
