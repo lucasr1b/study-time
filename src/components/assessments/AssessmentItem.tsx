@@ -18,7 +18,7 @@ const AssessmentItem = (props: AssessmentItemProps) => {
           <div className='text-sm w-fit rounded-md ml-auto text-text-secondary'>{formatAssessmentDate(props.assessment.date)}</div>
         </div>
         <p className='font-normal text-sm py-1'>{props.assessment.description}</p>
-        <div className='flex gap-4 py-1 mt-auto'>
+        <div className='flex gap-2 py-1 mt-auto'>
           {!props.pastDue
             ? (
               <>
