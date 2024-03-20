@@ -88,7 +88,7 @@ const OnboardingPage = () => {
         country: country,
         subjects: selectedSubjects,
       });
-      Router.push('/app');
+      Router.reload();
     } catch (err: any) {
       console.error('Error during onboarding:', err.response.data.error);
     }
