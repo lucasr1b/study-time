@@ -18,7 +18,7 @@ const StudyPage = () => {
       } catch (err: any) {
         console.error('Error fetching trackers:', err.response.data.error);
       } finally {
-        setTimeout(() => setIsLoading(false), 1000);
+        setIsLoading(false);
       }
     };
 

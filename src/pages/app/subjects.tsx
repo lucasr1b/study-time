@@ -26,7 +26,7 @@ const SubjectsPage: NextPage = () => {
       } catch (err: any) {
         console.error('Error fetching subjects:', err.response.data.error);
       } finally {
-        setTimeout(() => setIsLoading(false), 1000);
+        setIsLoading(false);
       }
     };
 

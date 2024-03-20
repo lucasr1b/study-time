@@ -1,16 +1,19 @@
+
 import { useEffect, useState } from 'react';
 import ManageEventsModal from './ManageEventsModal';
 import UpdateEventModal from './UpdateEventModal';
 import axios from 'axios';
 import { Event } from '../../../utils/types';
-import { formatEventDate } from '../../../utils/helpers';
 import AddEventModal from './AddEventModal';
+import EventListItem from './EventListItem';
+import EventListItemSkeleton from './EventListItemSkeleton';
 
 const EventList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | undefined>();
   const [eventModalAction, setEventModalAction] = useState('');
   const [events, setEvents] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -65,6 +68,8 @@ const EventList = () => {
         setEvents(fetchedEvents.data.events);
       } catch (err: any) {
         console.error('Error fetching events:', err.response.data.error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchEvents();
@@ -78,14 +83,19 @@ const EventList = () => {
           Manage events
         </button>
       </div>
-      {events.length === 0 && <p className='italic'>No upcoming events.</p>}
-      <ul className='flex flex-col gap-2 mt-4'>
-        {events.map((event: Event) => (
-          <li key={event._id} className='flex gap-2'>
-            <span className='font-medium'>{formatEventDate(event.date)}</span>
-            <p>{event.title}</p>
-          </li>
-        ))}
+      <ul className='flex flex-col gap-2 mt-2'>
+        {isLoading ? (
+          [...Array(6)].map((x, i) => (
+            <EventListItemSkeleton key={i} />
+          ))
+        ) : (
+          <>
+            {events.length === 0 && <p className='italic'>No upcoming events.</p>}
+            {events.map((event: Event) => (
+              <EventListItem key={event._id} event={event} />
+            ))}
+          </>
+        )}
       </ul>
       {
         isModalOpen && (

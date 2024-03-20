@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import SubjectStudyLogListItem from './SubjectStudyLogListItem';
 import axios from 'axios';
 import { StudyLog } from '../../../utils/types';
+import SubjectStudyLogListItemSkeleton from './SubjectStudyLogListItemSkeleton';
 
 const SubjectStudyLogList = () => {
   const [logs, setLogs] = useState<StudyLog[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchSessionsLogged = async () => {
@@ -13,6 +15,8 @@ const SubjectStudyLogList = () => {
         setLogs(fetchedLogs.data.sessions);
       } catch (err: any) {
         console.error('Error fetching sessions:', err.response.data.error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchSessionsLogged();
@@ -26,11 +30,20 @@ const SubjectStudyLogList = () => {
           View all logs
         </button> */}
       </div>
-      {logs.length === 0 && <p className='italic mt-2'>Log study sessions in the study page.</p>}
       <div className='flex flex-col gap-4 mt-4'>
-        {logs.slice(0, 9).map((log: StudyLog, index: number) => (
-          <SubjectStudyLogListItem log={log} key={index} />
-        ))}
+        {isLoading ? (
+          [...Array(5)].map((x, i) => (
+            <SubjectStudyLogListItemSkeleton key={i} />
+          ))
+        ) : (
+          <>
+            {logs.length === 0 && <p className='italic mt-2'>Log study sessions in the study page.</p>}
+            {logs.slice(0, 9).map((log: StudyLog, index: number) => (
+              <SubjectStudyLogListItem log={log} key={index} />
+            ))}
+          </>
+        )
+        }
       </div>
     </aside>
   );

@@ -36,7 +36,7 @@ const AssessmentsList = () => {
       } catch (err: any) {
         console.error('Error fetching assessments:', err.response.data.error);
       } finally {
-        setTimeout(() => setIsLoading(false), 1000);
+        setIsLoading(false);
       }
     };
     fetchAssessments();
