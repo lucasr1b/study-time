@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import type { AppProps } from 'next/app';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 function StudyTime({ Component, pageProps }: AppProps) {
 
@@ -9,7 +10,12 @@ function StudyTime({ Component, pageProps }: AppProps) {
     document.documentElement.classList.add(theme);
   }
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+      <SpeedInsights />
+    </>
+  );
 }
 
 export default StudyTime;
