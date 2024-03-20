@@ -6,14 +6,14 @@ const AssessmentItemSkeleton = () => {
       <div className='flex flex-col gap-2'>
         <div className='flex justify-between'>
           <div className='flex gap-1'>
-            <LoadingSkeleton width='5' height='5' />
-            <LoadingSkeleton width='32' height='5' rounded='sm' />
+            <LoadingSkeleton width='5' height='5' rounded='none' />
+            <LoadingSkeleton width='32' height='5' />
           </div>
           <div className='ml-auto'>
-            <LoadingSkeleton width='20' height='5' rounded='sm' />
+            <LoadingSkeleton width='20' height='5' />
           </div>
         </div>
-        <LoadingSkeleton width='20' height='5' rounded='sm' />
+        <LoadingSkeleton width='20' height='5' />
         <div className='flex gap-2'>
           <LoadingSkeleton width='12' height='8' rounded='md' />
           <LoadingSkeleton width='16' height='8' rounded='md' />

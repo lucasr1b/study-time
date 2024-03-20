@@ -11,7 +11,7 @@ const LoadingSkeleton = ({ width, height, rounded }: LoadingSkeletonProps) => {
 };
 
 LoadingSkeleton.defaultProps = {
-  rounded: 'none',
+  rounded: 'sm',
 };
 
 export default LoadingSkeleton;
