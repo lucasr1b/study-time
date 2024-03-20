@@ -8,6 +8,7 @@ import { Tracker } from '../../../utils/types';
 const StudyPage = () => {
 
   const [trackers, setTrackers] = useState<Tracker[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTrackers = async () => {
@@ -16,6 +17,8 @@ const StudyPage = () => {
         setTrackers(res.data.trackers);
       } catch (err: any) {
         console.error('Error fetching trackers:', err.response.data.error);
+      } finally {
+        setTimeout(() => setIsLoading(false), 1000);
       }
     };
 
@@ -29,8 +32,8 @@ const StudyPage = () => {
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Study</p>
         <div className='flex flex-col gap-12 mt-2 w-full pb-10'>
-          <WeeklyStudyProgress trackers={trackers} />
-          <StudyTracker trackers={trackers} setTrackers={setTrackers} />
+          <WeeklyStudyProgress trackers={trackers} isLoading={isLoading} />
+          <StudyTracker trackers={trackers} setTrackers={setTrackers} isLoading={isLoading} />
         </div>
       </div>
     </div>

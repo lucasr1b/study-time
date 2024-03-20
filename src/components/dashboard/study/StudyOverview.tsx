@@ -18,7 +18,7 @@ const StudyOverview = () => {
       } catch (err: any) {
         console.error('Error fetching weekly study trackers:', err.response.data.error);
       } finally {
-        setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 1000);
       }
     };
 
@@ -46,7 +46,6 @@ const StudyOverview = () => {
             ))}
           </>
         )}
-
       </div>
     </div>
   );

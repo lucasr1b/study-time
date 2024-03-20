@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { formatWeeklyProgressBar, formatWeeklyProgressTime } from '../../../utils/helpers';
 import { Tracker } from '../../../utils/types';
 
-const SubjectStudyProgress = (props: { tracker: Tracker }) => {
+const WeeklyStudyProgressItem = (props: { tracker: Tracker }) => {
   return (
     <Link className='flex flex-col items-center justify-center h-32 min-w-max p-8 rounded-lg bg-primary border border-accent hover:bg-accent' href={`study/${props.tracker.subject_id}`} >
       <p className='text-2xl'>{props.tracker.subject_icon}</p>
@@ -15,4 +15,4 @@ const SubjectStudyProgress = (props: { tracker: Tracker }) => {
   );
 };
 
-export default SubjectStudyProgress;
+export default WeeklyStudyProgressItem;

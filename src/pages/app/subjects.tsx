@@ -26,7 +26,7 @@ const SubjectsPage: NextPage = () => {
       } catch (err: any) {
         console.error('Error fetching subjects:', err.response.data.error);
       } finally {
-        setIsLoading(false);
+        setTimeout(() => setIsLoading(false), 1000);
       }
     };
 
@@ -65,7 +65,7 @@ const SubjectsPage: NextPage = () => {
             <h1 className='font-semibold mb-4'>Subjects</h1>
             <div className='grid grid-cols-2 grid-flow-row gap-4'>
               {isLoading ? (
-                [...Array(6)].map((x, i) => (
+                [...Array(4)].map((x, i) => (
                   <SubjectItemSkeleton key={i} />
                 ))
               ) : (

@@ -2,13 +2,13 @@ import Link from 'next/link';
 import { formatFancyTime } from '../../../utils/helpers';
 import { Tracker } from '../../../utils/types';
 
-type SubjectStudyTrackerProps = {
+type SubjectTrackerItemProps = {
   tracker: Tracker;
   openSetupModal: (tracker: Tracker) => void;
   openEditModal: (tracker: Tracker) => void;
 };
 
-const SubjectStudyTracker = (props: SubjectStudyTrackerProps) => {
+const SubjectTrackerItem = (props: SubjectTrackerItemProps) => {
   return (
     <div className='flex flex-col items-center justify-center h-40 min-w-max p-8 rounded-lg bg-primary border border-accent'>
       <p className='text-2xl'>{props.tracker.subject_icon}</p>
@@ -33,4 +33,4 @@ const SubjectStudyTracker = (props: SubjectStudyTrackerProps) => {
   );
 };
 
-export default SubjectStudyTracker;
+export default SubjectTrackerItem;

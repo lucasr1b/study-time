@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import PastPaperOverviewItem from './PastPaperOverviewItem';
 import axios from 'axios';
 import { Subject } from '../../../utils/types';
+import PastPaperOverviewItemSkeleton from './PastPaperOverviewItemSkeleton';
 
 const PastPaperOverview = () => {
 
   const [subjects, setSubjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -14,6 +16,8 @@ const PastPaperOverview = () => {
         setSubjects(res.data.subjects);
       } catch (err: any) {
         console.error('Error fetching subjects:', err.response.data.error);
+      } finally {
+        setTimeout(() => setIsLoading(false), 1000);
       }
     };
 
@@ -25,9 +29,15 @@ const PastPaperOverview = () => {
       <h1 className='font-semibold mb-4'>Past papers</h1>
       <ul className='grid'>
         <span className='font-medium italic mb-2'>✨ COMING SOON ✨</span>
-        {subjects.map((subject: Subject, index) => (
-          <PastPaperOverviewItem key={index} icon={subject.subject_icon} name={subject.subject_name} progress={0} total={0} />
-        ))}
+        {isLoading ? (
+          [...Array(4)].map((x, i) => (
+            <PastPaperOverviewItemSkeleton key={i} />
+          ))
+        ) : (
+          subjects.map((subject: Subject, index) => (
+            <PastPaperOverviewItem key={index} icon={subject.subject_icon} name={subject.subject_name} progress={0} total={0} />
+          ))
+        )}
       </ul>
     </div>
   );
