@@ -12,6 +12,7 @@ import StepsProgress from '../components/onboarding/StepsProgress';
 import { withIronSessionSsr } from 'iron-session/next';
 import { sessionOptions } from '../lib/session';
 import Router from 'next/router';
+import Head from 'next/head';
 
 const OnboardingPage = () => {
   const [examBoardsDetails, setExamBoardsDetails] = useState<ExamBoardDetails[]>([]);
@@ -125,6 +126,9 @@ const OnboardingPage = () => {
 
   return (
     <div className='px-8 py-4 h-screen flex flex-col justify-center items-center'>
+      <Head>
+        <title>Onboarding</title>
+      </Head>
       <Navbar hideAuth={true} showLogout={true} />
       <div className='flex flex-col items-center justify-center h-full w-full'>
         <div className='flex justify-center w-full max-w-6xl'>

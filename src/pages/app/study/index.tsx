@@ -4,6 +4,7 @@ import WeeklyStudyProgress from '../../../components/study/progress/WeeklyStudyP
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Tracker } from '../../../utils/types';
+import Head from 'next/head';
 
 const StudyPage = () => {
 
@@ -28,6 +29,9 @@ const StudyPage = () => {
 
   return (
     <div className='container h-screen'>
+      <Head>
+        <title>Study</title>
+      </Head>
       <Sidebar />
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Study</p>

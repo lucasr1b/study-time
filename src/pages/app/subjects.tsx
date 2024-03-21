@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Subject } from '../../utils/types';
 import SubjectItemSkeleton from '../../components/subjects/SubjectItemSkeleton';
 import RemoveSubjectModal from '../../components/subjects/modal/RemoveSubjectModal';
+import Head from 'next/head';
 
 const SubjectsPage: NextPage = () => {
 
@@ -57,6 +58,9 @@ const SubjectsPage: NextPage = () => {
 
   return (
     <div className='container h-screen'>
+      <Head>
+        <title>Subjects</title>
+      </Head>
       <Sidebar />
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Subjects</p>

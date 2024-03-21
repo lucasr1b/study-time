@@ -6,6 +6,7 @@ import { withIronSessionSsr } from 'iron-session/next';
 import { sessionOptions } from '../lib/session';
 import Navbar from '../components/navigation/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
+import Head from 'next/head';
 
 const RegisterPage = () => {
 
@@ -34,6 +35,9 @@ const RegisterPage = () => {
 
   return (
     <div className='flex flex-col px-8 py-4 h-screen'>
+      <Head>
+        <title>Sign up</title>
+      </Head>
       <Navbar />
       <ToastContainer
         position='bottom-right'

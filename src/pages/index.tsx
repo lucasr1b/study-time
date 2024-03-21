@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Navbar from '../components/navigation/Navbar';
 import { withIronSessionSsr } from 'iron-session/next';
 import { sessionOptions } from '../lib/session';
+import Head from 'next/head';
 
 type LandingPageProps = {
   isLoggedIn: boolean;
@@ -11,6 +12,9 @@ type LandingPageProps = {
 const LandingPage = ({ isLoggedIn }: LandingPageProps) => {
   return (
     <div className='px-8 py-4 h-screen'>
+      <Head>
+        <title>Study Time</title>
+      </Head>
       <Navbar isLoggedIn={isLoggedIn} />
       <div className='flex items-center h-full w-full'>
         <div className='flex items-center justify-around w-full'>

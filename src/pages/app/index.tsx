@@ -4,10 +4,14 @@ import AssessmentOverview from '../../components/dashboard/assessments/Assessmen
 import PastPaperOverview from '../../components/dashboard/papers/PastPaperOverview';
 import EventList from '../../components/dashboard/events/EventList';
 import StudyOverview from '../../components/dashboard/study/StudyOverview';
+import Head from 'next/head';
 
 const DashboardPage: NextPage = () => {
   return (
     <div className='container h-screen'>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <Sidebar />
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         <p className='text-4xl font-semibold mb-4'>Dashboard</p>

@@ -6,6 +6,7 @@ import SubjectTimer from '../../../components/study/subject/SubjectTimer';
 import SubjectUnits from '../../../components/study/subject/units/SubjectUnits';
 import Link from 'next/link';
 import { Tracker } from '../../../utils/types';
+import Head from 'next/head';
 
 const StudySubjectPage = () => {
 
@@ -36,6 +37,9 @@ const StudySubjectPage = () => {
 
   return (
     <div className='container h-screen'>
+      <Head>
+        <title>Study</title>
+      </Head>
       <Sidebar />
       <div className='ml-72 h-full w-5/6 p-4 mb-2'>
         {isLoading ? (
