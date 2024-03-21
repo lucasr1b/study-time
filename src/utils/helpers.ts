@@ -95,6 +95,10 @@ export const formatFancyAssessmentOverviewDate = (date: Date) => {
   const timeDifference = Number(date) - Number(currentDate);
   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
+  if (daysDifference == 0) {
+    return 'assessed tomorrow';
+  }
+
   if (daysDifference <= 30) {
     return `assessed in ${daysDifference} days`;
   } else {
