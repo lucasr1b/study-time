@@ -1,12 +1,10 @@
-import LoadingSkeleton from '../../LoadingSkeleton';
-
 const StudyOverviewItemSkeleton = () => {
   return (
     <div className='flex items-center h-32 w-full p-8 rounded-lg bg-primary border border-accent'>
       <div className='flex flex-col w-full items-center gap-2'>
-        <LoadingSkeleton width='8' height='8' rounded='none' />
-        <LoadingSkeleton width='32' height='5' />
-        <LoadingSkeleton width='full' height='5' />
+        <div className='w-8 h-8 leading-relaxed animate-pulse bg-darker-accent'></div>
+        <div className='w-32 h-5 rounded-sm leading-relaxed animate-pulse bg-darker-accent'></div>
+        <div className='w-full h-5 rounded-sm leading-relaxed animate-pulse bg-darker-accent'></div>
       </div>
     </div >
   );

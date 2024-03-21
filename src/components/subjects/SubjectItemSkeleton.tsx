@@ -1,17 +1,13 @@
-import LoadingSkeleton from '../LoadingSkeleton';
-
 const SubjectItemSkeleton = () => {
   return (
     <div className='flex flex-col h-full w-full p-3 gap-1 rounded-lg bg-primary border border-accent'>
       <div className='flex gap-1 mb-1'>
-        <LoadingSkeleton width='5' height='5' rounded='none' />
-        <LoadingSkeleton width='32' height='5' />
+        <div className='w-5 h-5 leading-relaxed animate-pulse bg-darker-accent'></div>
+        <div className='w-32 h-5 rounded-sm leading-relaxed animate-pulse bg-darker-accent'></div>
       </div>
-      <div className='flex flex-col gap-1.5'>
-        <LoadingSkeleton width='24' height='5' />
-      </div>
-      <div className='flex gap-4 mt-1'>
-        <LoadingSkeleton width='20' height='8' rounded='md' />
+      <div className='w-32 h-5 rounded-sm leading-relaxed animate-pulse bg-darker-accent'></div>
+      <div className='mt-1'>
+        <div className='w-20 h-8 rounded-sm leading-relaxed animate-pulse bg-darker-accent'></div>
       </div>
     </div >
   );
