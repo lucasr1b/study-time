@@ -100,7 +100,7 @@ export const formatFancyAssessmentOverviewDate = (date: Date) => {
   }
 
   if (daysDifference <= 30) {
-    return `assessed in ${daysDifference} days`;
+    return `assessed in ${daysDifference} day${daysDifference > 1 ? 's' : ''}`;
   } else {
     return `assessed in ${formatAssessmentDate(date)}`;
   }
