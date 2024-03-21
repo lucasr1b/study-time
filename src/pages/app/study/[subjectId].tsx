@@ -19,7 +19,7 @@ const StudySubjectPage = () => {
 
   useEffect(() => {
     const fetchTracker = async () => {
-      setIsLoading(true);
+      setIsLoading(false);
       try {
         if (subjectId !== undefined) {
           const res = await axios.get(`/api/study/trackers/${subjectId}`);
