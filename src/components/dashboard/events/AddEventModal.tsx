@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import DateSelector from '../DateSelector';
+import DateSelector from '../../DateSelector';
 
 type AddEventModalProps = {
   closeModal: () => void;
@@ -24,7 +24,6 @@ const AddEventModal = (props: AddEventModalProps) => {
           <input placeholder='Event title' className='w-full resize-none outline-none bg-primary' onChange={handleTitleChange} />
         </div>
         <DateSelector date={selectedDate} setSelectedDate={setSelectedDate} isStrict={false} />
-
         <div className='flex gap-2 mt-2'>
           <button type='button' className='bg-primary border border-accent rounded-md h-8 w-fit px-3 hover:bg-accent text-sm' onClick={props.back}>←</button>
           <div className='flex gap-2 ml-auto'>

@@ -126,6 +126,7 @@ export const formatEventDate = (date: Date) => {
 
   return date.toLocaleDateString('en-NZ', options);
 };
+
 export const fetchExamBoardDetails = async () => {
   const fetchExamBoards = async () => {
     try {

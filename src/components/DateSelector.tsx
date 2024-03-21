@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { padDate, validateAssessmentDate } from '../../utils/helpers';
+import { formatEventDate, padDate, validateAssessmentDate } from '../utils/helpers';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
 type DateSelectorProps = {
@@ -17,6 +17,8 @@ const DateSelector = (props: DateSelectorProps) => {
   const [month, setMonth] = useState(date.getMonth() + 1); // month starts from 0
   const [year, setYear] = useState(date.getFullYear());
 
+  const [currentDate, setCurrentDate] = useState<Date>(date);
+
   const createDate = (selectedDay: number, selectedMonth: number, selectedYear: number): Date => {
     return new Date(selectedYear, selectedMonth - 1, selectedDay); // month starts from 0
   };
@@ -28,6 +30,7 @@ const DateSelector = (props: DateSelectorProps) => {
     setDay(selectedDay);
 
     const selectedDate = createDate(selectedDay, month, year);
+    setCurrentDate(selectedDate);
     props.setSelectedDate(selectedDate);
 
     if (props.isStrict) {
@@ -45,6 +48,7 @@ const DateSelector = (props: DateSelectorProps) => {
     }
 
     const selectedDate = createDate(day, selectedMonth, year);
+    setCurrentDate(selectedDate);
     props.setSelectedDate(selectedDate);
 
     if (props.isStrict) {
@@ -61,6 +65,7 @@ const DateSelector = (props: DateSelectorProps) => {
     }
 
     const selectedDate = createDate(day, month, selectedYear);
+    setCurrentDate(selectedDate);
     props.setSelectedDate(selectedDate);
 
     if (props.isStrict) {
@@ -81,34 +86,37 @@ const DateSelector = (props: DateSelectorProps) => {
   ));
 
   return (
-    <div className='flex items-center gap-1'>
-      <div className='grid w-full'>
-        <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
-        <select value={day} onChange={handleDayChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
-          {dayOptions}
-        </select>
+    <div className='flex flex-col gap-2'>
+      <div className='flex items-center gap-1'>
+        <div className='grid w-full'>
+          <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+          <select value={day} onChange={handleDayChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
+            {dayOptions}
+          </select>
+        </div>
+        /
+        <div className='grid w-full'>
+          <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+          <select value={month} onChange={handleMonthChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
+            {monthOptions}
+          </select>
+        </div>
+        /
+        <div className='grid w-full'>
+          <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
+          <select value={year} onChange={handleYearChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
+            {yearOptions}
+          </select>
+        </div>
       </div>
-      /
-      <div className='grid w-full'>
-        <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
-        <select value={month} onChange={handleMonthChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
-          {monthOptions}
-        </select>
-      </div>
-      /
-      <div className='grid w-full'>
-        <ChevronDownIcon className='w-3 h-3 pointer-events-none z-10 right-2 relative col-start-1 row-start-1 self-center justify-self-end' strokeWidth={'4'} />
-        <select value={year} onChange={handleYearChange} className='appearance-none w-full row-start-1 col-start-1 p-2 outline-none border border-accent rounded-md bg-primary hover:bg-lighter-accent'>
-          {yearOptions}
-        </select>
-      </div>
+      <p className='text-text-secondary text-sm'>Selected date: {formatEventDate(currentDate)}</p>
     </div>
   );
 };
-
-export default DateSelector;
 
 
 DateSelector.defaultProps = {
   isStrict: true,
 };
+
+export default DateSelector;

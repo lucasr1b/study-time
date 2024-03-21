@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import DateSelector from '../../dashboard/DateSelector';
+import DateSelector from '../../DateSelector';
 import axios from 'axios';
 import { Assessment, SetAssessments } from '../../../utils/types';
 

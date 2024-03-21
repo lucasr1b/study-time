@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import DateSelector from '../../dashboard/DateSelector';
+import DateSelector from '../../DateSelector';
 import axios from 'axios';
 import { Assessment, SetAssessments, Subject } from '../../../utils/types';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
