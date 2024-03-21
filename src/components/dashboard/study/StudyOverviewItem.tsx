@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { formatWeeklyProgressTime } from '../../../utils/helpers';
+import { formatWeeklyProgressBar, formatWeeklyProgressTime } from '../../../utils/helpers';
 import { Tracker } from '../../../utils/types';
 
 const StudyOverviewItem = (props: { tracker: Tracker }) => {
@@ -9,7 +9,7 @@ const StudyOverviewItem = (props: { tracker: Tracker }) => {
       <p className='text-m font-medium text-text'>{props.tracker.subject_name}</p>
       <div className='mb-1 text-text-secondary text-sm'>{formatWeeklyProgressTime(props.tracker.time_studied, props.tracker.time_allocated)}</div>
       <div className='w-full bg-darker-accent rounded-full h-1.5 mb-4'>
-        <div className='bg-blue-600 h-1.5 rounded-full' style={{ width: `${(props.tracker.time_studied / props.tracker.time_allocated * 100)}%` }}></div>
+        <div className='bg-blue-600 h-1.5 rounded-full' style={{ width: `${formatWeeklyProgressBar(props.tracker.time_studied, props.tracker.time_allocated)}%` }}></div>
       </div>
     </Link>
   );

@@ -37,7 +37,10 @@ export const formatWeeklyProgressBar = (time: number, maxTime: number) => {
   let percentage = 0;
   if (time > maxTime) percentage = 100;
   else percentage = (time / maxTime) * 100;
-  return Math.floor(percentage);
+  if (percentage > 99) return Math.floor(percentage);
+  if (percentage < 99) percentage = Math.ceil(percentage);
+
+  return Math.ceil(percentage);
 };
 
 export const formatSubjectTimer = (hours: number, minutes: number, seconds: number) => {
