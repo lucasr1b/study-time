@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ExamLevel, SetDateState, SetNumberState } from './types';
 import Router from 'next/router';
+import { toast } from 'react-toastify';
 
 export const getMinutes = (time: number) => { return Math.floor((time / 60) % 60); };
 export const getHours = (time: number) => { return Math.floor((((time / 60) % 3600) / 60)); };
@@ -173,9 +174,9 @@ export const fetchExamBoardDetails = async () => {
 
 export const logoutUser = async () => {
   try {
-    await axios.post('/api/auth/logout').then(async () => {
-      await Router.push('/');
-    });
+    await axios.post('/api/auth/logout');
+    Router.push('/');
+    toast.success('Logged out successfully!');
   } catch (err: any) {
     console.error('Error during logout:', err.response.data.error);
   }

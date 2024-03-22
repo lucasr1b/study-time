@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { SyntheticEvent } from 'react';
 import { sessionOptions } from '../lib/session';
 import Navbar from '../components/navigation/Navbar';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Head from 'next/head';
 
 const LoginPage = () => {
@@ -21,8 +21,9 @@ const LoginPage = () => {
     };
 
     try {
-      await axios.post('/api/auth/login', data);
+      const res = await axios.post('/api/auth/login', data);
       Router.push('/app');
+      toast.success(`Welcome back, ${res.data.user.name.split(' ')[0]}!`); // first name only
     } catch (err: any) {
       console.error('Error during login:', err.response.data.error);
       password.value = '';
@@ -36,10 +37,6 @@ const LoginPage = () => {
         <title>Login</title>
       </Head>
       <Navbar />
-      <ToastContainer
-        position='bottom-right'
-        autoClose={2500}
-      />
       <div className='flex justify-center items-center h-screen w-full'>
         <div className='flex justify-center items bg-primary border border-accent py-8 px-16 rounded-lg w-1/3 h-fit'>
           <div className='w-full space-y-4'>

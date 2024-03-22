@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import type { AppProps } from 'next/app';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ToastContainer } from 'react-toastify';
 
 function StudyTime({ Component, pageProps }: AppProps) {
 
@@ -14,6 +15,10 @@ function StudyTime({ Component, pageProps }: AppProps) {
     <>
       <Component {...pageProps} />
       <SpeedInsights />
+      <ToastContainer
+        position='bottom-right'
+        autoClose={2500}
+      />
     </>
   );
 }
