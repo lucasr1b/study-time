@@ -5,7 +5,7 @@ import { SyntheticEvent } from 'react';
 import { withIronSessionSsr } from 'iron-session/next';
 import { sessionOptions } from '../lib/session';
 import Navbar from '../components/navigation/Navbar';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Head from 'next/head';
 
 const RegisterPage = () => {
@@ -39,10 +39,6 @@ const RegisterPage = () => {
         <title>Sign up</title>
       </Head>
       <Navbar />
-      <ToastContainer
-        position='bottom-right'
-        autoClose={2500}
-      />
       <div className='flex justify-center items-center h-screen w-full'>
         <div className='flex justify-center items bg-primary border border-accent py-8 px-16 rounded-lg w-1/3 h-fit'>
           <div className='w-full space-y-4'>
